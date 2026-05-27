@@ -14,13 +14,33 @@ code .          # Opens in VS Code (recommended)
 notepad index.html   # If you prefer simple editing
 ```
 
-## Saving Your Progress
+## Easy Way to Update Your Portfolio
 
-Every time you make meaningful changes, save a new version:
+The easiest way to push updates is to use the included script.
+
+### Method 1: Use the Update Script (Recommended)
+
+1. Open PowerShell
+2. Navigate to the folder:
+   ```powershell
+   cd "D:\my-portfolio"
+   ```
+3. Run the update script:
+   ```powershell
+   .\update-portfolio.ps1
+   ```
+4. When prompted, type a short message describing what you changed (or just press Enter to use the default message).
+5. The script will automatically commit and push your changes. GitHub Actions will then update your live website.
+
+### Method 2: Manual Git Commands
+
+If you prefer doing it manually:
 
 ```powershell
+cd "D:\my-portfolio"
 git add .
-git commit -m "Describe what you changed here"
+git commit -m "Your description of changes"
+git push
 ```
 
 ## Connecting to GitHub (stevel4857)

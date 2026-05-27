@@ -100,6 +100,20 @@ my-portfolio/
 4. Connect the contact form to a real service.
 5. Deploy it (Netlify, Vercel, or GitHub Pages are all free and perfect for this).
 
+## 🚀 Making Updates Easy
+
+There's a simple script included to make future updates fast:
+
+1. Make your changes to the files
+2. Open PowerShell and run:
+   ```powershell
+   cd "D:\my-portfolio"
+   .\update-portfolio.ps1
+   ```
+3. Enter a short commit message when prompted
+
+The script will automatically commit and push your changes. Your live site will update within 1-2 minutes.
+
 ---
 
 ## 💾 Saving & Resuming Work (Git)
