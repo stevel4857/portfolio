@@ -104,7 +104,18 @@ my-portfolio/
 
 ## 💾 Saving & Resuming Work (Git)
 
-This project is now saved as a Git repository. This makes it easy to come back later and continue improving it.
+This project is now saved as a Git repository on the `main` branch.
+
+### Connecting to Your GitHub (stevel4857)
+
+1. Create a new repository on GitHub under https://github.com/stevel4857 (suggested name: `portfolio`)
+2. Run these commands to link and push:
+
+```powershell
+cd "D:\my-portfolio"
+git remote add origin https://github.com/stevel4857/YOUR-REPO-NAME.git
+git push -u origin main
+```
 
 ### How to resume working on this project later:
 
@@ -128,8 +139,6 @@ This project is now saved as a Git repository. This makes it easy to come back l
 - `git log` — See all saved versions
 - `git diff` — See what you've changed since the last save
 - `git checkout .` — Discard changes (use with caution)
-
-The latest stable version is always on the `master` branch.
 
 ---
 

@@ -23,6 +23,26 @@ git add .
 git commit -m "Describe what you changed here"
 ```
 
+## Connecting to GitHub (stevel4857)
+
+Your GitHub profile is https://github.com/stevel4857
+
+To push this project to GitHub:
+
+1. Go to GitHub and create a **new repository** (recommended name: `portfolio` or `steve-luiting-portfolio`)
+2. **Do NOT** initialize it with a README (we already have one).
+3. After creating the repo, run these commands:
+
+```powershell
+cd "D:\my-portfolio"
+
+# Add your GitHub repo as the remote (replace with your actual repo URL)
+git remote add origin https://github.com/stevel4857/YOUR-REPO-NAME.git
+
+# Push everything up
+git push -u origin main
+```
+
 ## Viewing Previous Versions
 
 ```powershell
@@ -37,5 +57,6 @@ git checkout <commit-id>   # Go back to a previous version
 - Using Avenir font stack
 - Location corrected to Westminster, CO
 - 3D Lab fully integrated
+- Branch: main
 
 You can always come back and ask me to continue working on this project by referencing this folder.
