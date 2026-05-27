@@ -100,6 +100,39 @@ my-portfolio/
 4. Connect the contact form to a real service.
 5. Deploy it (Netlify, Vercel, or GitHub Pages are all free and perfect for this).
 
+---
+
+## 💾 Saving & Resuming Work (Git)
+
+This project is now saved as a Git repository. This makes it easy to come back later and continue improving it.
+
+### How to resume working on this project later:
+
+1. Open PowerShell or Terminal
+2. Navigate to the folder:
+   ```powershell
+   cd "D:\my-portfolio"
+   ```
+3. Check the current status:
+   ```powershell
+   git status
+   ```
+4. Continue making changes to the files (especially `index.html` and `3d-website.html`).
+5. When you're ready to save a new version:
+   ```powershell
+   git add .
+   git commit -m "Your message describing what you changed"
+   ```
+
+### Useful Git commands for future sessions:
+- `git log` — See all saved versions
+- `git diff` — See what you've changed since the last save
+- `git checkout .` — Discard changes (use with caution)
+
+The latest stable version is always on the `master` branch.
+
+---
+
 ## Need help?
 
 This was built for you as a starting point. Want me to:
