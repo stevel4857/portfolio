@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "slug": "core-principles-of-aeo",
+    "title": "Core Principles of AEO",
+    "date": "2026-05-30",
+    "author": "Steve Luiting",
+    "category": "AI & Strategy",
+    "readTime": "8 min",
+    "excerpt": "SEO is important but now so is AEO. Here's what Answer Engine Optimization actually means for how we build websites in 2026 and beyond.",
+    "content": "<p>SEO is important but now so is <strong>AEO</strong> — Answer Engine Optimization.</p><p>As AI assistants and answer engines become the primary way people discover information, the rules are shifting. It's no longer just about ranking in Google. It's about becoming the source that AI systems trust and cite.</p><h3>What This Means for Your Website</h3><ul><li>Clear, authoritative, well-structured content wins</li><li>Technical accuracy and depth matter more than ever</li><li>Being the original source (not just aggregating) is powerful</li></ul><p>The organizations that will thrive are those whose websites are built with both humans and intelligent systems in mind.</p>",
+    "tags": ["AEO", "AI", "Strategy"]
+  },
+  {
+    "id": 2,
+    "slug": "ai-and-uiux-web-design-news",
+    "title": "AI and UI/UX Web Design News",
+    "date": "2026-04-15",
+    "author": "Steve Luiting",
+    "category": "AI & Tools",
+    "readTime": "6 min",
+    "excerpt": "\"Awesome Design MD\" goes viral as the \"Figma for AI agents\" — a look at the tools that are actually changing how we design and build in 2026.",
+    "content": "<p>\"Awesome Design MD\" has been making waves as the Figma for AI agents. The speed at which new tooling is emerging is both exciting and overwhelming.</p><p>In this post I share the tools and workflows that have genuinely moved the needle for me when working with clients — especially museums and nonprofits that need high-quality results without enterprise budgets.</p><h3>Key Takeaways</h3><p>The best results still come from strong human direction combined with AI acceleration. The craft hasn't disappeared — it's been supercharged.</p>",
+    "tags": ["AI", "Tools", "UI/UX"]
+  },
+  {
+    "id": 3,
+    "slug": "ai-video-work",
+    "title": "AI Video Work",
+    "date": "2026-02-03",
+    "author": "Steve Luiting",
+    "category": "Experiments",
+    "readTime": "4 min",
+    "excerpt": "I place the videos that I'm working on here. Right now I'm using Grok Imagine Agent and it's becoming an infinite creative work board.",
+    "content": "<p>One of the most powerful shifts in 2025–2026 has been the quality of AI video and motion generation.</p><p>I'm currently using Grok's image and video capabilities extensively for client concepts, logo animations, and exploratory work. The ability to iterate visually at this speed changes the conversation with clients completely.</p><p>Instead of describing what something could feel like, we can <em>see</em> it together in minutes.</p><p>This post serves as a living board of experiments. Expect it to grow quickly.</p>",
+    "tags": ["AI", "Video", "Motion"]
+  },
+  {
+    "id": 4,
+    "slug": "3d-aframe-2d-page-test",
+    "title": "3D A-Frame 2D Page Test",
+    "date": "2025-07-10",
+    "author": "Steve Luiting",
+    "category": "Experiments",
+    "readTime": "5 min",
+    "excerpt": "An immersive 3D/VR space embedded in a normal 2D web page. WSAD controls work when the scene is active. Built with A-Frame.",
+    "content": "<p>Sometimes the best way to tell a story is to let people step inside it.</p><p>This experiment embeds a full 3D environment directly into a regular web page using A-Frame. No app install required. Works on desktop and has basic mobile support.</p><p>It's the same spirit as the full VR recreation I built for The Cable Center years ago — just much easier for visitors to access instantly.</p>",
+    "tags": ["3D", "A-Frame", "WebXR"]
+  },
+  {
+    "id": 5,
+    "slug": "embed-flash-in-squarespace",
+    "title": "Embed Flash in Squarespace",
+    "date": "2024-02-07",
+    "author": "Steve Luiting",
+    "category": "Legacy Web",
+    "readTime": "7 min",
+    "excerpt": "I embedded a Flash animation into Squarespace indirectly. Flash works with modern code and no plugins anymore.",
+    "content": "<p>Yes, you read that right. Flash is having a quiet renaissance thanks to Ruffle and clever embedding techniques.</p><p>For organizations that have important historical interactive content (old kiosks, educational modules, archival animations), there are now practical ways to bring that material back online without rewriting everything from scratch.</p><p>This post walks through the exact method I used on a live Squarespace site.</p>",
+    "tags": ["Flash", "Squarespace", "Legacy"]
+  },
+  {
+    "id": 6,
+    "slug": "the-resurrection-of-flash",
+    "title": "The Resurrection of Flash",
+    "date": "2023-11-23",
+    "author": "Steve Luiting",
+    "category": "Legacy Web",
+    "readTime": "9 min",
+    "excerpt": "Flash is back from the dead it seems — and for certain archival and cultural projects, that's actually good news.",
+    "content": "<p>For museums and cultural organizations, Flash was once the standard for rich interactive exhibits. When it was killed off, a huge amount of important digital heritage effectively died with it.</p><p>Thanks to open-source projects like Ruffle, many of those experiences can live again — safely, in the browser, with no plugins required from visitors.</p><p>I've been quietly resurrecting Flash-based work for clients who need their history to remain accessible. It's one of the more satisfying parts of what I do.</p>",
+    "tags": ["Flash", "Archives", "Museums"]
+  },
+  {
+    "id": 7,
+    "slug": "building-the-cable-center-vr-archive",
+    "title": "Building the Cable Center VR Archive",
+    "date": "2025-01-12",
+    "author": "Steve Luiting",
+    "category": "Projects",
+    "readTime": "11 min",
+    "excerpt": "How we turned an entire historic building into a walkable VR experience that people can still explore on Meta Quest and Steam years later.",
+    "content": "<p>In 2014 we set out to do something ambitious: recreate the entire Cable Center building as a fully interactive virtual experience.</p><p>Working with a small team, we modeled the architecture, digitized hundreds of artifacts, and integrated real 360° video oral histories so visitors could literally step inside the stories.</p><h3>Why it still matters in 2026</h3><p>Unlike most VR projects that age quickly, this one was built with longevity in mind. The experience is still available today on Steam and Meta Quest headsets — completely free.</p><p>It taught me that the best digital preservation work isn't about chasing the newest technology. It's about respecting the material and building something that can survive platform changes.</p>",
+    "tags": ["VR", "Museums", "Preservation", "Unity"]
+  },
+  {
+    "id": 8,
+    "slug": "working-with-museums-and-nonprofits",
+    "title": "Why I Choose to Work With Museums and Nonprofits",
+    "date": "2026-03-22",
+    "author": "Steve Luiting",
+    "category": "Philosophy",
+    "readTime": "7 min",
+    "excerpt": "After three decades, I've realized the organizations with the most important stories are often the ones with the smallest budgets. That's exactly why I do what I do.",
+    "content": "<p>I've turned down plenty of corporate work over the years. Not because I can't do it — but because the mission-driven organizations are the ones whose stories actually need to last.</p><p>Museums, historical societies, and nonprofits are sitting on decades (sometimes centuries) of meaning. When their websites are fragile or outdated, that meaning becomes harder to access. My job is to change that.</p><p>Yes, the budgets are often smaller. But the impact of getting it right is enormous — and permanent.</p>",
+    "tags": ["Museums", "Nonprofits", "Purpose"]
+  },
+  {
+    "id": 9,
+    "slug": "rescuing-the-video-archive-after-the-hack",
+    "title": "Rescuing the Video Archive After the Hack",
+    "date": "2026-04-28",
+    "author": "Steve Luiting",
+    "category": "Projects",
+    "readTime": "10 min",
+    "excerpt": "One of the most important things I ever did for The Cable Center happened because someone broke into their servers. Here's the real story of how we saved hundreds of hours of irreplaceable oral history.",
+    "content": "<p>In the middle of my time at The Cable Center, their main server was compromised. It was one of those quiet crises that could have erased decades of work.</p><p>The video archive — oral histories with cable pioneers, Hall of Fame induction ceremonies, board meetings, educational programs — was scattered across drives that were no longer trustworthy. Much of it existed in only one place.</p><h3>What actually happened</h3><p>I spent weeks methodically going through every backup we had. Some were on old tapes. Some were on external drives that hadn't been touched in years. A surprising amount was only on the compromised machine.</p><p>Bit by bit, I pulled the cleanest copies I could find and created a new, verified master archive. Those files became the only reliable versions of that material that existed for a long time.</p><p>Nobody outside a small group really knew how close we came to losing it.</p><h3>Why this still shapes how I work</h3><p>That experience made me obsessive about redundancy and long-term thinking. When I build a website today for a museum or nonprofit, I'm not just thinking about launch day. I'm thinking about what happens in five years, ten years, or when the next person inherits the project.</p><p>It's never glamorous work. But it's some of the most important work I do.</p>",
+    "tags": ["Archives", "Museums", "Preservation", "Crisis"]
+  },
+  {
+    "id": 10,
+    "slug": "twelve-years-as-the-only-web-guy",
+    "title": "Twelve Years as the Only Web Guy",
+    "date": "2025-09-15",
+    "author": "Steve Luiting",
+    "category": "Philosophy",
+    "readTime": "8 min",
+    "excerpt": "For over a decade I was the sole person responsible for the entire digital presence of a national institution. It taught me things about ownership, longevity, and client relationships that no agency job ever could.",
+    "content": "<p>From 2009 to 2021 I was, for all practical purposes, the entire web department at The Cable Center.</p><p>There was no marketing team handing me briefs. No design department. No dedicated developer to pass things off to. If the site needed something, it was my job to figure it out — from strategy and information architecture all the way down to the actual code and server maintenance.</p><h3>What that actually teaches you</h3><p>When you're the only one, you can't hide behind process. You see the full consequences of every decision you make. You also learn very quickly what actually matters versus what sounds impressive in meetings.</p><p>I learned to care more about the long-term health of the site than about looking clever. I learned that the best solutions are often the simplest ones that non-technical people can understand and maintain after I'm gone.</p><p>That period shaped almost everything I believe about this work today.</p>",
+    "tags": ["Career", "Museums", "Ownership", "Longevity"]
+  }
+]

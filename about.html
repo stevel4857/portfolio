@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The story of Steve Luiting — 30+ years building digital experiences for museums, nonprofits, and purpose-driven organizations in Colorado.">
+  <title>About Steve Luiting — Strategic Web Design | Denver</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Playfair+Display:wght@700&amp;display=swap');
+    
+    body {
+      font-family: "Inter", system_ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    
+    .heading-serif {
+      font-family: "Playfair Display", Georgia, serif;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+    }
+
+    .nav-link {
+      transition: all 0.15s ease;
+    }
+    .nav-link:hover { color: #0f172a; }
+
+    .story-block {
+      max-width: 720px;
+    }
+
+    .key-moment {
+      position: relative;
+      padding-left: 2rem;
+    }
+    .key-moment:before {
+      content: '';
+      position: absolute;
+      left: 0.6rem;
+      top: 0.4rem;
+      width: 0.6rem;
+      height: 0.6rem;
+      background: #1e2937;
+      border-radius: 9999px;
+    }
+  </style>
+</head>
+<body class="bg-white text-slate-900">
+
+  <!-- Navigation -->
+  <nav class="border-b border-slate-100 bg-white/95 backdrop-blur-sm sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex items-center justify-between h-20">
+        <div class="flex items-center gap-x-3">
+          <a href="index.html" class="font-semibold text-2xl tracking-tighter">Steve Luiting</a>
+          <span class="text-xs font-mono uppercase tracking-[2px] text-slate-400 pt-1">Denver</span>
+        </div>
+
+        <div class="hidden md:flex items-center gap-x-9 text-sm font-medium">
+          <a href="index.html" class="nav-link text-slate-600">Home</a>
+          <a href="about.html" class="nav-link text-slate-900 font-medium">About</a>
+          <a href="index.html#work" class="nav-link text-slate-600">Work</a>
+          <a href="blog.html" class="nav-link text-slate-600">Insights</a>
+          <a href="index.html#contact" class="nav-link text-slate-600">Contact</a>
+        </div>
+
+        <a href="index.html#contact" 
+           class="inline-flex items-center px-5 h-9 rounded-full bg-slate-900 text-white text-sm font-semibold hover:bg-black transition">
+          Let's Talk
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="max-w-6xl mx-auto px-6 pt-16 pb-12">
+    <div class="max-w-3xl">
+      <div class="uppercase tracking-[3px] text-xs font-semibold text-slate-500 mb-4">A LIFE IN DIGITAL CRAFT</div>
+      <h1 class="heading-serif text-6xl md:text-7xl leading-none tracking-[-2.5px]">I build things<br>that are meant<br>to last.</h1>
+      
+      <div class="mt-8 flex items-center gap-x-4">
+        <img src="assets/images/profile.png" alt="Steve Luiting" 
+             class="w-20 h-20 rounded-2xl object-cover ring-1 ring-slate-200">
+        <div>
+          <div class="font-semibold text-xl">Steve Luiting</div>
+          <div class="text-slate-600">Strategic Web Designer • Denver, Colorado</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Core Philosophy -->
+  <section class="max-w-6xl mx-auto px-6 pb-16">
+    <div class="max-w-3xl text-xl leading-relaxed text-slate-700">
+      For more than thirty years I've helped museums, historical organizations, and purpose-driven groups turn complex missions into clear, durable digital experiences. 
+      I don't chase trends. I build things that still feel right and work properly a decade later.
+    </div>
+  </section>
+
+  <!-- The Formative Years -->
+  <section class="bg-slate-50 py-16">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid lg:grid-cols-12 gap-x-16 gap-y-10">
+        <div class="lg:col-span-4">
+          <div class="sticky top-24">
+            <div class="text-xs uppercase tracking-[3px] font-semibold text-slate-500 mb-3">2009 — 2021</div>
+            <h2 class="heading-serif text-4xl tracking-tighter leading-none">Twelve years at<br>The Cable Center</h2>
+            <p class="mt-4 text-slate-600">This is where almost everything I believe about this work was formed.</p>
+          </div>
+        </div>
+
+        <div class="lg:col-span-8 space-y-10 text-[15.2px] leading-relaxed text-slate-700">
+          <p>In 2009 I walked into The Cable Center in Denver and they asked if I could learn ColdFusion — an enterprise platform that was already considered legacy at the time. I said yes, built their entire website from scratch that year, and stayed for twelve years as their lead (and for most of that time, only) web and digital person.</p>
+
+          <div class="space-y-8">
+            <div class="key-moment">
+              <div class="font-semibold text-slate-900 mb-1">I became the entire digital department.</div>
+              <p>No marketing team. No designers. No developers to hand things off to. Every decision — from information architecture to server maintenance — was mine. That kind of radical ownership changes how you think about quality and longevity.</p>
+            </div>
+
+            <div class="key-moment">
+              <div class="font-semibold text-slate-900 mb-1">I quietly saved their entire video archive after a server was hacked.</div>
+              <p>Hundreds of hours of oral histories, Hall of Fame programs, and institutional memory existed in only one place. Bit by bit I reconstructed the cleanest copies I could find and created a verified master archive. Most people never knew how close we came to losing it.</p>
+            </div>
+
+            <div class="key-moment">
+              <div class="font-semibold text-slate-900 mb-1">I reverse-engineered broken 2007 Flash kiosks so visitors could still use them.</div>
+              <p>When the technology died, important interactive exhibits died with it. I found ways to bring pieces of that experience back online safely. That work continues today.</p>
+            </div>
+
+            <div class="key-moment">
+              <div class="font-semibold text-slate-900 mb-1">I led the creation of a full VR recreation of the entire building.</div>
+              <p>Working with a small team, we built something visitors could walk through on a Meta Quest or via Steam — picking up artifacts and stepping into real 360° oral histories. It is still available and free more than a decade later.</p>
+              <a href="https://store.steampowered.com/app/612440/The_Cable_Center__Virtual_Archive/" target="_blank" 
+                 class="inline-flex items-center gap-x-1.5 text-sm font-medium text-slate-900 hover:underline mt-2">
+                View the VR Archive on Steam <i class="fa-solid fa-external-link-alt text-xs"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What I Learned -->
+  <section class="max-w-6xl mx-auto px-6 py-16">
+    <div class="max-w-2xl">
+      <h3 class="heading-serif text-3xl tracking-tight mb-6">What that period taught me</h3>
+      
+      <div class="space-y-6 text-[15.2px] text-slate-700">
+        <p>The best digital work isn't flashy. It's the kind that still makes sense when the original team has moved on and the next person has to maintain it.</p>
+        <p>I learned to care more about the long-term health of an organization’s story than about looking impressive in the moment. That single lesson has guided almost every project since.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Today -->
+  <section class="border-t border-slate-100 py-16">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid lg:grid-cols-12 gap-x-16 items-start">
+        <div class="lg:col-span-5">
+          <div class="uppercase tracking-[3px] text-xs font-semibold text-slate-500 mb-3">TODAY</div>
+          <h2 class="heading-serif text-4xl tracking-tighter leading-none">Same standards.<br>New speed.</h2>
+        </div>
+
+        <div class="lg:col-span-7 mt-8 lg:mt-0 text-[15.2px] leading-relaxed text-slate-700">
+          <p>I still do the same work I’ve always done — strategic web design for organizations whose stories deserve to last. The difference now is that I have powerful new partners: Grok and Claude.</p>
+          
+          <p class="mt-4">I use AI every day as a creative collaborator. It lets me explore more directions, write sharper copy, generate better visual concepts, and deliver higher-quality work in less time. The result is that I can take on the kind of thoughtful, mission-driven projects I care about without the old constraints of time and cost.</p>
+
+          <p class="mt-4">The craft hasn’t changed. The economics have.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact CTA -->
+  <section class="bg-slate-950 text-white py-16">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h2 class="heading-serif text-4xl tracking-tight">If this way of working resonates with you, let's talk.</h2>
+      <p class="mt-4 max-w-md mx-auto text-slate-400">I work best with museums, historical organizations, and purpose-driven groups who care about getting it right for the long haul.</p>
+      
+      <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="index.html#contact" class="inline-flex items-center justify-center px-8 h-12 rounded-2xl bg-white text-slate-900 font-semibold hover:bg-slate-100 transition">
+          Get in touch
+        </a>
+        <a href="blog.html" class="inline-flex items-center justify-center px-8 h-12 rounded-2xl border border-white/30 text-white font-medium hover:bg-white/10 transition">
+          Read my notes
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="border-t border-slate-100 py-8">
+    <div class="max-w-6xl mx-auto px-6 text-sm text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-y-2">
+      <div>© Steve Luiting. All rights reserved.</div>
+      <div class="flex gap-x-5">
+        <a href="index.html" class="hover:text-slate-700">Home</a>
+        <a href="blog.html" class="hover:text-slate-700">Insights</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

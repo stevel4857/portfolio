@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Strategic web design and digital experiences for museums, nonprofits, and purpose-driven organizations in Colorado. 30+ years of craft, now accelerated with AI.">
+  <title>Steve Luiting — Strategic Web Design &amp; Digital Experiences | Denver</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Playfair+Display:wght@700&amp;display=swap');
+    
+    body {
+      font-family: "Inter", system_ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    
+    .heading-serif {
+      font-family: "Playfair Display", Georgia, serif;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+    }
+
+    .section-heading {
+      position: relative;
+      display: inline-block;
+    }
+
+    .nav-link {
+      transition: all 0.15s ease;
+    }
+    .nav-link:hover { color: #0f172a; }
+
+    .work-card {
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                  box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .work-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.12);
+    }
+
+    .stat {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .timeline-item {
+      position: relative;
+    }
+    .timeline-item:not(:last-child):before {
+      content: '';
+      position: absolute;
+      left: 15px;
+      top: 32px;
+      bottom: -12px;
+      width: 1px;
+      background: #e2e8f0;
+    }
+
+    .subtle-border {
+      border-color: #f1f5f9;
+    }
+  </style>
+</head>
+<body class="bg-white text-slate-900 antialiased">
+
+  <!-- Navigation -->
+  <nav class="border-b border-slate-100 bg-white/95 backdrop-blur-sm sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex items-center justify-between h-20">
+        <div class="flex items-center gap-x-3">
+          <a href="index.html" class="font-semibold text-2xl tracking-tighter">Steve Luiting</a>
+          <span class="text-xs font-mono uppercase tracking-[2px] text-slate-400 pt-1">Denver</span>
+        </div>
+
+        <div class="hidden md:flex items-center gap-x-9 text-sm font-medium">
+          <a href="about.html" class="nav-link text-slate-600">About</a>
+          <a href="#work" class="nav-link text-slate-600">Work</a>
+          <a href="blog.html" class="nav-link text-slate-600">Insights</a>
+          <a href="#contact" class="nav-link text-slate-600">Contact</a>
+        </div>
+
+        <div class="flex items-center gap-x-3">
+          <a href="blog.html" 
+             class="hidden sm:inline-flex items-center px-4 h-9 rounded-full border border-slate-200 text-sm font-medium hover:bg-slate-50 transition">
+            Read the Notes
+          </a>
+          <a href="#contact" 
+             class="inline-flex items-center px-5 h-9 rounded-full bg-slate-900 text-white text-sm font-semibold hover:bg-black transition">
+            Let's Talk
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="max-w-6xl mx-auto px-6 pt-20 pb-16">
+    <div class="max-w-3xl">
+      <div class="inline-flex items-center gap-x-2 text-xs uppercase tracking-[3px] font-semibold text-slate-500 mb-6">
+        <span class="w-8 h-px bg-slate-400"></span> 
+        COLORADO • 30+ YEARS
+      </div>
+      
+      <h1 class="heading-serif text-[72px] leading-[1.05] tracking-[-3.5px] max-w-4xl">
+        Future-proof<br>your mission.
+      </h1>
+      
+      <p class="mt-6 text-2xl text-slate-600 max-w-lg leading-tight">
+        Strategic web design and digital experiences for museums, nonprofits, and purpose-driven organizations.
+      </p>
+
+      <!-- Personal photo -->
+      <div class="mt-8 flex items-center gap-x-4">
+        <img src="assets/images/profile.png" alt="Steve Luiting" 
+             class="w-16 h-16 rounded-2xl object-cover ring-1 ring-slate-200">
+        <div class="text-sm leading-tight">
+          <div class="font-medium">Steve Luiting</div>
+          <div class="text-slate-500">Strategic web designer • Denver, Colorado</div>
+        </div>
+      </div>
+
+      <div class="mt-9 flex flex-wrap items-center gap-x-4 gap-y-3">
+        <a href="#contact" 
+           class="inline-flex items-center justify-center gap-x-2 px-8 h-14 rounded-2xl bg-slate-900 text-white font-semibold text-lg hover:bg-black active:scale-[0.985] transition">
+          Start a Conversation
+        </a>
+        <a href="#story" 
+           class="inline-flex items-center justify-center gap-x-2 px-7 h-14 rounded-2xl border border-slate-200 font-medium hover:bg-slate-50 transition">
+          My Story
+        </a>
+      </div>
+      
+      <div class="mt-8 text-sm text-slate-500 flex items-center gap-x-2">
+        <i class="fa-solid fa-check text-emerald-500"></i>
+        <span>Now building faster and better with AI (Grok + Claude) while keeping the same care for craft.</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Trust Bar -->
+  <div class="border-y border-slate-100 bg-slate-50/70 py-5">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex flex-wrap items-center justify-center gap-x-10 gap-y-2 text-sm text-slate-500">
+        <div>The Cable Center / Syndeo Institute</div>
+        <div>Colorado Museums</div>
+        <div>Nonprofits &amp; Cultural Orgs</div>
+        <div>Purpose-Driven Brands</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- The Story -->
+  <section id="story" class="max-w-6xl mx-auto px-6 pt-20 pb-16">
+    <div class="grid lg:grid-cols-12 gap-x-16 gap-y-12">
+      <!-- Left column -->
+      <div class="lg:col-span-5">
+        <div class="sticky top-24">
+          <div class="uppercase tracking-[3px] text-xs font-semibold text-slate-500 mb-3">THE WORK THAT SHAPED ME</div>
+          <h2 class="heading-serif text-6xl leading-none tracking-tighter">12 years at<br>The Cable Center<br>changed everything.</h2>
+        </div>
+      </div>
+
+      <!-- Right content -->
+      <div class="lg:col-span-7 text-[15.2px] leading-relaxed text-slate-700 space-y-6">
+        <p class="text-xl text-slate-900 font-medium">In 2009 I walked into The Cable Center in Denver and they asked if I could learn ColdFusion.</p>
+        
+        <p>I said yes. I built their entire main website from scratch that year and stayed for 12 years as their lead web and digital person.</p>
+
+        <div class="space-y-6 pt-4">
+          <div class="pl-5 border-l-2 border-slate-300">
+            <p class="font-semibold text-slate-900">I quietly rescued their entire video archive</p>
+            <p class="mt-1">after a server hack. Those backups became the only clean copies of irreplaceable oral histories and Hall of Fame programs.</p>
+          </div>
+
+          <div class="pl-5 border-l-2 border-slate-300">
+            <p class="font-semibold text-slate-900">I reverse-engineered broken 2007 Flash kiosks</p>
+            <p class="mt-1">so visitors could still interact with exhibits — and I still bring that same archival content back online today using modern safe techniques.</p>
+          </div>
+
+          <div class="pl-5 border-l-2 border-slate-300">
+            <p class="font-semibold text-slate-900">I led the creation of a full VR recreation</p>
+            <p class="mt-1">of the entire building in Unity. You can still walk through it on a Meta Quest or via Steam — picking up artifacts and stepping into 360° video.</p>
+            <a href="https://store.steampowered.com/app/612440/The_Cable_Center__Virtual_Archive/" target="_blank" 
+               class="inline-flex items-center gap-x-1.5 text-sm font-medium text-slate-900 hover:underline mt-2">
+              View the VR Archive on Steam <i class="fa-solid fa-external-link-alt text-xs"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-slate-200">
+          <p class="font-medium text-slate-900">All of that taught me one thing:</p>
+          <p class="text-2xl text-slate-900 font-semibold tracking-tight mt-1">The best digital experiences aren’t about the latest trend.<br>They’re about respecting the story and building something that lasts.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How I Work Now -->
+  <section class="bg-slate-950 text-white py-16">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid lg:grid-cols-12 gap-x-12 gap-y-10 items-center">
+        <div class="lg:col-span-5">
+          <div class="uppercase tracking-[3px] text-xs font-semibold text-slate-400 mb-3">TODAY</div>
+          <h2 class="heading-serif text-5xl leading-none tracking-tighter">30+ years of craft.<br>AI superpowers.</h2>
+        </div>
+
+        <div class="lg:col-span-7 text-lg text-slate-300 leading-relaxed">
+          I still do everything I always did — strategic thinking, beautiful design, technical problem-solving, and deep respect for your mission — except now I deliver it dramatically faster and more affordably using Grok and Claude as creative partners.
+          <div class="mt-6 text-sm text-slate-400">Same obsessive quality. Same personal attention. Much better economics for organizations that need it.</div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
+        <div class="rounded-3xl bg-white/5 p-6">
+          <div class="text-5xl font-semibold tracking-tighter stat">30+</div>
+          <div class="text-slate-400 mt-1 text-sm">Years building websites that outlive trends</div>
+        </div>
+        <div class="rounded-3xl bg-white/5 p-6">
+          <div class="text-5xl font-semibold tracking-tighter stat">1</div>
+          <div class="text-slate-400 mt-1 text-sm">Full VR building recreation still used in 2026</div>
+        </div>
+        <div class="rounded-3xl bg-white/5 p-6">
+          <div class="text-5xl font-semibold tracking-tighter stat">∞</div>
+          <div class="text-slate-400 mt-1 text-sm">AI-accelerated iterations per project</div>
+        </div>
+        <div class="rounded-3xl bg-white/5 p-6">
+          <div class="text-5xl font-semibold tracking-tighter stat">1</div>
+          <div class="text-slate-400 mt-1 text-sm">Human who actually answers the phone</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What I Bring -->
+  <section class="max-w-6xl mx-auto px-6 pt-12 pb-8">
+    <div class="mb-8">
+      <div class="uppercase tracking-[3px] text-xs font-semibold text-slate-500">WHAT I BRING</div>
+      <h3 class="heading-serif text-4xl tracking-tighter mt-1">A rare combination of craft and speed.</h3>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="rounded-3xl border border-slate-200 p-6 hover:border-slate-300 transition">
+        <div class="font-semibold text-lg">Deep Technical Range</div>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">From ColdFusion and Flash rescue to modern static sites, headless CMS, and AI-assisted workflows. I can work with whatever platform actually serves your organization best.</p>
+      </div>
+      <div class="rounded-3xl border border-slate-200 p-6 hover:border-slate-300 transition">
+        <div class="font-semibold text-lg">Mission-First Thinking</div>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">I don’t just build websites. I help organizations tell stories that deserve to last. Museums and nonprofits have been my focus because their work matters more than most.</p>
+      </div>
+      <div class="rounded-3xl border border-slate-200 p-6 hover:border-slate-300 transition">
+        <div class="font-semibold text-lg">AI-Accelerated Delivery</div>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">I use Grok and Claude daily as creative partners. This means faster concepts, sharper copy, better visuals — and lower costs for you without sacrificing quality or personal attention.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Selected Work -->
+  <section id="work" class="max-w-6xl mx-auto px-6 pt-8 pb-12">
+    <div class="flex items-end justify-between mb-8">
+      <div>
+        <div class="uppercase tracking-[3px] text-xs font-semibold text-slate-500">SELECTED WORK</div>
+        <h2 class="heading-serif text-5xl tracking-tighter">Projects that mattered.</h2>
+      </div>
+      <a href="blog.html" class="hidden md:inline text-sm font-medium text-slate-600 hover:text-slate-900">See more in the Notes →</a>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Waterskiing Featured Project - Enhanced (Featured) -->
+      <div class="work-card group bg-white border border-slate-200 rounded-3xl overflow-hidden lg:col-span-2">
+        <div class="aspect-video bg-black relative">
+          <video 
+            controls 
+            class="w-full h-full object-cover"
+            poster="assets/images/adaptive_waterskiing_test.jpg">
+            <source src="assets/videos/adaptive_waterskiing_logo_reveal_v2.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <div class="absolute top-4 left-4 px-3 py-1 bg-black/70 text-white text-xs font-medium rounded-full flex items-center gap-x-1.5">
+            <i class="fa-solid fa-video text-[10px]"></i>
+            <span>FEATURED • MOTION DESIGN</span>
+          </div>
+        </div>
+        <div class="p-7">
+          <div class="flex items-center justify-between mb-2">
+            <div>
+              <div class="font-semibold text-2xl tracking-tight">Adaptive Waterskiing</div>
+              <div class="text-slate-500">Brand identity + cinematic motion system</div>
+            </div>
+            <div class="text-right text-xs text-slate-500">2024–2025</div>
+          </div>
+          
+          <p class="mt-3 text-[14.5px] text-slate-600 leading-relaxed">
+            Complete visual identity and motion design for an adaptive waterskiing nonprofit. 
+            Created a powerful logo animation system and brand film that captures resilience, 
+            athleticism, and human spirit. The reveal video has become a cornerstone piece for 
+            their fundraising and awareness efforts.
+          </p>
+          
+          <div class="mt-4 flex flex-wrap gap-2 text-xs">
+            <span class="px-3 py-1 bg-slate-100 rounded-full text-slate-600">Logo Design</span>
+            <span class="px-3 py-1 bg-slate-100 rounded-full text-slate-600">Motion Graphics</span>
+            <span class="px-3 py-1 bg-slate-100 rounded-full text-slate-600">Brand Film</span>
+            <span class="px-3 py-1 bg-slate-100 rounded-full text-slate-600">Nonprofit</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cable Center VR -->
+      <div class="work-card group bg-white border border-slate-200 rounded-3xl p-7 flex flex-col">
+        <div class="flex-1">
+          <div class="uppercase tracking-widest text-xs font-medium text-slate-500">THE CABLE CENTER • 2014–PRESENT</div>
+          <h3 class="heading-serif text-3xl tracking-tight mt-2 leading-none">Virtual Archive Experience</h3>
+          <p class="mt-4 text-slate-600 leading-relaxed">
+            Full interactive VR recreation of an entire historic building. Visitors can walk through rooms, 
+            pick up artifacts, and enter 360° video oral histories. Still used today on Meta Quest and Steam.
+          </p>
+        </div>
+        <div class="mt-auto pt-6 text-sm">
+          <a href="https://store.steampowered.com/app/612440/The_Cable_Center__Virtual_Archive/" target="_blank"
+             class="inline-flex items-center gap-x-2 font-medium group-hover:gap-x-3 transition">
+            Explore on Steam <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Legacy Rescue -->
+      <div class="work-card group bg-white border border-slate-200 rounded-3xl p-7">
+        <div class="uppercase tracking-widest text-xs font-medium text-slate-500 mb-2">ARCHIVAL RESCUE</div>
+        <h3 class="heading-serif text-3xl tracking-tight leading-none">Flash Kiosks &amp; Video Archives</h3>
+        <p class="mt-4 text-slate-600">
+          Reverse-engineered and modernized dozens of early-2000s interactive exhibits and rescued hundreds of hours of video after catastrophic data loss. 
+          Much of this material is now safely accessible again using contemporary web standards.
+        </p>
+        <div class="mt-6 text-xs inline-block px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 font-medium">Legacy preserved</div>
+      </div>
+
+      <!-- Strategy & Rebuilds -->
+      <div class="work-card group bg-white border border-slate-200 rounded-3xl p-7 flex flex-col">
+        <div>
+          <div class="uppercase tracking-widest text-xs font-medium text-slate-500 mb-2">STRATEGY + REPLATFORMING</div>
+          <h3 class="heading-serif text-3xl tracking-tight leading-none">Museum &amp; Nonprofit Websites</h3>
+          <p class="mt-4 text-slate-600">
+            Complete strategic redesigns and replatforming for cultural organizations that needed to move from fragile legacy systems to something that would actually last — while keeping their unique voice intact.
+          </p>
+        </div>
+        <div class="mt-auto pt-6 text-sm text-slate-500">WordPress • Custom • Squarespace • Headless</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Insights Teaser -->
+  <section class="max-w-6xl mx-auto px-6 pb-16">
+    <div class="rounded-3xl bg-slate-50 border border-slate-100 px-8 py-10 md:p-12">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-y-6">
+        <div>
+          <div class="uppercase tracking-[3px] text-xs font-semibold text-slate-500">FIELD NOTES</div>
+          <h3 class="heading-serif text-4xl tracking-tighter mt-2">Latest from the workbench</h3>
+        </div>
+        <a href="blog.html" 
+           class="inline-flex items-center gap-x-2 font-semibold text-lg group">
+          Browse all insights 
+          <span class="group-hover:translate-x-0.5 transition">→</span>
+        </a>
+      </div>
+
+      <div class="mt-8 grid md:grid-cols-3 gap-5" id="blog-teaser">
+        <!-- Populated by JS from same JSON -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="border-t border-slate-100 bg-white">
+    <div class="max-w-6xl mx-auto px-6 py-16">
+      <div class="grid lg:grid-cols-2 gap-x-16 gap-y-12">
+        
+        <!-- Left: Text -->
+        <div class="max-w-md">
+          <div class="uppercase tracking-[3px] text-xs font-semibold text-slate-500 mb-3">LET'S WORK TOGETHER</div>
+          <h2 class="heading-serif text-5xl tracking-[-1.5px] leading-none">Ready when you are.</h2>
+          
+          <p class="mt-6 text-lg text-slate-600">
+            If you're a museum, nonprofit, or purpose-driven organization in Colorado looking for a website that tells your story beautifully and keeps working for years — I'd love to talk.
+          </p>
+
+          <div class="mt-8 space-y-3 text-sm">
+            <a href="tel:7205639377" class="flex items-center gap-x-3 group">
+              <i class="fa-solid fa-phone w-4 text-slate-400"></i>
+              <span class="font-medium text-slate-900 group-hover:underline">720-563-9377</span>
+            </a>
+            <a href="mailto:steve@steveknowswebdesign.com" class="flex items-center gap-x-3 group">
+              <i class="fa-solid fa-envelope w-4 text-slate-400"></i>
+              <span class="font-medium text-slate-900 group-hover:underline">steve@steveknowswebdesign.com</span>
+            </a>
+          </div>
+
+          <div class="mt-6 text-xs text-slate-500">
+            No hard sell. No sales team. Just a real conversation.
+          </div>
+        </div>
+
+        <!-- Right: Working Form (Formspree) -->
+        <div>
+          <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-medium text-slate-600 mb-1.5">Your Name</label>
+                <input type="text" name="name" required 
+                       class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm focus:outline-none focus:border-slate-400">
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-slate-600 mb-1.5">Organization</label>
+                <input type="text" name="organization" 
+                       class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm focus:outline-none focus:border-slate-400">
+              </div>
+            </div>
+            
+            <div>
+              <label class="block text-xs font-medium text-slate-600 mb-1.5">Email Address</label>
+              <input type="email" name="email" required 
+                     class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm focus:outline-none focus:border-slate-400">
+            </div>
+            
+            <div>
+              <label class="block text-xs font-medium text-slate-600 mb-1.5">What are you working on?</label>
+              <textarea name="message" rows="5" required 
+                        class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm focus:outline-none focus:border-slate-400 resize-y"></textarea>
+            </div>
+
+            <button type="submit" 
+                    class="w-full sm:w-auto inline-flex items-center justify-center rounded-2xl bg-slate-900 px-8 py-3 text-sm font-semibold text-white hover:bg-black active:scale-[0.985] transition">
+              Send Message
+            </button>
+            
+            <p class="text-[11px] text-slate-400">
+              This form is powered by Formspree. Replace <code>YOUR_FORM_ID</code> with your actual endpoint after signing up (free).
+            </p>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="border-t border-slate-100 py-9">
+    <div class="max-w-6xl mx-auto px-6 text-xs text-slate-500 flex flex-col sm:flex-row gap-y-2 items-center justify-between">
+      <div>© Steve Luiting — Strategic Web Design &amp; Digital Experiences. Denver, Colorado.</div>
+      <div class="flex gap-x-5">
+        <a href="blog.html" class="hover:text-slate-700 transition">Insights</a>
+        <a href="https://github.com/stevel4857" target="_blank" class="hover:text-slate-700 transition">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Tailwind script configuration
+    function initTailwind() {
+      // Already using CDN — this is here for future customization if needed
+    }
+
+    // Load recent blog posts for the teaser section on home
+    async function loadBlogTeaser() {
+      try {
+        const res = await fetch('data/blog-posts.json');
+        const posts = await res.json();
+        
+        // Get the 3 most recent
+        const recent = [...posts]
+          .sort((a, b) => b.date.localeCompare(a.date))
+          .slice(0, 3);
+
+        const container = document.getElementById('blog-teaser');
+        container.innerHTML = recent.map(post => `
+          <a href="blog.html" onclick="event.preventDefault(); window.location.href='blog.html';" 
+             class="group block bg-white border border-slate-200 hover:border-slate-300 rounded-2xl p-5 transition">
+            <div class="flex justify-between text-xs mb-2">
+              <span class="px-2.5 py-0.5 bg-slate-100 text-slate-600 rounded-full">${post.category}</span>
+              <span class="text-slate-400 font-mono">${post.date}</span>
+            </div>
+            <div class="font-semibold text-lg leading-tight tracking-tight group-hover:text-slate-700 transition">
+              ${post.title}
+            </div>
+            <div class="text-sm text-slate-600 line-clamp-2 mt-2">${post.excerpt}</div>
+          </a>
+        `).join('');
+      } catch (e) {
+        console.log('Blog teaser could not load');
+      }
+    }
+
+    // Keyboard accessibility niceties
+    function initKeyboard() {
+      document.addEventListener('keydown', (e) => {
+        if (e.key === '/' && document.activeElement.tagName === 'BODY') {
+          e.preventDefault();
+          const blogLink = document.querySelector('a[href="blog.html"]');
+          if (blogLink) blogLink.click();
+        }
+      });
+    }
+
+    // Boot
+    function init() {
+      initTailwind();
+      loadBlogTeaser();
+      initKeyboard();
+      
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+    }
+
+    window.onload = init;
+  </script>
+</body>
+</html>
