@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Strategic web design and digital experiences for museums, nonprofits, and purpose-driven organizations in Colorado. 30+ years of craft, now accelerated with AI.">
   <title>Steve Luiting — Strategic Web Design &amp; Digital Experiences | Denver</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/steveknowswebdesign-favicon.png">
   
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -66,7 +67,7 @@
 <body class="bg-white text-slate-900 antialiased">
 
   <!-- Navigation -->
-  <nav class="border-b border-slate-100 bg-white/95 backdrop-blur-sm sticky top-0 z-50">
+  <nav class="border-b border-slate-100 bg-white/80 backdrop-blur-sm sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-6">
       <div class="flex items-center justify-between h-20">
         <div class="flex items-center gap-x-3">
@@ -83,7 +84,7 @@
 
         <div class="flex items-center gap-x-3">
           <a href="blog.html" 
-             class="hidden sm:inline-flex items-center px-4 h-9 rounded-full border border-slate-200 text-sm font-medium hover:bg-slate-50 transition">
+             class="hidden sm:inline-flex items-center px-4 h-9 rounded-full border border-slate-300 text-sm font-medium text-slate-700 hover:bg-slate-50 transition">
             Read the Notes
           </a>
           <a href="#contact" 
@@ -96,45 +97,42 @@
   </nav>
 
   <!-- Hero -->
-  <header class="max-w-6xl mx-auto px-6 pt-20 pb-16">
-    <div class="max-w-3xl">
-      <div class="inline-flex items-center gap-x-2 text-xs uppercase tracking-[3px] font-semibold text-slate-500 mb-6">
-        <span class="w-8 h-px bg-slate-400"></span> 
-        COLORADO • 30+ YEARS
-      </div>
-      
-      <h1 class="heading-serif text-[72px] leading-[1.05] tracking-[-3.5px] max-w-4xl">
-        Future-proof<br>your mission.
-      </h1>
-      
-      <p class="mt-6 text-2xl text-slate-600 max-w-lg leading-tight">
-        Strategic web design and digital experiences for museums, nonprofits, and purpose-driven organizations.
-      </p>
+  <header class="relative flex items-center min-h-[75vh] bg-cover bg-center" 
+          style="background-image: url('assets/images/me-front.jpg');">
+    
+    <!-- Dark gradient overlay for text readability -->
+    <div class="absolute inset-0 bg-gradient-to-b from-black/55 via-black/45 to-black/65"></div>
 
-      <!-- Personal photo -->
-      <div class="mt-8 flex items-center gap-x-4">
-        <img src="assets/images/profile.png" alt="Steve Luiting" 
-             class="w-16 h-16 rounded-2xl object-cover ring-1 ring-slate-200">
-        <div class="text-sm leading-tight">
-          <div class="font-medium">Steve Luiting</div>
-          <div class="text-slate-500">Strategic web designer • Denver, Colorado</div>
+    <div class="relative max-w-6xl mx-auto px-6 z-10 py-16">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-x-2 text-xs uppercase tracking-[3px] font-semibold text-white/80 mb-6">
+          <span class="w-8 h-px bg-white/60"></span> 
+          COLORADO • 30+ YEARS
         </div>
-      </div>
+        
+        <h1 class="heading-serif text-[72px] leading-[1.05] tracking-[-3.5px] max-w-4xl text-white">
+          Future-proof<br>your mission.
+        </h1>
+        
+        <p class="mt-6 text-2xl text-white/90 max-w-lg leading-tight">
+          Strategic web design and digital experiences for museums, nonprofits, and purpose-driven organizations.
+        </p>
 
-      <div class="mt-9 flex flex-wrap items-center gap-x-4 gap-y-3">
-        <a href="#contact" 
-           class="inline-flex items-center justify-center gap-x-2 px-8 h-14 rounded-2xl bg-slate-900 text-white font-semibold text-lg hover:bg-black active:scale-[0.985] transition">
-          Start a Conversation
-        </a>
-        <a href="#story" 
-           class="inline-flex items-center justify-center gap-x-2 px-7 h-14 rounded-2xl border border-slate-200 font-medium hover:bg-slate-50 transition">
-          My Story
-        </a>
-      </div>
-      
-      <div class="mt-8 text-sm text-slate-500 flex items-center gap-x-2">
-        <i class="fa-solid fa-check text-emerald-500"></i>
-        <span>Now building faster and better with AI (Grok + Claude) while keeping the same care for craft.</span>
+        <div class="mt-9 flex flex-wrap items-center gap-x-4 gap-y-3">
+          <a href="#contact" 
+             class="inline-flex items-center justify-center gap-x-2 px-8 h-14 rounded-2xl bg-white text-slate-900 font-semibold text-lg hover:bg-white/90 active:scale-[0.985] transition">
+            Start a Conversation
+          </a>
+          <a href="#story" 
+             class="inline-flex items-center justify-center gap-x-2 px-7 h-14 rounded-2xl border border-white/70 text-white font-medium hover:bg-white/10 transition">
+            My Story
+          </a>
+        </div>
+        
+        <div class="mt-8 text-sm text-white/70 flex items-center gap-x-2">
+          <i class="fa-solid fa-check text-emerald-400"></i>
+          <span>Now building faster and better with AI (Grok + Claude) while keeping the same care for craft.</span>
+        </div>
       </div>
     </div>
   </header>
