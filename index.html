@@ -29,9 +29,27 @@
     }
 
     .nav-link {
-      transition: all 0.15s ease;
+      position: relative;
+      transition: color 0.15s ease, font-weight 0.15s ease;
     }
-    .nav-link:hover { color: #0f172a; }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background-color: #9f1239;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    .nav-link:hover {
+      color: #9f1239;
+      font-weight: 600;
+    }
+    .nav-link:hover::after {
+      opacity: 1;
+    }
 
     .work-card {
       transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
@@ -267,14 +285,16 @@
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
       <!-- Waterskiing Featured Project - Enhanced (Featured) -->
       <div class="work-card group bg-white border border-slate-200 rounded-3xl overflow-hidden lg:col-span-2">
-        <div class="aspect-video bg-black relative">
-          <video 
-            controls 
-            class="w-full h-full object-cover"
-            poster="assets/images/adaptive_waterskiing_test.jpg">
-            <source src="assets/videos/adaptive_waterskiing_logo_reveal_v2.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
+        <div class="aspect-video bg-black relative overflow-hidden">
+          <iframe 
+            src="https://www.youtube.com/embed/SLqassABY7g?modestbranding=1&rel=0" 
+            title="Adaptive Waterskiing Brand Film" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen
+            loading="lazy"
+            class="w-full h-full">
+          </iframe>
           <div class="absolute top-4 left-4 px-3 py-1 bg-black/70 text-white text-xs font-medium rounded-full flex items-center gap-x-1.5">
             <i class="fa-solid fa-video text-[10px]"></i>
             <span>FEATURED • MOTION DESIGN</span>
@@ -319,6 +339,26 @@
           <a href="https://store.steampowered.com/app/612440/The_Cable_Center__Virtual_Archive/" target="_blank"
              class="inline-flex items-center gap-x-2 font-medium group-hover:gap-x-3 transition">
             Explore on Steam <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Syndeo Institute -->
+      <div class="work-card group bg-white border border-slate-200 rounded-3xl p-7 flex flex-col">
+        <div class="flex-1">
+          <div class="uppercase tracking-widest text-xs font-medium text-slate-500">CORPORATE YET STYLISH</div>
+          <h3 class="heading-serif text-3xl tracking-tight mt-2 leading-none">Syndeo Institute</h3>
+          <p class="mt-4 text-slate-600 leading-relaxed">
+            Modernized the visual identity for The Cable Center’s new institute using video backgrounds and animated headers.
+          </p>
+        </div>
+        <div class="mt-auto pt-6 flex items-center justify-between text-sm">
+          <span class="text-slate-500">2018–2022</span>
+          <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs">Visual Identity</span>
+        </div>
+        <div class="pt-4 text-sm">
+          <a href="work/syndeo.html" class="inline-flex items-center gap-x-2 font-medium group-hover:gap-x-3 transition">
+            View case study <i class="fa-solid fa-arrow-right"></i>
           </a>
         </div>
       </div>

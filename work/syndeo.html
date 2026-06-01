@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Syndeo Institute — Visual Identity | Steve Luiting</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/steveknowswebdesign-favicon.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    .heading-serif {
+      font-family: "Playfair Display", Georgia, serif;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+    }
+    .nav-link {
+      transition: color 0.15s ease, font-weight 0.15s ease;
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background-color: #9f1239;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    .nav-link:hover {
+      color: #9f1239;
+      font-weight: 600;
+    }
+    .nav-link:hover::after {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body class="bg-white text-slate-900">
+
+  <!-- Navigation -->
+  <div data-component="nav"></div>
+
+  <!-- Back link (visible even if dynamic nav fails) -->
+  <div class="max-w-6xl mx-auto px-6 pt-6">
+    <a href="../index.html#work" class="text-sm text-slate-500 hover:text-slate-900 inline-flex items-center gap-x-1.5">
+      <i class="fa-solid fa-arrow-left text-xs"></i>
+      Back to Work
+    </a>
+  </div>
+
+  <!-- Hero -->
+  <section class="max-w-6xl mx-auto px-6 pt-8 pb-8">
+    <div class="max-w-3xl">
+      <div class="uppercase tracking-[3px] text-xs font-semibold text-slate-500 mb-3">2018–2022</div>
+      <h1 class="heading-serif text-6xl tracking-tighter leading-none">Syndeo Institute</h1>
+      <p class="mt-4 text-2xl text-slate-600">Corporate yet stylish visual identity for The Cable Center’s new institute.</p>
+      
+      <div class="mt-6 flex flex-wrap gap-2 text-sm">
+        <span class="px-4 py-1.5 bg-slate-100 rounded-full">Visual Identity</span>
+        <span class="px-4 py-1.5 bg-slate-100 rounded-full">Video Systems</span>
+        <span class="px-4 py-1.5 bg-slate-100 rounded-full">Website Design</span>
+        <span class="px-4 py-1.5 bg-slate-100 rounded-full">Joomla + SP Page Builder</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Overview -->
+  <section class="max-w-6xl mx-auto px-6 py-16 border-t border-slate-100 relative isolate overflow-hidden">
+    <!-- Echo layer (further back, larger, more blurred) -->
+    <div 
+      class="absolute inset-0 -z-20 bg-cover bg-center"
+      style="background-image: url('../assets/images/work/syndeo-screenshot.jpg'); 
+             opacity: 0.09; 
+             filter: blur(26px);
+             transform: scale(1.12) translate(35px, 22px);">
+    </div>
+
+    <!-- Main background image layer -->
+    <div 
+      class="absolute inset-0 -z-10 bg-cover bg-center"
+      style="background-image: url('../assets/images/work/syndeo-screenshot.jpg'); 
+             opacity: 0.30; 
+             filter: blur(6px);">
+    </div>
+
+    <!-- Light wash for text readability -->
+    <div class="absolute inset-0 -z-10 bg-white/18"></div>
+
+    <div class="relative z-10 grid lg:grid-cols-12 gap-x-12 gap-y-8">
+      <div class="lg:col-span-5">
+        <div class="uppercase tracking-[3px] text-xs font-semibold text-slate-500 mb-3">THE CHALLENGE</div>
+        <h2 class="heading-serif text-4xl tracking-tighter leading-none">Modernize without losing soul.</h2>
+      </div>
+      <div class="lg:col-span-7 text-[15px] text-slate-600 leading-relaxed">
+        <p>The Syndeo Institute at The Cable Center (formerly The Cable Center) needed a refreshed visual identity that felt current and professional while still honoring its deep roots in the cable industry.</p>
+        <p class="mt-4">The solution was intentionally <span class="font-medium text-slate-900">corporate yet stylish</span> — elevated, confident, and warm.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Visual System -->
+  <section class="max-w-6xl mx-auto px-6 py-10">
+    <div class="mb-8">
+      <div class="uppercase tracking-[3px] text-xs font-semibold text-slate-500 mb-2">THE WORK</div>
+      <h2 class="heading-serif text-4xl tracking-tighter">Video-first identity system</h2>
+      <p class="mt-2 text-slate-600 max-w-2xl">Every major header used motion. The hero featured a video background of the CEO at the podium with animated text overlays. Subpages used short, purposeful video clips instead of static photography.</p>
+    </div>
+
+    <!-- Screenshot + Videos Layout -->
+    <div class="bg-white border border-slate-200 rounded-3xl p-8">
+      <div class="grid lg:grid-cols-2 gap-8 items-start">
+        
+        <!-- Screenshot -->
+        <div>
+          <div class="text-xs uppercase tracking-widest text-slate-500 mb-3">FINAL WEBSITE</div>
+          <img 
+            src="../assets/images/work/syndeo-screenshot.jpg" 
+            alt="Syndeo Institute website screenshot" 
+            class="w-full rounded-2xl shadow-sm border border-slate-200">
+        </div>
+
+        <div class="space-y-8">
+          <!-- Video 1: CEO Testimonial -->
+          <div>
+            <div class="text-xs uppercase tracking-widest text-slate-500 mb-3">TESTIMONIAL — FORMER CEO</div>
+            <div class="aspect-video bg-black rounded-2xl overflow-hidden">
+              <iframe 
+                title="Jana Henthorn on working with Steve Luiting"
+                src="https://player.vimeo.com/video/1096427800?h=05af90934b" 
+                width="100%" 
+                height="100%" 
+                frameborder="0" 
+                referrerpolicy="strict-origin-when-cross-origin" 
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
+                allowfullscreen>
+              </iframe>
+            </div>
+            <p class="mt-3 text-sm text-slate-600">Former CEO Jana Henthorn speaking about the collaboration and results.</p>
+          </div>
+
+          <!-- Video 2: Placeholder for second video -->
+          <div>
+            <div class="text-xs uppercase tracking-widest text-slate-500 mb-3">SITE IN MOTION</div>
+            <div class="aspect-video bg-slate-100 rounded-2xl flex items-center justify-center border border-dashed border-slate-300">
+              <div class="text-center text-slate-500">
+                <i class="fa-solid fa-video text-2xl mb-2"></i>
+                <p class="text-sm">Second video coming soon</p>
+              </div>
+            </div>
+            <p class="mt-3 text-sm text-slate-600">Hero video background + animated text overlay (to be added).</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Approach -->
+  <section class="max-w-6xl mx-auto px-6 py-12 border-t border-slate-100">
+    <div class="grid lg:grid-cols-12 gap-x-12">
+      <div class="lg:col-span-5">
+        <div class="uppercase tracking-[3px] text-xs font-semibold text-slate-500 mb-3">APPROACH</div>
+        <h2 class="heading-serif text-4xl tracking-tighter leading-none">Motion as identity.</h2>
+      </div>
+      <div class="lg:col-span-7 mt-6 lg:mt-0 text-[15px] text-slate-600 leading-relaxed space-y-4">
+        <p>Rather than treating video as decoration, we made it foundational to the brand experience. The hero video set a confident, human tone. Subpage video headers created consistency while keeping each section feeling alive and current.</p>
+        <p>All video was shot and edited specifically for the site, then seamlessly integrated into the Joomla + SP Page Builder environment.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="max-w-6xl mx-auto px-6 py-10 border-t border-slate-100">
+    <div class="uppercase tracking-[3px] text-xs font-semibold text-slate-500 mb-6">WHAT I DELIVERED</div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-4 text-[15px]">
+      <div class="flex items-start gap-3">
+        <i class="fa-solid fa-check text-[#9f1239] mt-1"></i>
+        <span>Complete visual identity system</span>
+      </div>
+      <div class="flex items-start gap-3">
+        <i class="fa-solid fa-check text-[#9f1239] mt-1"></i>
+        <span>Custom logo design</span>
+      </div>
+      <div class="flex items-start gap-3">
+        <i class="fa-solid fa-check text-[#9f1239] mt-1"></i>
+        <span>Hero video production + animation</span>
+      </div>
+      <div class="flex items-start gap-3">
+        <i class="fa-solid fa-check text-[#9f1239] mt-1"></i>
+        <span>Subpage video header system</span>
+      </div>
+      <div class="flex items-start gap-3">
+        <i class="fa-solid fa-check text-[#9f1239] mt-1"></i>
+        <span>Joomla + SP Page Builder implementation</span>
+      </div>
+      <div class="flex items-start gap-3">
+        <i class="fa-solid fa-check text-[#9f1239] mt-1"></i>
+        <span>SEO foundation (Yoast + SEMrush auditing)</span>
+      </div>
+    </div>
+  </section>
+
+  <footer class="border-t border-slate-100 py-12 mt-12">
+    <div class="max-w-6xl mx-auto px-6 text-sm text-slate-500 flex flex-col md:flex-row md:items-center md:justify-between gap-y-4">
+      <div>
+        <a href="../index.html#work" class="hover:text-slate-900">← Back to Work</a>
+      </div>
+      <div>
+        Live site: <a href="https://syndeoinstitute.org/" target="_blank" class="hover:text-slate-900 underline">syndeoinstitute.org</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../scripts/components.js"></script>
+</body>
+</html>

@@ -24,9 +24,27 @@
     }
 
     .nav-link {
-      transition: all 0.15s ease;
+      position: relative;
+      transition: color 0.15s ease, font-weight 0.15s ease;
     }
-    .nav-link:hover { color: #0f172a; }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background-color: #9f1239;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    .nav-link:hover {
+      color: #9f1239;
+      font-weight: 600;
+    }
+    .nav-link:hover::after {
+      opacity: 1;
+    }
 
     .story-block {
       max-width: 720px;
