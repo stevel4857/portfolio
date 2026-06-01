@@ -91,22 +91,8 @@
   </style>
 </head>
 <body class="bg-white text-slate-900">
-  <!-- Top Navigation -->
-  <nav class="border-b border-slate-200 bg-white sticky top-0 z-50">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="flex items-center justify-between h-16">
-        <a href="index.html" class="font-semibold tracking-tight text-xl">Steve Luiting</a>
-        
-        <div class="flex items-center gap-x-8 text-sm">
-          <a href="index.html" class="nav-link text-slate-600 hover:text-slate-900">Home</a>
-          <a href="about.html" class="nav-link text-slate-600 hover:text-slate-900">About</a>
-          <a href="blog.html" class="nav-link text-slate-900 font-medium">Insights</a>
-          <a href="index.html#work" class="nav-link text-slate-600 hover:text-slate-900">Work</a>
-          <a href="index.html#contact" class="nav-link text-slate-600 hover:text-slate-900">Contact</a>
-        </div>
-      </div>
-    </div>
-  </nav>
+  <!-- Top Navigation (loaded via component) -->
+  <div data-component="nav"></div>
 
   <!-- Header -->
   <header class="max-w-6xl mx-auto px-6 pt-16 pb-10">
@@ -189,7 +175,7 @@
       <div>© Steve Luiting. All rights reserved.</div>
       <div class="flex gap-x-5">
         <a href="index.html" class="hover:text-slate-900 transition">Home</a>
-        <a href="mailto:steve@steveknowswebdesign.com" class="hover:text-slate-900 transition">Email</a>
+        <a href="mailto:steveknowsweb@gmail.com" class="hover:text-slate-900 transition">Email</a>
         <a href="tel:7205639377" class="hover:text-slate-900 transition">720-563-9377</a>
       </div>
     </div>
@@ -212,11 +198,15 @@
         renderPosts(allPosts);
       } catch (err) {
         console.error('Failed to load blog posts:', err);
-        document.getElementById('posts-grid').innerHTML = `
-          <div class="col-span-full text-center py-12 text-red-600">
-            Could not load articles. Please refresh or check the data file.
-          </div>
-        `;
+        const grid = document.getElementById('posts-grid');
+        if (grid) {
+          grid.innerHTML = `
+            <div class="col-span-full text-center py-12 text-red-600">
+              Could not load articles.<br>
+              <span class="text-sm text-slate-500">Check browser console for details (F12).</span>
+            </div>
+          `;
+        }
       }
     }
 
@@ -381,5 +371,8 @@
     // Initialize everything
     loadPosts();
   </script>
+
+  <!-- Component loader -->
+  <script src="scripts/components.js"></script>
 </body>
 </html>

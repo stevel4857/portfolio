@@ -390,9 +390,9 @@
               <i class="fa-solid fa-phone w-4 text-slate-400"></i>
               <span class="font-medium text-slate-900 group-hover:underline">720-563-9377</span>
             </a>
-            <a href="mailto:steve@steveknowswebdesign.com" class="flex items-center gap-x-3 group">
+            <a href="mailto:steveknowsweb@gmail.com" class="flex items-center gap-x-3 group">
               <i class="fa-solid fa-envelope w-4 text-slate-400"></i>
-              <span class="font-medium text-slate-900 group-hover:underline">steve@steveknowswebdesign.com</span>
+              <span class="font-medium text-slate-900 group-hover:underline">steveknowsweb@gmail.com</span>
             </a>
           </div>
 
@@ -401,9 +401,10 @@
           </div>
         </div>
 
-        <!-- Right: Working Form (Formspree) -->
-        <div>
-          <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="space-y-4">
+        <!-- Right: Contact Form -->
+        <div id="contact-form-container">
+          <!-- Form -->
+          <form id="contact-form" action="https://formspree.io/f/xaqkggrv" method="POST" class="space-y-4">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label class="block text-xs font-medium text-slate-600 mb-1.5">Your Name</label>
@@ -429,20 +430,113 @@
                         class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm focus:outline-none focus:border-slate-400 resize-y"></textarea>
             </div>
 
+            <!-- Honeypot field - hidden from humans, bots often fill it -->
+            <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
+
             <button type="submit" 
                     class="w-full sm:w-auto inline-flex items-center justify-center rounded-2xl bg-slate-900 px-8 py-3 text-sm font-semibold text-white hover:bg-black active:scale-[0.985] transition">
               Send Message
             </button>
-            
-            <p class="text-[11px] text-slate-400">
-              This form is powered by Formspree. Replace <code>YOUR_FORM_ID</code> with your actual endpoint after signing up (free).
-            </p>
           </form>
+
+          <!-- Success Message (hidden by default) -->
+          <div id="form-success" class="hidden bg-emerald-50 border border-emerald-200 rounded-2xl p-6 text-center">
+            <div class="text-emerald-600 text-2xl mb-3">✓</div>
+            <h3 class="font-semibold text-lg text-emerald-800">Thanks — message received.</h3>
+            <p class="text-emerald-700 mt-2 text-sm">
+              I'll get back to you within a couple of days.
+            </p>
+          </div>
         </div>
 
       </div>
     </div>
   </section>
+
+  <!-- Contact Form Handler -->
+  <script>
+    const form = document.getElementById('contact-form');
+    const successMessage = document.getElementById('form-success');
+
+    if (form) {
+      let formInteractionTime = null;
+      const MIN_TIME_MS = 3000; // 3 seconds minimum - anything faster is almost certainly a bot
+
+      // Record the first time the user interacts with the form
+      const recordInteraction = () => {
+        if (!formInteractionTime) {
+          formInteractionTime = Date.now();
+        }
+      };
+
+      // Attach interaction listeners to all inputs
+      form.querySelectorAll('input, textarea').forEach(el => {
+        el.addEventListener('focus', recordInteraction, { once: true });
+        el.addEventListener('input', recordInteraction, { once: true });
+      });
+
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const submitButton = form.querySelector('button[type="submit"]');
+        const originalButtonText = submitButton.innerHTML;
+
+        // === Honeypot check ===
+        const honeypot = form.querySelector('input[name="_gotcha"]');
+        if (honeypot && honeypot.value.trim() !== '') {
+          form.reset();
+          form.style.display = 'none';
+          successMessage.classList.remove('hidden');
+          successMessage.classList.add('block');
+          return;
+        }
+
+        // === Time-based spam check (under 3 seconds) ===
+        if (formInteractionTime && (Date.now() - formInteractionTime) < MIN_TIME_MS) {
+          // Too fast to be human - treat as spam but show success
+          form.reset();
+          form.style.display = 'none';
+          successMessage.classList.remove('hidden');
+          successMessage.classList.add('block');
+          return;
+        }
+
+        submitButton.disabled = true;
+        submitButton.innerHTML = 'Sending...';
+
+        const formData = new FormData(form);
+
+        try {
+          const response = await fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'Accept': 'application/json'
+            }
+          });
+
+          if (response.ok) {
+            form.reset();
+            form.style.display = 'none';
+            successMessage.classList.remove('hidden');
+            successMessage.classList.add('block');
+          } else {
+            const data = await response.json();
+            if (data.errors) {
+              alert(data.errors.map(error => error.message).join(', '));
+            } else {
+              alert('Oops! There was a problem submitting your form.');
+            }
+          }
+        } catch (error) {
+          alert('Oops! There was a problem submitting your form.');
+        } finally {
+          submitButton.disabled = false;
+          submitButton.innerHTML = originalButtonText;
+        }
+      });
+    }
+  </script>
 
   <footer class="border-t border-slate-100 py-9">
     <div class="max-w-6xl mx-auto px-6 text-xs text-slate-500 flex flex-col sm:flex-row gap-y-2 items-center justify-between">
@@ -486,7 +580,11 @@
           </a>
         `).join('');
       } catch (e) {
-        console.log('Blog teaser could not load');
+        console.error('Blog teaser failed to load:', e);
+        const container = document.getElementById('blog-teaser');
+        if (container) {
+          container.innerHTML = `<div class="text-sm text-slate-500">Could not load latest posts.</div>`;
+        }
       }
     }
 
