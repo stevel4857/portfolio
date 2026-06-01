@@ -26,12 +26,16 @@ We are gradually moving toward a more modular structure to support multiple huma
 
 ## Local Development
 
+**Easiest:** Double-click `Start Server.bat` (or run `start-server.ps1`).
+
 ```powershell
 cd "D:\work\steveknowsweb"
 python -m http.server 8000
 # or
 npx serve . -p 3000
 ```
+
+The `start-server.ps1` script auto-detects Python or Node.js and opens your browser automatically.
 
 ## Collaboration Notes
 
@@ -44,10 +48,17 @@ These files exist because we expect multiple people (and AI agents) to work on t
 
 ## Deployment
 
-The site is deployed via Cloudflare Pages connected to the GitHub `portfolio` repository.
+**Live site:** https://steveknowsweb.com
 
-Every push to `main` triggers a production deployment.  
-Every pull request gets an automatic preview URL from Cloudflare.
+The site is deployed via **Cloudflare Pages**, connected to this GitHub repository (`portfolio`).
+
+- Every push to `main` triggers a production deployment to steveknowsweb.com
+- Every pull request automatically gets its own preview URL (e.g. `feature-name.stevel4857.pages.dev`)
+
+**Important:**  
+GitHub Pages (`https://stevel4857.github.io/portfolio`) is disabled and is **not** used. Do not use the GitHub Pages URL to check the live site.
+
+**Old site:** https://steveknowswebdesign.com still exists but is no longer maintained.
 
 ## Project Philosophy
 
@@ -63,6 +74,7 @@ We keep things simple and maintainable while still allowing parallel work by hum
 - `AGENTS.md` — Specific instructions for AI coding agents
 - `DEPLOY.md` — Deployment information
 - `update-site.ps1` + `Update Site.bat` — Helper scripts for committing changes
+- `start-server.ps1` + `Start Server.bat` — Start a local dev server (auto-detects Python/Node)
 
 ## Making Changes
 

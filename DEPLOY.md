@@ -1,11 +1,15 @@
 # Deployment Guide — Cloudflare Pages (Recommended)
 
+**Current Status (as of 2026):**  
+The site is already deployed and live at **https://steveknowsweb.com** via Cloudflare Pages.  
+An older version remains at https://steveknowswebdesign.com.
+
 This site is a pure static site. It deploys beautifully on Cloudflare Pages with zero configuration hassle and excellent free preview URLs for every branch/PR.
 
 ## Why Cloudflare Pages
 
 - Automatic preview deployments for every pull request (perfect for client review)
-- Custom domain support (including steveknowswebdesign.com or steveknowsweb.com)
+- Custom domain support (steveknowsweb.com is the current live site)
 - Extremely fast global CDN
 - Free tier is very generous
 - GitHub integration is excellent
@@ -15,9 +19,9 @@ This site is a pure static site. It deploys beautifully on Cloudflare Pages with
 ### 1. Push the code to GitHub (if not already)
 
 ```powershell
-cd "D:\work\my-portfolio"
+cd "D:\work\steveknowsweb"
 git add .
-git commit -m "Initial modern site build"
+git commit -m "Update site"
 git push
 ```
 
@@ -68,10 +72,11 @@ The contact form on the homepage uses Formspree.
 ## Alternative Hosts (if you prefer)
 
 - **Netlify** — Also excellent, similar preview experience
-- **GitHub Pages** — Works fine but weaker preview URLs and slower deploys
 - **Vercel** — Overkill for a pure static site
 
-**Cloudflare Pages is the current recommendation** for this project (as discussed in the website workflow planning doc).
+**Note:** GitHub Pages is currently **disabled** on the `portfolio` repository. The `https://stevel4857.github.io/portfolio` URL is not used and should be ignored.
+
+**Cloudflare Pages is the active deployment method** for this project. The live site is at https://steveknowsweb.com. An older version of the site remains at https://steveknowswebdesign.com but is no longer maintained.
 
 ---
 
