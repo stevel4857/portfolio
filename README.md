@@ -34,6 +34,8 @@ The script now runs `npm run build` first (if Node present) to generate the Tail
 ```powershell
 cd "D:\work\steveknowsweb"
 npm run build   # or npm run dev for watch mode during editing
+
+# Then serve (scripts below auto-detect and prefer npx serve when Node present)
 python -m http.server 8000
 # or
 npx serve . -p 3000

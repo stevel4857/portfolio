@@ -18,10 +18,18 @@ This site is built as a clean, static, multi-file website. The goal is to keep i
 
 2. Make your changes.
 
-3. Test locally:
+3. If you edited any CSS or `src/input.css`, run the Tailwind build:
    ```powershell
    cd "D:\work\steveknowsweb"
+   npm run build
+   ```
+   (The `start-server.ps1` / `Update Site.bat` scripts run this automatically when Node.js is available.)
+
+   Then preview locally:
+   ```powershell
    python -m http.server 8000
+   # or
+   npx serve . -p 3000
    ```
 
 4. Open a Pull Request early (even as a draft). This gives you a preview URL automatically.
