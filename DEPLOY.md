@@ -4,7 +4,7 @@
 The site is already deployed and live at **https://steveknowsweb.com** via Cloudflare Pages.  
 An older version remains at https://steveknowswebdesign.com.
 
-This site is a pure static site. It deploys beautifully on Cloudflare Pages with zero configuration hassle and excellent free preview URLs for every branch/PR.
+This site is a pure static site (Tailwind CSS is pre-built via `npm run build` and the output `css/tailwind.css` is committed). It deploys beautifully on Cloudflare Pages with zero configuration hassle and excellent free preview URLs for every branch/PR.
 
 ## Why Cloudflare Pages
 

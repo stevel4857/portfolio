@@ -38,11 +38,14 @@ This file contains rules and context for AI agents (Grok, Claude, Cursor, etc.) 
 
 ## Styling Rules
 
-- We use Tailwind via CDN (`https://cdn.tailwindcss.com`).
+- Tailwind is built via PostCSS (see `package.json`, `src/input.css`, `tailwind.config.js`, `postcss.config.js`).
+- Run `npm run build` (or `npm run dev` for watch) to generate `css/tailwind.css`.
+- The built CSS is committed and linked from the HTML files (no more CDN in production).
 - Primary text color: `text-slate-900` / near black.
 - Accent color: Slate / neutral with very subtle indigo when needed.
-- Do **not** add new custom CSS classes unless absolutely necessary.
+- Do **not** add new custom CSS classes unless absolutely necessary (add to `src/input.css` if needed).
 - Keep the clean, spacious, editorial aesthetic.
+- Update `start-server.ps1` / `update-site.ps1` and docs if build process changes.
 
 ## Branching & Pull Request Process (Mandatory for AI Agents)
 

@@ -77,6 +77,11 @@ $url = "http://localhost:$Port"
 
 if ($hasNode) {
     Write-Host "Node.js detected." -ForegroundColor Green
+    Write-Host "Building Tailwind CSS (required for production styles)..." -ForegroundColor Cyan
+    & npm run build
+}
+
+if ($hasNode) {
     Write-Host "Starting server using 'npx serve' on port $Port..." -ForegroundColor Cyan
     Write-Host ""
     Write-Host "Preview URL: " -NoNewline

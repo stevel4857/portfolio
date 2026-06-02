@@ -52,7 +52,7 @@ Then visit:
 3. Use the same structure as existing posts
 4. Save and refresh `blog.html`
 
-No build step required.
+Run `npm run build` (or `npm run dev`) to generate `css/tailwind.css` before previewing or committing (the CSS is committed; no CDN).
 
 ## Deployment
 

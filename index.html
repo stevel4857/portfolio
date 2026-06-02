@@ -7,7 +7,7 @@
   <title>Steve Luiting — Strategic Web Design &amp; Digital Experiences | Denver</title>
   <link rel="icon" type="image/png" sizes="32x32" href="assets/images/steveknowswebdesign-favicon.png">
   
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/tailwind.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
   <style>
@@ -15,79 +15,6 @@
     
     body {
       font-family: "Inter", system_ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    }
-    
-    .heading-serif {
-      font-family: "Playfair Display", Georgia, serif;
-      font-weight: 700;
-      letter-spacing: -0.025em;
-    }
-
-    .section-heading {
-      position: relative;
-      display: inline-block;
-    }
-
-    .nav-link {
-      position: relative;
-      transition: color 0.15s ease, font-weight 0.15s ease;
-    }
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: -3px;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background-color: #9f1239;
-      opacity: 0;
-      transition: opacity 0.2s ease;
-    }
-    .nav-link:hover {
-      color: #9f1239;
-      font-weight: 600;
-    }
-    .nav-link:hover::after {
-      opacity: 1;
-    }
-
-    .work-card {
-      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
-                  box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .work-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.12);
-    }
-
-    .stat {
-      font-variant-numeric: tabular-nums;
-    }
-
-    .timeline-item {
-      position: relative;
-    }
-    .timeline-item:not(:last-child):before {
-      content: '';
-      position: absolute;
-      left: 15px;
-      top: 32px;
-      bottom: -12px;
-      width: 1px;
-      background: #e2e8f0;
-    }
-
-    .subtle-border {
-      border-color: #f1f5f9;
-    }
-
-    .fake-popup {
-      box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-      border: 1px solid #cbd5e1;
-    }
-    .fake-popup-header {
-      background-color: #f1f5f9;
-      border-bottom: 1px solid #e2e8f0;
     }
   </style>
 </head>

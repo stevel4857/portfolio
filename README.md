@@ -2,7 +2,8 @@
 
 Professional website for Steve Luiting, focused on museums, nonprofits, and purpose-driven organizations.
 
-**Tech:** Static multi-file site (HTML + Tailwind CDN + vanilla JS)  
+**Tech:** Static multi-file site (HTML + Tailwind via PostCSS build + vanilla JS)  
+Run `npm run build` to generate `css/tailwind.css` (no CDN).
 **Hosting:** Cloudflare Pages (connected to GitHub)  
 **Collaboration:** Designed to support multiple humans + AI agents over time
 
@@ -28,8 +29,11 @@ We are gradually moving toward a more modular structure to support multiple huma
 
 **Easiest:** Double-click `Start Server.bat` (or run `start-server.ps1`).
 
+The script now runs `npm run build` first (if Node present) to generate the Tailwind CSS.
+
 ```powershell
 cd "D:\work\steveknowsweb"
+npm run build   # or npm run dev for watch mode during editing
 python -m http.server 8000
 # or
 npx serve . -p 3000

@@ -9,6 +9,12 @@ Write-Host "   Update steveknowsweb       " -ForegroundColor Cyan
 Write-Host "==============================" -ForegroundColor Cyan
 Write-Host ""
 
+# Build Tailwind CSS if Node is available (the built css/tailwind.css is committed)
+if (Get-Command node -ErrorAction SilentlyContinue) {
+    Write-Host "Node detected — building Tailwind CSS..." -ForegroundColor Cyan
+    & npm run build
+}
+
 # Check for changes
 $changes = git status --porcelain
 

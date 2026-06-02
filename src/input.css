@@ -1,0 +1,150 @@
+﻿@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles that were previously in <style> tags or to match original design */
+.heading-serif {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.nav-link {
+  position: relative;
+  transition: color 0.15s ease, font-weight 0.15s ease;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #9f1239;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.nav-link:hover {
+  color: #9f1239;
+  font-weight: 600;
+}
+.nav-link:hover::after {
+  opacity: 1;
+}
+
+.work-card {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.work-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.12);
+}
+
+.stat {
+  font-variant-numeric: tabular-nums;
+}
+
+.timeline-item {
+  position: relative;
+}
+.timeline-item:not(:last-child):before {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 32px;
+  bottom: -12px;
+  width: 1px;
+  background: #e2e8f0;
+}
+
+.subtle-border {
+  border-color: #f1f5f9;
+}
+
+.fake-popup {
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  border: 1px solid #cbd5e1;
+}
+.fake-popup-header {
+  background-color: #f1f5f9;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+/* About page specific */
+.story-block {
+  max-width: 720px;
+}
+
+.key-moment {
+  position: relative;
+  padding-left: 2rem;
+}
+.key-moment:before {
+  content: '';
+  position: absolute;
+  left: 0.6rem;
+  top: 0.4rem;
+  width: 0.6rem;
+  height: 0.6rem;
+  background: #1e2937;
+  border-radius: 9999px;
+}
+
+/* Blog page specific */
+.post-card {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.post-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.08), 0 8px 10px -6px rgb(0 0 0 / 0.08);
+}
+
+.blog-content {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.blog-content h3 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.35rem;
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+.blog-content p {
+  margin-bottom: 1.25rem;
+  line-height: 1.75;
+  color: #374151;
+}
+
+.blog-content ul {
+  margin-bottom: 1.25rem;
+  padding-left: 1.25rem;
+}
+
+.blog-content li {
+  margin-bottom: 0.5rem;
+  line-height: 1.7;
+}
+
+.modal {
+  animation: modalEnter 0.2s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+@keyframes modalEnter {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.category-pill {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  background-color: #f1f5f9;
+  color: #475569;
+  font-weight: 500;
+}
