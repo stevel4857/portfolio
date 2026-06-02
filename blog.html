@@ -10,6 +10,9 @@
   <link rel="stylesheet" href="css/tailwind.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
+  <!-- Ruffle for playing legacy Flash (SWF) content - used for the "Resurrection of Flash" post demo -->
+  <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+  
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Playfair+Display:wght@700&amp;display=swap');
     
@@ -287,6 +290,35 @@
           </div>
         ` : ''}
       `;
+
+      // Special handling for the "Resurrection of Flash" post - auto-init live Ruffle demo
+      // (Ruffle script is included in the page <head> above)
+      if (post.slug === 'the-resurrection-of-flash' && window.RufflePlayer) {
+        setTimeout(() => {
+          try {
+            // Configure Ruffle to match the examples in the post (autoplay, no splash, sound enabled)
+            window.RufflePlayer.config = {
+              "autoplay": "on",
+              "splashScreen": false,
+              "unmuteOverlay": "hidden",
+              "quality": "high"
+            };
+
+            const ruffle = window.RufflePlayer.newest();
+            const player = ruffle.createPlayer();
+            const container = document.getElementById('ruffle-demo');
+            if (container) {
+              container.innerHTML = ''; // reset if modal reopened
+              container.appendChild(player);
+              player.load('flash/techlogo.swf');
+              player.style.width = '100%';
+              player.style.height = '100%';
+            }
+          } catch (e) {
+            console.warn('Could not initialize Ruffle live demo (Ruffle may still be loading or the browser does not support it):', e);
+          }
+        }, 200);
+      }
 
       modal.classList.remove('hidden');
       modal.classList.add('flex');
