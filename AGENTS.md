@@ -7,7 +7,7 @@ This file contains rules and context for AI agents (Grok, Claude, Cursor, etc.) 
 - Professional website for Steve Luiting (strategic web designer).
 - Target audience: Museums, nonprofits, and purpose-driven organizations.
 - Tone: Professional, thoughtful, slightly understated, high-craft.
-- Tech: Static HTML + Tailwind (CDN) + vanilla JavaScript. No build step required.
+- Tech: Static multi-file HTML + Tailwind CSS (built via PostCSS from `src/input.css` into committed `css/tailwind.css`) + vanilla JavaScript.
 
 ## Core Rules for AI Agents
 

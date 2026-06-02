@@ -46,22 +46,18 @@ Once the site is live:
 2. Add your domain (e.g. `steveknowswebdesign.com`)
 3. Follow Cloudflare’s DNS instructions (very simple since you already use Cloudflare Registrar)
 
-### 4. Formspree Contact Form (Important)
+### 4. Contact Form
 
-The contact form on the homepage uses Formspree.
+The contact form on the homepage is powered by Formspree.
 
-**To activate it:**
+The endpoint is already configured and active in `index.html` (`https://formspree.io/f/xaqkggrv`).
 
-1. Go to [formspree.io](https://formspree.io) and create a free account
-2. Create a new form
-3. Copy the endpoint (looks like `https://formspree.io/f/abc123def`)
-4. Open `index.html`
-5. Find this line:
-   ```html
-   <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-   ```
-6. Replace `YOUR_FORM_ID` with your real endpoint
-7. Commit and push — the form will now work
+If you need to update or change the Formspree integration in the future:
+
+1. Log in to your Formspree account and manage the form.
+2. Copy the new endpoint URL.
+3. Update the `action` attribute on the `<form>` element in `index.html`.
+4. Test submissions via a local preview and a Cloudflare Pages preview deployment before merging.
 
 ## Useful Tips
 
