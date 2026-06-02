@@ -80,6 +80,15 @@
     .subtle-border {
       border-color: #f1f5f9;
     }
+
+    .fake-popup {
+      box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+      border: 1px solid #cbd5e1;
+    }
+    .fake-popup-header {
+      background-color: #f1f5f9;
+      border-bottom: 1px solid #e2e8f0;
+    }
   </style>
 </head>
 <body class="bg-white text-slate-900 antialiased">
@@ -496,13 +505,23 @@
             </button>
           </form>
 
-          <!-- Success Message (hidden by default) -->
-          <div id="form-success" class="hidden bg-emerald-50 border border-emerald-200 rounded-2xl p-6 text-center">
-            <div class="text-emerald-600 text-2xl mb-3">✓</div>
-            <h3 class="font-semibold text-lg text-emerald-800">Thanks — message received.</h3>
-            <p class="text-emerald-700 mt-2 text-sm">
-              I'll get back to you within a couple of days.
-            </p>
+          <!-- Success Message (hidden by default) - styled as fake popup -->
+          <div id="form-success" class="hidden bg-white rounded-2xl overflow-hidden fake-popup">
+            <div class="fake-popup-header flex items-center justify-between px-4 py-2 text-xs font-medium text-slate-600">
+              <span class="flex items-center gap-x-1.5">
+                <i class="fa-solid fa-check text-emerald-600"></i>
+                <span>Message Sent</span>
+              </span>
+              <button onclick="resetFormAndSuccess()" 
+                      class="text-slate-400 hover:text-slate-700 px-1 leading-none text-lg">×</button>
+            </div>
+            <div class="p-6 text-center">
+              <div class="text-emerald-600 text-2xl mb-3">✓</div>
+              <h3 class="font-semibold text-lg text-emerald-800">Thanks — message received.</h3>
+              <p class="text-emerald-700 mt-2 text-sm">
+                I'll get back to you within a couple of days.
+              </p>
+            </div>
           </div>
         </div>
 
@@ -544,7 +563,6 @@
           form.reset();
           form.style.display = 'none';
           successMessage.classList.remove('hidden');
-          successMessage.classList.add('block');
           return;
         }
 
@@ -554,7 +572,6 @@
           form.reset();
           form.style.display = 'none';
           successMessage.classList.remove('hidden');
-          successMessage.classList.add('block');
           return;
         }
 
@@ -576,7 +593,6 @@
             form.reset();
             form.style.display = 'none';
             successMessage.classList.remove('hidden');
-            successMessage.classList.add('block');
           } else {
             const data = await response.json();
             if (data.errors) {
@@ -592,6 +608,17 @@
           submitButton.innerHTML = originalButtonText;
         }
       });
+    }
+
+    // Helper for fake popup close button - resets to allow re-submission demo
+    function resetFormAndSuccess() {
+      const form = document.getElementById('contact-form');
+      const successMessage = document.getElementById('form-success');
+      if (form) form.style.display = '';
+      if (successMessage) {
+        successMessage.classList.add('hidden');
+        successMessage.classList.remove('block');
+      }
     }
   </script>
 
