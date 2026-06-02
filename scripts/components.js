@@ -6,7 +6,7 @@ async function loadComponent(element) {
   if (!componentName) return;
 
   try {
-    const response = await fetch(`components/${componentName}.html`);
+    const response = await fetch(`/components/${componentName}.html`);
     if (!response.ok) {
       console.warn(`Component "${componentName}" not found`);
       return;
