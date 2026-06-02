@@ -25,23 +25,23 @@
     <div class="max-w-6xl mx-auto px-6">
       <div class="flex items-center justify-between h-20">
         <div class="flex items-center gap-x-3">
-          <a href="/" class="font-semibold text-2xl tracking-tighter">Steve Luiting</a>
+          <a href="index.html" class="font-semibold text-2xl tracking-tighter">Steve Luiting</a>
           <span class="text-xs font-mono uppercase tracking-[2px] text-slate-400 pt-1">Denver</span>
         </div>
 
         <div class="hidden md:flex items-center gap-x-9 text-sm font-medium">
-          <a href="/about.html" class="nav-link text-slate-600">About</a>
-          <a href="/#work" class="nav-link text-slate-600">Work</a>
-          <a href="/blog.html" class="nav-link text-slate-600">Insights</a>
-          <a href="/#contact" class="nav-link text-slate-600">Contact</a>
+          <a href="about.html" class="nav-link text-slate-600">About</a>
+          <a href="#work" class="nav-link text-slate-600">Work</a>
+          <a href="blog.html" class="nav-link text-slate-600">Insights</a>
+          <a href="#contact" class="nav-link text-slate-600">Contact</a>
         </div>
 
         <div class="flex items-center gap-x-3">
-          <a href="/blog.html" 
+          <a href="blog.html" 
              class="hidden sm:inline-flex items-center px-4 h-9 rounded-full border border-slate-300 text-sm font-medium text-slate-700 hover:bg-slate-50 transition">
             Read the Notes
           </a>
-          <a href="/#contact" 
+          <a href="#contact" 
              class="inline-flex items-center px-5 h-9 rounded-full bg-slate-900 text-white text-sm font-semibold hover:bg-black transition">
             Let's Talk
           </a>
@@ -215,7 +215,7 @@
         <div class="uppercase tracking-[3px] text-xs font-semibold text-slate-500">SELECTED WORK</div>
         <h2 class="heading-serif text-5xl tracking-tighter">Projects that mattered.</h2>
       </div>
-      <a href="/blog.html" class="hidden md:inline text-sm font-medium text-slate-600 hover:text-slate-900">See more in the Notes →</a>
+      <a href="blog.html" class="hidden md:inline text-sm font-medium text-slate-600 hover:text-slate-900">See more in the Notes →</a>
     </div>
 
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -312,7 +312,7 @@
           <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs">Visual Identity</span>
         </div>
         <div class="pt-4 text-sm">
-          <a href="/work/syndeo.html" class="inline-flex items-center gap-x-2 font-medium group-hover:gap-x-3 transition">
+          <a href="work/syndeo.html" class="inline-flex items-center gap-x-2 font-medium group-hover:gap-x-3 transition">
             View case study <i class="fa-solid fa-arrow-right"></i>
           </a>
         </div>
@@ -553,7 +553,7 @@
     <div class="max-w-6xl mx-auto px-6 text-xs text-slate-500 flex flex-col sm:flex-row gap-y-2 items-center justify-between">
       <div>© Steve Luiting — Strategic Web Design &amp; Digital Experiences. Denver, Colorado.</div>
       <div class="flex gap-x-5">
-        <a href="/blog.html" class="hover:text-slate-700 transition">Insights</a>
+        <a href="blog.html" class="hover:text-slate-700 transition">Insights</a>
         <a href="https://github.com/stevel4857" target="_blank" class="hover:text-slate-700 transition">GitHub</a>
       </div>
     </div>
@@ -578,7 +578,7 @@
 
         const container = document.getElementById('blog-teaser');
         container.innerHTML = recent.map(post => `
-          <a href="/blog.html" onclick="event.preventDefault(); window.location.href='/blog.html';" 
+          <a href="blog.html" onclick="event.preventDefault(); window.location.href='/blog.html';" 
              class="group block bg-white border border-slate-200 hover:border-slate-300 rounded-2xl p-5 transition">
             <div class="flex justify-between text-xs mb-2">
               <span class="px-2.5 py-0.5 bg-slate-100 text-slate-600 rounded-full">${post.category}</span>
@@ -604,7 +604,7 @@
       document.addEventListener('keydown', (e) => {
         if (e.key === '/' && document.activeElement.tagName === 'BODY') {
           e.preventDefault();
-          const blogLink = document.querySelector('a[href="/blog.html"]');
+          const blogLink = document.querySelector('a[href="blog.html"]');
           if (blogLink) blogLink.click();
         }
       });
