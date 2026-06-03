@@ -13,9 +13,8 @@
   <!-- Ruffle for playing legacy Flash (SWF) content - used for the "Resurrection of Flash" post demo -->
   <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
   
-  <!-- A-Frame for 3D/VR demos in blog posts (e.g. "3D A-Frame 2D" post) -->
-  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-  
+  <!-- A-Frame is loaded dynamically only for the 3D A-Frame 2D post to avoid polluting other pages -->
+
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Playfair+Display:wght@700&amp;display=swap');
     
@@ -280,52 +279,68 @@
       document.getElementById('modal-author').textContent = post.author;
       document.getElementById('modal-readtime').textContent = post.readTime;
 
-      // Main content
-      contentEl.innerHTML = `
-        <h1 class="heading-serif text-4xl leading-none tracking-[-1.5px] mb-6">${post.title}</h1>
-        <div class="prose prose-slate max-w-none">
-          ${post.content}
-        </div>
-        
-        ${post.tags ? `
-          <div class="mt-10 pt-6 border-t border-slate-100 flex flex-wrap gap-2">
-            ${post.tags.map(tag => `<span class="text-xs px-3 py-1 bg-slate-100 rounded-full text-slate-600">${tag}</span>`).join('')}
+      // Main content setup (with special handling for dynamic scripts)
+      function setModalContent() {
+        contentEl.innerHTML = `
+          <h1 class="heading-serif text-4xl leading-none tracking-[-1.5px] mb-6">${post.title}</h1>
+          <div class="prose prose-slate max-w-none">
+            ${post.content}
           </div>
-        ` : ''}
-      `;
+          
+          ${post.tags ? `
+            <div class="mt-10 pt-6 border-t border-slate-100 flex flex-wrap gap-2">
+              ${post.tags.map(tag => `<span class="text-xs px-3 py-1 bg-slate-100 rounded-full text-slate-600">${tag}</span>`).join('')}
+            </div>
+          ` : ''}
+        `;
 
-      // Special handling for the "Resurrection of Flash" post - auto-init live Ruffle demo
-      // (Ruffle script is included in the page <head> above)
-      if (post.slug === 'the-resurrection-of-flash' && window.RufflePlayer) {
-        setTimeout(() => {
-          try {
-            // Configure Ruffle to match the examples in the post (autoplay, no splash, sound enabled)
-            window.RufflePlayer.config = {
-              "autoplay": "on",
-              "splashScreen": false,
-              "unmuteOverlay": "hidden",
-              "quality": "high"
-            };
+        // Special handling for the "Resurrection of Flash" post - auto-init live Ruffle demo
+        if (post.slug === 'the-resurrection-of-flash' && window.RufflePlayer) {
+          setTimeout(() => {
+            try {
+              window.RufflePlayer.config = {
+                "autoplay": "on",
+                "splashScreen": false,
+                "unmuteOverlay": "hidden",
+                "quality": "high"
+              };
 
-            const ruffle = window.RufflePlayer.newest();
-            const player = ruffle.createPlayer();
-            const container = document.getElementById('ruffle-demo');
-            if (container) {
-              container.innerHTML = ''; // reset if modal reopened
-              container.appendChild(player);
-              player.load('flash/techlogo.swf');
-              player.style.width = '100%';
-              player.style.height = '100%';
+              const ruffle = window.RufflePlayer.newest();
+              const player = ruffle.createPlayer();
+              const container = document.getElementById('ruffle-demo');
+              if (container) {
+                container.innerHTML = '';
+                container.appendChild(player);
+                player.load('flash/techlogo.swf');
+                player.style.width = '100%';
+                player.style.height = '100%';
+              }
+            } catch (e) {
+              console.warn('Could not initialize Ruffle live demo:', e);
             }
-          } catch (e) {
-            console.warn('Could not initialize Ruffle live demo (Ruffle may still be loading or the browser does not support it):', e);
-          }
-        }, 200);
+          }, 200);
+        }
+
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
       }
 
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-      document.body.style.overflow = 'hidden';
+      if (post.slug === '3d-aframe-2d' && !window.AFRAME) {
+        // Load A-Frame only when needed for this post (prevents polluting other pages and the list view)
+        const script = document.createElement('script');
+        script.src = 'https://aframe.io/releases/1.5.0/aframe.min.js';
+        script.onload = setModalContent;
+        script.onerror = () => {
+          contentEl.innerHTML = '<p class="text-red-600">Failed to load 3D viewer. Please try again later.</p>';
+          modal.classList.remove('hidden');
+          modal.classList.add('flex');
+          document.body.style.overflow = 'hidden';
+        };
+        document.head.appendChild(script);
+      } else {
+        setModalContent();
+      }
     }
 
     function closePostModal() {
