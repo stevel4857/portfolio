@@ -37,15 +37,15 @@
   },
   {
     "id": 4,
-    "slug": "3d-aframe-2d-page-test",
-    "title": "3D A-Frame 2D Page Test",
-    "date": "2025-07-10",
+    "slug": "3d-aframe-2d",
+    "title": "3D A-Frame 2D",
+    "date": "2026-06-03",
     "author": "Steve Luiting",
     "category": "Experiments",
-    "readTime": "5 min",
-    "excerpt": "An immersive 3D/VR space embedded in a normal 2D web page. WSAD controls work when the scene is active. Built with A-Frame.",
-    "content": "<p>Sometimes the best way to tell a story is to let people step inside it.</p><p>This experiment embeds a full 3D environment directly into a regular web page using A-Frame. No app install required. Works on desktop and has basic mobile support.</p><p>It's the same spirit as the full VR recreation I built for The Cable Center years ago — just much easier for visitors to access instantly.</p>",
-    "tags": ["3D", "A-Frame", "WebXR"]
+    "readTime": "7 min",
+    "excerpt": "Embed rich, interactive 3D experiences directly into normal 2D web pages using A-Frame. No apps, no installs — click to explore with WASD + mouse look.",
+    "content": "<p>Sometimes the best way to tell a story is to let people step inside it.</p><p>This is a live 3D scene running right here in a regular blog post. Built with <strong>A-Frame</strong>, it drops into any 2D HTML page with a single script tag and declarative markup. Desktop WASD + mouse look, basic mobile/VR support included.</p><p>Click inside the frame below to activate controls, then move around with WASD or arrow keys.</p><div style=\"width:100%;height:420px;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;margin:1.25rem 0;background:#111;\"><a-scene embedded style=\"width:100%;height:100%;\"><a-sky color=\"#1e3a5f\"></a-sky><a-entity light=\"type:ambient;color:#BBB\"></a-entity><a-entity light=\"type:directional;color:#FFF;intensity:0.9\" position=\"-1 3 2\"></a-entity><a-plane position=\"0 0 0\" rotation=\"-90 0 0\" width=\"40\" height=\"40\" color=\"#334155\" shadow=\"receive:true\"></a-plane><a-box position=\"0 1.3 -5\" width=\"2.4\" height=\"2.4\" depth=\"2.4\" color=\"#0f172a\" shadow=\"cast:true\" animation=\"property: rotation; dur: 14000; to: 0 360 0; loop: true; easing: linear;\"></a-box><a-entity position=\"0 4 -5\" text=\"value:YOUR STORY HERE; color:#bae6fd; align:center; width:9;\"></a-entity><a-sphere position=\"-6 2 -7\" radius=\"1.3\" color=\"#f59e0b\" shadow=\"cast:true\"></a-sphere><a-sphere position=\"6 1.9 -6\" radius=\"1\" color=\"#10b981\" shadow=\"cast:true\"></a-sphere><a-cone position=\"0 1.6 4\" radius-bottom=\"1.8\" radius-top=\"0\" height=\"3.5\" color=\"#6366f1\" shadow=\"cast:true\"></a-cone><a-plane position=\"0 2.9 6\" rotation=\"0 180 0\" width=\"7\" height=\"4\" color=\"#1e2937\"><a-entity position=\"0 0.9 0.06\" text=\"value:Museums &amp; Nonprofits; color:#bae6fd; align:center; width:6;\"></a-entity><a-entity position=\"0 0 0.06\" text=\"value:Strategic Web Design\nin Three Dimensions; color:#e0f2fe; align:center; width:6;\"></a-entity></a-plane><a-entity camera look-controls wasd-controls position=\"0 1.6 7\"></a-entity></a-scene></div><h3>Why A-Frame for client work</h3><ul><li>Zero friction for visitors — it just works in the browser they already have.</li><li>Perfect for museums and nonprofits that need memorable digital experiences on modest budgets.</li><li>The same scene can scale up to full VR headsets when someone wants the deeper immersion.</li><li>Declarative HTML means it's maintainable by the same people who handle the rest of the site.</li></ul><p>The old full-building VR project for The Cable Center was powerful but heavy to distribute. This approach brings the magic of spatial storytelling into everyday web pages.</p><p style=\"text-align:center;margin:1.75rem 0 1rem;\"><a href=\"demos/3d-aframe-experience.html\" target=\"_blank\" style=\"display:inline-block;background:#0f172a;color:#e0f2fe;padding:12px 26px;border-radius:9999px;text-decoration:none;font-weight:600;font-size:15px;\">Launch Full Multi-Zone 3D Experience →</a></p><p style=\"font-size:0.95em;color:#64748b;text-align:center;margin-bottom:1.5rem;\">The compact scene above is a self-contained teaser. For the complete experience with the custom floating HUD, five themed zones (Red/Blue/Green/Yellow/Purple), in-world teleport menu, interactive buttons, playable video, flying viewpoints, and full VR support, open the dedicated demo:</p>",
+    "tags": ["3D", "A-Frame", "WebXR", "Experiments"]
   },
   {
     "id": 5,
