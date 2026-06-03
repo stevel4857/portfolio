@@ -423,7 +423,7 @@
     <a-light type="directional" color="#FFF" intensity="0.5" position="5 10 5"></a-light>
    
     <!-- Camera -->
-    <a-entity id="camera" camera position="0 1.8 8" look-controls wasd-controls="acceleration: 65">
+    <a-entity id="camera" camera position="0 3.5 5.5" rotation="0 0 0" look-controls wasd-controls="acceleration: 65">
       <a-cursor id="cursor" color="#FF0000" raycaster="objects: .clickable"></a-cursor>
      
       <!-- VR Mini Menu - Attached to camera for VR mode -->
@@ -474,9 +474,28 @@
           var instructionText = document.querySelector('#instruction-text');
           var menuVisible = true;
           var miniMenuActive = false;
-          var spawnPoint = {x: 0, y: 1.8, z: 8};
+          var spawnPoint = {x: 0, y: 2.6, z: 1.8};
           var initialPosition = camera.getAttribute('position');
           var visitedZones = {};
+
+          // Nice settle-in camera movement on page load (cinematic "arrive" feel)
+          // Starts from the HTML position (further back), animates closer to the menu
+          setTimeout(function() {
+            camera.setAttribute('animation', {
+              property: 'position',
+              to: '0 2.6 1.8',
+              dur: 1500,
+              easing: 'easeOutQuad',
+              delay: 150
+            });
+            camera.setAttribute('animation__rot', {
+              property: 'rotation',
+              to: '-10 0 0',
+              dur: 1500,
+              easing: 'easeOutQuad',
+              delay: 150
+            });
+          }, 50);
          
           // Function to hide instruction text
           function hideInstructions() {
