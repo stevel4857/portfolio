@@ -16,13 +16,14 @@ Run `npm run build` to generate `css/tailwind.css` (no CDN).
 - `scripts/` — Client-side JavaScript
 - `data/` — Structured content (JSON)
 - `assets/` — Images and video
+- `flash/` — Legacy demo assets (e.g. SWF for blog live examples like the Flash resurrection post)
 
 We are gradually moving toward a more modular structure to support multiple humans and AI agents working in parallel.
 
 ## Key Patterns
 
-- Blog content lives in `data/blog-posts.json` (preferred way to add/edit posts)
-- Assets are in `assets/`
+- Blog content lives in `data/blog-posts.json` (preferred way to add/edit posts). Some posts include live demos (add supporting scripts to `blog.html` `<head>` + JS init when needed).
+- Assets are in `assets/`; legacy demo files (SWF) go in `flash/`.
 - Keep the clean, editorial, professional tone
 
 ## Local Development
@@ -68,7 +69,7 @@ GitHub Pages (`https://stevel4857.github.io/portfolio`) is disabled and is **not
 
 ## Project Philosophy
 
-This site follows a **Tier 1 Multi-file Static** approach (see original website workflow planning).
+This site follows a **Tier 1 Multi-file Static** approach (see the master planning document at `../docs/website-workflow-planning.md` when working in the combined workspace, or the original planning document).
 
 We keep things simple and maintainable while still allowing parallel work by humans and AI agents. We may evolve to a lightweight framework (likely Astro) later if the number of contributors or content velocity justifies it.
 

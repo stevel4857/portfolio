@@ -43,6 +43,7 @@ Then visit:
 - `blog.html` – Blog listing + reader
 - `data/blog-posts.json` – **Edit this to add new blog posts**
 - `assets/` – Images and video
+- `flash/` – Legacy demo assets (SWF for blog)
 - `update-site.ps1` + `Update Site.bat` – Update helpers
 
 ## Adding New Blog Posts

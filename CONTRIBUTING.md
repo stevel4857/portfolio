@@ -48,6 +48,7 @@ steveknowsweb/
 ├── data/               # Structured content (JSON)
 │   └── blog-posts.json
 ├── assets/             # Images, videos, fonts
+├── flash/              # Legacy demo assets (SWF for live blog examples)
 ├── README.md
 ├── CONTRIBUTING.md
 └── AGENTS.md           # Instructions for AI agents
@@ -59,6 +60,8 @@ The blog is powered entirely by `data/blog-posts.json`.
 **Preferred way** to add or edit blog content is by editing this file.
 
 Do **not** create new standalone `.html` files for individual blog posts unless we decide to move to a more advanced system later.
+
+For posts with live demos (e.g. "The Resurrection of Flash" using Ruffle), you may add a small script include to `blog.html` `<head>` and conditional initialization logic in the modal reader JS. Keep demo markup in the JSON content and reference assets via `flash/` relative paths. The demo should activate automatically when the post is opened.
 
 ## Style & Quality Guidelines
 

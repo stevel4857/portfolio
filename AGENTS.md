@@ -25,14 +25,16 @@ This file contains rules and context for AI agents (Grok, Claude, Cursor, etc.) 
 |-----------------------|--------------------------------------|-------------------|
 | `index.html`          | Homepage                             | Major structural changes need human approval |
 | `about.html`          | About / Story page                   | Be careful with personal narrative tone |
-| `blog.html`           | Blog listing + modal reader          | Prefer editing `data/blog-posts.json` |
+| `blog.html`           | Blog listing + modal reader          | Prefer editing `data/blog-posts.json`. Small `<head>` scripts or conditional JS for live demos in posts (e.g. Ruffle for Flash) are acceptable when needed to support content. |
 | `data/blog-posts.json`| Blog content                         | Primary place for new blog posts |
 | `assets/`             | Images and videos                    | Do not optimize or rename without discussion |
+| `flash/`              | Legacy demo assets (e.g. SWF for blog) | Use relative paths like `flash/techlogo.swf` for demos. Commit demo files here when adding live examples. |
 | `CONTRIBUTING.md`     | Human contribution guidelines        | Update when collaboration patterns change |
 
 ## Working With Content
 
 - When adding or editing blog posts, **always edit `data/blog-posts.json`**.
+- For posts with live/interactive demos (e.g. the Flash resurrection post), include the demo markup in the JSON content and add any required script (e.g. Ruffle CDN) to `blog.html` `<head>` + init logic in the modal JS. The demo should be self-contained in the post.
 - Keep the writing style consistent with existing posts (practical, slightly reflective, no hype).
 - Use real dates and accurate categories.
 
@@ -74,7 +76,7 @@ Ask before doing any of the following:
 - Adding or removing pages
 - Changing the overall visual direction or design system
 - Large content rewrites (especially on the About page)
-- Introducing new dependencies or tools
+- Introducing new dependencies or tools (small CDN scripts for live blog post demos are an exception when they directly support post content, e.g. Ruffle)
 - Anything that affects the custom domain or deployment
 
 ## Things AI Agents Should NOT Do
@@ -87,7 +89,7 @@ Ask before doing any of the following:
 
 ## Future Direction
 
-This site is currently built as a **Tier 1 Multi-file Static** site (see original planning document).
+This site is currently built as a **Tier 1 Multi-file Static** site (see the master planning document at `../docs/website-workflow-planning.md` when working in the combined workspace, or the original planning document).
 
 We may evolve toward a lightweight framework (likely Astro) when the number of contributors or content updates justifies it. Do not start that migration on your own.
 
