@@ -61,6 +61,8 @@ The blog is powered entirely by `data/blog-posts.json`.
 
 Do **not** create new standalone `.html` files for individual blog posts unless we decide to move to a more advanced system later.
 
+**Important**: Post `content` is a giant escaped string. Double-quotes inside the HTML **must** be written as `\"` (backslashes as `\\`). Forgetting this is a frequent cause of "SyntaxError: Expected ',' or '}' after property value in JSON" when the blog fails to load. After any edit, quickly validate with `node -e "JSON.parse(require('fs').readFileSync('data/blog-posts.json','utf8'))"` or a JSON tool.
+
 For posts with live demos (e.g. "The Resurrection of Flash" using Ruffle), you may add a small script include to `blog.html` `<head>` and conditional initialization logic in the modal reader JS. Keep demo markup in the JSON content and reference assets via `flash/` relative paths. The demo should activate automatically when the post is opened.
 
 ## Style & Quality Guidelines

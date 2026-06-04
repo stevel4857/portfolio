@@ -126,6 +126,9 @@
     async function loadPosts() {
       try {
         const res = await fetch('data/blog-posts.json');
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
         allPosts = await res.json();
         
         // Build category filters dynamically
@@ -135,6 +138,9 @@
         renderPosts(allPosts);
       } catch (err) {
         console.error('Failed to load blog posts:', err);
+        if (err instanceof SyntaxError && err.message.includes('JSON')) {
+          console.error('JSON parse error in data/blog-posts.json — this often happens when editing post "content" strings. Make sure all double-quotes inside the HTML content are escaped as \\" (and backslashes as \\\\ if needed). Use a JSON validator after edits.');
+        }
         const grid = document.getElementById('posts-grid');
         if (grid) {
           grid.innerHTML = `
