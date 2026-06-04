@@ -51,15 +51,22 @@ function initMobileMenu() {
       }
     };
 
-    button.addEventListener('click', (e) => {
-      e.stopPropagation();
+    const toggleMenu = (e) => {
+      if (e) e.stopPropagation();
       const isOpen = !menu.classList.contains('hidden');
       if (isOpen) {
         closeMenu();
       } else {
         openMenu();
       }
-    });
+    };
+
+    button.addEventListener('click', toggleMenu);
+
+    // Prevent default on touchstart to avoid 300ms delay and ghost clicks on mobile
+    button.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+    }, { passive: false });
 
     // Close when clicking any link in the menu
     menu.querySelectorAll('a').forEach((link) => {
