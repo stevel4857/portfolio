@@ -1,18 +1,20 @@
 <nav class="border-b border-slate-100 bg-white/80 backdrop-blur-sm sticky top-0 z-50">
-  <div class="max-w-6xl mx-auto px-6">
+  <div class="max-w-6xl mx-auto px-6 relative">
     <div class="flex items-center justify-between h-20">
       <div class="flex items-center gap-x-3">
         <a href="/" class="font-semibold text-2xl tracking-tighter">Steve Luiting</a>
         <span class="text-xs font-mono uppercase tracking-[2px] text-slate-400 pt-1">Denver</span>
       </div>
 
+      <!-- Desktop navigation -->
       <div class="hidden md:flex items-center gap-x-9 text-sm font-medium">
-        <a href="/about.html" class="nav-link text-slate-600">About</a>
-        <a href="/#work" class="nav-link text-slate-600">Work</a>
-        <a href="/blog.html" class="nav-link text-slate-600">Insights</a>
-        <a href="/#contact" class="nav-link text-slate-600">Contact</a>
+        <a href="/about.html" class="nav-link text-slate-600 hover:text-slate-900 transition">About</a>
+        <a href="/#work" class="nav-link text-slate-600 hover:text-slate-900 transition">Work</a>
+        <a href="/blog.html" class="nav-link text-slate-600 hover:text-slate-900 transition">Insights</a>
+        <a href="/#contact" class="nav-link text-slate-600 hover:text-slate-900 transition">Contact</a>
       </div>
 
+      <!-- Right side actions + mobile hamburger -->
       <div class="flex items-center gap-x-3">
         <a href="/blog.html" 
            class="hidden sm:inline-flex items-center px-4 h-9 rounded-full border border-slate-300 text-sm font-medium text-slate-700 hover:bg-slate-50 transition">
@@ -22,6 +24,43 @@
            class="inline-flex items-center px-5 h-9 rounded-full bg-slate-900 text-white text-sm font-semibold hover:bg-black transition">
           Let's Talk
         </a>
+
+        <!-- Mobile hamburger -->
+        <button 
+          id="mobile-menu-button"
+          type="button"
+          class="md:hidden inline-flex items-center justify-center w-9 h-9 text-slate-600 hover:text-slate-900 transition"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          aria-label="Toggle menu">
+          <i class="fa-solid fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu panel (overlays content below nav) -->
+    <div 
+      id="mobile-menu" 
+      class="md:hidden hidden absolute top-full left-0 right-0 z-50 bg-white border-t border-slate-100 shadow-sm"
+      role="menu">
+      <div class="px-6 py-5 flex flex-col text-[15px]">
+        <a href="/about.html" class="py-3 text-slate-700 hover:text-slate-900 transition border-b border-slate-100 last:border-0" role="menuitem">About</a>
+        <a href="/#work" class="py-3 text-slate-700 hover:text-slate-900 transition border-b border-slate-100 last:border-0" role="menuitem">Work</a>
+        <a href="/blog.html" class="py-3 text-slate-700 hover:text-slate-900 transition border-b border-slate-100 last:border-0" role="menuitem">Insights</a>
+        <a href="/#contact" class="py-3 text-slate-700 hover:text-slate-900 transition border-b border-slate-100 last:border-0" role="menuitem">Contact</a>
+
+        <div class="pt-4 mt-3 border-t border-slate-100 flex flex-col gap-y-2.5">
+          <a href="/blog.html" 
+             class="inline-flex items-center justify-center h-10 rounded-full border border-slate-300 text-sm font-medium text-slate-700 hover:bg-slate-50 active:bg-slate-100 transition"
+             role="menuitem">
+            Read the Notes
+          </a>
+          <a href="/#contact" 
+             class="inline-flex items-center justify-center h-10 rounded-full bg-slate-900 text-white text-sm font-semibold hover:bg-black active:bg-slate-950 transition"
+             role="menuitem">
+            Let's Talk
+          </a>
+        </div>
       </div>
     </div>
   </div>
