@@ -2,3 +2,6 @@
 /about.html /about 301
 /blog.html /blog 301
 /index.html / 301
+
+# Custom 404 page (served for any unmatched routes)
+/*    /404.html   404
