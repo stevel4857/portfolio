@@ -1,0 +1,8 @@
+# robots.txt for https://steveknowsweb.com
+# Steve Luiting — Strategic Web Design (museums, nonprofits, purpose-driven orgs)
+
+User-agent: *
+Allow: /
+
+# All pages and assets are public and intended for indexing.
+# No Disallow rules needed for this static site.
