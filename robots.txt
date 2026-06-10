@@ -1,0 +1,15 @@
+# robots.txt for https://steveknowsweb.com
+# Steve Luiting — Strategic Web Design (museums, nonprofits, purpose-driven organizations)
+#
+# Main public pages and sections (crawlers discover these via navigation links):
+#   /          → Home
+#   /about     → About
+#   /blog      → Insights (blog & articles)
+#   /#work     → Work section + case studies (e.g. /work/syndeo)
+#   /#contact  → Contact / Let's Talk
+
+User-agent: *
+Allow: /
+
+# All content is public and intended for search engine indexing.
+# No paths need to be disallowed on this small static site.
