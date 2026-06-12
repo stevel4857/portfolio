@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none" aria-hidden="true">
+  <rect width="800" height="500" fill="#ffffff"/>
+
+  <!-- Ground -->
+  <path d="M 72 392 Q 210 388 400 394 Q 590 400 728 392" stroke="#111111" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+
+  <!-- OLD HOST: heavy wobbly box -->
+  <path d="M 108 188 Q 106 176 118 168 L 268 162 Q 282 160 286 174 L 290 356 Q 292 372 276 374 L 112 378 Q 96 378 100 360 Z" stroke="#111111" stroke-width="2.4" fill="none"/>
+  <path d="M 132 206 Q 128 202 136 200 L 176 198 Q 184 196 188 206 L 190 232 Q 188 240 178 240 L 138 242 Q 130 242 132 232 Z" stroke="#111111" stroke-width="1.8" fill="none"/>
+  <path d="M 206 200 Q 198 198 210 196 L 248 194 Q 258 192 262 204 L 264 230 Q 262 238 250 238 L 212 240 Q 202 240 206 228 Z" stroke="#111111" stroke-width="1.8" fill="none"/>
+  <path d="M 134 262 H 252" stroke="#111111" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M 134 282 H 220" stroke="#111111" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M 134 302 H 238" stroke="#111111" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M 134 322 H 198" stroke="#111111" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M 134 342 H 228" stroke="#111111" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="198" y="152" text-anchor="middle" font-family="Comic Sans MS, Chalkboard, Marker Felt, cursive" font-size="15" fill="#111111" transform="rotate(-1.5 198 152)">old host</text>
+
+  <!-- Floating bill -->
+  <path d="M 142 108 Q 138 100 152 96 L 196 92 Q 208 90 210 104 L 212 126 Q 214 136 200 138 L 148 144 Q 136 146 134 132 Z" stroke="#111111" stroke-width="1.6" fill="none" transform="rotate(-7 172 118)"/>
+  <path d="M 154 110 H 194" stroke="#111111" stroke-width="1.2" stroke-linecap="round" transform="rotate(-7 172 118)"/>
+  <path d="M 154 122 H 186" stroke="#111111" stroke-width="1.2" stroke-linecap="round" transform="rotate(-7 172 118)"/>
+  <text x="172" y="132" text-anchor="middle" font-family="Comic Sans MS, Chalkboard, Marker Felt, cursive" font-size="11" fill="#111111" transform="rotate(-7 172 118)">$10/mo</text>
+
+  <!-- Doorway arch -->
+  <path d="M 318 392 V 224" stroke="#111111" stroke-width="2.4" stroke-linecap="round"/>
+  <path d="M 318 224 Q 362 186 406 224" stroke="#111111" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+  <path d="M 406 224 V 392" stroke="#111111" stroke-width="2.4" stroke-linecap="round"/>
+
+  <!-- Dotted path -->
+  <path d="M 252 346 Q 298 338 334 312 Q 352 298 368 286" stroke="#111111" stroke-width="1.5" stroke-dasharray="3 7" stroke-linecap="round" fill="none"/>
+
+  <!-- Schulz-style figure stepping through -->
+  <circle cx="378" cy="252" r="18" stroke="#111111" stroke-width="2.4" fill="#ffffff"/>
+  <path d="M 368 246 Q 372 244 376 246" stroke="#111111" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+  <path d="M 386 246 Q 390 244 394 246" stroke="#111111" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+  <path d="M 382 256 Q 378 260 374 258" stroke="#111111" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+  <path d="M 362 236 Q 368 224 378 222 Q 388 220 394 232" stroke="#111111" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+  <path d="M 378 270 Q 372 292 360 318" stroke="#111111" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <path d="M 378 270 Q 386 294 398 320" stroke="#111111" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <path d="M 360 318 L 404 322" stroke="#111111" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M 378 278 L 356 266" stroke="#111111" stroke-width="2" stroke-linecap="round"/>
+  <path d="M 382 278 L 406 264" stroke="#111111" stroke-width="2" stroke-linecap="round"/>
+  <!-- Zigzag shirt -->
+  <path d="M 364 278 L 372 286 L 380 278 L 388 286 L 396 278" stroke="#111111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+  <!-- NEW HOME: lighter peaked structure -->
+  <path d="M 468 392 L 468 236 L 540 198 L 612 236 L 612 392 Z" stroke="#111111" stroke-width="2.4" stroke-linejoin="round" fill="none"/>
+  <path d="M 540 198 V 392" stroke="#111111" stroke-width="1.2" stroke-linecap="round" opacity="0.45"/>
+  <path d="M 488 258 Q 484 254 494 252 L 520 250 Q 528 248 530 258 L 532 278 Q 530 286 518 286 L 492 288 Q 484 288 488 278 Z" stroke="#111111" stroke-width="1.6" fill="none"/>
+  <path d="M 556 252 Q 548 250 560 248 L 586 246 Q 596 244 598 256 L 600 276 Q 598 284 586 284 L 560 286 Q 552 286 556 274 Z" stroke="#111111" stroke-width="1.6" fill="none"/>
+  <path d="M 488 304 H 592" stroke="#111111" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M 488 324 H 556" stroke="#111111" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M 488 344 H 574" stroke="#111111" stroke-width="1.5" stroke-linecap="round"/>
+  <text x="540" y="182" text-anchor="middle" font-family="Comic Sans MS, Chalkboard, Marker Felt, cursive" font-size="15" fill="#111111" transform="rotate(1.2 540 182)">new home</text>
+
+  <!-- Schulz-style scribble clouds -->
+  <path d="M 498 118 Q 512 96 538 98 Q 556 82 578 96 Q 602 90 610 112 Q 624 118 618 138 Q 628 152 608 158 Q 602 176 578 172 Q 558 186 536 174 Q 512 182 504 162 Q 486 158 490 136 Q 478 128 484 112 Q 488 104 498 118 Z" stroke="#111111" stroke-width="1.8" fill="none"/>
+  <path d="M 524 126 Q 536 118 548 124" stroke="#111111" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+  <path d="M 562 110 Q 574 104 586 112" stroke="#111111" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+  <path d="M 632 92 Q 646 78 666 84 Q 684 76 694 94 Q 708 98 702 116 Q 712 128 694 132 Q 688 148 668 144 Q 652 154 636 142 Q 620 148 618 128 Q 604 124 608 106 Q 614 94 632 92 Z" stroke="#111111" stroke-width="1.6" fill="none"/>
+  <path d="M 652 100 Q 662 94 672 100" stroke="#111111" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+
+  <!-- Small thought/sigh marks near old host -->
+  <path d="M 286 132 Q 294 120 302 126" stroke="#111111" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+  <path d="M 304 118 Q 312 106 320 112" stroke="#111111" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+  <circle cx="326" cy="104" r="2.2" fill="#111111"/>
+  <circle cx="334" cy="94" r="1.6" fill="#111111"/>
+</svg>

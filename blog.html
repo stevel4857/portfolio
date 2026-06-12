@@ -122,6 +122,10 @@
     let allPosts = [];
     let currentFilter = 'all';
 
+    function sortPostsByDate(posts) {
+      return [...posts].sort((a, b) => b.date.localeCompare(a.date) || b.id - a.id);
+    }
+
     // Load posts from JSON
     async function loadPosts() {
       try {
@@ -129,7 +133,7 @@
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
         }
-        allPosts = await res.json();
+        allPosts = sortPostsByDate(await res.json());
         
         // Build category filters dynamically
         buildCategoryFilters();
@@ -227,7 +231,7 @@
         );
       }
 
-      renderPosts(filtered);
+      renderPosts(sortPostsByDate(filtered));
     }
 
     function renderPosts(posts) {
