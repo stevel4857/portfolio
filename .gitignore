@@ -4,3 +4,10 @@ yarn-debug.log*
 yarn-error.log*
 .env
 .DS_Store
+
+# Local dev notes and 3D model archives (not needed on the live site)
+Start server 3000.txt
+assets/models/notes.txt
+assets/models/save/
+assets/models/scene/scene.zip
+assets/models/the_cable_center-20200220-_small/
