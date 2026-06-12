@@ -30,7 +30,7 @@
     <span>The Cable Center - VR Walkthrough</span>
   </div>
 
-  <div class="instructions" id="instructions">Click the 3D area to look around • WASD to fly (look up/down to rise or descend) • In VR: left stick to move, right stick up/down to fly • Enter VR bottom-left</div>
+  <div class="instructions" id="instructions">Click inside the 3D view first • WASD or arrow keys to fly (look up/down to change altitude) • In VR: left stick move, right stick up/down • Enter VR bottom-left</div>
 
   <div class="status" id="status">Loading glTF 2.0 Cable Center model…</div>
 
@@ -142,31 +142,67 @@
       <a-box position="2800 35 -2800" width="3100" height="70" depth="2400" color="#2a2a2a" material="flatShading: true"></a-box>
     </a-entity>
 
-    <!-- Rig moves in VR (thumbsticks); camera keeps original desktop WASD + mouse look -->
-    <a-entity id="rig" position="0 1 18" vr-locomotion="fly: true; speed: 6">
-      <a-entity id="camera"
-                camera
-                look-controls
-                wasd-controls="fly: true"
-                position="0 0 0">
-        <a-cursor color="#ffffff" opacity="0.7"></a-cursor>
-      </a-entity>
+    <!-- Single camera entity: desktop WASD + VR thumbsticks via player-locomotion -->
+    <a-entity id="player"
+              camera
+              look-controls
+              player-locomotion="fly: true; speed: 8"
+              position="0 1 18">
+      <a-cursor color="#ffffff" opacity="0.7"></a-cursor>
     </a-entity>
   </a-scene>
 
   <script>
-    AFRAME.registerComponent('vr-locomotion', {
+    AFRAME.registerComponent('player-locomotion', {
       schema: {
-        speed: { type: 'number', default: 5 },
+        speed: { type: 'number', default: 8 },
         fly: { type: 'boolean', default: true },
         deadzone: { type: 'number', default: 0.12 }
       },
       init: function () {
-        this.cameraEl = this.el.querySelector('[camera]');
+        this.keys = Object.create(null);
         this.forward = new THREE.Vector3();
         this.right = new THREE.Vector3();
         this.move = new THREE.Vector3();
         this.up = new THREE.Vector3(0, 1, 0);
+        this.active = false;
+
+        this.moveKeys = new Set([
+          'KeyW', 'KeyA', 'KeyS', 'KeyD',
+          'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'
+        ]);
+
+        this.onKeyDown = (e) => {
+          if (!this.moveKeys.has(e.code)) return;
+          this.keys[e.code] = true;
+          e.preventDefault();
+        };
+        this.onKeyUp = (e) => {
+          this.keys[e.code] = false;
+        };
+
+        window.addEventListener('keydown', this.onKeyDown);
+        window.addEventListener('keyup', this.onKeyUp);
+
+        const scene = this.el.sceneEl;
+        const activate = () => {
+          this.active = true;
+          const canvas = scene && scene.canvas;
+          if (canvas) canvas.focus();
+        };
+
+        scene.addEventListener('loaded', () => {
+          const canvas = scene.canvas;
+          if (!canvas) return;
+          canvas.setAttribute('tabindex', '0');
+          canvas.style.outline = 'none';
+          canvas.addEventListener('pointerdown', activate);
+          activate();
+        });
+      },
+      remove: function () {
+        window.removeEventListener('keydown', this.onKeyDown);
+        window.removeEventListener('keyup', this.onKeyUp);
       },
       getGamepad: function (hand) {
         const gamepads = navigator.getGamepads ? navigator.getGamepads() : [];
@@ -188,33 +224,49 @@
         if (Math.abs(y) < this.data.deadzone) y = 0;
         return { x, y };
       },
-      tick: function (time, delta) {
-        const scene = this.el.sceneEl;
-        if (!scene || !scene.is('vr-mode') || !this.cameraEl) return;
-
-        const dt = Math.min(delta, 50) / 1000;
-        const left = this.readStick(this.getGamepad('left'));
-        const right = this.readStick(this.getGamepad('right'));
-        if (!left.x && !left.y && !right.y) return;
-
-        const cameraObj = this.cameraEl.object3D;
-        const rigObj = this.el.object3D;
-
-        cameraObj.getWorldDirection(this.forward);
+      applyMove: function (forwardAmt, strafeAmt, verticalAmt, dt) {
+        const obj = this.el.object3D;
+        obj.getWorldDirection(this.forward);
         if (!this.data.fly) this.forward.y = 0;
         this.forward.normalize();
-
         this.right.crossVectors(this.forward, this.up).normalize();
 
         this.move.set(0, 0, 0);
-        this.move.addScaledVector(this.forward, -left.y * this.data.speed * dt);
-        this.move.addScaledVector(this.right, left.x * this.data.speed * dt);
+        this.move.addScaledVector(this.forward, forwardAmt * this.data.speed * dt);
+        this.move.addScaledVector(this.right, strafeAmt * this.data.speed * dt);
+        if (this.data.fly) this.move.y += verticalAmt * this.data.speed * dt;
+        obj.position.add(this.move);
+      },
+      tick: function (time, delta) {
+        const scene = this.el.sceneEl;
+        if (!scene) return;
 
-        if (this.data.fly && right.y) {
-          this.move.y += -right.y * this.data.speed * dt;
+        const dt = Math.min(delta, 50) / 1000;
+
+        if (scene.is('vr-mode')) {
+          const left = this.readStick(this.getGamepad('left'));
+          const right = this.readStick(this.getGamepad('right'));
+          if (!left.x && !left.y && !right.y) return;
+          this.applyMove(-left.y, left.x, this.data.fly ? -right.y : 0, dt);
+          return;
         }
 
-        rigObj.position.add(this.move);
+        if (!this.active) return;
+
+        const w = this.keys.KeyW || this.keys.ArrowUp;
+        const s = this.keys.KeyS || this.keys.ArrowDown;
+        const a = this.keys.KeyA || this.keys.ArrowLeft;
+        const d = this.keys.KeyD || this.keys.ArrowRight;
+        if (!w && !s && !a && !d) return;
+
+        let forwardAmt = 0;
+        let strafeAmt = 0;
+        if (w) forwardAmt += 1;
+        if (s) forwardAmt -= 1;
+        if (a) strafeAmt -= 1;
+        if (d) strafeAmt += 1;
+
+        this.applyMove(forwardAmt, strafeAmt, 0, dt);
       }
     });
 
@@ -254,7 +306,7 @@
 
     model.addEventListener('model-loaded', () => {
       centerAndGroundModel(model);
-      statusEl.textContent = 'glTF 2.0 loaded. Desktop: WASD + mouse. VR: left stick move, right stick fly up/down.';
+      statusEl.textContent = 'Click the 3D view, then WASD or arrow keys to fly. Mouse to look.';
       console.log('%c[Cable Center] glTF 2.0 model loaded', 'color:#22c55e');
     });
 
@@ -263,7 +315,7 @@
     });
 
     document.querySelector('a-scene').addEventListener('exit-vr', () => {
-      statusEl.textContent = 'Desktop mode: click scene + WASD to explore.';
+      statusEl.textContent = 'Click the 3D view, then WASD or arrow keys to fly.';
     });
 
     model.addEventListener('model-error', (e) => {
