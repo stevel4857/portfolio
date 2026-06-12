@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <title>The Cable Center - VR Walkthrough</title>
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-system@v4.2.2/dist/aframe-physics-system.min.js"></script>
   <style>
     body { margin: 0; font-family: system-ui, sans-serif; background: #000; color: #fff; overflow: hidden; }
     .top-bar {
@@ -34,7 +35,7 @@
 
   <div class="status" id="status">Loading glTF 2.0 Cable Center model…</div>
 
-  <a-scene shadow="type: pcfsoft" renderer="antialias: true; colorManagement: true">
+  <a-scene shadow="type: pcfsoft" renderer="antialias: true; colorManagement: true" physics="driver: cannon; gravity: 0; debug: false">
     <a-assets>
       <!-- Your glTF file (dropped in assets/models/) -->
       <a-asset-item id="building" src="../assets/models/scene/scene.gltf"></a-asset-item>
@@ -88,6 +89,15 @@
       </a-entity>
     </a-entity>
 
+    <!-- Static physics floor (box collider, top surface at y = 0) -->
+    <a-box id="ground"
+           static-body="shape: box"
+           position="0 -0.05 0"
+           width="200"
+           height="0.1"
+           depth="200"
+           visible="false">
+    </a-box>
     <a-plane position="0 0 0" rotation="-90 0 0" width="200" height="200" color="#4a7c59" material="roughness: 0.95" shadow="receive: true"></a-plane>
 
     <!-- Outdoor lighting: low ambient + strong sun so PBR materials show depth and highlights -->
@@ -146,7 +156,7 @@
     <a-entity id="player"
               camera
               look-controls
-              player-locomotion="fly: true; speed: 8"
+              player-locomotion="fly: true; speed: 8; minHeight: 1.6"
               position="0 1 18">
       <a-cursor color="#ffffff" opacity="0.7"></a-cursor>
     </a-entity>
@@ -157,7 +167,8 @@
       schema: {
         speed: { type: 'number', default: 8 },
         fly: { type: 'boolean', default: true },
-        deadzone: { type: 'number', default: 0.12 }
+        deadzone: { type: 'number', default: 0.12 },
+        minHeight: { type: 'number', default: 1.6 }
       },
       init: function () {
         this.keys = Object.create(null);
@@ -236,6 +247,12 @@
         this.move.addScaledVector(this.right, strafeAmt * this.data.speed * dt);
         if (this.data.fly) this.move.y += verticalAmt * this.data.speed * dt;
         obj.position.add(this.move);
+        this.clampHeight(obj);
+      },
+      clampHeight: function (obj) {
+        if (obj.position.y < this.data.minHeight) {
+          obj.position.y = this.data.minHeight;
+        }
       },
       tick: function (time, delta) {
         const scene = this.el.sceneEl;
