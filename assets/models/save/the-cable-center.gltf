@@ -1,0 +1,879 @@
+{
+  "accessors": {
+    "accessor_index_0": {
+      "bufferView": "bufferView_1",
+      "byteOffset": 0,
+      "byteStride": 0,
+      "componentType": 5125,
+      "count": 292416,
+      "type": "SCALAR",
+      "min": [
+        0
+      ],
+      "max": [
+        286625
+      ]
+    },
+    "accessor_index_1": {
+      "bufferView": "bufferView_1",
+      "byteOffset": 1169664,
+      "byteStride": 0,
+      "componentType": 5125,
+      "count": 76017,
+      "type": "SCALAR",
+      "min": [
+        2407
+      ],
+      "max": [
+        168947
+      ]
+    },
+    "accessor_index_2": {
+      "bufferView": "bufferView_1",
+      "byteOffset": 1473732,
+      "byteStride": 0,
+      "componentType": 5125,
+      "count": 4947,
+      "type": "SCALAR",
+      "min": [
+        8500
+      ],
+      "max": [
+        151968
+      ]
+    },
+    "accessor_index_3": {
+      "bufferView": "bufferView_1",
+      "byteOffset": 1493520,
+      "byteStride": 0,
+      "componentType": 5125,
+      "count": 6054,
+      "type": "SCALAR",
+      "min": [
+        8922
+      ],
+      "max": [
+        169832
+      ]
+    },
+    "accessor_index_4": {
+      "bufferView": "bufferView_1",
+      "byteOffset": 1517736,
+      "byteStride": 0,
+      "componentType": 5125,
+      "count": 6174,
+      "type": "SCALAR",
+      "min": [
+        9142
+      ],
+      "max": [
+        125497
+      ]
+    },
+    "accessor_index_5": {
+      "bufferView": "bufferView_1",
+      "byteOffset": 1542432,
+      "byteStride": 0,
+      "componentType": 5125,
+      "count": 153,
+      "type": "SCALAR",
+      "min": [
+        9234
+      ],
+      "max": [
+        9364
+      ]
+    },
+    "accessor_index_6": {
+      "bufferView": "bufferView_1",
+      "byteOffset": 1543044,
+      "byteStride": 0,
+      "componentType": 5125,
+      "count": 2502,
+      "type": "SCALAR",
+      "min": [
+        50672
+      ],
+      "max": [
+        149122
+      ]
+    },
+    "accessor_index_7": {
+      "bufferView": "bufferView_1",
+      "byteOffset": 1553052,
+      "byteStride": 0,
+      "componentType": 5125,
+      "count": 1068,
+      "type": "SCALAR",
+      "min": [
+        50925
+      ],
+      "max": [
+        51278
+      ]
+    },
+    "accessor_index_8": {
+      "bufferView": "bufferView_1",
+      "byteOffset": 1557324,
+      "byteStride": 0,
+      "componentType": 5125,
+      "count": 30402,
+      "type": "SCALAR",
+      "min": [
+        92023
+      ],
+      "max": [
+        128883
+      ]
+    },
+    "accessor_index_9": {
+      "bufferView": "bufferView_1",
+      "byteOffset": 1678932,
+      "byteStride": 0,
+      "componentType": 5125,
+      "count": 147,
+      "type": "SCALAR",
+      "min": [
+        124133
+      ],
+      "max": [
+        124181
+      ]
+    },
+    "accessor_index_10": {
+      "bufferView": "bufferView_1",
+      "byteOffset": 1679520,
+      "byteStride": 0,
+      "componentType": 5125,
+      "count": 19473,
+      "type": "SCALAR",
+      "min": [
+        129043
+      ],
+      "max": [
+        166372
+      ]
+    },
+    "accessor_index_11": {
+      "bufferView": "bufferView_1",
+      "byteOffset": 1757412,
+      "byteStride": 0,
+      "componentType": 5125,
+      "count": 12,
+      "type": "SCALAR",
+      "min": [
+        137744
+      ],
+      "max": [
+        137751
+      ]
+    },
+    "accessor_position": {
+      "bufferView": "bufferView_0",
+      "byteOffset": 0,
+      "byteStride": 0,
+      "componentType": 5126,
+      "count": 205426,
+      "min": [
+        13.586492538452148,
+        -1.1399999856948853,
+        -39.59375
+      ],
+      "max": [
+        55.58975601196289,
+        7.847023010253906,
+        -17.144813537597656
+      ],
+      "type": "VEC3"
+    },
+    "accessor_normal": {
+      "bufferView": "bufferView_0",
+      "byteOffset": 2465112,
+      "byteStride": 0,
+      "componentType": 5126,
+      "count": 205426,
+      "type": "VEC3",
+      "min": [
+        null,
+        null,
+        null
+      ],
+      "max": [
+        null,
+        null,
+        null
+      ]
+    }
+  },
+  "asset": {
+    "generator": "OBJ2GLTF",
+    "premultipliedAlpha": true,
+    "profile": {
+      "api": "WebGL",
+      "version": "1.0"
+    },
+    "version": "1.0"
+  },
+  "buffers": {
+    "buffer_0": {
+      "type": "arraybuffer",
+      "byteLength": 6687684,
+      "uri": "buffer_0.bin"
+    }
+  },
+  "bufferViews": {
+    "bufferView_0": {
+      "buffer": "buffer_0",
+      "byteLength": 4930224,
+      "byteOffset": 0,
+      "target": 34962
+    },
+    "bufferView_1": {
+      "buffer": "buffer_0",
+      "byteLength": 1757460,
+      "byteOffset": 4930224,
+      "target": 34963
+    }
+  },
+  "images": {},
+  "materials": {
+    "material_BarcoStainedGlass": {
+      "name": "BarcoStainedGlass",
+      "extensions": {},
+      "values": {
+        "ambient": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "diffuse": [
+          0.831373,
+          0.8,
+          0.776471,
+          1
+        ],
+        "emission": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "specular": [
+          0.01,
+          0.01,
+          0.01,
+          1
+        ],
+        "shininess": 96.078431,
+        "transparency": 1
+      },
+      "technique": "technique0"
+    },
+    "material_Carpet_Plush_Charcoal": {
+      "name": "Carpet_Plush_Charcoal",
+      "extensions": {},
+      "values": {
+        "ambient": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "diffuse": [
+          0.337255,
+          0.337255,
+          0.337255,
+          1
+        ],
+        "emission": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "specular": [
+          0.01,
+          0.01,
+          0.01,
+          1
+        ],
+        "shininess": 96.078431,
+        "transparency": 1
+      },
+      "technique": "technique0"
+    },
+    "material_Color_I06": {
+      "name": "Color_I06",
+      "extensions": {},
+      "values": {
+        "ambient": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "diffuse": [
+          0,
+          0,
+          0.8,
+          1
+        ],
+        "emission": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "specular": [
+          0.01,
+          0.01,
+          0.01,
+          1
+        ],
+        "shininess": 96.078431,
+        "transparency": 1
+      },
+      "technique": "technique0"
+    },
+    "material_FrontColor": {
+      "name": "FrontColor",
+      "extensions": {},
+      "values": {
+        "ambient": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "diffuse": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "emission": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "specular": [
+          0.01,
+          0.01,
+          0.01,
+          1
+        ],
+        "shininess": 96.078431,
+        "transparency": 1
+      },
+      "technique": "technique0"
+    },
+    "material_Grass": {
+      "name": "Grass",
+      "extensions": {},
+      "values": {
+        "ambient": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "diffuse": [
+          0,
+          0.4,
+          0,
+          1
+        ],
+        "emission": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "specular": [
+          0.01,
+          0.01,
+          0.01,
+          1
+        ],
+        "shininess": 96.078431,
+        "transparency": 1
+      },
+      "technique": "technique0"
+    },
+    "material_Groundcover_River_Rock_4_inch": {
+      "name": "Groundcover_River_Rock_4_inch",
+      "extensions": {},
+      "values": {
+        "ambient": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "diffuse": [
+          0.564706,
+          0.494118,
+          0.427451,
+          1
+        ],
+        "emission": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "specular": [
+          0.01,
+          0.01,
+          0.01,
+          1
+        ],
+        "shininess": 96.078431,
+        "transparency": 1
+      },
+      "technique": "technique0"
+    },
+    "material_M_0136_Charcoal": {
+      "name": "M_0136_Charcoal",
+      "extensions": {},
+      "values": {
+        "ambient": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "diffuse": [
+          0.133333,
+          0.133333,
+          0.133333,
+          1
+        ],
+        "emission": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "specular": [
+          0.01,
+          0.01,
+          0.01,
+          1
+        ],
+        "shininess": 96.078431,
+        "transparency": 1
+      },
+      "technique": "technique0"
+    },
+    "material_Metal_Aluminum_Anodized": {
+      "name": "Metal_Aluminum_Anodized",
+      "extensions": {},
+      "values": {
+        "ambient": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "diffuse": [
+          0.792157,
+          0.819608,
+          0.858824,
+          1
+        ],
+        "emission": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "specular": [
+          0.01,
+          0.01,
+          0.01,
+          1
+        ],
+        "shininess": 96.078431,
+        "transparency": 1
+      },
+      "technique": "technique0"
+    },
+    "material_Metal_Rough": {
+      "name": "Metal_Rough",
+      "extensions": {},
+      "values": {
+        "ambient": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "diffuse": [
+          0.6,
+          0.615686,
+          0.627451,
+          1
+        ],
+        "emission": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "specular": [
+          0.01,
+          0.01,
+          0.01,
+          1
+        ],
+        "shininess": 96.078431,
+        "transparency": 1
+      },
+      "technique": "technique0"
+    },
+    "material_Stone_Masonry_Multi": {
+      "name": "Stone_Masonry_Multi",
+      "extensions": {},
+      "values": {
+        "ambient": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "diffuse": [
+          0.709804,
+          0.686275,
+          0.643137,
+          1
+        ],
+        "emission": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "specular": [
+          0.01,
+          0.01,
+          0.01,
+          1
+        ],
+        "shininess": 96.078431,
+        "transparency": 1
+      },
+      "technique": "technique0"
+    },
+    "material_Translucent_Glass_Blue": {
+      "name": "Translucent_Glass_Blue",
+      "extensions": {},
+      "values": {
+        "ambient": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "diffuse": [
+          0.388235,
+          0.580392,
+          0.92549,
+          1
+        ],
+        "emission": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "specular": [
+          0.01,
+          0.01,
+          0.01,
+          1
+        ],
+        "shininess": 96.078431,
+        "transparency": 1
+      },
+      "technique": "technique0"
+    },
+    "material_Wood_Cherry_Original": {
+      "name": "Wood_Cherry_Original",
+      "extensions": {},
+      "values": {
+        "ambient": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "diffuse": [
+          0.596078,
+          0.333333,
+          0.160784,
+          1
+        ],
+        "emission": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "specular": [
+          0.01,
+          0.01,
+          0.01,
+          1
+        ],
+        "shininess": 96.078431,
+        "transparency": 1
+      },
+      "technique": "technique0"
+    }
+  },
+  "meshes": {
+    "mesh_the-cable-center": {
+      "name": "the-cable-center",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": "accessor_position",
+            "NORMAL": "accessor_normal"
+          },
+          "indices": "accessor_index_0",
+          "material": "material_FrontColor",
+          "mode": 4
+        },
+        {
+          "attributes": {
+            "POSITION": "accessor_position",
+            "NORMAL": "accessor_normal"
+          },
+          "indices": "accessor_index_1",
+          "material": "material_Metal_Aluminum_Anodized",
+          "mode": 4
+        },
+        {
+          "attributes": {
+            "POSITION": "accessor_position",
+            "NORMAL": "accessor_normal"
+          },
+          "indices": "accessor_index_2",
+          "material": "material_Translucent_Glass_Blue",
+          "mode": 4
+        },
+        {
+          "attributes": {
+            "POSITION": "accessor_position",
+            "NORMAL": "accessor_normal"
+          },
+          "indices": "accessor_index_3",
+          "material": "material_Wood_Cherry_Original",
+          "mode": 4
+        },
+        {
+          "attributes": {
+            "POSITION": "accessor_position",
+            "NORMAL": "accessor_normal"
+          },
+          "indices": "accessor_index_4",
+          "material": "material_M_0136_Charcoal",
+          "mode": 4
+        },
+        {
+          "attributes": {
+            "POSITION": "accessor_position",
+            "NORMAL": "accessor_normal"
+          },
+          "indices": "accessor_index_5",
+          "material": "material_Grass",
+          "mode": 4
+        },
+        {
+          "attributes": {
+            "POSITION": "accessor_position",
+            "NORMAL": "accessor_normal"
+          },
+          "indices": "accessor_index_6",
+          "material": "material_Carpet_Plush_Charcoal",
+          "mode": 4
+        },
+        {
+          "attributes": {
+            "POSITION": "accessor_position",
+            "NORMAL": "accessor_normal"
+          },
+          "indices": "accessor_index_7",
+          "material": "material_Color_I06",
+          "mode": 4
+        },
+        {
+          "attributes": {
+            "POSITION": "accessor_position",
+            "NORMAL": "accessor_normal"
+          },
+          "indices": "accessor_index_8",
+          "material": "material_Metal_Rough",
+          "mode": 4
+        },
+        {
+          "attributes": {
+            "POSITION": "accessor_position",
+            "NORMAL": "accessor_normal"
+          },
+          "indices": "accessor_index_9",
+          "material": "material_Groundcover_River_Rock_4_inch",
+          "mode": 4
+        },
+        {
+          "attributes": {
+            "POSITION": "accessor_position",
+            "NORMAL": "accessor_normal"
+          },
+          "indices": "accessor_index_10",
+          "material": "material_Stone_Masonry_Multi",
+          "mode": 4
+        },
+        {
+          "attributes": {
+            "POSITION": "accessor_position",
+            "NORMAL": "accessor_normal"
+          },
+          "indices": "accessor_index_11",
+          "material": "material_BarcoStainedGlass",
+          "mode": 4
+        }
+      ]
+    }
+  },
+  "nodes": {
+    "rootNode": {
+      "children": [],
+      "meshes": [
+        "mesh_the-cable-center"
+      ],
+      "matrix": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1
+      ]
+    }
+  },
+  "samplers": {},
+  "scene": "scene_the-cable-center",
+  "scenes": {
+    "scene_the-cable-center": {
+      "nodes": [
+        "rootNode"
+      ]
+    }
+  },
+  "textures": {},
+  "extensionsUsed": [],
+  "animations": {},
+  "cameras": {},
+  "techniques": {
+    "technique0": {
+      "attributes": {
+        "a_position": "position",
+        "a_normal": "normal"
+      },
+      "parameters": {
+        "modelViewMatrix": {
+          "semantic": "MODELVIEW",
+          "type": 35676
+        },
+        "projectionMatrix": {
+          "semantic": "PROJECTION",
+          "type": 35676
+        },
+        "normalMatrix": {
+          "semantic": "MODELVIEWINVERSETRANSPOSE",
+          "type": 35675
+        },
+        "ambient": {
+          "type": 35666
+        },
+        "diffuse": {
+          "type": 35666
+        },
+        "emission": {
+          "type": 35666
+        },
+        "specular": {
+          "type": 35666
+        },
+        "shininess": {
+          "type": 5126
+        },
+        "transparency": {
+          "type": 5126
+        },
+        "position": {
+          "semantic": "POSITION",
+          "type": 35665
+        },
+        "normal": {
+          "semantic": "NORMAL",
+          "type": 35665
+        }
+      },
+      "program": "program0",
+      "states": {
+        "enable": [
+          2884,
+          2929
+        ]
+      },
+      "uniforms": {
+        "u_modelViewMatrix": "modelViewMatrix",
+        "u_projectionMatrix": "projectionMatrix",
+        "u_normalMatrix": "normalMatrix",
+        "u_ambient": "ambient",
+        "u_diffuse": "diffuse",
+        "u_emission": "emission",
+        "u_specular": "specular",
+        "u_shininess": "shininess",
+        "u_transparency": "transparency"
+      }
+    }
+  },
+  "programs": {
+    "program0": {
+      "attributes": [
+        "a_position",
+        "a_normal"
+      ],
+      "fragmentShader": "fragmentShader0",
+      "vertexShader": "vertexShader0"
+    }
+  },
+  "shaders": {
+    "vertexShader0": {
+      "type": 35633,
+      "uri": "vertexShader0.glsl"
+    },
+    "fragmentShader0": {
+      "type": 35632,
+      "uri": "fragmentShader0.glsl"
+    }
+  },
+  "skins": {},
+  "extensions": {}
+}
