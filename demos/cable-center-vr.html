@@ -1,0 +1,206 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>The Cable Center - VR Walkthrough</title>
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <style>
+    body { margin: 0; font-family: system-ui, sans-serif; background: #000; color: #fff; overflow: hidden; }
+    .top-bar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(0,0,0,0.75); padding: 8px 16px; font-size: 13px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .top-bar a { color: #67e8f9; text-decoration: none; }
+    .instructions {
+      position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%);
+      background: rgba(0,0,0,0.65); padding: 6px 14px; border-radius: 4px;
+      font-size: 13px; z-index: 100; pointer-events: none;
+    }
+    .status {
+      position: fixed; top: 50px; left: 16px; background: rgba(0,0,0,0.6);
+      padding: 4px 8px; border-radius: 3px; font-size: 12px; z-index: 100;
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../index.html">← Back to site</a>
+    <span style="opacity:0.7;">|</span>
+    <span>The Cable Center - VR Walkthrough</span>
+  </div>
+
+  <div class="instructions">Click the 3D area to look around • WASD to fly (look up/down to rise or descend) • VR button bottom-left if supported</div>
+
+  <div class="status" id="status">Loading glTF 2.0 Cable Center model…</div>
+
+  <a-scene shadow="type: pcfsoft" renderer="antialias: true; colorManagement: true">
+    <a-assets>
+      <!-- Your glTF file (dropped in assets/models/) -->
+      <a-asset-item id="building" src="../assets/models/scene/scene.gltf"></a-asset-item>
+    </a-assets>
+
+    <!-- Simple environment -->
+    <a-sky color="#87CEEB"></a-sky>
+
+    <!-- Moving clouds (same as demos/3d-aframe-experience.html) -->
+    <a-entity id="clouds" animation="property: rotation; to: 0 360 0; loop: true; dur: 300000; easing: linear">
+      <a-entity position="20 22 -35" rotation="0 15 0">
+        <a-sphere position="0 0 0" radius="6" color="#FFFFFF" opacity="0.8"></a-sphere>
+        <a-sphere position="-4 1 2" radius="5" color="#FFFFFF" opacity="0.75"></a-sphere>
+        <a-sphere position="4 -0.5 1" radius="5.5" color="#FFFFFF" opacity="0.78"></a-sphere>
+        <a-sphere position="2 1.5 -2" radius="4.5" color="#FFFFFF" opacity="0.7"></a-sphere>
+        <a-sphere position="-2 0.5 -1" radius="4" color="#F5F5F5" opacity="0.72"></a-sphere>
+      </a-entity>
+      <a-entity position="-30 28 -55" rotation="0 -25 0">
+        <a-sphere position="0 0 0" radius="8" color="#FFFFFF" opacity="0.65"></a-sphere>
+        <a-sphere position="-5 2 3" radius="7" color="#FFFFFF" opacity="0.6"></a-sphere>
+        <a-sphere position="5 -1 2" radius="7.5" color="#FFFFFF" opacity="0.63"></a-sphere>
+        <a-sphere position="3 2 -3" radius="6" color="#F8F8F8" opacity="0.58"></a-sphere>
+      </a-entity>
+      <a-entity position="45 25 15" rotation="0 40 0">
+        <a-sphere position="0 0 0" radius="7" color="#FFFFFF" opacity="0.75"></a-sphere>
+        <a-sphere position="-4.5 1.5 2.5" radius="6" color="#FFFFFF" opacity="0.7"></a-sphere>
+        <a-sphere position="4.5 -0.5 1.5" radius="6.5" color="#FFFFFF" opacity="0.73"></a-sphere>
+        <a-sphere position="2 2 -2" radius="5.5" color="#F5F5F5" opacity="0.68"></a-sphere>
+      </a-entity>
+      <a-entity position="-50 32 45" rotation="0 -35 0">
+        <a-sphere position="0 0 0" radius="9" color="#FFFFFF" opacity="0.55"></a-sphere>
+        <a-sphere position="-6 2.5 4" radius="8" color="#FFFFFF" opacity="0.5"></a-sphere>
+        <a-sphere position="6 -1 3" radius="8.5" color="#FAFAFA" opacity="0.53"></a-sphere>
+        <a-sphere position="3 2.5 -3" radius="7" color="#F8F8F8" opacity="0.48"></a-sphere>
+      </a-entity>
+      <a-entity position="5 30 -70" rotation="0 10 0">
+        <a-sphere position="0 0 0" radius="10" color="#FFFFFF" opacity="0.6"></a-sphere>
+        <a-sphere position="-6 2 4" radius="8.5" color="#FFFFFF" opacity="0.55"></a-sphere>
+        <a-sphere position="6 -1.5 3" radius="9" color="#FFFFFF" opacity="0.58"></a-sphere>
+        <a-sphere position="3 2 -3.5" radius="7.5" color="#FAFAFA" opacity="0.52"></a-sphere>
+      </a-entity>
+      <a-entity position="-15 20 -20" rotation="0 20 0">
+        <a-sphere position="0 0 0" radius="3.5" color="#FFFFFF" opacity="0.8"></a-sphere>
+        <a-sphere position="-2 0.5 1" radius="3" color="#FFFFFF" opacity="0.75"></a-sphere>
+        <a-sphere position="2 0.3 0.5" radius="3.2" color="#F8F8F8" opacity="0.78"></a-sphere>
+      </a-entity>
+      <a-entity position="35 24 -10" rotation="0 -15 0">
+        <a-sphere position="0 0 0" radius="4" color="#FFFFFF" opacity="0.7"></a-sphere>
+        <a-sphere position="-2.5 1 1.5" radius="3.5" color="#FFFFFF" opacity="0.65"></a-sphere>
+        <a-sphere position="2.5 0.5 1" radius="3.8" color="#FAFAFA" opacity="0.68"></a-sphere>
+      </a-entity>
+    </a-entity>
+
+    <a-plane position="0 0 0" rotation="-90 0 0" width="200" height="200" color="#4a7c59" material="roughness: 0.95" shadow="receive: true"></a-plane>
+
+    <!-- Outdoor lighting: low ambient + strong sun so PBR materials show depth and highlights -->
+    <a-light type="ambient" color="#c8d8f0" intensity="0.3"></a-light>
+    <a-light type="hemisphere" color="#b8d4f0" groundColor="#8b7355" intensity="0.45"></a-light>
+    <a-light type="directional"
+             color="#fff4e0"
+             intensity="1.35"
+             position="45 70 55"
+             castShadow="true"
+             shadow-map-width="2048"
+             shadow-map-height="2048"
+             shadow-camera-top="40"
+             shadow-camera-bottom="-2"
+             shadow-camera-left="-50"
+             shadow-camera-right="50"
+             shadow-camera-near="0.5"
+             shadow-camera-far="200"
+             shadow-bias="-0.0008"></a-light>
+    <!-- Soft fill from the opposite side — keeps shadowed facades readable -->
+    <a-light type="directional" color="#d0e8ff" intensity="0.35" position="-35 25 -40"></a-light>
+
+    <a-entity id="model"
+              gltf-model="#building"
+              scale="1 1 1"
+              position="0 0 0"
+              rotation="0 180 0"
+              shadow="cast: true; receive: true"
+              visible="true">
+    </a-entity>
+
+    <!-- Lightweight blocky fallback (hidden while glTF loads) -->
+    <a-entity id="block-building" position="0 0 0" scale="0.0254 0.0254 0.0254" rotation="0 180 0" visible="false">
+      <!-- Main building mass -->
+      <a-box position="2800 300 -2800" width="2800" height="550" depth="2100" color="#2c2c2c" material="flatShading: true"></a-box>
+      <!-- Upper level -->
+      <a-box position="2850 620 -2750" width="2400" height="280" depth="1800" color="#3f3f3f" material="flatShading: true"></a-box>
+      <!-- Roof -->
+      <a-box position="2820 780 -2780" width="2600" height="80" depth="1950" color="#4a4a4a" material="flatShading: true"></a-box>
+      <!-- Glass facade -->
+      <a-box position="2800 320 -1730" width="2750" height="480" depth="70" color="#5aa3e8" material="flatShading: true; opacity: 0.6; transparent: true" transparent="true"></a-box>
+      <!-- More glass -->
+      <a-box position="4190 300 -2800" width="55" height="520" depth="2050" color="#5aa3e8" material="flatShading: true; opacity: 0.55; transparent: true" transparent="true"></a-box>
+      <a-box position="1400 300 -2800" width="55" height="520" depth="2050" color="#5aa3e8" material="flatShading: true; opacity: 0.55; transparent: true" transparent="true"></a-box>
+      <!-- Entrance canopy -->
+      <a-box position="2800 280 -1650" width="900" height="420" depth="180" color="#3a3a3a" material="flatShading: true"></a-box>
+      <a-box position="2800 450 -1580" width="1100" height="40" depth="320" color="#555555" material="flatShading: true"></a-box>
+      <!-- Interior blocks -->
+      <a-box position="2000 140 -2600" width="220" height="140" depth="220" color="#444444" material="flatShading: true"></a-box>
+      <a-box position="3200 140 -3100" width="280" height="180" depth="180" color="#555555" material="flatShading: true"></a-box>
+      <!-- Base -->
+      <a-box position="2800 35 -2800" width="3100" height="70" depth="2400" color="#2a2a2a" material="flatShading: true"></a-box>
+    </a-entity>
+
+    <!-- Camera -->
+    <a-entity camera look-controls wasd-controls="fly: true" position="0 1 18">
+      <a-cursor color="#ffffff" opacity="0.7"></a-cursor>
+    </a-entity>
+  </a-scene>
+
+  <script>
+    const statusEl = document.getElementById('status');
+    const model = document.querySelector('#model');
+
+    function centerAndGroundModel(el) {
+      el.setAttribute('position', '0 0 0');
+      el.setAttribute('rotation', '0 180 0');
+      el.object3D.updateWorldMatrix(true, true);
+      const meshMinYs = [];
+      const fullBox = new THREE.Box3();
+      el.object3D.traverse((child) => {
+        if (!child.isMesh) return;
+        const box = new THREE.Box3().setFromObject(child);
+        meshMinYs.push(box.min.y);
+        fullBox.union(box);
+      });
+      if (!meshMinYs.length) return;
+
+      meshMinYs.sort((a, b) => a - b);
+      let groundY = meshMinYs[0];
+      for (let i = 1; i < meshMinYs.length; i++) {
+        if (meshMinYs[i] - meshMinYs[0] > 1) {
+          groundY = meshMinYs[i];
+          break;
+        }
+      }
+
+      const center = fullBox.getCenter(new THREE.Vector3());
+      el.setAttribute('position', {
+        x: -center.x,
+        y: -groundY,
+        z: -center.z
+      });
+    }
+
+    model.addEventListener('model-loaded', () => {
+      centerAndGroundModel(model);
+      statusEl.textContent = 'glTF 2.0 loaded. Click the scene + use WASD to explore.';
+      console.log('%c[Cable Center] glTF 2.0 model loaded', 'color:#22c55e');
+    });
+
+    model.addEventListener('model-error', (e) => {
+      statusEl.textContent = 'Error loading glTF — showing blocky fallback.';
+      console.error('glTF load error:', e);
+      const fallback = document.getElementById('block-building');
+      if (fallback) fallback.setAttribute('visible', true);
+      model.setAttribute('visible', false);
+    });
+
+    // Optional: log when scene is ready
+    document.querySelector('a-scene').addEventListener('loaded', () => {
+      console.log('%c[A-Frame] Scene ready', 'color:#64748b');
+    });
+  </script>
+</body>
+</html>

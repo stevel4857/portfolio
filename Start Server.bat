@@ -8,7 +8,7 @@ echo Starting local development server...
 echo.
 
 :: Run with Bypass to avoid execution policy blocks common on Windows
-powershell -ExecutionPolicy Bypass -NoProfile -File "start-server.ps1"
+powershell -ExecutionPolicy Bypass -NoProfile -File "start-server.ps1" -Port 3000
 
 set EXITCODE=%ERRORLEVEL%
 

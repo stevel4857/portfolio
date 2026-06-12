@@ -10,7 +10,7 @@
 # repeated "Windows protected your PC" or access warnings.
 
 param(
-    [int]$Port = 8000
+    [int]$Port = 3000
 )
 
 Write-Host ""
