@@ -156,8 +156,8 @@
     <a-entity id="player"
               camera
               look-controls
-              player-locomotion="fly: true; speed: 8; minHeight: 1.6"
-              position="0 1 18">
+              player-locomotion="fly: true; speed: 8; minHeight: 0.99"
+              position="0 0.39 18">
       <a-cursor color="#ffffff" opacity="0.7"></a-cursor>
     </a-entity>
   </a-scene>
@@ -168,7 +168,7 @@
         speed: { type: 'number', default: 8 },
         fly: { type: 'boolean', default: true },
         deadzone: { type: 'number', default: 0.12 },
-        minHeight: { type: 'number', default: 1.6 }
+        minHeight: { type: 'number', default: 0.99 }
       },
       init: function () {
         this.keys = Object.create(null);
