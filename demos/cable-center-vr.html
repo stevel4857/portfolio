@@ -30,7 +30,7 @@
     <span>The Cable Center - VR Walkthrough</span>
   </div>
 
-  <div class="instructions">Click the 3D area to look around • WASD to fly (look up/down to rise or descend) • VR button bottom-left if supported</div>
+  <div class="instructions" id="instructions">Click the 3D area to look around • WASD to fly (look up/down to rise or descend) • In VR: left stick to move, right stick up/down to fly • Enter VR bottom-left</div>
 
   <div class="status" id="status">Loading glTF 2.0 Cable Center model…</div>
 
@@ -142,13 +142,86 @@
       <a-box position="2800 35 -2800" width="3100" height="70" depth="2400" color="#2a2a2a" material="flatShading: true"></a-box>
     </a-entity>
 
-    <!-- Camera -->
-    <a-entity camera look-controls wasd-controls="fly: true" position="0 1 18">
-      <a-cursor color="#ffffff" opacity="0.7"></a-cursor>
+    <!-- Player rig: wasd-controls for desktop, vr-locomotion for Meta Quest thumbsticks -->
+    <a-entity id="rig"
+              position="0 1.6 18"
+              wasd-controls="fly: true; acceleration: 25"
+              vr-locomotion="fly: true; speed: 6">
+      <a-entity id="camera"
+                camera
+                look-controls="pointerLockEnabled: true"
+                position="0 0 0">
+        <a-cursor color="#ffffff" opacity="0.7"></a-cursor>
+      </a-entity>
+      <a-entity meta-touch-controls="hand: left"></a-entity>
+      <a-entity meta-touch-controls="hand: right"></a-entity>
     </a-entity>
   </a-scene>
 
   <script>
+    AFRAME.registerComponent('vr-locomotion', {
+      schema: {
+        speed: { type: 'number', default: 5 },
+        fly: { type: 'boolean', default: true },
+        deadzone: { type: 'number', default: 0.12 }
+      },
+      init: function () {
+        this.cameraEl = this.el.querySelector('[camera]');
+        this.forward = new THREE.Vector3();
+        this.right = new THREE.Vector3();
+        this.move = new THREE.Vector3();
+        this.up = new THREE.Vector3(0, 1, 0);
+      },
+      getGamepad: function (hand) {
+        const gamepads = navigator.getGamepads ? navigator.getGamepads() : [];
+        const handMatch = hand === 'left' ? /left/i : /right/i;
+        for (const gp of gamepads) {
+          if (!gp || !gp.connected) continue;
+          if (handMatch.test(gp.id || '')) return gp;
+        }
+        const index = hand === 'left' ? 0 : 1;
+        return gamepads[index] && gamepads[index].connected ? gamepads[index] : null;
+      },
+      readStick: function (gamepad) {
+        if (!gamepad || !gamepad.axes || gamepad.axes.length < 2) {
+          return { x: 0, y: 0 };
+        }
+        let x = gamepad.axes[0] || 0;
+        let y = gamepad.axes[1] || 0;
+        if (Math.abs(x) < this.data.deadzone) x = 0;
+        if (Math.abs(y) < this.data.deadzone) y = 0;
+        return { x, y };
+      },
+      tick: function (time, delta) {
+        const scene = this.el.sceneEl;
+        if (!scene || !scene.is('vr-mode') || !this.cameraEl) return;
+
+        const dt = Math.min(delta, 50) / 1000;
+        const left = this.readStick(this.getGamepad('left'));
+        const right = this.readStick(this.getGamepad('right'));
+        if (!left.x && !left.y && !right.y) return;
+
+        const cameraObj = this.cameraEl.object3D;
+        const rigObj = this.el.object3D;
+
+        cameraObj.getWorldDirection(this.forward);
+        if (!this.data.fly) this.forward.y = 0;
+        this.forward.normalize();
+
+        this.right.crossVectors(this.forward, this.up).normalize();
+
+        this.move.set(0, 0, 0);
+        this.move.addScaledVector(this.forward, -left.y * this.data.speed * dt);
+        this.move.addScaledVector(this.right, left.x * this.data.speed * dt);
+
+        if (this.data.fly && right.y) {
+          this.move.y += -right.y * this.data.speed * dt;
+        }
+
+        rigObj.position.add(this.move);
+      }
+    });
+
     const statusEl = document.getElementById('status');
     const model = document.querySelector('#model');
 
@@ -185,8 +258,16 @@
 
     model.addEventListener('model-loaded', () => {
       centerAndGroundModel(model);
-      statusEl.textContent = 'glTF 2.0 loaded. Click the scene + use WASD to explore.';
+      statusEl.textContent = 'glTF 2.0 loaded. Desktop: WASD + mouse. VR: left stick move, right stick fly up/down.';
       console.log('%c[Cable Center] glTF 2.0 model loaded', 'color:#22c55e');
+    });
+
+    document.querySelector('a-scene').addEventListener('enter-vr', () => {
+      statusEl.textContent = 'VR mode: left thumbstick to move, right thumbstick up/down to fly.';
+    });
+
+    document.querySelector('a-scene').addEventListener('exit-vr', () => {
+      statusEl.textContent = 'Desktop mode: click scene + WASD to explore.';
     });
 
     model.addEventListener('model-error', (e) => {
