@@ -142,19 +142,15 @@
       <a-box position="2800 35 -2800" width="3100" height="70" depth="2400" color="#2a2a2a" material="flatShading: true"></a-box>
     </a-entity>
 
-    <!-- Player rig: wasd-controls for desktop, vr-locomotion for Meta Quest thumbsticks -->
-    <a-entity id="rig"
-              position="0 1.6 18"
-              wasd-controls="fly: true; acceleration: 25"
-              vr-locomotion="fly: true; speed: 6">
+    <!-- Rig moves in VR (thumbsticks); camera keeps original desktop WASD + mouse look -->
+    <a-entity id="rig" position="0 1 18" vr-locomotion="fly: true; speed: 6">
       <a-entity id="camera"
                 camera
-                look-controls="pointerLockEnabled: true"
+                look-controls
+                wasd-controls="fly: true"
                 position="0 0 0">
         <a-cursor color="#ffffff" opacity="0.7"></a-cursor>
       </a-entity>
-      <a-entity meta-touch-controls="hand: left"></a-entity>
-      <a-entity meta-touch-controls="hand: right"></a-entity>
     </a-entity>
   </a-scene>
 
