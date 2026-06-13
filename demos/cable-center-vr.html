@@ -285,7 +285,7 @@
               camera
               look-controls
               player-locomotion="fly: false; speed: 100; flySpeed: 300; eyeHeight: 66; minHeight: 0"
-              position="0 66 140">
+              position="0 0 18">
       <a-cursor color="#ffffff" opacity="0.7"></a-cursor>
     </a-entity>
   </a-scene>
@@ -363,6 +363,8 @@
             this.active = true;
             this.initTouchControls();
           }
+          this.refreshWalkMeshes();
+          if (!this.data.fly) this.snapToFloor();
         });
       },
       initTouchControls: function () {
@@ -481,7 +483,12 @@
       },
       setFlyMode: function (fly) {
         this.el.setAttribute('player-locomotion', 'fly', fly);
-        if (!fly) this.snapToFloor();
+        if (!fly) {
+          this.snapToFloor();
+        } else {
+          const pos = this.el.object3D.position;
+          if (pos.y < this.data.eyeHeight) pos.y = this.data.eyeHeight;
+        }
         window.updateLocomotionUI && window.updateLocomotionUI();
       },
       refreshWalkMeshes: function () {
