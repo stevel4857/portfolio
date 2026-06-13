@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <title>The Cable Center - VR Walkthrough</title>
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-system@v4.2.2/dist/aframe-physics-system.min.js"></script>
+
   <style>
     body { margin: 0; font-family: system-ui, sans-serif; background: #000; color: #fff; overflow: hidden; }
     .top-bar {
@@ -159,7 +159,7 @@
     <span class="touch-look-hint">Drag right side to look</span>
   </div>
 
-  <a-scene shadow="type: pcfsoft" renderer="antialias: true; colorManagement: true" physics="driver: cannon; gravity: 0; debug: false">
+  <a-scene shadow="type: pcfsoft" renderer="antialias: true; colorManagement: true">
     <a-assets>
       <!-- Your glTF file (dropped in assets/models/) -->
       <a-asset-item id="building" src="../assets/models/scene/scene.gltf"></a-asset-item>
@@ -217,7 +217,6 @@
     <a-entity id="walk-surfaces">
       <a-box id="ground"
              class="walk-surface"
-             static-body="shape: box"
              position="0 -0.05 0"
              width="200"
              height="0.1"
@@ -488,10 +487,7 @@
       setFlyMode: function (fly) {
         this.el.setAttribute('player-locomotion', 'fly', fly);
         if (!fly) {
-          this.snapToFloor();
-        } else {
-          const pos = this.el.object3D.position;
-          if (pos.y < this.data.eyeHeight) pos.y = this.data.eyeHeight;
+          window.resetOutdoorSpawn && window.resetOutdoorSpawn();
         }
         window.updateLocomotionUI && window.updateLocomotionUI();
       },
@@ -508,34 +504,32 @@
       },
       snapToFloor: function () {
         const obj = this.el.object3D;
+        const eye = this.data.eyeHeight;
 
-        // Outdoor spawn zone: stay on the lawn (never raycast to interior colliders)
-        if (Math.abs(obj.position.x) < 12 && obj.position.z > -2 && obj.position.z < 14) {
-          obj.position.y = this.data.eyeHeight;
+        // Lawn and approach: always ground level (y = 0)
+        if (obj.position.z > -1) {
+          obj.position.y = eye;
           return;
         }
 
         if (!this.walkMeshes.length) this.refreshWalkMeshes();
         if (!this.walkMeshes.length) {
-          obj.position.y = this.data.eyeHeight;
+          obj.position.y = eye;
           return;
         }
 
-        const feetY = obj.position.y - this.data.eyeHeight;
-        this.rayOrigin.set(obj.position.x, obj.position.y + 1.5, obj.position.z);
+        this.rayOrigin.set(obj.position.x, obj.position.y + 2, obj.position.z);
         this.raycaster.set(this.rayOrigin, this.rayDir);
-        this.raycaster.far = 40;
+        this.raycaster.far = 30;
         const hits = this.raycaster.intersectObjects(this.walkMeshes, false);
         if (!hits.length) {
-          obj.position.y = this.data.eyeHeight;
+          obj.position.y = eye;
           return;
         }
 
-        const below = hits.filter((hit) => hit.point.y <= feetY + 0.5 && hit.point.y < obj.position.y);
-        const candidates = below.length ? below : hits;
-        const floor = candidates[0];
-        if (floor.point.y > 40) return;
-        obj.position.y = floor.point.y + this.data.eyeHeight;
+        const floorY = hits[0].point.y;
+        if (floorY > 25) return;
+        obj.position.y = floorY + eye;
       },
       applyMove: function (forwardAmt, strafeAmt, verticalAmt, dt) {
         const obj = this.el.object3D;
@@ -652,7 +646,6 @@
     function addWalkBox(parent, center, size, color, label) {
       const box = document.createElement('a-box');
       box.setAttribute('class', 'walk-surface');
-      box.setAttribute('static-body', 'shape: box');
       box.setAttribute('position', `${center.x} ${center.y} ${center.z}`);
       box.setAttribute('width', Math.max(size.x, 0.2));
       box.setAttribute('height', Math.max(size.y, 0.2));
@@ -674,17 +667,12 @@
 
     function addWalkBoxModelLocal(modelEl, localCenter, localSize, color, label) {
       const center = modelLocalToWorld(modelEl, localCenter);
-      addWalkBox(
-        walkSurfacesEl,
-        center,
-        {
-          x: localSize.x * MODEL_SCALE,
-          y: localSize.y * MODEL_SCALE,
-          z: localSize.z * MODEL_SCALE
-        },
-        color,
-        label
-      );
+      const size = {
+        x: localSize.x * MODEL_SCALE,
+        y: localSize.y * MODEL_SCALE,
+        z: localSize.z * MODEL_SCALE
+      };
+      addWalkBox(walkSurfacesEl, center, size, color, label);
     }
 
     function buildInteriorWalkSurfaces(modelEl) {
@@ -775,9 +763,9 @@
       document.querySelectorAll('.walk-surface').forEach((el) => {
         el.setAttribute('visible', walkDebugVisible);
       });
-      sceneEl.setAttribute('physics', 'debug', walkDebugVisible);
+      const pos = playerEl.getAttribute('position');
       statusEl.textContent = walkDebugVisible
-        ? 'Debug ON — blue=Great Hall, orange=stairs, green=transom walkway.'
+        ? `Debug ON — camera y=${Number(pos.y).toFixed(2)}m • blue=hall, orange=stairs, green=walkway`
         : (isFlyMode() ? 'Fly mode — press G to walk floors and stairs.' : 'Walk mode — Great Hall → stairs → transom walkway along the front.');
     };
 
@@ -789,36 +777,50 @@
     }
 
     window.resetOutdoorSpawn = function resetOutdoorSpawn() {
-      playerEl.setAttribute('position', { x: 0, y: 1.6, z: 5 });
+      playerEl.object3D.position.set(0, 1.6, 5);
+      playerEl.object3D.rotation.set(0, 0, 0);
       const locomotion = playerEl.components['player-locomotion'];
       if (locomotion) locomotion.refreshWalkMeshes();
     };
 
     function centerAndGroundModel(el) {
-      el.setAttribute('scale', `${MODEL_SCALE} ${MODEL_SCALE} ${MODEL_SCALE}`);
+      const s = MODEL_SCALE;
+      el.setAttribute('scale', `${s} ${s} ${s}`);
       el.setAttribute('position', '0 0 0');
       el.setAttribute('rotation', '0 180 0');
-      el.object3D.scale.setScalar(MODEL_SCALE);
+      el.object3D.scale.set(s, s, s);
       el.object3D.updateWorldMatrix(true, true);
 
-      const worldBox = new THREE.Box3().setFromObject(el.object3D);
-      if (worldBox.isEmpty()) return;
+      const box = new THREE.Box3().setFromObject(el.object3D);
+      if (box.isEmpty()) return null;
 
-      const center = worldBox.getCenter(new THREE.Vector3());
+      const center = box.getCenter(new THREE.Vector3());
       el.setAttribute('position', {
         x: -center.x,
-        y: -worldBox.min.y,
+        y: -box.min.y,
         z: -center.z
       });
       el.object3D.updateWorldMatrix(true, true);
+
+      const grounded = new THREE.Box3().setFromObject(el.object3D);
+      return { center, minY: grounded.min.y, maxY: grounded.max.y };
     }
 
-    model.addEventListener('model-loaded', () => {
-      centerAndGroundModel(model);
+    function setupSceneAfterModelLoad() {
+      const bounds = centerAndGroundModel(model);
       buildInteriorWalkSurfaces(model);
       resetOutdoorSpawn();
       window.updateLocomotionUI();
-      console.log('%c[Cable Center] glTF 2.0 model loaded', 'color:#22c55e');
+
+      const pos = playerEl.object3D.position;
+      statusEl.textContent = `On the lawn — walk in or press G to fly. (camera y=${pos.y.toFixed(1)}m)`;
+      console.log('%c[Cable Center] Model grounded', 'color:#22c55e', bounds, 'player', pos);
+    }
+
+    model.addEventListener('model-loaded', () => {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(setupSceneAfterModelLoad);
+      });
     });
 
     document.querySelector('a-scene').addEventListener('enter-vr', () => {
