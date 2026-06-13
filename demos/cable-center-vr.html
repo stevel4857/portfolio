@@ -250,7 +250,7 @@
 
     <a-entity id="model"
               gltf-model="#building"
-              scale="1 1 1"
+              scale="0.0254 0.0254 0.0254"
               position="0 0 0"
               rotation="0 180 0"
               shadow="cast: true; receive: true"
@@ -284,8 +284,8 @@
     <a-entity id="player"
               camera
               look-controls
-              player-locomotion="fly: false; speed: 100; flySpeed: 300; eyeHeight: 66; minHeight: 0"
-              position="0 0 18">
+              player-locomotion="fly: false; speed: 3; flySpeed: 12; eyeHeight: 1.6; minHeight: 0"
+              position="0 1.6 5">
       <a-cursor color="#ffffff" opacity="0.7"></a-cursor>
     </a-entity>
   </a-scene>
@@ -293,11 +293,11 @@
   <script>
     AFRAME.registerComponent('player-locomotion', {
       schema: {
-        speed: { type: 'number', default: 100 },
-        flySpeed: { type: 'number', default: 300 },
+        speed: { type: 'number', default: 3 },
+        flySpeed: { type: 'number', default: 12 },
         fly: { type: 'boolean', default: false },
         deadzone: { type: 'number', default: 0.12 },
-        eyeHeight: { type: 'number', default: 66 },
+        eyeHeight: { type: 'number', default: 1.6 },
         minHeight: { type: 'number', default: 0 }
       },
       init: function () {
@@ -507,18 +507,15 @@
         if (!this.walkMeshes.length) return;
 
         const obj = this.el.object3D;
-        this.rayOrigin.copy(obj.position);
-        this.rayOrigin.y += 200;
+        const feetY = obj.position.y - this.data.eyeHeight;
+        this.rayOrigin.set(obj.position.x, obj.position.y + 2, obj.position.z);
         this.raycaster.set(this.rayOrigin, this.rayDir);
-        this.raycaster.far = 500;
+        this.raycaster.far = 80;
         const hits = this.raycaster.intersectObjects(this.walkMeshes, false);
         if (!hits.length) return;
 
-        let best = hits[0];
-        for (const hit of hits) {
-          if (hit.point.y > best.point.y) best = hit;
-        }
-        obj.position.y = best.point.y + this.data.eyeHeight;
+        const floor = hits.find((hit) => hit.point.y <= feetY + 0.35) || hits[0];
+        obj.position.y = floor.point.y + this.data.eyeHeight;
       },
       applyMove: function (forwardAmt, strafeAmt, verticalAmt, dt) {
         const obj = this.el.object3D;
@@ -671,20 +668,20 @@
       // Coordinates below are model-local (raw glTF minus ground/center), parented to #model
       // so they stay aligned with the building despite its 180° Y rotation.
 
-      // Great Hall — wood floor volume (glTF Wood_Cherry_Original footprint)
+      // Great Hall — wood floor (inset so outdoor spawn stays on the lawn)
       addWalkBox(
         interior,
-        { x: -55, y: 137, z: -40 },
-        { x: 420, y: 8, z: 280 },
+        { x: -55, y: 137, z: -80 },
+        { x: 360, y: 8, z: 220 },
         '#3b82f6',
         'great-hall'
       );
 
-      // Outdoor approach into the Great Hall (world space — scene root)
+      // Outdoor approach into the Great Hall (world meters — scene root)
       addWalkBox(
         walkSurfacesEl,
-        { x: -40, y: 2, z: 90 },
-        { x: 140, y: 8, z: 120 },
+        { x: -1, y: 0.02, z: 2.5 },
+        { x: 4, y: 0.08, z: 3 },
         '#3b82f6',
         'entrance'
       );
