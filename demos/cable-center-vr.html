@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <title>The Cable Center - VR Walkthrough</title>
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-
+  <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-system@v4.2.2/dist/aframe-physics-system.min.js"></script>
   <style>
     body { margin: 0; font-family: system-ui, sans-serif; background: #000; color: #fff; overflow: hidden; }
     .top-bar {
@@ -13,18 +13,6 @@
       display: flex; align-items: center; gap: 12px;
     }
     .top-bar a { color: #67e8f9; text-decoration: none; }
-    .mode-btn {
-      margin-left: auto;
-      background: rgba(103, 232, 249, 0.15);
-      border: 1px solid rgba(103, 232, 249, 0.45);
-      color: #fff;
-      font-size: 12px;
-      padding: 4px 10px;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    .mode-btn:hover { background: rgba(103, 232, 249, 0.28); }
-    .touch-controls.walk-mode .touch-fly-zone { display: none; }
     .instructions {
       position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%);
       background: rgba(0,0,0,0.65); padding: 6px 14px; border-radius: 4px;
@@ -34,102 +22,6 @@
       position: fixed; top: 50px; left: 16px; background: rgba(0,0,0,0.6);
       padding: 4px 8px; border-radius: 3px; font-size: 12px; z-index: 100;
     }
-    .touch-controls {
-      display: none;
-      position: fixed;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 90;
-      pointer-events: none;
-    }
-    .touch-controls.vr-hidden { display: none !important; }
-    @media (hover: none) and (pointer: coarse) {
-      .touch-controls { display: block; }
-      .instructions {
-        bottom: 148px;
-        max-width: 92%;
-        text-align: center;
-        line-height: 1.35;
-      }
-    }
-    .touch-move-zone {
-      position: absolute;
-      left: 20px;
-      bottom: 24px;
-      pointer-events: auto;
-      touch-action: none;
-    }
-    .joystick-base {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.12);
-      border: 2px solid rgba(255, 255, 255, 0.28);
-      position: relative;
-    }
-    .joystick-knob {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.55);
-      border: 2px solid rgba(255, 255, 255, 0.85);
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
-    }
-    .joystick-label {
-      display: block;
-      margin-top: 6px;
-      font-size: 11px;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      opacity: 0.65;
-      text-align: center;
-      user-select: none;
-    }
-    .touch-fly-zone {
-      position: absolute;
-      left: 156px;
-      bottom: 36px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      pointer-events: auto;
-      touch-action: none;
-    }
-    .fly-btn {
-      width: 52px;
-      height: 52px;
-      border-radius: 12px;
-      border: 2px solid rgba(255, 255, 255, 0.35);
-      background: rgba(255, 255, 255, 0.14);
-      color: #fff;
-      font-size: 20px;
-      line-height: 1;
-      padding: 0;
-      cursor: pointer;
-      user-select: none;
-      -webkit-tap-highlight-color: transparent;
-    }
-    .fly-btn:active,
-    .fly-btn.active {
-      background: rgba(103, 232, 249, 0.35);
-      border-color: rgba(103, 232, 249, 0.75);
-    }
-    .touch-look-hint {
-      position: absolute;
-      right: 20px;
-      bottom: 48px;
-      font-size: 11px;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      opacity: 0.45;
-      user-select: none;
-      pointer-events: none;
-    }
   </style>
 </head>
 <body>
@@ -137,29 +29,13 @@
     <a href="../index.html">← Back to site</a>
     <span style="opacity:0.7;">|</span>
     <span>The Cable Center - VR Walkthrough</span>
-    <button type="button" class="mode-btn" id="mode-toggle" title="G key">Mode: Walk</button>
   </div>
 
-  <div class="instructions" id="instructions">WASD to walk • Mouse to look • G toggles walk/fly • H shows walk surfaces</div>
+  <div class="instructions" id="instructions">Click inside the 3D view first • WASD or arrow keys to fly (look up/down to change altitude) • In VR: left stick move, right stick up/down • Enter VR bottom-left</div>
 
   <div class="status" id="status">Loading glTF 2.0 Cable Center model…</div>
 
-  <div class="touch-controls" id="touch-controls" aria-hidden="true">
-    <div class="touch-move-zone">
-      <div class="joystick-base" id="move-joystick">
-        <div class="joystick-knob" id="move-knob"></div>
-      </div>
-      <span class="joystick-label">Move</span>
-    </div>
-    <div class="touch-fly-zone">
-      <button type="button" class="fly-btn" id="fly-up" aria-label="Fly up">▲</button>
-      <button type="button" class="fly-btn" id="fly-down" aria-label="Fly down">▼</button>
-      <span class="joystick-label">Altitude</span>
-    </div>
-    <span class="touch-look-hint">Drag right side to look</span>
-  </div>
-
-  <a-scene shadow="type: pcfsoft" renderer="antialias: true; colorManagement: true">
+  <a-scene shadow="type: pcfsoft" renderer="antialias: true; colorManagement: true" physics="driver: cannon; gravity: 0; debug: false">
     <a-assets>
       <!-- Your glTF file (dropped in assets/models/) -->
       <a-asset-item id="building" src="../assets/models/scene/scene.gltf"></a-asset-item>
@@ -213,18 +89,15 @@
       </a-entity>
     </a-entity>
 
-    <!-- Walk surfaces: ground + auto/manual colliders (toggle debug with H) -->
-    <a-entity id="walk-surfaces">
-      <a-box id="ground"
-             class="walk-surface"
-             position="0 -0.05 0"
-             width="200"
-             height="0.1"
-             depth="200"
-             visible="false"
-             data-surface="ground">
-      </a-box>
-    </a-entity>
+    <!-- Static physics floor (box collider, top surface at y = 0) -->
+    <a-box id="ground"
+           static-body="shape: box"
+           position="0 -0.05 0"
+           width="200"
+           height="0.1"
+           depth="200"
+           visible="false">
+    </a-box>
     <a-plane position="0 0 0" rotation="-90 0 0" width="200" height="200" color="#4a7c59" material="roughness: 0.95" shadow="receive: true"></a-plane>
 
     <!-- Outdoor lighting: low ambient + strong sun so PBR materials show depth and highlights -->
@@ -249,7 +122,7 @@
 
     <a-entity id="model"
               gltf-model="#building"
-              scale="0.0254 0.0254 0.0254"
+              scale="1 1 1"
               position="0 0 0"
               rotation="0 180 0"
               shadow="cast: true; receive: true"
@@ -279,27 +152,23 @@
       <a-box position="2800 35 -2800" width="3100" height="70" depth="2400" color="#2a2a2a" material="flatShading: true"></a-box>
     </a-entity>
 
-    <!-- Single camera entity: desktop WASD + mobile touch + VR thumbsticks via player-locomotion -->
+    <!-- Single camera entity: desktop WASD + VR thumbsticks via player-locomotion -->
     <a-entity id="player"
               camera
               look-controls
-              player-locomotion="fly: false; speed: 3; flySpeed: 12; eyeHeight: 1.6; minHeight: 0"
-              position="0 1.6 5">
+              player-locomotion="fly: true; speed: 8; minHeight: 0.99"
+              position="0 0.39 18">
       <a-cursor color="#ffffff" opacity="0.7"></a-cursor>
     </a-entity>
   </a-scene>
 
   <script>
-    const MODEL_SCALE = 0.0254;
-
     AFRAME.registerComponent('player-locomotion', {
       schema: {
-        speed: { type: 'number', default: 3 },
-        flySpeed: { type: 'number', default: 12 },
-        fly: { type: 'boolean', default: false },
+        speed: { type: 'number', default: 8 },
+        fly: { type: 'boolean', default: true },
         deadzone: { type: 'number', default: 0.12 },
-        eyeHeight: { type: 'number', default: 1.6 },
-        minHeight: { type: 'number', default: 0 }
+        minHeight: { type: 'number', default: 0.99 }
       },
       init: function () {
         this.keys = Object.create(null);
@@ -307,17 +176,7 @@
         this.right = new THREE.Vector3();
         this.move = new THREE.Vector3();
         this.up = new THREE.Vector3(0, 1, 0);
-        this.rayOrigin = new THREE.Vector3();
-        this.rayDir = new THREE.Vector3(0, -1, 0);
-        this.raycaster = new THREE.Raycaster();
-        this.walkMeshes = [];
         this.active = false;
-        this.touchEnabled = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
-        this.touchStick = { x: 0, y: 0 };
-        this.touchVertical = 0;
-        this.joystickPointerId = null;
-        this.joystickCenter = { x: 0, y: 0 };
-        this.joystickMaxRadius = 40;
 
         this.moveKeys = new Set([
           'KeyW', 'KeyA', 'KeyS', 'KeyD',
@@ -325,19 +184,9 @@
         ]);
 
         this.onKeyDown = (e) => {
-          if (this.moveKeys.has(e.code)) {
-            this.keys[e.code] = true;
-            e.preventDefault();
-            return;
-          }
-          if (e.code === 'KeyG' && !e.repeat) {
-            this.setFlyMode(!this.data.fly);
-            e.preventDefault();
-          }
-          if (e.code === 'KeyH' && !e.repeat) {
-            window.toggleWalkDebug && window.toggleWalkDebug();
-            e.preventDefault();
-          }
+          if (!this.moveKeys.has(e.code)) return;
+          this.keys[e.code] = true;
+          e.preventDefault();
         };
         this.onKeyUp = (e) => {
           this.keys[e.code] = false;
@@ -360,109 +209,11 @@
           canvas.style.outline = 'none';
           canvas.addEventListener('pointerdown', activate);
           activate();
-          if (this.touchEnabled) {
-            this.active = true;
-            this.initTouchControls();
-          }
-          this.refreshWalkMeshes();
-          if (!this.data.fly && typeof window.resetOutdoorSpawn === 'function') {
-            window.resetOutdoorSpawn();
-          }
         });
-      },
-      initTouchControls: function () {
-        const joystick = document.getElementById('move-joystick');
-        const knob = document.getElementById('move-knob');
-        const flyUp = document.getElementById('fly-up');
-        const flyDown = document.getElementById('fly-down');
-        if (!joystick || !knob || !flyUp || !flyDown) return;
-
-        const resetKnob = () => {
-          knob.style.transform = 'translate(-50%, -50%)';
-          this.touchStick.x = 0;
-          this.touchStick.y = 0;
-        };
-
-        const updateKnob = (clientX, clientY) => {
-          let dx = clientX - this.joystickCenter.x;
-          let dy = clientY - this.joystickCenter.y;
-          const dist = Math.hypot(dx, dy);
-          if (dist > this.joystickMaxRadius) {
-            const scale = this.joystickMaxRadius / dist;
-            dx *= scale;
-            dy *= scale;
-          }
-          knob.style.transform = `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px))`;
-          this.touchStick.x = dx / this.joystickMaxRadius;
-          this.touchStick.y = dy / this.joystickMaxRadius;
-        };
-
-        const onJoystickDown = (e) => {
-          if (this.joystickPointerId !== null) return;
-          this.joystickPointerId = e.pointerId;
-          joystick.setPointerCapture(e.pointerId);
-          const rect = joystick.getBoundingClientRect();
-          this.joystickCenter.x = rect.left + rect.width / 2;
-          this.joystickCenter.y = rect.top + rect.height / 2;
-          updateKnob(e.clientX, e.clientY);
-          e.preventDefault();
-        };
-
-        const onJoystickMove = (e) => {
-          if (e.pointerId !== this.joystickPointerId) return;
-          updateKnob(e.clientX, e.clientY);
-          e.preventDefault();
-        };
-
-        const onJoystickEnd = (e) => {
-          if (e.pointerId !== this.joystickPointerId) return;
-          this.joystickPointerId = null;
-          resetKnob();
-          e.preventDefault();
-        };
-
-        joystick.addEventListener('pointerdown', onJoystickDown);
-        joystick.addEventListener('pointermove', onJoystickMove);
-        joystick.addEventListener('pointerup', onJoystickEnd);
-        joystick.addEventListener('pointercancel', onJoystickEnd);
-
-        const setVertical = (value, button) => {
-          this.touchVertical = value;
-          flyUp.classList.toggle('active', button === flyUp && value > 0);
-          flyDown.classList.toggle('active', button === flyDown && value < 0);
-        };
-
-        const bindFlyButton = (button, value) => {
-          const press = (e) => {
-            setVertical(value, button);
-            e.preventDefault();
-          };
-          const release = (e) => {
-            if (this.touchVertical === value) setVertical(0, null);
-            e.preventDefault();
-          };
-          button.addEventListener('pointerdown', press);
-          button.addEventListener('pointerup', release);
-          button.addEventListener('pointerleave', release);
-          button.addEventListener('pointercancel', release);
-        };
-
-        bindFlyButton(flyUp, 1);
-        bindFlyButton(flyDown, -1);
-
-        this.removeTouchControls = () => {
-          joystick.removeEventListener('pointerdown', onJoystickDown);
-          joystick.removeEventListener('pointermove', onJoystickMove);
-          joystick.removeEventListener('pointerup', onJoystickEnd);
-          joystick.removeEventListener('pointercancel', onJoystickEnd);
-          resetKnob();
-          setVertical(0, null);
-        };
       },
       remove: function () {
         window.removeEventListener('keydown', this.onKeyDown);
         window.removeEventListener('keyup', this.onKeyUp);
-        if (this.removeTouchControls) this.removeTouchControls();
       },
       getGamepad: function (hand) {
         const gamepads = navigator.getGamepads ? navigator.getGamepads() : [];
@@ -484,53 +235,6 @@
         if (Math.abs(y) < this.data.deadzone) y = 0;
         return { x, y };
       },
-      setFlyMode: function (fly) {
-        this.el.setAttribute('player-locomotion', 'fly', fly);
-        if (!fly) {
-          window.resetOutdoorSpawn && window.resetOutdoorSpawn();
-        }
-        window.updateLocomotionUI && window.updateLocomotionUI();
-      },
-      refreshWalkMeshes: function () {
-        this.walkMeshes.length = 0;
-        const scene = this.el.sceneEl;
-        if (!scene) return;
-        scene.querySelectorAll('.walk-surface').forEach((surfaceEl) => {
-          surfaceEl.object3D.updateWorldMatrix(true, true);
-          surfaceEl.object3D.traverse((child) => {
-            if (child.isMesh) this.walkMeshes.push(child);
-          });
-        });
-      },
-      snapToFloor: function () {
-        const obj = this.el.object3D;
-        const eye = this.data.eyeHeight;
-
-        // Lawn and approach: always ground level (y = 0)
-        if (obj.position.z > -1) {
-          obj.position.y = eye;
-          return;
-        }
-
-        if (!this.walkMeshes.length) this.refreshWalkMeshes();
-        if (!this.walkMeshes.length) {
-          obj.position.y = eye;
-          return;
-        }
-
-        this.rayOrigin.set(obj.position.x, obj.position.y + 2, obj.position.z);
-        this.raycaster.set(this.rayOrigin, this.rayDir);
-        this.raycaster.far = 30;
-        const hits = this.raycaster.intersectObjects(this.walkMeshes, false);
-        if (!hits.length) {
-          obj.position.y = eye;
-          return;
-        }
-
-        const floorY = hits[0].point.y;
-        if (floorY > 25) return;
-        obj.position.y = floorY + eye;
-      },
       applyMove: function (forwardAmt, strafeAmt, verticalAmt, dt) {
         const obj = this.el.object3D;
         obj.getWorldDirection(this.forward);
@@ -539,17 +243,11 @@
         this.right.crossVectors(this.forward, this.up).normalize();
 
         this.move.set(0, 0, 0);
-        const moveSpeed = this.data.fly ? this.data.flySpeed : this.data.speed;
-        this.move.addScaledVector(this.forward, forwardAmt * moveSpeed * dt);
-        this.move.addScaledVector(this.right, strafeAmt * moveSpeed * dt);
-        if (this.data.fly) this.move.y += verticalAmt * moveSpeed * dt;
+        this.move.addScaledVector(this.forward, forwardAmt * this.data.speed * dt);
+        this.move.addScaledVector(this.right, strafeAmt * this.data.speed * dt);
+        if (this.data.fly) this.move.y += verticalAmt * this.data.speed * dt;
         obj.position.add(this.move);
-
-        if (!this.data.fly) {
-          this.snapToFloor();
-        } else {
-          this.clampHeight(obj);
-        }
+        this.clampHeight(obj);
       },
       clampHeight: function (obj) {
         if (obj.position.y < this.data.minHeight) {
@@ -568,18 +266,6 @@
           if (!left.x && !left.y && !right.y) return;
           this.applyMove(-left.y, left.x, this.data.fly ? -right.y : 0, dt);
           return;
-        }
-
-        if (this.touchEnabled) {
-          let stickX = this.touchStick.x;
-          let stickY = this.touchStick.y;
-          if (Math.abs(stickX) < this.data.deadzone) stickX = 0;
-          if (Math.abs(stickY) < this.data.deadzone) stickY = 0;
-          const vertical = this.data.fly ? this.touchVertical : 0;
-          if (stickX || stickY || vertical) {
-            this.applyMove(-stickY, stickX, vertical, dt);
-            return;
-          }
         }
 
         if (!this.active) return;
@@ -602,236 +288,51 @@
     });
 
     const statusEl = document.getElementById('status');
-    const instructionsEl = document.getElementById('instructions');
-    const touchControlsEl = document.getElementById('touch-controls');
-    const modeToggleEl = document.getElementById('mode-toggle');
-    const walkSurfacesEl = document.getElementById('walk-surfaces');
-    const playerEl = document.getElementById('player');
     const model = document.querySelector('#model');
-    const sceneEl = document.querySelector('a-scene');
-    const isTouchUI = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
-    let walkDebugVisible = false;
-
-    function isFlyMode() {
-      const data = playerEl.getAttribute('player-locomotion');
-      return data.fly === true || data.fly === 'true';
-    }
-
-    function setFlatModeHints() {
-      const fly = isFlyMode();
-      touchControlsEl.classList.toggle('walk-mode', !fly);
-      if (isTouchUI) {
-        instructionsEl.textContent = fly
-          ? 'Left joystick to move • ▲▼ for altitude • Drag right side to look • G = walk mode'
-          : 'Left joystick to walk • Drag right side to look • G = fly mode • H = debug floors';
-        statusEl.textContent = fly
-          ? 'Fly mode — press G to walk the building.'
-          : 'Walk mode — Great Hall stairs to the front transom walkway. H = debug';
-        return;
-      }
-      instructionsEl.textContent = fly
-        ? 'WASD to fly • Mouse to look • G = walk mode'
-        : 'WASD to walk • Mouse to look • G = fly mode • H = show walk surfaces';
-      statusEl.textContent = fly
-        ? 'Fly mode — press G to walk floors and stairs.'
-        : 'Walk mode — Great Hall → stairs → transom walkway along the front.';
-    }
-
-    window.updateLocomotionUI = function () {
-      const fly = isFlyMode();
-      if (modeToggleEl) modeToggleEl.textContent = fly ? 'Mode: Fly' : 'Mode: Walk';
-      setFlatModeHints();
-    };
-
-    function addWalkBox(parent, center, size, color, label) {
-      const box = document.createElement('a-box');
-      box.setAttribute('class', 'walk-surface');
-      box.setAttribute('position', `${center.x} ${center.y} ${center.z}`);
-      box.setAttribute('width', Math.max(size.x, 0.2));
-      box.setAttribute('height', Math.max(size.y, 0.2));
-      box.setAttribute('depth', Math.max(size.z, 0.2));
-      box.setAttribute('visible', walkDebugVisible);
-      box.setAttribute('opacity', '0.35');
-      box.setAttribute('color', color);
-      box.setAttribute('material', 'transparent: true; depthWrite: false');
-      if (label) box.setAttribute('data-surface', label);
-      parent.appendChild(box);
-      return box;
-    }
-
-    function modelLocalToWorld(modelEl, local) {
-      const v = new THREE.Vector3(local.x, local.y, local.z);
-      modelEl.object3D.updateWorldMatrix(true, true);
-      return modelEl.object3D.localToWorld(v);
-    }
-
-    function addWalkBoxModelLocal(modelEl, localCenter, localSize, color, label) {
-      const center = modelLocalToWorld(modelEl, localCenter);
-      const size = {
-        x: localSize.x * MODEL_SCALE,
-        y: localSize.y * MODEL_SCALE,
-        z: localSize.z * MODEL_SCALE
-      };
-      addWalkBox(walkSurfacesEl, center, size, color, label);
-    }
-
-    function buildInteriorWalkSurfaces(modelEl) {
-      walkSurfacesEl.querySelectorAll('.walk-surface:not(#ground)').forEach((el) => el.remove());
-      modelEl.querySelector('#interior-walk-surfaces')?.remove();
-
-      // Great Hall — wood floor (model-local inches → world meters)
-      addWalkBoxModelLocal(
-        modelEl,
-        { x: -55, y: 137, z: -80 },
-        { x: 360, y: 8, z: 220 },
-        '#3b82f6',
-        'great-hall'
-      );
-
-      // Outdoor approach into the Great Hall
-      addWalkBox(
-        walkSurfacesEl,
-        { x: -1, y: 0.02, z: 2.5 },
-        { x: 4, y: 0.08, z: 3 },
-        '#3b82f6',
-        'entrance'
-      );
-
-      // Great Hall stair → transom walkway
-      const stepCount = 20;
-      const stepRise = 31;
-      const stepRun = 12;
-      const stairX = 72;
-      const stairStartZ = 30;
-      const stairStartY = 143;
-      for (let i = 0; i < stepCount; i++) {
-        addWalkBoxModelLocal(
-          modelEl,
-          {
-            x: stairX,
-            y: stairStartY + stepRise * i + stepRise * 0.5,
-            z: stairStartZ - stepRun * i
-          },
-          { x: 72, y: stepRise, z: stepRun },
-          '#f59e0b',
-          'great-hall-stairs'
-        );
-      }
-
-      addWalkBoxModelLocal(
-        modelEl,
-        { x: 72, y: 777, z: -210 },
-        { x: 80, y: 8, z: 50 },
-        '#f59e0b',
-        'stair-landing'
-      );
-
-      addWalkBoxModelLocal(
-        modelEl,
-        { x: 72, y: 777, z: -221 },
-        { x: 80, y: 8, z: 24 },
-        '#22c55e',
-        'walkway-connector'
-      );
-
-      addWalkBoxModelLocal(
-        modelEl,
-        { x: 60, y: 777, z: -232 },
-        { x: 306, y: 10, z: 66 },
-        '#22c55e',
-        'transom-walkway-main'
-      );
-
-      addWalkBoxModelLocal(
-        modelEl,
-        { x: 60, y: 777, z: -220 },
-        { x: 306, y: 10, z: 50 },
-        '#16a34a',
-        'transom-walkway-inset'
-      );
-
-      const locomotion = playerEl.components['player-locomotion'];
-      if (locomotion) locomotion.refreshWalkMeshes();
-      console.log(
-        '%c[Cable Center] Walk surfaces: Great Hall, ' + stepCount + ' stair steps, transom walkway (305″ along front). Press H to debug.',
-        'color:#67e8f9'
-      );
-    }
-
-    window.toggleWalkDebug = function () {
-      walkDebugVisible = !walkDebugVisible;
-      document.querySelectorAll('.walk-surface').forEach((el) => {
-        el.setAttribute('visible', walkDebugVisible);
-      });
-      const pos = playerEl.getAttribute('position');
-      statusEl.textContent = walkDebugVisible
-        ? `Debug ON — camera y=${Number(pos.y).toFixed(2)}m • blue=hall, orange=stairs, green=walkway`
-        : (isFlyMode() ? 'Fly mode — press G to walk floors and stairs.' : 'Walk mode — Great Hall → stairs → transom walkway along the front.');
-    };
-
-    if (modeToggleEl) {
-      modeToggleEl.addEventListener('click', () => {
-        const locomotion = playerEl.components['player-locomotion'];
-        if (locomotion) locomotion.setFlyMode(!isFlyMode());
-      });
-    }
-
-    window.resetOutdoorSpawn = function resetOutdoorSpawn() {
-      playerEl.object3D.position.set(0, 1.6, 5);
-      playerEl.object3D.rotation.set(0, 0, 0);
-      const locomotion = playerEl.components['player-locomotion'];
-      if (locomotion) locomotion.refreshWalkMeshes();
-    };
 
     function centerAndGroundModel(el) {
-      const s = MODEL_SCALE;
-      el.setAttribute('scale', `${s} ${s} ${s}`);
       el.setAttribute('position', '0 0 0');
       el.setAttribute('rotation', '0 180 0');
-      el.object3D.scale.set(s, s, s);
       el.object3D.updateWorldMatrix(true, true);
+      const meshMinYs = [];
+      const fullBox = new THREE.Box3();
+      el.object3D.traverse((child) => {
+        if (!child.isMesh) return;
+        const box = new THREE.Box3().setFromObject(child);
+        meshMinYs.push(box.min.y);
+        fullBox.union(box);
+      });
+      if (!meshMinYs.length) return;
 
-      const box = new THREE.Box3().setFromObject(el.object3D);
-      if (box.isEmpty()) return null;
+      meshMinYs.sort((a, b) => a - b);
+      let groundY = meshMinYs[0];
+      for (let i = 1; i < meshMinYs.length; i++) {
+        if (meshMinYs[i] - meshMinYs[0] > 1) {
+          groundY = meshMinYs[i];
+          break;
+        }
+      }
 
-      const center = box.getCenter(new THREE.Vector3());
+      const center = fullBox.getCenter(new THREE.Vector3());
       el.setAttribute('position', {
         x: -center.x,
-        y: -box.min.y,
+        y: -groundY,
         z: -center.z
       });
-      el.object3D.updateWorldMatrix(true, true);
-
-      const grounded = new THREE.Box3().setFromObject(el.object3D);
-      return { center, minY: grounded.min.y, maxY: grounded.max.y };
-    }
-
-    function setupSceneAfterModelLoad() {
-      const bounds = centerAndGroundModel(model);
-      buildInteriorWalkSurfaces(model);
-      resetOutdoorSpawn();
-      window.updateLocomotionUI();
-
-      const pos = playerEl.object3D.position;
-      statusEl.textContent = `On the lawn — walk in or press G to fly. (camera y=${pos.y.toFixed(1)}m)`;
-      console.log('%c[Cable Center] Model grounded', 'color:#22c55e', bounds, 'player', pos);
     }
 
     model.addEventListener('model-loaded', () => {
-      requestAnimationFrame(() => {
-        requestAnimationFrame(setupSceneAfterModelLoad);
-      });
+      centerAndGroundModel(model);
+      statusEl.textContent = 'Click the 3D view, then WASD or arrow keys to fly. Mouse to look.';
+      console.log('%c[Cable Center] glTF 2.0 model loaded', 'color:#22c55e');
     });
 
     document.querySelector('a-scene').addEventListener('enter-vr', () => {
-      if (touchControlsEl) touchControlsEl.classList.add('vr-hidden');
-      instructionsEl.textContent = 'VR mode: left thumbstick to move, right thumbstick up/down to fly.';
       statusEl.textContent = 'VR mode: left thumbstick to move, right thumbstick up/down to fly.';
     });
 
     document.querySelector('a-scene').addEventListener('exit-vr', () => {
-      if (touchControlsEl) touchControlsEl.classList.remove('vr-hidden');
-      setFlatModeHints();
+      statusEl.textContent = 'Click the 3D view, then WASD or arrow keys to fly.';
     });
 
     model.addEventListener('model-error', (e) => {
@@ -841,8 +342,6 @@
       if (fallback) fallback.setAttribute('visible', true);
       model.setAttribute('visible', false);
     });
-
-    window.updateLocomotionUI();
 
     // Optional: log when scene is ready
     document.querySelector('a-scene').addEventListener('loaded', () => {
