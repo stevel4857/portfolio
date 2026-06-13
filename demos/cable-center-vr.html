@@ -120,44 +120,23 @@
     <!-- Soft fill from the opposite side — keeps shadowed facades readable -->
     <a-light type="directional" color="#d0e8ff" intensity="0.35" position="-35 25 -40"></a-light>
 
-    <a-entity id="model"
+  <a-entity id="model"
               gltf-model="#building"
               scale="1 1 1"
-              position="0 0 0"
+              position="0 10 0"
               rotation="0 180 0"
               shadow="cast: true; receive: true"
               visible="true">
-    </a-entity>
+    </a-entity> 
 
-    <!-- Lightweight blocky fallback (hidden while glTF loads) -->
-    <a-entity id="block-building" position="0 0 0" scale="0.0254 0.0254 0.0254" rotation="0 180 0" visible="false">
-      <!-- Main building mass -->
-      <a-box position="2800 300 -2800" width="2800" height="550" depth="2100" color="#2c2c2c" material="flatShading: true"></a-box>
-      <!-- Upper level -->
-      <a-box position="2850 620 -2750" width="2400" height="280" depth="1800" color="#3f3f3f" material="flatShading: true"></a-box>
-      <!-- Roof -->
-      <a-box position="2820 780 -2780" width="2600" height="80" depth="1950" color="#4a4a4a" material="flatShading: true"></a-box>
-      <!-- Glass facade -->
-      <a-box position="2800 320 -1730" width="2750" height="480" depth="70" color="#5aa3e8" material="flatShading: true; opacity: 0.6; transparent: true" transparent="true"></a-box>
-      <!-- More glass -->
-      <a-box position="4190 300 -2800" width="55" height="520" depth="2050" color="#5aa3e8" material="flatShading: true; opacity: 0.55; transparent: true" transparent="true"></a-box>
-      <a-box position="1400 300 -2800" width="55" height="520" depth="2050" color="#5aa3e8" material="flatShading: true; opacity: 0.55; transparent: true" transparent="true"></a-box>
-      <!-- Entrance canopy -->
-      <a-box position="2800 280 -1650" width="900" height="420" depth="180" color="#3a3a3a" material="flatShading: true"></a-box>
-      <a-box position="2800 450 -1580" width="1100" height="40" depth="320" color="#555555" material="flatShading: true"></a-box>
-      <!-- Interior blocks -->
-      <a-box position="2000 140 -2600" width="220" height="140" depth="220" color="#444444" material="flatShading: true"></a-box>
-      <a-box position="3200 140 -3100" width="280" height="180" depth="180" color="#555555" material="flatShading: true"></a-box>
-      <!-- Base -->
-      <a-box position="2800 35 -2800" width="3100" height="70" depth="2400" color="#2a2a2a" material="flatShading: true"></a-box>
-    </a-entity>
 
     <!-- Single camera entity: desktop WASD + VR thumbsticks via player-locomotion -->
     <a-entity id="player"
               camera
               look-controls
               player-locomotion="fly: true; speed: 8; minHeight: 0.99"
-              position="0 0.39 18">
+              position="-20 .80 28"
+		rotation="-20 180 0">
       <a-cursor color="#ffffff" opacity="0.7"></a-cursor>
     </a-entity>
   </a-scene>
