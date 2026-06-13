@@ -364,7 +364,9 @@
             this.initTouchControls();
           }
           this.refreshWalkMeshes();
-          if (!this.data.fly) this.snapToFloor();
+          if (!this.data.fly && typeof window.resetOutdoorSpawn === 'function') {
+            window.resetOutdoorSpawn();
+          }
         });
       },
       initTouchControls: function () {
@@ -514,7 +516,13 @@
         const hits = this.raycaster.intersectObjects(this.walkMeshes, false);
         if (!hits.length) return;
 
-        const floor = hits.find((hit) => hit.point.y <= feetY + 0.35) || hits[0];
+        const below = hits.filter((hit) => hit.point.y <= feetY + 0.35);
+        const candidates = below.length ? below : hits;
+        const groundHit = candidates.find((hit) => {
+          const surface = hit.object.el;
+          return surface && surface.dataset && surface.dataset.surface === 'ground';
+        });
+        const floor = groundHit || candidates[0];
         obj.position.y = floor.point.y + this.data.eyeHeight;
       },
       applyMove: function (forwardAmt, strafeAmt, verticalAmt, dt) {
@@ -771,42 +779,36 @@
       });
     }
 
+    window.resetOutdoorSpawn = function resetOutdoorSpawn() {
+      playerEl.setAttribute('position', { x: 0, y: 1.6, z: 5 });
+      const locomotion = playerEl.components['player-locomotion'];
+      if (locomotion) {
+        locomotion.refreshWalkMeshes();
+        if (!locomotion.data.fly) locomotion.snapToFloor();
+      }
+    };
+
     function centerAndGroundModel(el) {
       el.setAttribute('position', '0 0 0');
       el.setAttribute('rotation', '0 180 0');
       el.object3D.updateWorldMatrix(true, true);
-      const meshMinYs = [];
-      const fullBox = new THREE.Box3();
-      el.object3D.traverse((child) => {
-        if (!child.isMesh) return;
-        const box = new THREE.Box3().setFromObject(child);
-        meshMinYs.push(box.min.y);
-        fullBox.union(box);
-      });
-      if (!meshMinYs.length) return;
 
-      meshMinYs.sort((a, b) => a - b);
-      let groundY = meshMinYs[0];
-      for (let i = 1; i < meshMinYs.length; i++) {
-        if (meshMinYs[i] - meshMinYs[0] > 1) {
-          groundY = meshMinYs[i];
-          break;
-        }
-      }
+      const fullBox = new THREE.Box3().setFromObject(el.object3D);
+      if (fullBox.isEmpty()) return;
 
       const center = fullBox.getCenter(new THREE.Vector3());
       el.setAttribute('position', {
         x: -center.x,
-        y: -groundY,
+        y: -fullBox.min.y,
         z: -center.z
       });
+      el.object3D.updateWorldMatrix(true, true);
     }
 
     model.addEventListener('model-loaded', () => {
       centerAndGroundModel(model);
       buildInteriorWalkSurfaces(model);
-      const locomotion = playerEl.components['player-locomotion'];
-      if (locomotion) locomotion.snapToFloor();
+      resetOutdoorSpawn();
       window.updateLocomotionUI();
       console.log('%c[Cable Center] glTF 2.0 model loaded', 'color:#22c55e');
     });
