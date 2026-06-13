@@ -291,6 +291,8 @@
   </a-scene>
 
   <script>
+    const MODEL_SCALE = 0.0254;
+
     AFRAME.registerComponent('player-locomotion', {
       schema: {
         speed: { type: 'number', default: 3 },
@@ -505,24 +507,34 @@
         });
       },
       snapToFloor: function () {
-        if (!this.walkMeshes.length) this.refreshWalkMeshes();
-        if (!this.walkMeshes.length) return;
-
         const obj = this.el.object3D;
-        const feetY = obj.position.y - this.data.eyeHeight;
-        this.rayOrigin.set(obj.position.x, obj.position.y + 2, obj.position.z);
-        this.raycaster.set(this.rayOrigin, this.rayDir);
-        this.raycaster.far = 80;
-        const hits = this.raycaster.intersectObjects(this.walkMeshes, false);
-        if (!hits.length) return;
 
-        const below = hits.filter((hit) => hit.point.y <= feetY + 0.35);
+        // Outdoor spawn zone: stay on the lawn (never raycast to interior colliders)
+        if (Math.abs(obj.position.x) < 12 && obj.position.z > -2 && obj.position.z < 14) {
+          obj.position.y = this.data.eyeHeight;
+          return;
+        }
+
+        if (!this.walkMeshes.length) this.refreshWalkMeshes();
+        if (!this.walkMeshes.length) {
+          obj.position.y = this.data.eyeHeight;
+          return;
+        }
+
+        const feetY = obj.position.y - this.data.eyeHeight;
+        this.rayOrigin.set(obj.position.x, obj.position.y + 1.5, obj.position.z);
+        this.raycaster.set(this.rayOrigin, this.rayDir);
+        this.raycaster.far = 40;
+        const hits = this.raycaster.intersectObjects(this.walkMeshes, false);
+        if (!hits.length) {
+          obj.position.y = this.data.eyeHeight;
+          return;
+        }
+
+        const below = hits.filter((hit) => hit.point.y <= feetY + 0.5 && hit.point.y < obj.position.y);
         const candidates = below.length ? below : hits;
-        const groundHit = candidates.find((hit) => {
-          const surface = hit.object.el;
-          return surface && surface.dataset && surface.dataset.surface === 'ground';
-        });
-        const floor = groundHit || candidates[0];
+        const floor = candidates[0];
+        if (floor.point.y > 40) return;
         obj.position.y = floor.point.y + this.data.eyeHeight;
       },
       applyMove: function (forwardAmt, strafeAmt, verticalAmt, dt) {
@@ -574,10 +586,6 @@
             this.applyMove(-stickY, stickX, vertical, dt);
             return;
           }
-        }
-
-        if (!this.data.fly) {
-          this.snapToFloor();
         }
 
         if (!this.active) return;
@@ -646,9 +654,9 @@
       box.setAttribute('class', 'walk-surface');
       box.setAttribute('static-body', 'shape: box');
       box.setAttribute('position', `${center.x} ${center.y} ${center.z}`);
-      box.setAttribute('width', Math.max(size.x, 4));
-      box.setAttribute('height', Math.max(size.y, 4));
-      box.setAttribute('depth', Math.max(size.z, 4));
+      box.setAttribute('width', Math.max(size.x, 0.2));
+      box.setAttribute('height', Math.max(size.y, 0.2));
+      box.setAttribute('depth', Math.max(size.z, 0.2));
       box.setAttribute('visible', walkDebugVisible);
       box.setAttribute('opacity', '0.35');
       box.setAttribute('color', color);
@@ -658,34 +666,41 @@
       return box;
     }
 
-    function getInteriorWalkParent(modelEl) {
-      let parent = modelEl.querySelector('#interior-walk-surfaces');
-      if (!parent) {
-        parent = document.createElement('a-entity');
-        parent.setAttribute('id', 'interior-walk-surfaces');
-        modelEl.appendChild(parent);
-      }
-      parent.querySelectorAll('.walk-surface').forEach((el) => el.remove());
-      return parent;
+    function modelLocalToWorld(modelEl, local) {
+      const v = new THREE.Vector3(local.x, local.y, local.z);
+      modelEl.object3D.updateWorldMatrix(true, true);
+      return modelEl.object3D.localToWorld(v);
+    }
+
+    function addWalkBoxModelLocal(modelEl, localCenter, localSize, color, label) {
+      const center = modelLocalToWorld(modelEl, localCenter);
+      addWalkBox(
+        walkSurfacesEl,
+        center,
+        {
+          x: localSize.x * MODEL_SCALE,
+          y: localSize.y * MODEL_SCALE,
+          z: localSize.z * MODEL_SCALE
+        },
+        color,
+        label
+      );
     }
 
     function buildInteriorWalkSurfaces(modelEl) {
       walkSurfacesEl.querySelectorAll('.walk-surface:not(#ground)').forEach((el) => el.remove());
-      const interior = getInteriorWalkParent(modelEl);
+      modelEl.querySelector('#interior-walk-surfaces')?.remove();
 
-      // Coordinates below are model-local (raw glTF minus ground/center), parented to #model
-      // so they stay aligned with the building despite its 180° Y rotation.
-
-      // Great Hall — wood floor (inset so outdoor spawn stays on the lawn)
-      addWalkBox(
-        interior,
+      // Great Hall — wood floor (model-local inches → world meters)
+      addWalkBoxModelLocal(
+        modelEl,
         { x: -55, y: 137, z: -80 },
         { x: 360, y: 8, z: 220 },
         '#3b82f6',
         'great-hall'
       );
 
-      // Outdoor approach into the Great Hall (world meters — scene root)
+      // Outdoor approach into the Great Hall
       addWalkBox(
         walkSurfacesEl,
         { x: -1, y: 0.02, z: 2.5 },
@@ -694,7 +709,7 @@
         'entrance'
       );
 
-      // Great Hall stair up to the front transom walkway (local x~72, z: 30 → -210)
+      // Great Hall stair → transom walkway
       const stepCount = 20;
       const stepRise = 31;
       const stepRun = 12;
@@ -702,8 +717,8 @@
       const stairStartZ = 30;
       const stairStartY = 143;
       for (let i = 0; i < stepCount; i++) {
-        addWalkBox(
-          interior,
+        addWalkBoxModelLocal(
+          modelEl,
           {
             x: stairX,
             y: stairStartY + stepRise * i + stepRise * 0.5,
@@ -715,40 +730,34 @@
         );
       }
 
-      // Landing where stairs meet the transom walkway
-      addWalkBox(
-        interior,
+      addWalkBoxModelLocal(
+        modelEl,
         { x: 72, y: 777, z: -210 },
         { x: 80, y: 8, z: 50 },
         '#f59e0b',
         'stair-landing'
       );
 
-      // Connector from stair landing onto the transom walkway
-      addWalkBox(
-        interior,
+      addWalkBoxModelLocal(
+        modelEl,
         { x: 72, y: 777, z: -221 },
         { x: 80, y: 8, z: 24 },
         '#22c55e',
         'walkway-connector'
       );
 
-      // Transom walkway — glTF union along front facade (local X -93..213, Z -265..-199, top Y 782)
-      const walkY = 777;
-      const walkHeight = 10;
-      addWalkBox(
-        interior,
-        { x: 60, y: walkY, z: -232 },
-        { x: 306, y: walkHeight, z: 66 },
+      addWalkBoxModelLocal(
+        modelEl,
+        { x: 60, y: 777, z: -232 },
+        { x: 306, y: 10, z: 66 },
         '#22c55e',
         'transom-walkway-main'
       );
 
-      // Secondary front band (glTF z~-220 tier, slightly inset)
-      addWalkBox(
-        interior,
-        { x: 60, y: walkY, z: -220 },
-        { x: 306, y: walkHeight, z: 50 },
+      addWalkBoxModelLocal(
+        modelEl,
+        { x: 60, y: 777, z: -220 },
+        { x: 306, y: 10, z: 50 },
         '#16a34a',
         'transom-walkway-inset'
       );
@@ -782,24 +791,23 @@
     window.resetOutdoorSpawn = function resetOutdoorSpawn() {
       playerEl.setAttribute('position', { x: 0, y: 1.6, z: 5 });
       const locomotion = playerEl.components['player-locomotion'];
-      if (locomotion) {
-        locomotion.refreshWalkMeshes();
-        if (!locomotion.data.fly) locomotion.snapToFloor();
-      }
+      if (locomotion) locomotion.refreshWalkMeshes();
     };
 
     function centerAndGroundModel(el) {
+      el.setAttribute('scale', `${MODEL_SCALE} ${MODEL_SCALE} ${MODEL_SCALE}`);
       el.setAttribute('position', '0 0 0');
       el.setAttribute('rotation', '0 180 0');
+      el.object3D.scale.setScalar(MODEL_SCALE);
       el.object3D.updateWorldMatrix(true, true);
 
-      const fullBox = new THREE.Box3().setFromObject(el.object3D);
-      if (fullBox.isEmpty()) return;
+      const worldBox = new THREE.Box3().setFromObject(el.object3D);
+      if (worldBox.isEmpty()) return;
 
-      const center = fullBox.getCenter(new THREE.Vector3());
+      const center = worldBox.getCenter(new THREE.Vector3());
       el.setAttribute('position', {
         x: -center.x,
-        y: -fullBox.min.y,
+        y: -worldBox.min.y,
         z: -center.z
       });
       el.object3D.updateWorldMatrix(true, true);
