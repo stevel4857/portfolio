@@ -3,8 +3,11 @@
 <head>
   <meta charset="utf-8">
   <title>The Cable Center - VR Walkthrough</title>
-  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-system@v4.2.2/dist/aframe-physics-system.min.js"></script>
+  <script src="https://unpkg.com/aframe-environment-component@1.5.x/dist/aframe-environment-component.min.js"></script>
+</head>
+
   <style>
     body { margin: 0; font-family: system-ui, sans-serif; background: #000; color: #fff; overflow: hidden; }
     .top-bar {
@@ -28,10 +31,10 @@
   <div class="top-bar">
     <a href="../index.html">← Back to site</a>
     <span style="opacity:0.7;">|</span>
-    <span>The Cable Center - VR Walkthrough</span>
+    <span>The Old Syndeo Institute/Cable Center - VR Walkthrough</span>
   </div>
 
-  <div class="instructions" id="instructions">Click inside the 3D view first • WASD or arrow keys to fly (look up/down to change altitude) • In VR: left stick move, right stick up/down • Enter VR bottom-left</div>
+  <div class="instructions" id="instructions">Click inside the 3D view first • WASD or arrow keys to fly (look up/down to change altitude) • In VR: left stick move, right stick up/down • Enter VR bottom-right</div>
 
   <div class="status" id="status">Loading glTF 2.0 Cable Center model…</div>
 
@@ -43,6 +46,7 @@
 
     <!-- Simple environment -->
     <a-sky color="#87CEEB"></a-sky>
+     
 
     <!-- Moving clouds (same as demos/3d-aframe-experience.html) -->
     <a-entity id="clouds" animation="property: rotation; to: 0 360 0; loop: true; dur: 300000; easing: linear">
@@ -89,6 +93,8 @@
       </a-entity>
     </a-entity>
 
+        <a-entity environment="preset: forest; dressingAmount: 150"></a-entity>
+
     <!-- Static physics floor (box collider, top surface at y = 0) -->
     <a-box id="ground"
            static-body="shape: box"
@@ -98,7 +104,7 @@
            depth="200"
            visible="false">
     </a-box>
-    <a-plane position="0 0 0" rotation="-90 0 0" width="200" height="200" color="#4a7c59" material="roughness: 0.95" shadow="receive: true"></a-plane>
+    <a-plane position="0 0 0" rotation="-90 0 0" width="200" height="200" color="#666666" material="roughness: 0.95" shadow="receive: true" visible="false"></a-plane>
 
     <!-- Outdoor lighting: low ambient + strong sun so PBR materials show depth and highlights -->
     <a-light type="ambient" color="#c8d8f0" intensity="0.3"></a-light>
@@ -123,7 +129,7 @@
   <a-entity id="model"
               gltf-model="#building"
               scale="1 1 1"
-              position="0 10 0"
+              position="0 0 0"
               rotation="0 180 0"
               shadow="cast: true; receive: true"
               visible="true">
@@ -135,8 +141,8 @@
               camera
               look-controls
               player-locomotion="fly: true; speed: 8; minHeight: 0.99"
-              position="-20 .80 28"
-		rotation="-20 180 0">
+              position="-20 .70 28"
+		rotation="0 0.199 0">
       <a-cursor color="#ffffff" opacity="0.7"></a-cursor>
     </a-entity>
   </a-scene>
