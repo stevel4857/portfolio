@@ -47,7 +47,7 @@
            background="color: #87CEEB">
 
     <a-assets>
-      <a-asset-item id="building" src="../assets/models/scene/scene.gltf"></a-asset-item>
+      <a-asset-item id="building" src="../assets/models/scene/scene.glb"></a-asset-item>
 
       <img id="preview1" src="360assets/barcolibrary1.jpg" crossorigin="anonymous">
       <img id="preview2" src="360assets/office_preview.jpg" crossorigin="anonymous">
@@ -185,7 +185,7 @@
   </a-scene>
 
   <script>
-    const BUILDING_MODEL = '../assets/models/scene/scene.gltf';
+    const BUILDING_MODEL = '../assets/models/scene/scene.glb';
 
     const colliderSystem = {
       boxes: [],
@@ -609,13 +609,13 @@
       centerAndGroundModel(model);
       colliderSystem.refreshFromModel(model);
       statusEl.textContent = 'Click the 3D view, then WASD to move (Space/Shift up/down). Click a sphere for 360° video.';
-      console.log('%c[Cable Center] glTF loaded:', BUILDING_MODEL, 'color:#22c55e');
+      console.log('%c[Cable Center] GLB loaded:', BUILDING_MODEL, 'color:#22c55e');
     }
 
     model.addEventListener('model-loaded', onBuildingLoaded);
     model.addEventListener('model-error', (e) => {
       statusEl.textContent = 'Error loading model: ' + BUILDING_MODEL;
-      console.error('glTF load error:', BUILDING_MODEL, e);
+      console.error('GLB load error:', BUILDING_MODEL, e);
     });
 
     document.addEventListener('keydown', (e) => {
@@ -638,7 +638,7 @@
       initialPlayerPosition = { x: pos.x, y: pos.y, z: pos.z };
       initialPlayerRotation = { x: rot.x, y: rot.y, z: rot.z };
       sceneFog = sceneEl.object3D.fog;
-      console.log('✅ glTF walkthrough + 360 spheres ready');
+      console.log('✅ GLB walkthrough + 360 spheres ready');
 
       document.getElementById('sphere1').addEventListener('click', () => playVideo('#video1'));
       document.getElementById('sphere2').addEventListener('click', () => playVideo('#video2'));
