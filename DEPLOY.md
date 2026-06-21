@@ -141,9 +141,38 @@ If you need to update or change the Formspree integration in the future:
 3. Update the `action` attribute on the `<form>` element in `index.html`.
 4. Test submissions via a local preview and a Cloudflare Pages preview deployment before merging.
 
+## Cloudflare + Git LFS (important)
+
+Videos and 3D models are stored with **Git LFS**. Cloudflare's direct GitHub integration **does not fetch LFS files** — builds fail instantly and production stays on the last successful deploy.
+
+**Production deploys use GitHub Actions** (`.github/workflows/deploy-cloudflare.yml`), which checks out with LFS and uploads the full site to the Cloudflare Pages project `steveknows`.
+
+### One-time setup
+
+1. In Cloudflare: **My Profile → API Tokens → Create Token**
+   - Use the **Edit Cloudflare Workers** template, or create a custom token with **Account → Cloudflare Pages → Edit**
+2. In GitHub: **portfolio repo → Settings → Secrets and variables → Actions → New repository secret**
+   - Name: `CLOUDFLARE_API_TOKEN`
+   - Value: the token from step 1
+3. Push to `main` (or re-run the workflow from the Actions tab). When it succeeds, https://steveknowsweb.com updates.
+
+### Manual deploy (emergency)
+
+If Actions is not set up yet, deploy from your machine (you already have the real LFS files locally):
+
+```powershell
+cd "D:\work\steveknowsweb"
+npx wrangler login
+npx wrangler pages deploy . --project-name steveknows --branch main
+```
+
+### Optional: disable duplicate Cloudflare Git builds
+
+The Cloudflare GitHub App may still show failed checks on each push (`Cloudflare Pages`, `Workers Builds: portfolio`, `Workers Builds: steveknowsweb`). Those are from the old direct-git hook. In Cloudflare → Pages → `steveknows` → Settings, you can disconnect Git integration once Actions deploys are working — Actions becomes the only deploy path.
+
 ## Useful Tips
 
-- Every push to `main` triggers a production deployment
+- Every push to `main` triggers a production deployment (via GitHub Actions once `CLOUDFLARE_API_TOKEN` is set)
 - Every pull request automatically gets its own preview URL (e.g. `feature-new-hero.stevel4857.pages.dev`)
 - You can add a `wrangler.toml` later if you want more control, but it's not required
 
@@ -152,7 +181,7 @@ If you need to update or change the Formspree integration in the future:
 - **Netlify** — Also excellent, similar preview experience
 - **Vercel** — Overkill for a pure static site
 
-**Note:** GitHub Pages is currently **disabled** on the `portfolio` repository. The `https://stevel4857.github.io/portfolio` URL is not used and should be ignored.
+**Note:** GitHub Pages is also enabled on this repo and deploys successfully, but **production** is https://steveknowsweb.com (Cloudflare Pages project `steveknows`). The GitHub Pages URL (`https://stevel4857.github.io/portfolio`) is a fallback only.
 
 **Cloudflare Pages is the active deployment method** for this project. The live site is at https://steveknowsweb.com. An older version of the site remains at https://steveknowswebdesign.com but is no longer maintained.
 
