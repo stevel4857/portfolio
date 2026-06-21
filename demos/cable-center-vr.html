@@ -232,9 +232,9 @@
         return this.tmpVec.distanceToSquared(pos) < radius * radius;
       },
 
-      hitsAny(pos, radius, ignoreFloor) {
+      hitsAny(pos, radius) {
         for (const box of this.boxes) {
-          if (ignoreFloor && box.isFloor) continue;
+          if (box.isFloor) continue; // vertical floor clamp only, not a movement wall
           if (this.sphereHitsBox(pos, box, radius)) return true;
         }
         return false;
@@ -248,20 +248,20 @@
         }
 
         this.tmpVec.copy(from).add(move);
-        if (!this.hitsAny(this.tmpVec, radius, false)) return this.tmpVec;
+        if (!this.hitsAny(this.tmpVec, radius)) return this.tmpVec;
 
         this.tmpVec2.copy(from);
         this.tmpVec2.x += move.x;
-        if (!this.hitsAny(this.tmpVec2, radius, false)) return this.tmpVec2;
+        if (!this.hitsAny(this.tmpVec2, radius)) return this.tmpVec2;
 
         this.tmpVec2.copy(from);
         this.tmpVec2.z += move.z;
-        if (!this.hitsAny(this.tmpVec2, radius, false)) return this.tmpVec2;
+        if (!this.hitsAny(this.tmpVec2, radius)) return this.tmpVec2;
 
         if (allowVertical && move.y) {
           this.tmpVec2.copy(from);
           this.tmpVec2.y += move.y;
-          if (!this.hitsAny(this.tmpVec2, radius, false)) return this.tmpVec2;
+          if (!this.hitsAny(this.tmpVec2, radius)) return this.tmpVec2;
         }
 
         return from;
