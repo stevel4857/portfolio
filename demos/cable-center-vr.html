@@ -47,6 +47,8 @@
            background="color: #87CEEB">
 
     <a-assets>
+      <a-asset-item id="building" src="../assets/models/scene/scene.gltf"></a-asset-item>
+
       <img id="preview1" src="360assets/barcolibrary1.jpg" crossorigin="anonymous">
       <img id="preview2" src="360assets/office_preview.jpg" crossorigin="anonymous">
       <img id="preview3" src="360assets/barcolibrary1.jpg" crossorigin="anonymous">
@@ -133,7 +135,7 @@
       <a-light type="directional" color="#d0e8ff" intensity="0.35" position="-35 25 -40"></a-light>
 
       <a-entity id="model"
-                gltf-model="src: ../assets/models/scene/scene.gltf"
+                gltf-model="#building"
                 scale="1 1 1"
                 position="0 0 0"
                 rotation="0 180 0"
