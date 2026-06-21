@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A-Frame Room + GLB Model</title>
+    
+    <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-system@v4.2.3/dist/aframe-physics-system.min.js"></script>
+</head>
+<body>
+    <a-scene 
+        physics="debug: true; driver: local" 
+        background="color: #111122">
+        
+        <!-- Sky & Lights -->
+        <a-sky color="#112233"></a-sky>
+        <a-entity light="type: ambient; intensity: 0.7"></a-entity>
+        <a-entity light="type: directional; intensity: 0.8" position="5 10 5"></a-entity>
+        
+        <!-- Ground -->
+        <a-plane 
+            static-body="shape: box"
+            position="0 0 0" 
+            rotation="-90 0 0" 
+            width="50" height="50" 
+            color="#3A5F3A"
+            material="roughness: 0.9">
+        </a-plane>
+        
+        <!-- Textured Walls (from previous) -->
+        <a-plane position="0 5 -25" rotation="0 0 0" width="50" height="10"
+                 material="src: https://raw.githubusercontent.com/aframevr/assets/master/images/textures/brick.jpg; repeat: 4 2; roughness: 0.8"></a-plane>
+        <a-plane position="0 5 25" rotation="0 180 0" width="50" height="10"
+                 material="src: https://raw.githubusercontent.com/aframevr/assets/master/images/textures/brick.jpg; repeat: 4 2; roughness: 0.8"></a-plane>
+        <a-plane position="-25 5 0" rotation="0 90 0" width="50" height="10"
+                 material="src: https://raw.githubusercontent.com/aframevr/assets/master/images/textures/brick.jpg; repeat: 4 2; roughness: 0.8"></a-plane>
+        <a-plane position="25 5 0" rotation="0 -90 0" width="50" height="10"
+                 material="src: https://raw.githubusercontent.com/aframevr/assets/master/images/textures/brick.jpg; repeat: 4 2; roughness: 0.8"></a-plane>
+        
+        <!-- === GLB Model Example === -->
+        <a-entity 
+            gltf-model="src: https://raw.githubusercontent.com/aframevr/assets/master/models/fox.glb"
+            position="0 0.5 0"
+            scale="0.02 0.02 0.02"
+            animation="property: rotation; to: 0 360 0; loop: true; dur: 10000">
+        </a-entity>
+        
+        <!-- Test falling objects -->
+        <a-box dynamic-body="mass: 1; shape: box" position="2 8 0" width="1" height="1" depth="1" color="#FF5555"></a-box>
+        
+        <!-- Player -->
+        <a-entity position="0 1.6 12" wasd-controls="acceleration: 65" look-controls>
+            <a-camera></a-camera>
+        </a-entity>
+        
+        <!-- Instructions -->
+        <a-text value="GLB Model Loaded!\nWASD + Mouse\nR = Reset box\nCtrl+Alt+I = Inspector" 
+                position="0 3 -10" align="center" color="#CCCCCC" width="8"></a-text>
+        
+    </a-scene>
+    
+    <script>
+        document.addEventListener('keydown', (e) => {
+            if (e.key.toLowerCase() === 'r') {
+                const box = document.querySelector('a-box[dynamic-body]');
+                if (box) box.setAttribute('position', '2 8 0');
+            }
+        });
+    </script>
+</body>
+</html>

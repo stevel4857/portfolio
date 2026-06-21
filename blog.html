@@ -140,6 +140,7 @@
         
         // Initial render
         renderPosts(allPosts);
+        openPostFromHash();
       } catch (err) {
         console.error('Failed to load blog posts:', err);
         if (err instanceof SyntaxError && err.message.includes('JSON')) {
@@ -358,7 +359,19 @@
       modal.classList.remove('flex');
       modal.classList.add('hidden');
       document.body.style.overflow = '';
+      if (window.location.hash) {
+        history.replaceState(null, '', window.location.pathname + window.location.search);
+      }
     }
+
+    function openPostFromHash() {
+      const slug = window.location.hash.slice(1);
+      if (!slug) return;
+      const post = allPosts.find(p => p.slug === slug);
+      if (post) openPost(post.id);
+    }
+
+    window.addEventListener('hashchange', openPostFromHash);
 
     // Initialize everything
     loadPosts();

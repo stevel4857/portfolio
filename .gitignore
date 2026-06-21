@@ -11,3 +11,14 @@ assets/models/notes.txt
 assets/models/save/
 assets/models/scene/scene.zip
 assets/models/the_cable_center-20200220-_small/
+
+# Local-only videos not referenced by any HTML page (see scripts/linked-mp4-files.mjs)
+assets/LibraryShoot_browser.mp4
+assets/videos/
+demos/360assets/LibraryShoot.mp4
+demos/360assets/LibraryShoot_browser.mp4
+demos/360assets/LibraryShoot_browser_audio.mp4
+
+# Local dev screenshots and audit reports
+review-*.png
+lighthouse-reports/

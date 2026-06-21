@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A-Frame Ground with Mesh + Collider</title>
+    
+    <!-- A-Frame Core -->
+    <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+    
+    <!-- Physics System (c-frame version) -->
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-system@latest/dist/aframe-physics-system.min.js"></script>
+</head>
+<body>
+    <a-scene 
+        physics="debug: true; driver: local" 
+        background="color: #111122">
+        
+        <!-- Sky -->
+        <a-sky color="#112233" fog="type: linear; color: #112233; far: 100"></a-sky>
+        
+        <!-- Lighting -->
+        <a-entity light="type: ambient; intensity: 0.6"></a-entity>
+        <a-entity light="type: directional; intensity: 0.8; castShadow: true" 
+                  position="5 10 5"></a-entity>
+        
+        <!-- Ground: Visual Mesh + Static Collider -->
+        <a-plane 
+            id="ground"
+            static-body="shape: box"
+            position="0 0 0" 
+            rotation="-90 0 0" 
+            width="100" 
+            height="100" 
+            color="#3A5F3A"
+            material="roughness: 0.9; metalness: 0.1; src: https://raw.githubusercontent.com/aframevr/assets/master/images/textures/terrain/grasslight-big.jpg"
+            shadow="receive: true">
+        </a-plane>
+        
+        <!-- Optional: Add some ground details / obstacles -->
+        <a-box 
+            static-body="shape: box"
+            position="5 0.5 8" 
+            width="4" height="1" depth="4" 
+            color="#555555"
+            material="roughness: 0.8">
+        </a-box>
+        
+        <!-- Falling test object (dynamic body) -->
+        <a-box 
+            id="test-box"
+            dynamic-body="mass: 1; shape: box"
+            position="0 8 0" 
+            width="1" height="1" depth="1" 
+            color="#FF5555"
+            shadow="cast: true">
+        </a-box>
+        
+        <!-- Another test object -->
+        <a-sphere 
+            dynamic-body="mass: 0.5"
+            position="3 10 -2" 
+            radius="0.8" 
+            color="#55AAFF"
+            shadow="cast: true">
+        </a-sphere>
+        
+        <!-- Camera / Player Rig -->
+        <a-entity 
+            id="player"
+            position="0 1.6 10"
+            wasd-controls="acceleration: 65"
+            look-controls>
+            
+            <!-- Camera -->
+            <a-camera 
+                near="0.1" 
+                far="1000"
+                cursor="rayOrigin: mouse; fuse: false">
+            </a-camera>
+            
+            <!-- Simple hand controllers (for VR testing) -->
+            <a-entity hand-controls="hand: left; handModelStyle: lowPoly"></a-entity>
+            <a-entity hand-controls="hand: right; handModelStyle: lowPoly"></a-entity>
+        </a-entity>
+        
+        <!-- Floor grid helper (optional, for editing) -->
+        <a-entity position="0 0.01 0" 
+                  geometry="primitive: plane; width: 100; height: 100" 
+                  material="shader: flat; color: #222233; opacity: 0.3; wireframe: true">
+        </a-entity>
+        
+        <!-- Instructions Text -->
+        <a-text 
+            value="Press Ctrl+Alt+I to open Inspector\nWASD + Mouse to move\nPhysics enabled - watch objects fall!"
+            position="0 3 -8" 
+            rotation="0 0 0" 
+            align="center" 
+            color="#CCCCCC" 
+            width="6">
+        </a-text>
+        
+    </a-scene>
+    
+    <script>
+        // Optional: Simple script to reset the test box
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'r' || e.key === 'R') {
+                const box = document.getElementById('test-box');
+                if (box) {
+                    box.setAttribute('position', '0 8 0');
+                    box.setAttribute('rotation', '0 0 0');
+                    box.components['dynamic-body'].body.velocity.set(0,0,0);
+                    box.components['dynamic-body'].body.angularVelocity.set(0,0,0);
+                }
+            }
+        });
+        
+        console.log('%cA-Frame scene ready! Open Inspector with Ctrl+Alt+I (Win) or Ctrl+Option+I (Mac)', 'color: #0f0; font-weight: bold');
+    </script>
+</body>
+</html>

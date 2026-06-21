@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Three Floating 360° Spheres</title>
+    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+    <style>
+        body { margin: 0; overflow: hidden; background: #000; }
+        #ui {
+            position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
+            color: white; font-family: Arial, sans-serif; z-index: 100; text-align: center;
+            background: rgba(0,0,0,0.75); padding: 12px 20px; border-radius: 10px;
+        }
+        button {
+            padding: 10px 22px;
+            font-size: 18px;
+            cursor: pointer;
+            background: #ff3366;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            margin: 5px;
+        }
+        #esc-note {
+            position: absolute; top: 70px; left: 50%; transform: translateX(-50%);
+            color: #ffff99; background: rgba(0,0,0,0.6); padding: 8px 16px; border-radius: 6px;
+            display: none; font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+    <a-scene background="color: #111" loading-screen="enabled: false" 
+             cursor="rayOrigin: mouse" 
+             raycaster="objects: .clickable">
+
+        <a-assets>
+            <img id="preview1" src="barcolibrary1.jpg" crossorigin="anonymous">
+            <img id="preview2" src="office_preview.jpg" crossorigin="anonymous">
+            <img id="preview3" src="barcolibrary1.jpg" crossorigin="anonymous">
+
+            <video id="video1" src="LibraryShoot_final.mp4" crossorigin="anonymous" playsinline loop></video>
+            <video id="video2" src="VRVideooffice2019.mp4" crossorigin="anonymous" playsinline loop></video>
+            <video id="video3" src="LibraryShoot_final.mp4" crossorigin="anonymous" playsinline loop></video>
+        </a-assets>
+
+        <!-- Main Video Sphere -->
+        <a-videosphere id="main-video-sphere"
+                       radius="5000"
+                       segments-height="32"
+                       segments-width="64"
+                       visible="false"></a-videosphere>
+
+        <!-- Sphere 1 - Library (Left) -->
+        <a-entity id="sphere1"
+                  class="clickable"
+                  geometry="primitive: sphere; radius: 1.5; segmentsWidth: 64; segmentsHeight: 64"
+                  material="src: #preview1; side: double; shader: flat"
+                  position="9 0.5 -15"
+                  animation__float="property: position; from: 9 0.5 -15; to: -3.5 1.8 -7; dur: 3400; easing: easeOutCubic"
+                  animation="property: rotation; to: 0 360 0; dur: 18000; loop: true; easing: linear">
+        </a-entity>
+
+        <!-- Sphere 2 - Office (CENTER) -->
+        <a-entity id="sphere2"
+                  class="clickable"
+                  geometry="primitive: sphere; radius: 1.6; segmentsWidth: 64; segmentsHeight: 64"
+                  material="src: #preview2; side: double; shader: flat"
+                  position="11 0.6 -17"
+                  animation__float="property: position; from: 11 0.6 -17; to: 0 1.9 -6.5; dur: 3600; easing: easeOutCubic; delay: 300"
+                  animation="property: rotation; to: 0 360 0; dur: 19000; loop: true; easing: linear">
+        </a-entity>
+
+        <!-- Sphere 3 - Right -->
+        <a-entity id="sphere3"
+                  class="clickable"
+                  geometry="primitive: sphere; radius: 1.5; segmentsWidth: 64; segmentsHeight: 64"
+                  material="src: #preview3; side: double; shader: flat"
+                  position="8 0.4 -19"
+                  animation__float="property: position; from: 8 0.4 -19; to: 3.5 1.8 -7; dur: 4100; easing: easeOutCubic; delay: 800"
+                  animation="property: rotation; to: 0 360 0; dur: 17000; loop: true; easing: linear">
+        </a-entity>
+
+        <a-camera look-controls="reverseMouseDrag: true" wasd-controls></a-camera>
+    </a-scene>
+
+    <div id="ui">
+        <button id="restart-btn" style="display:none;">🔄 Restart Experience</button>
+        <button id="mute-btn" style="display:none;">🔊 Unmute</button>
+        <div id="status" style="margin-top: 10px;">Spheres floating toward you • Hover • Click to play</div>
+    </div>
+
+    <div id="esc-note">Press ESC to exit fullscreen</div>
+
+    <script>
+        const scene = document.querySelector('a-scene');
+        const mainVideoSphere = document.getElementById('main-video-sphere');
+        const status = document.getElementById('status');
+        const restartBtn = document.getElementById('restart-btn');
+        const muteBtn = document.getElementById('mute-btn');
+        const escNote = document.getElementById('esc-note');
+
+        scene.addEventListener('loaded', () => {
+            console.log('✅ Three spheres with Office in center ready');
+
+            function playVideo(videoId) {
+                document.getElementById('sphere1').setAttribute('visible', false);
+                document.getElementById('sphere2').setAttribute('visible', false);
+                document.getElementById('sphere3').setAttribute('visible', false);
+
+                mainVideoSphere.setAttribute('visible', true);
+                mainVideoSphere.setAttribute('src', videoId);
+
+                const video = document.querySelector(videoId);
+                video.play().then(() => {
+                    status.innerHTML = '🎥 Playing 360° Video<br>Drag mouse to look around';
+                    
+                    if (scene.requestFullscreen) scene.requestFullscreen();
+                    else if (scene.webkitRequestFullscreen) scene.webkitRequestFullscreen();
+
+                    restartBtn.style.display = 'inline-block';
+                    muteBtn.style.display = 'inline-block';
+                    escNote.style.display = 'block';
+                }).catch(err => console.error(err));
+            }
+
+            document.getElementById('sphere1').addEventListener('click', () => playVideo('#video1'));
+            document.getElementById('sphere2').addEventListener('click', () => playVideo('#video2'));
+            document.getElementById('sphere3').addEventListener('click', () => playVideo('#video3'));
+
+            // Hover effects
+            ['sphere1', 'sphere2', 'sphere3'].forEach(id => {
+                const sphere = document.getElementById(id);
+                sphere.addEventListener('mouseenter', () => {
+                    sphere.setAttribute('animation__hover', { property: 'scale', to: '1.35 1.35 1.35', dur: 250 });
+                });
+                sphere.addEventListener('mouseleave', () => {
+                    sphere.setAttribute('animation__hover', { property: 'scale', to: '1 1 1', dur: 250 });
+                });
+            });
+
+            muteBtn.addEventListener('click', () => {
+                const activeSrc = mainVideoSphere.getAttribute('src');
+                const video = document.querySelector(activeSrc);
+                if (video) {
+                    video.muted = !video.muted;
+                    muteBtn.textContent = video.muted ? '🔊 Unmute' : '🔇 Mute';
+                }
+            });
+
+            restartBtn.addEventListener('click', () => location.reload());
+        });
+    </script>
+</body>
+</html>

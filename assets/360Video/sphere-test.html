@@ -1,0 +1,141 @@
+<html>
+<head>
+<meta name="apple-mobile-web-app-capable" />
+<style>
+html, body {
+height: 100%;
+overflow: hidden;
+}
+
+body{ background:black; padding:0; margin:0}
+</style>
+
+<meta name="description" content="Cable Center PhotoSpheres">
+<script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+<script src="js/aframe-event-set-component.min.js"></script> 
+
+<!--- Script below fixes png transparency issues --->
+<script>
+AFRAME.registerComponent('alpha-test', {
+  dependencies: ['material'],
+
+  init: function () {
+    var material = this.el.getObject3D('mesh').material;
+    material.alphaTest = 0.5;
+    material.needsUpdate = true;
+  }
+});
+</script>
+
+
+</head>
+<body>
+<a-scene keyboard-shortcuts antialias='true' fog="type: exponential; color: #000; density: .10; near: 0; far: 20">
+
+<a-assets>
+ <img id="ground" src="img/map.png">
+<video id="SphereVideo" autoplay="true" loop="true" src="../LibraryShoot.mp4" webkit-playinline />
+</a-assets>
+
+<!--- Set Camera location --->
+
+<a-camera id="mycamera" position="-1 0 7" look-controls wasd-controls>
+<a-cursor fuse="true" max-distance="30" timeout="500" color="white"></a-cursor>
+</a-camera> 
+
+<!--- End camera setup --->
+
+<a-image id="logo" src="img/cablecenter_logo.png" position="-2 14 0" height=".5" width="2" scale="10 10 10" alpha-test>
+</a-image>
+
+<!--- This sets the lights --->
+
+<a-light type="ambient" color="#fff"></a-light>
+<a-light type="hemisphere" groundColor="#ddd;" color="#fff" intensity="1.0" position="0 10 5" ></a-light>
+
+<!--- End setting lights --->
+
+<!--- This sets the environment 360 image - TCC outdoors --->
+
+   <a-entity 
+            geometry="primitive:sphere;radius:1000;segmentsWidth:64;segmentsHeight:64"
+            material="shader:flat;color:#ffffff;fog:false; src:#SphereVideo;"
+            scale="-1 1 1"
+            rotation="0 -60 0" id="photosphere">
+  </a-entity>
+
+<!--- End huge 360 image --->
+
+<!--- Great hall photosphere --->
+
+  <a-entity 
+            geometry="primitive:sphere;radius:10;segmentsWidth:64;segmentsHeight:64"
+            material="shader:flat;color:#ffffff;fog:false; src:../LibraryShoot.mp4; "
+            scale="-1 1 1"
+            rotation="0 -60 0" position="0 0 -20" id="photosphere">
+  </a-entity>
+
+<!--- End great hall photosphere --->
+
+
+  <a-entity 
+            geometry="primitive:sphere;radius:10;segmentsWidth:64;segmentsHeight:64"
+            material="shader:flat;color:#ffffff;fog:false; src:img/malone-theater.jpg"
+            scale="-1 1 1"
+            rotation="0 -60 0" position="-30 0 -15" id="photosphere"
+		  event-set__1="_event: click; _target: #mycamera; position: -30 0 -12;">
+  </a-entity>
+
+<a-box color="#9d8752" width="1" height="0.4" depth="0.01" metalness: 0.75" position="-30 1 -15" rotation="0 0 0"
+		event-set__1="_event: click; _target: #mycamera; position: 0 0 0;">
+		<a-text position="0.020 0.0 0.01" color="#000" align="center" value="Exit" width="3.5"></a-text>
+		</a-box>
+
+				<!--- Barco Library bubble --->
+
+  <a-entity 
+            geometry="primitive:sphere;radius:10;segmentsWidth:64;segmentsHeight:64"
+            material="shader:flat;color:#ffffff;fog:false; src:img/barcolibrary1.jpg"
+            scale="-1 1 1"
+            rotation="0 0 0" position="35 0 -5" id="barcolibrary"
+		  event-set__1="_event: click; _target: #mycamera; position: 35 0 -8;">
+
+<a-text id="barcoTxt" position="0 8 0" color="#fff" align="center" value="The Barco Library" width="2" visible="false"></a-text>
+</a-entity>
+
+	<a-text position="0 -1 3" color="#000" align="center" value="WASD Keys move you on desktop.\nstep inside!"></a-text>
+				
+				<!--- Archives bubble that goes to lower level --->
+
+<a-entity id="archives1"
+            geometry="primitive:sphere;radius:10;segmentsWidth:64;segmentsHeight:64"
+            material="shader:flat;color:#ffffff;fog:false; src:img/archives1.jpg"
+            scale="-1 1 1"
+            rotation="0 60 0" position="30 0 45"
+		  event-set__1="_event: mouseenter; _target: #archiveTxt; visible: true;"
+		  event-set__2="_event: mouseleave; _target: #archiveTxt; visible: false;">
+			<a-text id="archiveTxt" position="-1 -15 0"  rotation="0 0 0" color="#000" align="center" value="The Equipment Archives" width="4" scale="15 15 15" visible="false"></a-text>
+</a-entity>
+
+				<!--- Great Hall bubble --->
+
+
+<a-entity 
+            geometry="primitive:sphere;radius:10;segmentsWidth:64;segmentsHeight:64"
+            material="shader:flat;color:#ffffff;fog:false; src:#SphereVideo"
+            scale="-1 1 1"
+            rotation="0 -60 0" position="0 0 -20" id="photosphere">
+
+<a-image id="map1" src="img/map.png" position="0 14 0" rotation="0 -60 0" height="1" width=".5" scale="6 6 6"
+event-set__1="_event: click; _target: #mycamera; position: 0 0 -18;"
+event-set__2="_event: click; _target: #secondfloor1; visible: true;">
+</a-image>
+  </a-entity>
+
+
+
+ <a-sky color="#fff"></a-sky>
+</a-scene>
+
+</body>
+</html>

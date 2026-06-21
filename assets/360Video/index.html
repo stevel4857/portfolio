@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>LibraryShoot 360° Video with Audio</title>
+    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+    <style>
+        body { margin: 0; overflow: hidden; background: #000; }
+        #ui {
+            position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
+            color: white; font-family: Arial, sans-serif; z-index: 100; text-align: center;
+            background: rgba(0,0,0,0.8); padding: 15px 25px; border-radius: 10px; max-width: 90%;
+        }
+        button { 
+            padding: 12px 30px; 
+            font-size: 20px; 
+            cursor: pointer; 
+            background: #ff3366; 
+            color: white; 
+            border: none; 
+            border-radius: 8px; 
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <a-scene background="color: #111" loading-screen="enabled: false">
+
+        <a-assets>
+            <img id="preview-img" src="barcolibrary1.jpg" crossorigin="anonymous">
+            <video id="video-360" 
+                   src="../LibraryShoot_browser_audio.mp4" 
+                   crossorigin="anonymous"
+                   playsinline 
+                   loop></video>
+        </a-assets>
+
+        <a-sky id="preview-sky" src="#preview-img" visible="true"></a-sky>
+        <a-videosphere id="video-sphere" src="#video-360" radius="5000" segments-height="32" segments-width="64" visible="false"></a-videosphere>
+
+        <a-camera look-controls="reverseMouseDrag: true" wasd-controls></a-camera>
+    </a-scene>
+
+    <div id="ui">
+        <button id="play-btn">▶ Play 360° Video</button>
+        <button id="unmute-btn" style="display:none;">🔊 Unmute</button>
+        <div id="status" style="margin-top: 12px;">Loading preview...</div>
+    </div>
+
+    <script>
+        const scene = document.querySelector('a-scene');
+        const previewSky = document.getElementById('preview-sky');
+        const videoSphere = document.getElementById('video-sphere');
+        const video = document.getElementById('video-360');
+        const status = document.getElementById('status');
+        const playBtn = document.getElementById('play-btn');
+        const unmuteBtn = document.getElementById('unmute-btn');
+
+        scene.addEventListener('loaded', () => {
+            console.log('✅ A-Frame ready');
+
+            const playVideo = () => {
+                status.textContent = 'Starting video...';
+                video.play().then(() => {
+                    previewSky.setAttribute('visible', false);
+                    videoSphere.setAttribute('visible', true);
+                    status.innerHTML = '🎥 Playing with Audio<br>Drag mouse to look around';
+                    playBtn.style.display = 'none';
+                    unmuteBtn.style.display = 'inline-block';
+                }).catch(err => {
+                    status.textContent = 'Play error: ' + err.message;
+                });
+            };
+
+            playBtn.addEventListener('click', playVideo);
+            scene.addEventListener('click', playVideo);
+
+            // Unmute button
+            unmuteBtn.addEventListener('click', () => {
+                video.muted = false;
+                unmuteBtn.textContent = '🔊 Audio On';
+            });
+        });
+
+        video.addEventListener('loadedmetadata', () => {
+            status.innerHTML = '✅ Video ready! Click Play';
+        });
+
+        video.addEventListener('error', () => {
+            status.innerHTML = '❌ Video load error - check console (F12)';
+        });
+    </script>
+</body>
+</html>

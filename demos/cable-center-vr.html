@@ -1,149 +1,180 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <title>The Cable Center - VR Walkthrough</title>
   <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-system@v4.2.2/dist/aframe-physics-system.min.js"></script>
   <script src="https://unpkg.com/aframe-environment-component@1.5.x/dist/aframe-environment-component.min.js"></script>
-</head>
-
   <style>
     body { margin: 0; font-family: system-ui, sans-serif; background: #000; color: #fff; overflow: hidden; }
-    .top-bar {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(0,0,0,0.75); padding: 8px 16px; font-size: 13px;
-      display: flex; align-items: center; gap: 12px;
-    }
+    .top-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(0,0,0,0.75); padding: 8px 16px; font-size: 13px; display: flex; align-items: center; gap: 12px; }
     .top-bar a { color: #67e8f9; text-decoration: none; }
-    .instructions {
-      position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%);
-      background: rgba(0,0,0,0.65); padding: 6px 14px; border-radius: 4px;
-      font-size: 13px; z-index: 100; pointer-events: none;
+    .instructions { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.65); padding: 6px 14px; border-radius: 4px; font-size: 13px; z-index: 100; pointer-events: none; }
+    .status { position: fixed; top: 50px; left: 16px; background: rgba(0,0,0,0.6); padding: 4px 8px; border-radius: 3px; font-size: 12px; z-index: 100; }
+    #ui {
+      position: absolute; top: 80px; left: 50%; transform: translateX(-50%);
+      color: white; font-family: Arial, sans-serif; z-index: 100; text-align: center;
+      background: rgba(0,0,0,0.75); padding: 12px 20px; border-radius: 10px;
+      display: none;
     }
-    .status {
-      position: fixed; top: 50px; left: 16px; background: rgba(0,0,0,0.6);
-      padding: 4px 8px; border-radius: 3px; font-size: 12px; z-index: 100;
+    #ui button {
+      padding: 10px 22px; font-size: 16px; cursor: pointer;
+      background: #ff3366; color: white; border: none; border-radius: 8px; margin: 5px;
     }
   </style>
 </head>
 <body>
+
   <div class="top-bar">
     <a href="../index.html">← Back to site</a>
     <span style="opacity:0.7;">|</span>
     <span>The Old Syndeo Institute/Cable Center - VR Walkthrough</span>
   </div>
-
-  <div class="instructions" id="instructions">Click inside the 3D view first • WASD or arrow keys to fly (look up/down to change altitude) • In VR: left stick move, right stick up/down • Enter VR bottom-right</div>
-
+  <div class="instructions" id="instructions">Click inside the 3D view first • WASD or arrow keys to fly • Click a floating sphere to play 360° video • ESC to exit video</div>
   <div class="status" id="status">Loading glTF 2.0 Cable Center model…</div>
 
-  <a-scene shadow="type: pcfsoft" renderer="antialias: true; colorManagement: true" physics="driver: cannon; gravity: 0; debug: false">
+  <div id="ui">
+    <button id="mute-btn">🔇 Mute</button>
+    <button id="restart-btn">🔄 Restart</button>
+  </div>
+
+  <a-scene id="main-scene"
+           loading-screen="enabled: false"
+           cursor="rayOrigin: mouse"
+           raycaster="objects: .clickable"
+           shadow="type: pcfsoft"
+           renderer="antialias: true; colorManagement: true"
+           background="color: #87CEEB">
+
     <a-assets>
-      <!-- Your glTF file (dropped in assets/models/) -->
       <a-asset-item id="building" src="../assets/models/scene/scene.gltf"></a-asset-item>
+
+      <img id="preview1" src="360assets/barcolibrary1.jpg" crossorigin="anonymous">
+      <img id="preview2" src="360assets/office_preview.jpg" crossorigin="anonymous">
+      <img id="preview3" src="360assets/barcolibrary1.jpg" crossorigin="anonymous">
+
+      <video id="video1" src="360assets/LibraryShoot_final.mp4" crossorigin="anonymous" playsinline loop></video>
+      <video id="video2" src="360assets/VRVideooffice2019.mp4" crossorigin="anonymous" playsinline loop></video>
+      <video id="video3" src="360assets/LibraryShoot_final.mp4" crossorigin="anonymous" playsinline loop></video>
     </a-assets>
 
-    <!-- Simple environment -->
-    <a-sky color="#87CEEB"></a-sky>
-     
+    <!-- GLTF walkthrough content (hidden during 360 video playback) -->
+    <!-- No a-sky here: a-sky and a-videosphere are both inner-facing spheres and fight for
+         render order — the sky paints over the top of the 360 video. Use scene background instead. -->
+    <a-entity id="main-scene-wrapper">
 
-    <!-- Moving clouds (same as demos/3d-aframe-experience.html) -->
-    <a-entity id="clouds" animation="property: rotation; to: 0 360 0; loop: true; dur: 300000; easing: linear">
-      <a-entity position="20 22 -35" rotation="0 15 0">
-        <a-sphere position="0 0 0" radius="6" color="#FFFFFF" opacity="0.8"></a-sphere>
-        <a-sphere position="-4 1 2" radius="5" color="#FFFFFF" opacity="0.75"></a-sphere>
-        <a-sphere position="4 -0.5 1" radius="5.5" color="#FFFFFF" opacity="0.78"></a-sphere>
-        <a-sphere position="2 1.5 -2" radius="4.5" color="#FFFFFF" opacity="0.7"></a-sphere>
-        <a-sphere position="-2 0.5 -1" radius="4" color="#F5F5F5" opacity="0.72"></a-sphere>
+      <a-entity id="environment" environment="preset: forest; dressingAmount: 150; skyType: color; skyColor: #87CEEB"></a-entity>
+
+      <!-- Each cluster drifts on its own — same spheres as before, no extra assets -->
+      <a-entity id="clouds">
+        <a-entity position="20 22 -35" rotation="0 15 0"
+                  animation__drift="property: position; from: 20 22 -35; to: 27 23 -28; dur: 14000; dir: alternate; loop: true; easing: easeInOutSine"
+                  animation__tilt="property: rotation; from: 0 15 0; to: 2 20 3; dur: 18000; dir: alternate; loop: true; easing: easeInOutSine">
+          <a-sphere position="0 0 0" radius="6" color="#FFFFFF" opacity="0.72"></a-sphere>
+          <a-sphere position="-4 1 2" radius="5" color="#FFFFFF" opacity="0.66"></a-sphere>
+          <a-sphere position="4 -0.5 1" radius="5.5" color="#FFFFFF" opacity="0.68"></a-sphere>
+          <a-sphere position="2 1.5 -2" radius="4.5" color="#FFFFFF" opacity="0.62"></a-sphere>
+          <a-sphere position="-2 0.5 -1" radius="4" color="#F5F5F5" opacity="0.64"></a-sphere>
+        </a-entity>
+        <a-entity position="-30 28 -55" rotation="0 -25 0"
+                  animation__drift="property: position; from: -30 28 -55; to: -22 29.5 -48; dur: 20000; dir: alternate; loop: true; easing: easeInOutSine; delay: 2000"
+                  animation__tilt="property: rotation; from: 0 -25 0; to: -3 -18 2; dur: 23000; dir: alternate; loop: true; easing: easeInOutSine">
+          <a-sphere position="0 0 0" radius="8" color="#FFFFFF" opacity="0.58"></a-sphere>
+          <a-sphere position="-5 2 3" radius="7" color="#FFFFFF" opacity="0.52"></a-sphere>
+          <a-sphere position="5 -1 2" radius="7.5" color="#FFFFFF" opacity="0.55"></a-sphere>
+          <a-sphere position="3 2 -3" radius="6" color="#F8F8F8" opacity="0.5"></a-sphere>
+        </a-entity>
+        <a-entity position="45 25 15" rotation="0 40 0"
+                  animation__drift="property: position; from: 45 25 15; to: 52 26.2 22; dur: 16000; dir: alternate; loop: true; easing: easeInOutSine; delay: 1000"
+                  animation__tilt="property: rotation; from: 0 40 0; to: 1 48 -2; dur: 19000; dir: alternate; loop: true; easing: easeInOutSine">
+          <a-sphere position="0 0 0" radius="7" color="#FFFFFF" opacity="0.66"></a-sphere>
+          <a-sphere position="-4.5 1.5 2.5" radius="6" color="#FFFFFF" opacity="0.6"></a-sphere>
+          <a-sphere position="4.5 -0.5 1.5" radius="6.5" color="#FFFFFF" opacity="0.63"></a-sphere>
+          <a-sphere position="2 2 -2" radius="5.5" color="#F5F5F5" opacity="0.58"></a-sphere>
+        </a-entity>
+        <a-entity position="-50 32 45" rotation="0 -35 0"
+                  animation__drift="property: position; from: -50 32 45; to: -41 33.5 52; dur: 22000; dir: alternate; loop: true; easing: easeInOutSine; delay: 3000"
+                  animation__tilt="property: rotation; from: 0 -35 0; to: -2 -28 1; dur: 25000; dir: alternate; loop: true; easing: easeInOutSine">
+          <a-sphere position="0 0 0" radius="9" color="#FFFFFF" opacity="0.48"></a-sphere>
+          <a-sphere position="-6 2.5 4" radius="8" color="#FFFFFF" opacity="0.44"></a-sphere>
+          <a-sphere position="6 -1 3" radius="8.5" color="#FAFAFA" opacity="0.46"></a-sphere>
+          <a-sphere position="3 2.5 -3" radius="7" color="#F8F8F8" opacity="0.42"></a-sphere>
+        </a-entity>
+        <a-entity position="5 30 -70" rotation="0 10 0"
+                  animation__drift="property: position; from: 5 30 -70; to: 14 31.2 -63; dur: 20000; dir: alternate; loop: true; easing: easeInOutSine; delay: 1500"
+                  animation__tilt="property: rotation; from: 0 10 0; to: 2 16 -1; dur: 24000; dir: alternate; loop: true; easing: easeInOutSine">
+          <a-sphere position="0 0 0" radius="10" color="#FFFFFF" opacity="0.52"></a-sphere>
+          <a-sphere position="-6 2 4" radius="8.5" color="#FFFFFF" opacity="0.48"></a-sphere>
+          <a-sphere position="6 -1.5 3" radius="9" color="#FFFFFF" opacity="0.5"></a-sphere>
+          <a-sphere position="3 2 -3.5" radius="7.5" color="#FAFAFA" opacity="0.46"></a-sphere>
+        </a-entity>
+        <a-entity position="-15 20 -20" rotation="0 20 0"
+                  animation__drift="property: position; from: -15 20 -20; to: -8 21.2 -14; dur: 11000; dir: alternate; loop: true; easing: easeInOutSine; delay: 500"
+                  animation__tilt="property: rotation; from: 0 20 0; to: 1 26 2; dur: 14000; dir: alternate; loop: true; easing: easeInOutSine">
+          <a-sphere position="0 0 0" radius="3.5" color="#FFFFFF" opacity="0.7"></a-sphere>
+          <a-sphere position="-2 0.5 1" radius="3" color="#FFFFFF" opacity="0.64"></a-sphere>
+          <a-sphere position="2 0.3 0.5" radius="3.2" color="#F8F8F8" opacity="0.68"></a-sphere>
+        </a-entity>
+        <a-entity position="35 24 -10" rotation="0 -15 0"
+                  animation__drift="property: position; from: 35 24 -10; to: 42 25 -3; dur: 13000; dir: alternate; loop: true; easing: easeInOutSine; delay: 2500"
+                  animation__tilt="property: rotation; from: 0 -15 0; to: -1 -8 1; dur: 16000; dir: alternate; loop: true; easing: easeInOutSine">
+          <a-sphere position="0 0 0" radius="4" color="#FFFFFF" opacity="0.62"></a-sphere>
+          <a-sphere position="-2.5 1 1.5" radius="3.5" color="#FFFFFF" opacity="0.56"></a-sphere>
+          <a-sphere position="2.5 0.5 1" radius="3.8" color="#FAFAFA" opacity="0.6"></a-sphere>
+        </a-entity>
       </a-entity>
-      <a-entity position="-30 28 -55" rotation="0 -25 0">
-        <a-sphere position="0 0 0" radius="8" color="#FFFFFF" opacity="0.65"></a-sphere>
-        <a-sphere position="-5 2 3" radius="7" color="#FFFFFF" opacity="0.6"></a-sphere>
-        <a-sphere position="5 -1 2" radius="7.5" color="#FFFFFF" opacity="0.63"></a-sphere>
-        <a-sphere position="3 2 -3" radius="6" color="#F8F8F8" opacity="0.58"></a-sphere>
-      </a-entity>
-      <a-entity position="45 25 15" rotation="0 40 0">
-        <a-sphere position="0 0 0" radius="7" color="#FFFFFF" opacity="0.75"></a-sphere>
-        <a-sphere position="-4.5 1.5 2.5" radius="6" color="#FFFFFF" opacity="0.7"></a-sphere>
-        <a-sphere position="4.5 -0.5 1.5" radius="6.5" color="#FFFFFF" opacity="0.73"></a-sphere>
-        <a-sphere position="2 2 -2" radius="5.5" color="#F5F5F5" opacity="0.68"></a-sphere>
-      </a-entity>
-      <a-entity position="-50 32 45" rotation="0 -35 0">
-        <a-sphere position="0 0 0" radius="9" color="#FFFFFF" opacity="0.55"></a-sphere>
-        <a-sphere position="-6 2.5 4" radius="8" color="#FFFFFF" opacity="0.5"></a-sphere>
-        <a-sphere position="6 -1 3" radius="8.5" color="#FAFAFA" opacity="0.53"></a-sphere>
-        <a-sphere position="3 2.5 -3" radius="7" color="#F8F8F8" opacity="0.48"></a-sphere>
-      </a-entity>
-      <a-entity position="5 30 -70" rotation="0 10 0">
-        <a-sphere position="0 0 0" radius="10" color="#FFFFFF" opacity="0.6"></a-sphere>
-        <a-sphere position="-6 2 4" radius="8.5" color="#FFFFFF" opacity="0.55"></a-sphere>
-        <a-sphere position="6 -1.5 3" radius="9" color="#FFFFFF" opacity="0.58"></a-sphere>
-        <a-sphere position="3 2 -3.5" radius="7.5" color="#FAFAFA" opacity="0.52"></a-sphere>
-      </a-entity>
-      <a-entity position="-15 20 -20" rotation="0 20 0">
-        <a-sphere position="0 0 0" radius="3.5" color="#FFFFFF" opacity="0.8"></a-sphere>
-        <a-sphere position="-2 0.5 1" radius="3" color="#FFFFFF" opacity="0.75"></a-sphere>
-        <a-sphere position="2 0.3 0.5" radius="3.2" color="#F8F8F8" opacity="0.78"></a-sphere>
-      </a-entity>
-      <a-entity position="35 24 -10" rotation="0 -15 0">
-        <a-sphere position="0 0 0" radius="4" color="#FFFFFF" opacity="0.7"></a-sphere>
-        <a-sphere position="-2.5 1 1.5" radius="3.5" color="#FFFFFF" opacity="0.65"></a-sphere>
-        <a-sphere position="2.5 0.5 1" radius="3.8" color="#FAFAFA" opacity="0.68"></a-sphere>
-      </a-entity>
+
+      <a-light type="ambient" color="#c8d8f0" intensity="0.3"></a-light>
+      <a-light type="hemisphere" color="#b8d4f0" groundColor="#8b7355" intensity="0.45"></a-light>
+      <a-light type="directional" color="#fff4e0" intensity="1.35" position="45 70 55"
+               castShadow="true" shadow-map-width="2048" shadow-map-height="2048"
+               shadow-camera-top="40" shadow-camera-bottom="-2"
+               shadow-camera-left="-50" shadow-camera-right="50"
+               shadow-camera-near="0.5" shadow-camera-far="200" shadow-bias="-0.0008"></a-light>
+      <a-light type="directional" color="#d0e8ff" intensity="0.35" position="-35 25 -40"></a-light>
+
+      <a-entity id="model" gltf-model="#building" scale="1 1 1" position="0 0 0" rotation="0 180 0" shadow="cast: true; receive: true"></a-entity>
+
+      <a-entity id="sphere1" class="clickable"
+                geometry="primitive: sphere; radius: 0.75; segmentsWidth: 64; segmentsHeight: 64"
+                material="src: #preview1; side: double; shader: flat"
+                position="9 0.5 -15"
+                animation__float="property: position; from: 9 0.5 -15; to: -3.5 1.8 -3; dur: 3400; easing: easeOutCubic"
+                animation="property: rotation; to: 0 360 0; dur: 18000; loop: true; easing: linear"
+                shadow="cast: true; receive: true"></a-entity>
+
+      <a-entity id="sphere2" class="clickable"
+                geometry="primitive: sphere; radius: 0.8; segmentsWidth: 64; segmentsHeight: 64"
+                material="src: #preview2; side: double; shader: flat"
+                position="11 0.6 -17"
+                animation__float="property: position; from: 11 0.6 -17; to: 0 1.9 -3.5; dur: 3600; easing: easeOutCubic; delay: 300"
+                animation="property: rotation; to: 0 360 0; dur: 19000; loop: true; easing: linear"
+                shadow="cast: true; receive: true"></a-entity>
+
+      <a-entity id="sphere3" class="clickable"
+                geometry="primitive: sphere; radius: 0.75; segmentsWidth: 64; segmentsHeight: 64"
+                material="src: #preview3; side: double; shader: flat"
+                position="8 0.4 -19"
+                animation__float="property: position; from: 8 0.4 -19; to: 3.5 1.8 -3; dur: 4100; easing: easeOutCubic; delay: 800"
+                animation="property: rotation; to: 0 360 0; dur: 17000; loop: true; easing: linear"
+                shadow="cast: true; receive: true"></a-entity>
+
     </a-entity>
 
-        <a-entity environment="preset: forest; dressingAmount: 150"></a-entity>
+    <!-- Scene-level video sphere: must NOT be a camera child or it rotates with look-controls and drag appears broken -->
+    <a-videosphere id="main-video-sphere"
+                   radius="5000"
+                   segments-height="64"
+                   segments-width="128"
+                   visible="false"
+                   material="shader: flat; side: back; depthWrite: false; depthTest: false; fog: false; toneMapped: false"></a-videosphere>
 
-    <!-- Static physics floor (box collider, top surface at y = 0) -->
-    <a-box id="ground"
-           static-body="shape: box"
-           position="0 -0.05 0"
-           width="200"
-           height="0.1"
-           depth="200"
-           visible="false">
-    </a-box>
-    <a-plane position="0 0 0" rotation="-90 0 0" width="200" height="200" color="#666666" material="roughness: 0.95" shadow="receive: true" visible="false"></a-plane>
-
-    <!-- Outdoor lighting: low ambient + strong sun so PBR materials show depth and highlights -->
-    <a-light type="ambient" color="#c8d8f0" intensity="0.3"></a-light>
-    <a-light type="hemisphere" color="#b8d4f0" groundColor="#8b7355" intensity="0.45"></a-light>
-    <a-light type="directional"
-             color="#fff4e0"
-             intensity="1.35"
-             position="45 70 55"
-             castShadow="true"
-             shadow-map-width="2048"
-             shadow-map-height="2048"
-             shadow-camera-top="40"
-             shadow-camera-bottom="-2"
-             shadow-camera-left="-50"
-             shadow-camera-right="50"
-             shadow-camera-near="0.5"
-             shadow-camera-far="200"
-             shadow-bias="-0.0008"></a-light>
-    <!-- Soft fill from the opposite side — keeps shadowed facades readable -->
-    <a-light type="directional" color="#d0e8ff" intensity="0.35" position="-35 25 -40"></a-light>
-
-  <a-entity id="model"
-              gltf-model="#building"
-              scale="1 1 1"
-              position="0 0 0"
-              rotation="0 180 0"
-              shadow="cast: true; receive: true"
-              visible="true">
-    </a-entity> 
-
-
-    <!-- Single camera entity: desktop WASD + VR thumbsticks via player-locomotion -->
     <a-entity id="player"
               camera
-              look-controls
+              look-controls="reverseMouseDrag: true; pointerLockEnabled: false"
               player-locomotion="fly: true; speed: 8; minHeight: 0.99"
-              position="-20 .70 28"
-		rotation="0 0.199 0">
-      <a-cursor color="#ffffff" opacity="0.7"></a-cursor>
+              position="-20 1.6 28">
+      <a-cursor id="player-cursor" raycaster="objects: .clickable" color="#ffffff" opacity="0.7"></a-cursor>
     </a-entity>
   </a-scene>
 
@@ -162,7 +193,6 @@
         this.move = new THREE.Vector3();
         this.up = new THREE.Vector3(0, 1, 0);
         this.active = false;
-
         this.moveKeys = new Set([
           'KeyW', 'KeyA', 'KeyS', 'KeyD',
           'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'
@@ -173,9 +203,7 @@
           this.keys[e.code] = true;
           e.preventDefault();
         };
-        this.onKeyUp = (e) => {
-          this.keys[e.code] = false;
-        };
+        this.onKeyUp = (e) => { this.keys[e.code] = false; };
 
         window.addEventListener('keydown', this.onKeyDown);
         window.addEventListener('keyup', this.onKeyUp);
@@ -232,17 +260,11 @@
         this.move.addScaledVector(this.right, strafeAmt * this.data.speed * dt);
         if (this.data.fly) this.move.y += verticalAmt * this.data.speed * dt;
         obj.position.add(this.move);
-        this.clampHeight(obj);
-      },
-      clampHeight: function (obj) {
-        if (obj.position.y < this.data.minHeight) {
-          obj.position.y = this.data.minHeight;
-        }
+        if (obj.position.y < this.data.minHeight) obj.position.y = this.data.minHeight;
       },
       tick: function (time, delta) {
         const scene = this.el.sceneEl;
         if (!scene) return;
-
         const dt = Math.min(delta, 50) / 1000;
 
         if (scene.is('vr-mode')) {
@@ -267,13 +289,74 @@
         if (s) forwardAmt += 1;
         if (a) strafeAmt -= 1;
         if (d) strafeAmt += 1;
-
         this.applyMove(forwardAmt, strafeAmt, 0, dt);
       }
     });
 
     const statusEl = document.getElementById('status');
-    const model = document.querySelector('#model');
+    const model = document.getElementById('model');
+    const player = document.getElementById('player');
+    const mainWrapper = document.getElementById('main-scene-wrapper');
+    const videoSphere = document.getElementById('main-video-sphere');
+    const sceneEl = document.getElementById('main-scene');
+    const ui = document.getElementById('ui');
+    const muteBtn = document.getElementById('mute-btn');
+    const restartBtn = document.getElementById('restart-btn');
+    const playerCursor = document.getElementById('player-cursor');
+
+    let sceneFog = null;
+    let activeVideoId = null;
+    let initialPlayerPosition = null;
+    let initialPlayerRotation = null;
+    const walkthroughIds = ['model', 'environment', 'clouds', 'sphere1', 'sphere2', 'sphere3'];
+    const WALKTHROUGH_BG = 'color: #87CEEB';
+    const VIDEO_BG = 'color: #000000';
+    const sphereConfigs = {
+      sphere1: {
+        position: '9 0.5 -15',
+        float: 'property: position; from: 9 0.5 -15; to: -3.5 1.8 -3; dur: 3400; easing: easeOutCubic',
+        spin: 'property: rotation; to: 0 360 0; dur: 18000; loop: true; easing: linear'
+      },
+      sphere2: {
+        position: '11 0.6 -17',
+        float: 'property: position; from: 11 0.6 -17; to: 0 1.9 -3.5; dur: 3600; easing: easeOutCubic; delay: 300',
+        spin: 'property: rotation; to: 0 360 0; dur: 19000; loop: true; easing: linear'
+      },
+      sphere3: {
+        position: '8 0.4 -19',
+        float: 'property: position; from: 8 0.4 -19; to: 3.5 1.8 -3; dur: 4100; easing: easeOutCubic; delay: 800',
+        spin: 'property: rotation; to: 0 360 0; dur: 17000; loop: true; easing: linear'
+      }
+    };
+
+    function setWalkthroughVisible(visible) {
+      mainWrapper.setAttribute('visible', visible);
+      walkthroughIds.forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) el.setAttribute('visible', visible);
+      });
+      mainWrapper.querySelectorAll('a-light').forEach((el) => el.setAttribute('visible', visible));
+    }
+
+    function setVideoLookMode(enabled) {
+      if (enabled) {
+        sceneEl.removeAttribute('cursor');
+        sceneEl.setAttribute('raycaster', 'objects: .none');
+        playerCursor.setAttribute('visible', false);
+        player.setAttribute('look-controls', 'reverseMouseDrag: true; pointerLockEnabled: false; enabled: true');
+        sceneEl.canvas.focus();
+      } else {
+        sceneEl.setAttribute('cursor', 'rayOrigin: mouse');
+        sceneEl.setAttribute('raycaster', 'objects: .clickable');
+        playerCursor.setAttribute('visible', true);
+      }
+    }
+
+    function centerVideoSphereOnPlayer() {
+      const worldPos = new THREE.Vector3();
+      player.object3D.getWorldPosition(worldPos);
+      videoSphere.object3D.position.copy(worldPos);
+    }
 
     function centerAndGroundModel(el) {
       el.setAttribute('position', '0 0 0');
@@ -306,31 +389,150 @@
       });
     }
 
+    function playVideo(videoId) {
+      activeVideoId = videoId;
+      const videoEl = document.querySelector(videoId);
+
+      setWalkthroughVisible(false);
+      setVideoLookMode(true);
+      sceneEl.setAttribute('background', VIDEO_BG);
+
+      // Environment fog (fogFar ~84) hides the huge video sphere — disable it during playback.
+      sceneFog = sceneEl.object3D.fog;
+      sceneEl.object3D.fog = null;
+
+      centerVideoSphereOnPlayer();
+      videoSphere.setAttribute('material', 'shader: flat; side: back; depthWrite: false; depthTest: false; fog: false; toneMapped: false');
+      videoSphere.setAttribute('src', videoId);
+      videoSphere.setAttribute('visible', true);
+
+      // Must render above any leftover sky sphere (a-sky defaults to renderOrder 0).
+      const mesh = videoSphere.getObject3D('mesh');
+      if (mesh) mesh.renderOrder = 1;
+
+      videoEl.currentTime = 0;
+      videoEl.play().then(() => {
+        statusEl.textContent = 'Playing 360° video — drag to look around, ESC to exit';
+        ui.style.display = 'block';
+        muteBtn.textContent = videoEl.muted ? '🔊 Unmute' : '🔇 Mute';
+      }).catch((err) => {
+        console.error('Video play failed:', err);
+        statusEl.textContent = 'Click the 3D view, then click a sphere to play video.';
+      });
+    }
+
+    function exitVideo() {
+      if (activeVideoId) {
+        const videoEl = document.querySelector(activeVideoId);
+        if (videoEl) videoEl.pause();
+      }
+
+      videoSphere.setAttribute('visible', false);
+      videoSphere.removeAttribute('src');
+      const mesh = videoSphere.getObject3D('mesh');
+      if (mesh) mesh.renderOrder = 0;
+      activeVideoId = null;
+
+      setWalkthroughVisible(true);
+      setVideoLookMode(false);
+      sceneEl.setAttribute('background', WALKTHROUGH_BG);
+      sceneEl.object3D.fog = sceneFog;
+
+      ui.style.display = 'none';
+      statusEl.textContent = 'Click the 3D view, then WASD or arrow keys to fly. Click a sphere for 360° video.';
+    }
+
+    function resetVideos() {
+      ['#video1', '#video2', '#video3'].forEach((videoId) => {
+        const videoEl = document.querySelector(videoId);
+        if (!videoEl) return;
+        videoEl.pause();
+        videoEl.currentTime = 0;
+        videoEl.muted = false;
+      });
+    }
+
+    function resetPlayer() {
+      if (!initialPlayerPosition) return;
+      player.setAttribute('position', initialPlayerPosition);
+      player.setAttribute('rotation', initialPlayerRotation);
+
+      const lookControls = player.components['look-controls'];
+      if (lookControls && lookControls.pitchObject && lookControls.yawObject) {
+        lookControls.pitchObject.rotation.x = 0;
+        lookControls.yawObject.rotation.y = THREE.MathUtils.degToRad(initialPlayerRotation.y || 0);
+      }
+    }
+
+    function resetSpheres() {
+      Object.entries(sphereConfigs).forEach(([id, config]) => {
+        const sphere = document.getElementById(id);
+        sphere.removeAttribute('animation__float');
+        sphere.removeAttribute('animation__hover');
+        sphere.removeAttribute('animation');
+        sphere.setAttribute('visible', true);
+        sphere.setAttribute('scale', '1 1 1');
+        sphere.setAttribute('rotation', '0 0 0');
+        sphere.setAttribute('position', config.position);
+        sphere.setAttribute('animation__float', config.float);
+        sphere.setAttribute('animation', config.spin);
+      });
+    }
+
+    function restartExperience() {
+      exitVideo();
+      resetVideos();
+      resetPlayer();
+      resetSpheres();
+      statusEl.textContent = 'Back in front of the spheres — click one to play 360° video.';
+    }
+
     model.addEventListener('model-loaded', () => {
       centerAndGroundModel(model);
-      statusEl.textContent = 'Click the 3D view, then WASD or arrow keys to fly. Mouse to look.';
+      statusEl.textContent = 'Click the 3D view, then WASD or arrow keys to fly. Click a sphere for 360° video.';
       console.log('%c[Cable Center] glTF 2.0 model loaded', 'color:#22c55e');
     });
 
-    document.querySelector('a-scene').addEventListener('enter-vr', () => {
-      statusEl.textContent = 'VR mode: left thumbstick to move, right thumbstick up/down to fly.';
-    });
-
-    document.querySelector('a-scene').addEventListener('exit-vr', () => {
-      statusEl.textContent = 'Click the 3D view, then WASD or arrow keys to fly.';
-    });
-
     model.addEventListener('model-error', (e) => {
-      statusEl.textContent = 'Error loading glTF — showing blocky fallback.';
+      statusEl.textContent = 'Error loading glTF model.';
       console.error('glTF load error:', e);
-      const fallback = document.getElementById('block-building');
-      if (fallback) fallback.setAttribute('visible', true);
-      model.setAttribute('visible', false);
     });
 
-    // Optional: log when scene is ready
-    document.querySelector('a-scene').addEventListener('loaded', () => {
-      console.log('%c[A-Frame] Scene ready', 'color:#64748b');
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') exitVideo();
+    });
+
+    muteBtn.addEventListener('click', () => {
+      if (!activeVideoId) return;
+      const videoEl = document.querySelector(activeVideoId);
+      if (!videoEl) return;
+      videoEl.muted = !videoEl.muted;
+      muteBtn.textContent = videoEl.muted ? '🔊 Unmute' : '🔇 Mute';
+    });
+
+    restartBtn.addEventListener('click', restartExperience);
+
+    sceneEl.addEventListener('loaded', () => {
+      const pos = player.getAttribute('position');
+      const rot = player.getAttribute('rotation') || { x: 0, y: 0, z: 0 };
+      initialPlayerPosition = { x: pos.x, y: pos.y, z: pos.z };
+      initialPlayerRotation = { x: rot.x, y: rot.y, z: rot.z };
+      sceneFog = sceneEl.object3D.fog;
+      console.log('✅ GLTF walkthrough + 360 spheres ready');
+
+      document.getElementById('sphere1').addEventListener('click', () => playVideo('#video1'));
+      document.getElementById('sphere2').addEventListener('click', () => playVideo('#video2'));
+      document.getElementById('sphere3').addEventListener('click', () => playVideo('#video3'));
+
+      ['sphere1', 'sphere2', 'sphere3'].forEach((id) => {
+        const sphere = document.getElementById(id);
+        sphere.addEventListener('mouseenter', () => {
+          sphere.setAttribute('animation__hover', { property: 'scale', to: '1.35 1.35 1.35', dur: 250 });
+        });
+        sphere.addEventListener('mouseleave', () => {
+          sphere.setAttribute('animation__hover', { property: 'scale', to: '1 1 1', dur: 250 });
+        });
+      });
     });
   </script>
 </body>
