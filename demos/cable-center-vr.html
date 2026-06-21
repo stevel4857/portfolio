@@ -30,7 +30,7 @@
     <span style="opacity:0.7;">|</span>
     <span>The Old Syndeo Institute/Cable Center - VR Walkthrough</span>
   </div>
-  <div class="instructions" id="instructions">Click inside the 3D view first • WASD or arrow keys to fly • Click a floating sphere to play 360° video • ESC to exit video</div>
+  <div class="instructions" id="instructions">Click inside the 3D view first • WASD or arrow keys to move • Space/Shift to fly up/down • Click a floating sphere to play 360° video • ESC to exit video</div>
   <div class="status" id="status">Loading Cable Center GLB…</div>
 
   <div id="ui">
@@ -284,7 +284,8 @@
         this.active = false;
         this.moveKeys = new Set([
           'KeyW', 'KeyA', 'KeyS', 'KeyD',
-          'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'
+          'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight',
+          'Space', 'ShiftLeft', 'ShiftRight'
         ]);
 
         this.onKeyDown = (e) => {
@@ -337,10 +338,15 @@
         if (Math.abs(y) < this.data.deadzone) y = 0;
         return { x, y };
       },
-      applyMove: function (forwardAmt, strafeAmt, verticalAmt, dt) {
+      applyMove: function (forwardAmt, strafeAmt, verticalAmt, dt, horizontalOnly) {
         const obj = this.el.object3D;
         obj.getWorldDirection(this.forward);
-        if (!this.data.fly) this.forward.y = 0;
+        // Keyboard WASD: always move on the ground plane (ignore camera pitch).
+        if (!this.data.fly || horizontalOnly) this.forward.y = 0;
+        if (this.forward.lengthSq() < 1e-6) {
+          const yaw = this.el.object3D.rotation.y;
+          this.forward.set(-Math.sin(yaw), 0, -Math.cos(yaw));
+        }
         this.forward.normalize();
         this.right.crossVectors(this.forward, this.up).normalize();
 
@@ -364,7 +370,7 @@
           const left = this.readStick(this.getGamepad('left'));
           const right = this.readStick(this.getGamepad('right'));
           if (!left.x && !left.y && !right.y) return;
-          this.applyMove(-left.y, left.x, this.data.fly ? -right.y : 0, dt);
+          this.applyMove(-left.y, left.x, this.data.fly ? -right.y : 0, dt, false);
           return;
         }
 
@@ -374,15 +380,20 @@
         const s = this.keys.KeyS || this.keys.ArrowDown;
         const a = this.keys.KeyA || this.keys.ArrowLeft;
         const d = this.keys.KeyD || this.keys.ArrowRight;
-        if (!w && !s && !a && !d) return;
+        const rise = this.keys.Space;
+        const fall = this.keys.ShiftLeft || this.keys.ShiftRight;
+        if (!w && !s && !a && !d && !rise && !fall) return;
 
         let forwardAmt = 0;
         let strafeAmt = 0;
+        let verticalAmt = 0;
         if (w) forwardAmt -= 1;
         if (s) forwardAmt += 1;
         if (a) strafeAmt -= 1;
         if (d) strafeAmt += 1;
-        this.applyMove(forwardAmt, strafeAmt, 0, dt);
+        if (this.data.fly && rise) verticalAmt += 1;
+        if (this.data.fly && fall) verticalAmt -= 1;
+        this.applyMove(forwardAmt, strafeAmt, verticalAmt, dt, true);
       }
     });
 
@@ -546,7 +557,7 @@
       sceneEl.object3D.fog = sceneFog;
 
       ui.style.display = 'none';
-      statusEl.textContent = 'Click the 3D view, then WASD or arrow keys to fly. Click a sphere for 360° video.';
+      statusEl.textContent = 'Click the 3D view, then WASD to move (Space/Shift up/down). Click a sphere for 360° video.';
     }
 
     function resetVideos() {
@@ -597,7 +608,7 @@
     function onBuildingLoaded() {
       centerAndGroundModel(model);
       colliderSystem.refreshFromModel(model);
-      statusEl.textContent = 'Click the 3D view, then WASD or arrow keys to fly. Click a sphere for 360° video.';
+      statusEl.textContent = 'Click the 3D view, then WASD to move (Space/Shift up/down). Click a sphere for 360° video.';
       console.log('%c[Cable Center] GLB loaded:', BUILDING_GLB, 'color:#22c55e');
     }
 
