@@ -31,7 +31,7 @@
     <span>The Old Syndeo Institute/Cable Center - VR Walkthrough</span>
   </div>
   <div class="instructions" id="instructions">Click inside the 3D view first • WASD or arrow keys to fly • Click a floating sphere to play 360° video • ESC to exit video</div>
-  <div class="status" id="status">Loading Cable Center model…</div>
+  <div class="status" id="status">Loading Cable Center GLB…</div>
 
   <div id="ui">
     <button id="mute-btn">🔇 Mute</button>
@@ -47,8 +47,6 @@
            background="color: #87CEEB">
 
     <a-assets>
-      <a-asset-item id="building" src="../assets/models/scene/scene.glb"></a-asset-item>
-
       <img id="preview1" src="360assets/barcolibrary1.jpg" crossorigin="anonymous">
       <img id="preview2" src="360assets/office_preview.jpg" crossorigin="anonymous">
       <img id="preview3" src="360assets/barcolibrary1.jpg" crossorigin="anonymous">
@@ -58,7 +56,7 @@
       <video id="video3" src="360assets/LibraryShoot_final.mp4" crossorigin="anonymous" playsinline loop></video>
     </a-assets>
 
-    <!-- GLTF walkthrough content (hidden during 360 video playback) -->
+    <!-- GLB walkthrough content (hidden during 360 video playback) -->
     <!-- No a-sky here: a-sky and a-videosphere are both inner-facing spheres and fight for
          render order — the sky paints over the top of the 360 video. Use scene background instead. -->
     <a-entity id="main-scene-wrapper">
@@ -134,7 +132,13 @@
                shadow-camera-near="0.5" shadow-camera-far="200" shadow-bias="-0.0008"></a-light>
       <a-light type="directional" color="#d0e8ff" intensity="0.35" position="-35 25 -40"></a-light>
 
-      <a-entity id="model" gltf-model="#building" scale="1 1 1" position="0 0 0" rotation="0 180 0" shadow="cast: true; receive: true"></a-entity>
+      <!-- Single-file GLB: building meshes, textures, and COLLIDER_* boxes -->
+      <a-entity id="model"
+                gltf-model="src: ../assets/models/scene/scene.glb"
+                scale="1 1 1"
+                position="0 0 0"
+                rotation="0 180 0"
+                shadow="cast: true; receive: true"></a-entity>
 
       <a-entity id="sphere1" class="clickable"
                 geometry="primitive: sphere; radius: 0.75; segmentsWidth: 64; segmentsHeight: 64"
@@ -180,6 +184,9 @@
   </a-scene>
 
   <script>
+    // A-Frame's gltf-model component loads both .gltf and .glb; we use GLB (one file, embedded textures).
+    const BUILDING_GLB = '../assets/models/scene/scene.glb';
+
     const colliderSystem = {
       boxes: [],
       floorY: 0.99,
@@ -444,6 +451,10 @@
       videoSphere.object3D.position.copy(worldPos);
     }
 
+    function isColliderMesh(child) {
+      return child.name && child.name.startsWith('COLLIDER_');
+    }
+
     function centerAndGroundModel(el) {
       el.setAttribute('position', '0 0 0');
       el.setAttribute('rotation', '0 180 0');
@@ -451,7 +462,7 @@
       const meshMinYs = [];
       const fullBox = new THREE.Box3();
       el.object3D.traverse((child) => {
-        if (!child.isMesh) return;
+        if (!child.isMesh || isColliderMesh(child)) return;
         const box = new THREE.Box3().setFromObject(child);
         meshMinYs.push(box.min.y);
         fullBox.union(box);
@@ -573,16 +584,17 @@
       statusEl.textContent = 'Back in front of the spheres — click one to play 360° video.';
     }
 
-    model.addEventListener('model-loaded', () => {
+    function onBuildingLoaded() {
       centerAndGroundModel(model);
       colliderSystem.refreshFromModel(model);
       statusEl.textContent = 'Click the 3D view, then WASD or arrow keys to fly. Click a sphere for 360° video.';
-      console.log('%c[Cable Center] GLB model + colliders loaded', 'color:#22c55e');
-    });
+      console.log('%c[Cable Center] GLB loaded:', BUILDING_GLB, 'color:#22c55e');
+    }
 
+    model.addEventListener('model-loaded', onBuildingLoaded);
     model.addEventListener('model-error', (e) => {
-      statusEl.textContent = 'Error loading GLB model.';
-      console.error('GLB load error:', e);
+      statusEl.textContent = 'Error loading GLB: ' + BUILDING_GLB;
+      console.error('GLB load error:', BUILDING_GLB, e);
     });
 
     document.addEventListener('keydown', (e) => {
