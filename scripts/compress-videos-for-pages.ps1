@@ -49,6 +49,7 @@ function Compress-Video($InputPath, $OutputPath) {
 }
 
 $jobs = @(
+    @{ Src = Join-Path $Root 'assets\LibraryShoot.mp4'; Out = Join-Path $OutDir 'LibraryShoot.mp4' },
     @{ Src = Join-Path $Root 'demos\360assets\LibraryShoot_final.mp4'; Out = Join-Path $OutDir 'LibraryShoot_final.mp4' },
     @{ Src = Join-Path $Root 'demos\360assets\VRVideooffice2019.mp4'; Out = Join-Path $OutDir 'VRVideooffice2019.mp4' },
     @{ Src = Join-Path $Root 'assets\LibraryShoot_browser_audio.mp4'; Out = Join-Path $OutDir 'LibraryShoot_browser_audio.mp4' }
@@ -59,6 +60,9 @@ foreach ($job in $jobs) {
 }
 
 $replacements = @(
+    @{ From = Join-Path $OutDir 'LibraryShoot.mp4'; To = @(
+        (Join-Path $Root 'assets\LibraryShoot.mp4')
+    )},
     @{ From = Join-Path $OutDir 'LibraryShoot_final.mp4'; To = @(
         (Join-Path $Root 'assets\LibraryShoot_final.mp4'),
         (Join-Path $Root 'demos\360assets\LibraryShoot_final.mp4')
