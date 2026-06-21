@@ -88,6 +88,37 @@ Ask before doing any of the following:
 - Delete or rename files in `assets/` without approval.
 - Assume the site will stay a simple static site forever — but don’t force a migration to Astro/Next.js/etc. without discussion.
 
+## Cable Center VR Demo (`demos/cable-center-vr.html`)
+
+A-Frame walkthrough of The Old Syndeo Institute/Cable Center with clickable 360° video spheres. Last fixed and pushed **2026-06-21** (`c604d96` on `stevel4857/portfolio`).
+
+### Model loading (critical)
+
+- **Use `scene.gltf`, not `scene.glb`.** GLB export failed to load reliably in the browser; glTF works with `a-asset-item` + `gltf-model`.
+- Model path: `../assets/models/scene/scene.gltf` (also set in `BUILDING_MODEL` constant).
+- Load via `<a-asset-item id="building" src="...">` and `<a-gltf-model src="#building">` — do **not** use `src:` directly on the entity.
+
+### Colliders & grounding
+
+- Collider meshes are named `COLLIDER_*` in the glTF (e.g. `COLLIDER_Floor`). `colliderSystem.refreshFromModel()` reads them at runtime.
+- **No perimeter wall colliders** — they blocked the main entrance. Floor collider only; add interior `COLLIDER_Wall_*` meshes in Blender if needed.
+- Blender pipeline scripts live in `scripts/` (e.g. `blender-add-colliders.py`, `blender-mesh-ground-levels.py`).
+- `centerAndGroundModel()` centers the building and grounds it to the lowest thin landscape slab (`findLandscapeGroundY`), not sub-grade props.
+
+### Locomotion & rendering gotchas
+
+- Keyboard WASD uses `horizontalOnly: true` so camera pitch does not drift movement upward (`forward.y = 0`).
+- **No `a-sky` in walkthrough mode** — it fights with `a-videosphere` (both inner-facing spheres). Use `background="color: #87CEEB"` on `<a-scene>` instead.
+- During 360° video playback: hide walkthrough content, disable scene fog, set videosphere `renderOrder = 1`, use flat/back-side material.
+
+### Local preview
+
+```bash
+cd steveknowsweb && python -m http.server 8765
+# http://localhost:8765/demos/cable-center-vr.html
+# Append ?debugColliders to visualize COLLIDER_* meshes
+```
+
 ## Future Direction
 
 This site is currently built as a **Tier 1 Multi-file Static** site (see the master planning document at `../docs/website-workflow-planning.md` when working in the combined workspace, or the original planning document).
