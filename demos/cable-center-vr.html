@@ -455,12 +455,27 @@
       return child.name && child.name.startsWith('COLLIDER_');
     }
 
+    // Model was authored with sub-grade props below the visible landscape slab.
+    function findLandscapeGroundY(el) {
+      let best = null;
+      el.object3D.traverse((child) => {
+        if (!child.isMesh || isColliderMesh(child)) return;
+        const box = new THREE.Box3().setFromObject(child);
+        const height = box.max.y - box.min.y;
+        const width = box.max.x - box.min.x;
+        const depth = box.max.z - box.min.z;
+        if (height > 5 || (width < 1.5 && depth < 1.5)) return;
+        if (best === null || box.min.y < best) best = box.min.y;
+      });
+      return best;
+    }
+
     function centerAndGroundModel(el) {
       el.setAttribute('position', '0 0 0');
       el.setAttribute('rotation', '0 180 0');
       el.object3D.updateWorldMatrix(true, true);
-      const meshMinYs = [];
       const fullBox = new THREE.Box3();
+      const meshMinYs = [];
       el.object3D.traverse((child) => {
         if (!child.isMesh || isColliderMesh(child)) return;
         const box = new THREE.Box3().setFromObject(child);
@@ -469,14 +484,8 @@
       });
       if (!meshMinYs.length) return;
 
-      meshMinYs.sort((a, b) => a - b);
-      let groundY = meshMinYs[0];
-      for (let i = 1; i < meshMinYs.length; i++) {
-        if (meshMinYs[i] - meshMinYs[0] > 1) {
-          groundY = meshMinYs[i];
-          break;
-        }
-      }
+      const landscapeY = findLandscapeGroundY(el);
+      const groundY = landscapeY !== null ? landscapeY : Math.min(...meshMinYs);
 
       const center = fullBox.getCenter(new THREE.Vector3());
       el.setAttribute('position', {
@@ -484,6 +493,7 @@
         y: -groundY,
         z: -center.z
       });
+      console.log('[Cable Center] Grounded to landscape Y:', groundY.toFixed(2));
     }
 
     function playVideo(videoId) {

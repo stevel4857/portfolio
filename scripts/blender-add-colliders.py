@@ -16,6 +16,26 @@ WALL_EXTRA_HEIGHT = 8.0
 bpy.ops.wm.read_factory_settings(use_empty=True)
 bpy.ops.import_scene.gltf(filepath=src)
 
+def find_landscape_ground_y():
+    """Lowest thin landscape slab — matches the visible ground, not sub-grade props."""
+    best = None
+    for obj in bpy.context.scene.objects:
+        if obj.type != "MESH" or obj.name.startswith("COLLIDER_"):
+            continue
+        corners = [obj.matrix_world @ Vector(c) for c in obj.bound_box]
+        ys = [c[1] for c in corners]
+        xs = [c[0] for c in corners]
+        zs = [c[2] for c in corners]
+        height = max(ys) - min(ys)
+        width = max(xs) - min(xs)
+        depth = max(zs) - min(zs)
+        if height > 5 or (width < 1.5 and depth < 1.5):
+            continue
+        min_y = min(ys)
+        if best is None or min_y < best:
+            best = min_y
+    return best
+
 mins = [float("inf")] * 3
 maxs = [float("-inf")] * 3
 for obj in bpy.context.scene.objects:
@@ -27,8 +47,10 @@ for obj in bpy.context.scene.objects:
             mins[i] = min(mins[i], world[i])
             maxs[i] = max(maxs[i], world[i])
 
+landscape_y = find_landscape_ground_y() or mins[1]
+
 cx = (mins[0] + maxs[0]) / 2
-cy = mins[1]
+cy = landscape_y
 cz = (mins[2] + maxs[2]) / 2
 width = (maxs[0] - mins[0]) + MARGIN * 2
 depth = (maxs[2] - mins[2]) + MARGIN * 2
@@ -84,6 +106,7 @@ for obj in colliders:
 info = {
     "bounds_min": mins,
     "bounds_max": maxs,
+    "landscape_ground_y": landscape_y,
     "colliders": [o.name for o in colliders],
     "output": out_glb,
 }
