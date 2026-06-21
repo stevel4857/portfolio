@@ -14,16 +14,98 @@ This site is a pure static site (Tailwind CSS is pre-built via `npm run build` a
 - Free tier is very generous
 - GitHub integration is excellent
 
+## Pushing to GitHub
+
+The local folder is `steveknowsweb`, but the GitHub repo is **`stevel4857/portfolio`**. That repo is connected to Cloudflare Pages and deploys to **https://steveknowsweb.com**. There is no separate `steveknowsweb` repo on GitHub.
+
+### Quick method (recommended)
+
+Double-click `update-site.ps1` or run:
+
+```powershell
+cd "D:\work\steveknowsweb"
+.\update-site.ps1
+```
+
+The script pulls latest `main`, builds Tailwind, commits, and pushes. Cloudflare Pages deploys automatically after a successful push.
+
+### Manual push
+
+```powershell
+cd "D:\work\steveknowsweb"
+git pull origin main
+npm run build          # if you changed HTML/CSS classes
+git add .
+git commit -m "Describe your changes"
+git push origin main
+```
+
+### Large files and Git LFS
+
+Videos (`.mp4`) and 3D models (`.glb`) are tracked with **Git LFS** (see `.gitattributes`). On push you will see:
+
+```
+Uploading LFS objects: 100% (N/N), XXX MB
+```
+
+That is normal. LFS uploads the actual video/model files; git only stores small pointer files.
+
+**Before adding new large files**, make sure Git LFS is installed:
+
+```powershell
+git lfs install
+git lfs track "*.mp4"
+git lfs track "*.glb"
+```
+
+Then add and commit `.gitattributes` along with the new files.
+
+### If `git push` hangs or stalls
+
+This happened in June 2026 when several commits added full-size MP4 blobs to git history *before* they were migrated to LFS. Git tried to upload ~1 GB of binary data and stalled around 80–90% of "Writing objects".
+
+**Fix: squash unpushed commits so history only contains LFS pointers.**
+
+Only do this for commits that have **not** been pushed yet:
+
+```powershell
+cd "D:\work\steveknowsweb"
+
+# 1. Confirm you are ahead of origin (unpushed commits only)
+git status -sb
+# Should show: ## main...origin/main [ahead N]
+
+# 2. Squash all unpushed work into the staging area
+git reset --soft origin/main
+
+# 3. Verify large files are LFS pointers (should print ~134 bytes, not hundreds of MB)
+git cat-file -s :assets/LibraryShoot.mp4
+
+# 4. Re-commit as one clean commit
+git commit -m "Your combined commit message"
+
+# 5. Push (should be fast — a few MB of git data + LFS upload)
+git push origin main --progress
+```
+
+**Do not squash** commits that are already on GitHub unless you intend to rewrite shared history and coordinate a force-push.
+
+### Verify the push worked
+
+```powershell
+git status -sb
+# Should show: ## main...origin/main   (no "ahead" or "behind")
+
+git log --oneline -3
+```
+
+Or check the latest commit on GitHub: https://github.com/stevel4857/portfolio/commits/main
+
 ## Step-by-Step Setup
 
 ### 1. Push the code to GitHub (if not already)
 
-```powershell
-cd "D:\work\steveknowsweb"
-git add .
-git commit -m "Update site"
-git push
-```
+See **Pushing to GitHub** above.
 
 ### 2. Create the Cloudflare Pages Project
 
