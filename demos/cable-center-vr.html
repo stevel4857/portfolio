@@ -31,7 +31,7 @@
     <span>The Old Syndeo Institute/Cable Center - VR Walkthrough</span>
   </div>
   <div class="instructions" id="instructions">Click inside the 3D view first • WASD or arrow keys to fly • Click a floating sphere to play 360° video • ESC to exit video</div>
-  <div class="status" id="status">Loading glTF 2.0 Cable Center model…</div>
+  <div class="status" id="status">Loading Cable Center model…</div>
 
   <div id="ui">
     <button id="mute-btn">🔇 Mute</button>
@@ -47,7 +47,7 @@
            background="color: #87CEEB">
 
     <a-assets>
-      <a-asset-item id="building" src="../assets/models/scene/scene.gltf"></a-asset-item>
+      <a-asset-item id="building" src="../assets/models/scene/scene.glb"></a-asset-item>
 
       <img id="preview1" src="360assets/barcolibrary1.jpg" crossorigin="anonymous">
       <img id="preview2" src="360assets/office_preview.jpg" crossorigin="anonymous">
@@ -180,6 +180,87 @@
   </a-scene>
 
   <script>
+    const colliderSystem = {
+      boxes: [],
+      floorY: 0.99,
+      radius: 0.45,
+      debug: new URLSearchParams(window.location.search).has('debugColliders'),
+      tmpBox: new THREE.Box3(),
+      tmpVec: new THREE.Vector3(),
+      tmpVec2: new THREE.Vector3(),
+
+      refreshFromModel(modelEl) {
+        this.boxes = [];
+        modelEl.object3D.updateWorldMatrix(true, true);
+        modelEl.object3D.traverse((child) => {
+          if (!child.name || !child.name.startsWith('COLLIDER_') || child.name === 'COLLIDER_Root') return;
+          if (!child.isMesh) return;
+          child.visible = this.debug;
+          if (this.debug && child.material) {
+            child.material = child.material.clone();
+            child.material.color.set(0x00ff88);
+            child.material.opacity = 0.25;
+            child.material.transparent = true;
+            child.material.depthWrite = false;
+          }
+          this.tmpBox.setFromObject(child);
+          const entry = {
+            name: child.name,
+            min: this.tmpBox.min.clone(),
+            max: this.tmpBox.max.clone(),
+            isFloor: child.name === 'COLLIDER_Floor'
+          };
+          this.boxes.push(entry);
+          if (entry.isFloor) this.floorY = entry.max.y + 0.05;
+        });
+        console.log('[Cable Center] Colliders loaded:', this.boxes.map((b) => b.name));
+      },
+
+      sphereHitsBox(pos, box, radius) {
+        this.tmpVec.set(
+          THREE.MathUtils.clamp(pos.x, box.min.x, box.max.x),
+          THREE.MathUtils.clamp(pos.y, box.min.y, box.max.y),
+          THREE.MathUtils.clamp(pos.z, box.min.z, box.max.z)
+        );
+        return this.tmpVec.distanceToSquared(pos) < radius * radius;
+      },
+
+      hitsAny(pos, radius, ignoreFloor) {
+        for (const box of this.boxes) {
+          if (ignoreFloor && box.isFloor) continue;
+          if (this.sphereHitsBox(pos, box, radius)) return true;
+        }
+        return false;
+      },
+
+      resolveMove(from, move, allowVertical) {
+        const radius = this.radius;
+        if (!this.boxes.length) {
+          this.tmpVec.copy(from).add(move);
+          return this.tmpVec;
+        }
+
+        this.tmpVec.copy(from).add(move);
+        if (!this.hitsAny(this.tmpVec, radius, false)) return this.tmpVec;
+
+        this.tmpVec2.copy(from);
+        this.tmpVec2.x += move.x;
+        if (!this.hitsAny(this.tmpVec2, radius, false)) return this.tmpVec2;
+
+        this.tmpVec2.copy(from);
+        this.tmpVec2.z += move.z;
+        if (!this.hitsAny(this.tmpVec2, radius, false)) return this.tmpVec2;
+
+        if (allowVertical && move.y) {
+          this.tmpVec2.copy(from);
+          this.tmpVec2.y += move.y;
+          if (!this.hitsAny(this.tmpVec2, radius, false)) return this.tmpVec2;
+        }
+
+        return from;
+      }
+    };
+
     AFRAME.registerComponent('player-locomotion', {
       schema: {
         speed: { type: 'number', default: 8 },
@@ -260,8 +341,12 @@
         this.move.addScaledVector(this.forward, forwardAmt * this.data.speed * dt);
         this.move.addScaledVector(this.right, strafeAmt * this.data.speed * dt);
         if (this.data.fly) this.move.y += verticalAmt * this.data.speed * dt;
-        obj.position.add(this.move);
-        if (obj.position.y < this.data.minHeight) obj.position.y = this.data.minHeight;
+
+        const resolved = colliderSystem.resolveMove(obj.position, this.move, this.data.fly);
+        obj.position.copy(resolved);
+
+        const floorY = Math.max(colliderSystem.floorY, this.data.minHeight);
+        if (obj.position.y < floorY) obj.position.y = floorY;
       },
       tick: function (time, delta) {
         const scene = this.el.sceneEl;
@@ -490,13 +575,14 @@
 
     model.addEventListener('model-loaded', () => {
       centerAndGroundModel(model);
+      colliderSystem.refreshFromModel(model);
       statusEl.textContent = 'Click the 3D view, then WASD or arrow keys to fly. Click a sphere for 360° video.';
-      console.log('%c[Cable Center] glTF 2.0 model loaded', 'color:#22c55e');
+      console.log('%c[Cable Center] GLB model + colliders loaded', 'color:#22c55e');
     });
 
     model.addEventListener('model-error', (e) => {
-      statusEl.textContent = 'Error loading glTF model.';
-      console.error('glTF load error:', e);
+      statusEl.textContent = 'Error loading GLB model.';
+      console.error('GLB load error:', e);
     });
 
     document.addEventListener('keydown', (e) => {
@@ -519,7 +605,7 @@
       initialPlayerPosition = { x: pos.x, y: pos.y, z: pos.z };
       initialPlayerRotation = { x: rot.x, y: rot.y, z: rot.z };
       sceneFog = sceneEl.object3D.fog;
-      console.log('✅ GLTF walkthrough + 360 spheres ready');
+      console.log('✅ GLB walkthrough + colliders + 360 spheres ready');
 
       document.getElementById('sphere1').addEventListener('click', () => playVideo('#video1'));
       document.getElementById('sphere2').addEventListener('click', () => playVideo('#video2'));
