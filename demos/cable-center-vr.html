@@ -63,7 +63,8 @@
          render order — the sky paints over the top of the 360 video. Use scene background instead. -->
     <a-entity id="main-scene-wrapper">
 
-      <a-entity id="environment" environment="preset: forest; dressingAmount: 150; skyType: color; skyColor: #87CEEB"></a-entity>
+      <a-entity id="environment" environment="preset: forest; groundTexture: none; dressing: none; dressingAmount: 0; groundColor: #2F4F4F;
+    groundColor2: #2F4F4F; skyType: color; skyColor: #87CEEB"></a-entity>
 
       <!-- Each cluster drifts on its own — same spheres as before, no extra assets -->
       <a-entity id="clouds">
@@ -139,7 +140,7 @@
                 geometry="primitive: sphere; radius: 0.75; segmentsWidth: 64; segmentsHeight: 64"
                 material="src: #preview1; side: double; shader: flat"
                 position="9 0.5 -15"
-                animation__float="property: position; from: 9 0.5 -15; to: -3.5 1.8 -3; dur: 3400; easing: easeOutCubic"
+                animation__float="property: position; from: 9 0.5 -15; to: -3.5 1.8 3; dur: 3400; easing: easeOutCubic"
                 animation="property: rotation; to: 0 360 0; dur: 18000; loop: true; easing: linear"
                 shadow="cast: true; receive: true"></a-entity>
 
@@ -147,7 +148,7 @@
                 geometry="primitive: sphere; radius: 0.8; segmentsWidth: 64; segmentsHeight: 64"
                 material="src: #preview2; side: double; shader: flat"
                 position="11 0.6 -17"
-                animation__float="property: position; from: 11 0.6 -17; to: 0 1.9 -3.5; dur: 3600; easing: easeOutCubic; delay: 300"
+                animation__float="property: position; from: 11 0.6 -17; to: 0 1.9 4; dur: 3600; easing: easeOutCubic; delay: 300"
                 animation="property: rotation; to: 0 360 0; dur: 19000; loop: true; easing: linear"
                 shadow="cast: true; receive: true"></a-entity>
 
@@ -155,7 +156,7 @@
                 geometry="primitive: sphere; radius: 0.75; segmentsWidth: 64; segmentsHeight: 64"
                 material="src: #preview3; side: double; shader: flat"
                 position="8 0.4 -19"
-                animation__float="property: position; from: 8 0.4 -19; to: 3.5 1.8 -3; dur: 4100; easing: easeOutCubic; delay: 800"
+                animation__float="property: position; from: 8 0.4 -19; to: 3.5 1.8 3; dur: 4100; easing: easeOutCubic; delay: 800"
                 animation="property: rotation; to: 0 360 0; dur: 17000; loop: true; easing: linear"
                 shadow="cast: true; receive: true"></a-entity>
 
