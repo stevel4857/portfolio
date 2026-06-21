@@ -31,7 +31,7 @@
     <span>The Old Syndeo Institute/Cable Center - VR Walkthrough</span>
   </div>
   <div class="instructions" id="instructions">Click inside the 3D view first • WASD or arrow keys to move • Space/Shift to fly up/down • Click a floating sphere to play 360° video • ESC to exit video</div>
-  <div class="status" id="status">Loading Cable Center GLB…</div>
+  <div class="status" id="status">Loading Cable Center model…</div>
 
   <div id="ui">
     <button id="mute-btn">🔇 Mute</button>
@@ -56,7 +56,7 @@
       <video id="video3" src="360assets/LibraryShoot_final.mp4" crossorigin="anonymous" playsinline loop></video>
     </a-assets>
 
-    <!-- GLB walkthrough content (hidden during 360 video playback) -->
+    <!-- glTF walkthrough content (hidden during 360 video playback) -->
     <!-- No a-sky here: a-sky and a-videosphere are both inner-facing spheres and fight for
          render order — the sky paints over the top of the 360 video. Use scene background instead. -->
     <a-entity id="main-scene-wrapper">
@@ -132,9 +132,8 @@
                shadow-camera-near="0.5" shadow-camera-far="200" shadow-bias="-0.0008"></a-light>
       <a-light type="directional" color="#d0e8ff" intensity="0.35" position="-35 25 -40"></a-light>
 
-      <!-- Single-file GLB: building meshes, textures, and COLLIDER_* boxes -->
       <a-entity id="model"
-                gltf-model="src: ../assets/models/scene/scene.glb"
+                gltf-model="src: ../assets/models/scene/scene.gltf"
                 scale="1 1 1"
                 position="0 0 0"
                 rotation="0 180 0"
@@ -184,8 +183,7 @@
   </a-scene>
 
   <script>
-    // A-Frame's gltf-model component loads both .gltf and .glb; we use GLB (one file, embedded textures).
-    const BUILDING_GLB = '../assets/models/scene/scene.glb';
+    const BUILDING_MODEL = '../assets/models/scene/scene.gltf';
 
     const colliderSystem = {
       boxes: [],
@@ -609,13 +607,13 @@
       centerAndGroundModel(model);
       colliderSystem.refreshFromModel(model);
       statusEl.textContent = 'Click the 3D view, then WASD to move (Space/Shift up/down). Click a sphere for 360° video.';
-      console.log('%c[Cable Center] GLB loaded:', BUILDING_GLB, 'color:#22c55e');
+      console.log('%c[Cable Center] glTF loaded:', BUILDING_MODEL, 'color:#22c55e');
     }
 
     model.addEventListener('model-loaded', onBuildingLoaded);
     model.addEventListener('model-error', (e) => {
-      statusEl.textContent = 'Error loading GLB: ' + BUILDING_GLB;
-      console.error('GLB load error:', BUILDING_GLB, e);
+      statusEl.textContent = 'Error loading model: ' + BUILDING_MODEL;
+      console.error('glTF load error:', BUILDING_MODEL, e);
     });
 
     document.addEventListener('keydown', (e) => {
@@ -638,7 +636,7 @@
       initialPlayerPosition = { x: pos.x, y: pos.y, z: pos.z };
       initialPlayerRotation = { x: rot.x, y: rot.y, z: rot.z };
       sceneFog = sceneEl.object3D.fog;
-      console.log('✅ GLB walkthrough + colliders + 360 spheres ready');
+      console.log('✅ glTF walkthrough + 360 spheres ready');
 
       document.getElementById('sphere1').addEventListener('click', () => playVideo('#video1'));
       document.getElementById('sphere2').addEventListener('click', () => playVideo('#video2'));
