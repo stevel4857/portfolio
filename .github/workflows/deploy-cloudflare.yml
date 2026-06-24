@@ -5,12 +5,17 @@ on:
     branches: [main]
   workflow_dispatch:
 
+# Skip redeploy when only recording LinkedIn cross-post manifest
+env:
+  SKIP_DEPLOY: ${{ github.event.head_commit != null && contains(github.event.head_commit.message, '[skip ci]') }}
+
 concurrency:
   group: cloudflare-pages-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
   deploy:
+    if: ${{ env.SKIP_DEPLOY != 'true' }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -39,3 +44,35 @@ jobs:
           projectName: steveknows
           directory: .
           branch: main
+
+  linkedin:
+    needs: deploy
+    if: ${{ needs.deploy.result == 'success' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Cross-post to LinkedIn
+        env:
+          LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+          LINKEDIN_REFRESH_TOKEN: ${{ secrets.LINKEDIN_REFRESH_TOKEN }}
+          LINKEDIN_CLIENT_ID: ${{ secrets.LINKEDIN_CLIENT_ID }}
+          LINKEDIN_CLIENT_SECRET: ${{ secrets.LINKEDIN_CLIENT_SECRET }}
+          LINKEDIN_PERSON_URN: ${{ secrets.LINKEDIN_PERSON_URN }}
+          SITE_URL: https://steveknowsweb.com
+        run: node scripts/post-to-linkedin.mjs
+
+      - name: Commit LinkedIn manifest
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/linkedin-posted.json
+          if git diff --staged --quiet; then
+            echo "No manifest changes."
+            exit 0
+          fi
+          git commit -m "chore: record LinkedIn cross-post [skip ci]"
+          git push
