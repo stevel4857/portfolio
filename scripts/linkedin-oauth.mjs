@@ -5,6 +5,7 @@
  * Before running:
  * 1. Create an app at https://www.linkedin.com/developers/
  * 2. Products: enable "Share on LinkedIn" (w_member_social)
+ *    Optional: "Sign in with LinkedIn using OpenID Connect" for openid/profile scopes
  * 3. Auth tab → add redirect URL: http://localhost:8888/callback
  * 4. Set env vars LINKEDIN_CLIENT_ID and LINKEDIN_CLIENT_SECRET (or pass as args)
  *
@@ -17,7 +18,9 @@ import { URL, URLSearchParams } from 'node:url';
 
 const PORT = Number(process.env.LINKEDIN_OAUTH_PORT || 8888);
 const REDIRECT_URI = process.env.LINKEDIN_REDIRECT_URI || `http://localhost:${PORT}/callback`;
-const SCOPES = ['openid', 'profile', 'w_member_social'];
+// Default to Share on LinkedIn only. Override if OpenID product is added:
+// LINKEDIN_SCOPES="openid profile w_member_social"
+const SCOPES = (process.env.LINKEDIN_SCOPES || 'w_member_social').trim().split(/\s+/);
 
 function required(name) {
   const value = process.env[name] || process.argv.find((arg) => arg.startsWith(`${name}=`))?.split('=').slice(1).join('=');
@@ -73,7 +76,8 @@ async function main() {
   authUrl.searchParams.set('scope', SCOPES.join(' '));
   authUrl.searchParams.set('state', Math.random().toString(36).slice(2));
 
-  console.log('\nLinkedIn OAuth setup\n');
+  console.log('\nLinkedIn OAuth setup');
+  console.log(`Scopes: ${SCOPES.join(' ')}\n`);
   console.log('1. Open this URL in your browser and approve the app:\n');
   console.log(authUrl.toString());
   console.log('\n2. Waiting for callback on', REDIRECT_URI, '...\n');
@@ -89,10 +93,19 @@ async function main() {
 
       const error = url.searchParams.get('error');
       if (error) {
-        res.writeHead(400);
-        res.end(`Authorization failed: ${error}`);
+        const description = url.searchParams.get('error_description') || error;
+        res.writeHead(400, { 'Content-Type': 'text/html; charset=utf-8' });
+        res.end(`<h1>Authorization failed</h1><p>${description}</p>`);
         server.close();
-        reject(new Error(url.searchParams.get('error_description') || error));
+        if (/scope/i.test(description)) {
+          reject(new Error(
+            `${description}\n\nFix: Developer Portal → your app → Auth tab → check OAuth 2.0 scopes. ` +
+            'Only request scopes listed there. Add missing Products first, or use w_member_social only (default). ' +
+            'Fallback: https://www.linkedin.com/developers/tools/oauth/token-generator',
+          ));
+        } else {
+          reject(new Error(description));
+        }
         return;
       }
 

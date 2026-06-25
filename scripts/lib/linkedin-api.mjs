@@ -36,17 +36,27 @@ export async function getMemberUrn(accessToken) {
     return process.env.LINKEDIN_PERSON_URN;
   }
 
-  const res = await fetch(`${LINKEDIN_API}/v2/userinfo`, {
+  const userinfo = await fetch(`${LINKEDIN_API}/v2/userinfo`, {
     headers: linkedinHeaders(accessToken),
   });
-  const data = await res.json();
-  if (!res.ok) {
-    throw new Error(`LinkedIn userinfo failed (${res.status}): ${JSON.stringify(data)}`);
+  if (userinfo.ok) {
+    const data = await userinfo.json();
+    if (data.sub) {
+      return `urn:li:person:${data.sub}`;
+    }
   }
-  if (!data.sub) {
-    throw new Error('LinkedIn userinfo did not return sub (member id)');
+
+  const me = await fetch(`${LINKEDIN_API}/v2/me`, {
+    headers: linkedinHeaders(accessToken),
+  });
+  const meData = await me.json();
+  if (me.ok && meData.id) {
+    return `urn:li:person:${meData.id}`;
   }
-  return `urn:li:person:${data.sub}`;
+
+  throw new Error(
+    'Could not resolve member URN. Set LINKEDIN_PERSON_URN in GitHub secrets, or add the OpenID Connect product and re-authorize.',
+  );
 }
 
 export async function createTextPost(accessToken, { authorUrn, commentary }) {
