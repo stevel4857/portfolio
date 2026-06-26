@@ -35,6 +35,7 @@ This file contains rules and context for AI agents (Grok, Claude, Cursor, etc.) 
 
 - When adding or editing blog posts, **always edit `data/blog-posts.json`**.
 - **Careful with JSON escaping**: Post content is a single large string. Any `"` inside the HTML must be escaped as `\"` (and `\` as `\\`). This is a common source of "Failed to load blog posts: SyntaxError: Expected ',' or '}' after property value in JSON" errors. After edits, validate the JSON (e.g. `node -e "JSON.parse(require('fs').readFileSync('data/blog-posts.json','utf8'))"`) or use a JSON linter before committing.
+- After adding or editing posts, run `npm run build:markdown` (or `npm run build`) to regenerate `md/` twins, `blog/{slug}/` permalink pages, `llms.txt`, and `sitemap.xml`.
 - For posts with live/interactive demos (e.g. the Flash resurrection post), include the demo markup in the JSON content and add any required script (e.g. Ruffle CDN) to `blog.html` `<head>` + init logic in the modal JS. The demo should be self-contained in the post.
 - Keep the writing style consistent with existing posts (practical, slightly reflective, no hype).
 - Use real dates and accurate categories.

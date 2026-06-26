@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node scripts/build-tailwind.mjs",
+    "build:markdown": "node scripts/build-markdown.mjs",
+    "build": "node scripts/build-markdown.mjs && node scripts/build-tailwind.mjs",
     "dev": "node scripts/build-tailwind.mjs --watch",
     "update-browsers": "npx update-browserslist-db@latest",
     "linkedin:auth": "node scripts/linkedin-oauth.mjs",
@@ -27,6 +28,7 @@
     "autoprefixer": "^10.5.0",
     "postcss": "^8.5.15",
     "selfsigned": "^2.4.1",
-    "tailwindcss": "^3.4.19"
+    "tailwindcss": "^3.4.19",
+    "turndown": "^7.2.4"
   }
 }

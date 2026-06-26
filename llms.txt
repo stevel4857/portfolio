@@ -1,0 +1,27 @@
+# Steve Luiting — steveknowsweb.com
+
+> Strategic web design and digital experiences for museums, nonprofits, and purpose-driven organizations.
+
+## Pages
+
+- [Steve Luiting — Strategic Web Design & Digital Experiences | Denver](https://steveknowsweb.com/md/index.md)
+- [About Steve Luiting — Strategic Web Design | Denver](https://steveknowsweb.com/md/about.md)
+- [Syndeo Institute — Visual Identity | Steve Luiting](https://steveknowsweb.com/md/work/syndeo.md)
+- [Blog index](https://steveknowsweb.com/md/blog.md)
+
+## Articles
+
+- [Markdown for AI Agents: Same Page, Far Fewer Tokens](https://steveknowsweb.com/md/blog/markdown-for-ai-agents.md)
+- [Impact Studio: A Builder for Offline Work and Real Publishing](https://steveknowsweb.com/md/blog/impact-studio-a-builder-for-offline-work-and-real-publishing.md)
+- [Building the Cable Center VR Archive](https://steveknowsweb.com/md/blog/building-the-cable-center-vr-archive.md)
+- [I Finally Left Squarespace](https://steveknowsweb.com/md/blog/i-finally-left-squarespace.md)
+- [Working with Multiple AI Agents on a Static Website](https://steveknowsweb.com/md/blog/working-with-multiple-ai-agents-on-a-static-website.md)
+- [3D A-Frame 2D](https://steveknowsweb.com/md/blog/3d-aframe-2d.md)
+- [Core Principles of AEO](https://steveknowsweb.com/md/blog/core-principles-of-aeo.md)
+- [Rescuing the Video Archive After the Hack](https://steveknowsweb.com/md/blog/rescuing-the-video-archive-after-the-hack.md)
+- [AI and UI/UX Web Design News](https://steveknowsweb.com/md/blog/ai-and-uiux-web-design-news.md)
+- [Why I Choose to Work With Museums and Nonprofits](https://steveknowsweb.com/md/blog/working-with-museums-and-nonprofits.md)
+- [AI Video Work](https://steveknowsweb.com/md/blog/ai-video-work.md)
+- [Thirteen Years as the Only Web Guy](https://steveknowsweb.com/md/blog/thirteen-years-as-the-only-web-guy.md)
+- [Embed Flash in Squarespace](https://steveknowsweb.com/md/blog/embed-flash-in-squarespace.md)
+- [The Resurrection of Flash](https://steveknowsweb.com/md/blog/the-resurrection-of-flash.md)

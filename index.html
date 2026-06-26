@@ -6,6 +6,7 @@
   <meta name="description" content="Strategic web design and digital experiences for museums, nonprofits, and purpose-driven organizations in Colorado. 30+ years of craft, now accelerated with AI.">
   <title>Steve Luiting — Strategic Web Design &amp; Digital Experiences | Denver</title>
   <link rel="icon" type="image/png" sizes="32x32" href="assets/images/steveknowswebdesign-favicon.png">
+  <link rel="alternate" type="text/markdown" href="/md/index.md">
   
   <link rel="stylesheet" href="css/tailwind.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -555,7 +556,7 @@
 
         const container = document.getElementById('blog-teaser');
         container.innerHTML = recent.map(post => `
-          <a href="blog.html#${post.slug}" 
+          <a href="/blog/${post.slug}"
              class="group block bg-white border border-slate-200 hover:border-slate-300 rounded-2xl p-5 transition">
             <div class="flex justify-between text-xs mb-2">
               <span class="px-2.5 py-0.5 bg-slate-100 text-slate-600 rounded-full">${post.category}</span>

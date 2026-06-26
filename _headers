@@ -1,0 +1,3 @@
+# Markdown twins for AI agents — not for search indexing
+/md/*
+  X-Robots-Tag: noindex, nofollow

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Flash is back from the dead it seems — and for certain archival and cultural projects, that's actually good news.">
+  <title>The Resurrection of Flash — Steve Luiting</title>
+  <link rel="canonical" href="https://steveknowsweb.com/blog/the-resurrection-of-flash">
+  <link rel="alternate" type="text/markdown" href="/md/blog/the-resurrection-of-flash.md">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/steveknowswebdesign-favicon.png">
+  <link rel="stylesheet" href="/css/tailwind.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Playfair+Display:wght@700&amp;display=swap');
+    body { font-family: "Inter", system_ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  </style>
+</head>
+<body class="bg-white text-slate-900">
+  <div data-component="nav"></div>
+
+  <main class="max-w-3xl mx-auto px-6 py-12 md:py-16">
+    <a href="/blog" class="inline-flex items-center gap-x-1.5 text-sm text-slate-500 hover:text-slate-900 transition mb-8">
+      <i class="fa-solid fa-arrow-left text-xs"></i> All articles
+    </a>
+
+    <div class="flex items-center gap-x-3 mb-6">
+      <span class="category-pill">Legacy Web</span>
+      <span class="text-sm text-slate-500">November 22, 2023</span>
+      <span class="text-sm text-slate-500">· 12 min</span>
+    </div>
+
+    <h1 class="heading-serif text-4xl md:text-5xl leading-none tracking-tighter mb-8">The Resurrection of Flash</h1>
+
+    <div class="prose prose-slate max-w-none blog-content">
+      <p>For museums and cultural organizations, Flash was once the standard for rich interactive exhibits. When it was killed off, a huge amount of important digital heritage effectively died with it.</p><p>Thanks to open-source projects like Ruffle, many of those experiences can live again — safely, in the browser, with no plugins required from visitors.</p><p>I've been quietly resurrecting Flash-based work for clients who need their history to remain accessible. It's one of the more satisfying parts of what I do.</p><h3>Embedding Ruffle yourself</h3><p>Here are the exact steps and code snippets you can copy. Ruffle lets you play legacy Flash (SWF) files directly in modern browsers.</p><h3>Live Demo (right here on this page)</h3><p>Because we have included <code>&lt;script src="https://unpkg.com/@ruffle-rs/ruffle"&gt;&lt;/script&gt;</code> in the &lt;head&gt; of this blog page (as you requested), here is a live working Flash file using flash/techlogo.swf:</p><div id="ruffle-demo" class="w-full bg-black my-4 border border-slate-200 rounded" style="width:100%;max-width:640px;aspect-ratio:4/3;max-height:60vh;height:auto;"></div><p><small>Click if you see a sound/unmute overlay. The file is at flash/techlogo.swf relative to the site root.</small></p><p>To embed this on your own site, follow the steps below:</p><h4>Step 1: Include Ruffle</h4><p>First, add this code snippet into the &lt;head&gt; of your HTML page:</p><pre><code>&lt;script src="https://unpkg.com/@ruffle-rs/ruffle"&gt;&lt;/script&gt;</code></pre><h4>Step 2: Add the player with custom config</h4><p>Paste this code (or integrate the Ruffle init into an existing script block). This version forces autoplay, hides the splash screen, and enables sound without extra clicks:</p><pre><code>&lt;script&gt;     
+window.RufflePlayer = window.RufflePlayer || {}; 
+// Below code forces autoplay, no splashscreen and allows sound 
+window.RufflePlayer.config = { 
+  "autoplay": "on",
+  "splashScreen": false,
+  "unmuteOverlay": "hidden"
+}; 
+// End custom configuration code above     
+window.addEventListener("load", (event) =&gt; {         
+  const ruffle = window.RufflePlayer.newest();         
+  const player = ruffle.createPlayer();         
+  const container = document.getElementById("container");         
+  container.appendChild(player);         
+  player.load("flash/techlogo.swf"); 
+  player.style.width = "600px";
+  player.style.height = "400px";   
+}); 
+&lt;/script&gt; 
+&lt;div id="container"&gt;&lt;/div&gt;</code></pre><h4>Full standalone webpage example (non-Wix HTML site)</h4><p>Copy and paste the following into your index.html (change the .swf filename to match yours). AS2 Flash files typically play immediately with no overlays. AS3 files may show a play button if they work. Sound files will show a click-to-unmute warning.</p><pre><code>&lt;html&gt; 
+&lt;head&gt; 
+&lt;script src="https://unpkg.com/@ruffle-rs/ruffle"&gt;&lt;/script&gt; 
+&lt;style&gt;
+html, body {
+  margin: 0px;
+}
+&lt;/style&gt;
+&lt;/head&gt; 
+&lt;body&gt; 
+&lt;script&gt;     
+window.RufflePlayer = window.RufflePlayer || {}; 
+// Below code forces autoplay, no splashscreen and allows sound 
+window.RufflePlayer.config = { 
+  "autoplay": "on",
+  "splashScreen": false,
+  "unmuteOverlay": "hidden",
+  "quality": "medium"
+}; 
+// End custom configuration code above     
+window.addEventListener("load", (event) =&gt; {         
+  const ruffle = window.RufflePlayer.newest();         
+  const player = ruffle.createPlayer();         
+  const container = document.getElementById("container");         
+  container.appendChild(player);         
+  player.load("index-2023.swf"); 
+  player.style.width = "100%";
+  player.style.height = "100%";   
+}); 
+&lt;/script&gt; 
+&lt;div id="container"&gt;&lt;/div&gt; 
+&lt;/body&gt; 
+&lt;/html&gt;</code></pre><h4>Complete list of configuration options</h4><p>Here are all the available options you can pass to <code>window.RufflePlayer.config</code>:</p><pre><code>window.RufflePlayer = window.RufflePlayer || {};
+window.RufflePlayer.config = {
+    // Options affecting the whole page
+    "publicPath": undefined,
+    "polyfills": true,
+
+    // Options affecting files only
+    "allowScriptAccess": false,
+    "autoplay": "auto",
+    "unmuteOverlay": "visible",
+    "backgroundColor": null,
+    "wmode": "window",
+    "letterbox": "fullscreen",
+    "warnOnUnsupportedContent": true,
+    "contextMenu": "on",
+    "showSwfDownload": false,
+    "upgradeToHttps": window.location.protocol === "https:",
+    "maxExecutionDuration": 15,
+    "logLevel": "error",
+    "base": null,
+    "menu": true,
+    "salign": "",
+    "forceAlign": false,
+    "scale": "showAll",
+    "forceScale": false,
+    "frameRate": null,
+    "quality": "high",
+    "splashScreen": true,
+    "preferredRenderer": null,
+    "openUrlMode": "allow",
+    "allowNetworking": "all",
+    "favorFlash": true,
+    "socketProxy": [],
+    "fontSources": [],
+    "defaultFonts": {},
+    "credentialAllowList": [],
+    "playerRuntime": "flashPlayer",
+    "allowFullscreen": false
+};</code></pre><p>Experiment with these to match your original Flash experience as closely as possible.</p>
+    </div>
+
+    <div class="mt-10 pt-6 border-t border-slate-100 flex flex-wrap gap-2"><span class="text-xs px-3 py-1 bg-slate-100 rounded-full text-slate-600">Flash</span><span class="text-xs px-3 py-1 bg-slate-100 rounded-full text-slate-600">Archives</span><span class="text-xs px-3 py-1 bg-slate-100 rounded-full text-slate-600">Museums</span></div>
+  </main>
+
+  <footer class="border-t border-slate-200 bg-white py-10 mt-8">
+    <div class="max-w-3xl mx-auto px-6 text-sm text-slate-500 flex flex-col sm:flex-row gap-y-3 items-center justify-between">
+      <div>© Steve Luiting. All rights reserved.</div>
+      <div class="flex gap-x-5">
+        <a href="/" class="hover:text-slate-900 transition">Home</a>
+        <a href="/blog" class="hover:text-slate-900 transition">Insights</a>
+        <a href="mailto:steveknowsweb@gmail.com" class="hover:text-slate-900 transition">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/scripts/components.js"></script>
+</body>
+</html>
