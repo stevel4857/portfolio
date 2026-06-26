@@ -64,7 +64,9 @@ steveknowsweb/
 The blog is powered entirely by `data/blog-posts.json`.  
 **Preferred way** to add or edit blog content is by editing this file.
 
-Do **not** create new standalone `.html` files for individual blog posts unless we decide to move to a more advanced system later.
+After editing `blog-posts.json`, run `npm run build:markdown` and commit the generated `md/`, `blog/{slug}/`, `llms.txt`, and `sitemap.xml` files. Do not hand-edit generated paths — change the JSON and rebuild.
+
+Permalink pages at `/blog/{slug}/` are generated automatically. The modal reader on `blog.html` still uses hash URLs for in-page reading.
 
 **Important**: Post `content` is a giant escaped string. Double-quotes inside the HTML **must** be written as `\"` (backslashes as `\\`). Forgetting this is a frequent cause of "SyntaxError: Expected ',' or '}' after property value in JSON" when the blog fails to load. After any edit, quickly validate with `node -e "JSON.parse(require('fs').readFileSync('data/blog-posts.json','utf8'))"` or a JSON tool.
 
