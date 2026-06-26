@@ -27,6 +27,11 @@ This file contains rules and context for AI agents (Grok, Claude, Cursor, etc.) 
 | `about.html`          | About / Story page                   | Be careful with personal narrative tone |
 | `blog.html`           | Blog listing + modal reader          | Prefer editing `data/blog-posts.json`. Small `<head>` scripts or conditional JS for live demos in posts (e.g. Ruffle for Flash) are acceptable when needed to support content. |
 | `data/blog-posts.json`| Blog content                         | Primary place for new blog posts |
+| `scripts/build-markdown.mjs` | Agent-facing Markdown build   | Regenerates `md/`, `blog/{slug}/`, `llms.txt`, `sitemap.xml` — run after blog or core-page edits |
+| `md/`                 | Markdown twins for AI agents         | Generated — commit after `npm run build:markdown`; served with `noindex` via `_headers` |
+| `blog/{slug}/index.html` | Blog permalink pages              | Generated — real URLs for humans and crawlers (e.g. `/blog/markdown-for-ai-agents`) |
+| `llms.txt`            | Agent discovery index                | Generated — lists key `.md` URLs at site root |
+| `_headers`            | Cloudflare Pages response headers    | Marks `/md/*` as `noindex, nofollow` |
 | `assets/`             | Images and videos                    | Do not optimize or rename without discussion |
 | `flash/`              | Legacy demo assets (e.g. SWF for blog) | Use relative paths like `flash/techlogo.swf` for demos. Commit demo files here when adding live examples. |
 | `CONTRIBUTING.md`     | Human contribution guidelines        | Update when collaboration patterns change |
@@ -35,7 +40,11 @@ This file contains rules and context for AI agents (Grok, Claude, Cursor, etc.) 
 
 - When adding or editing blog posts, **always edit `data/blog-posts.json`**.
 - **Careful with JSON escaping**: Post content is a single large string. Any `"` inside the HTML must be escaped as `\"` (and `\` as `\\`). This is a common source of "Failed to load blog posts: SyntaxError: Expected ',' or '}' after property value in JSON" errors. After edits, validate the JSON (e.g. `node -e "JSON.parse(require('fs').readFileSync('data/blog-posts.json','utf8'))"`) or use a JSON linter before committing.
-- After adding or editing posts, run `npm run build:markdown` (or `npm run build`) to regenerate `md/` twins, `blog/{slug}/` permalink pages, `llms.txt`, and `sitemap.xml`.
+- After adding or editing posts, run `npm run build:markdown` (or `npm run build`) to regenerate `md/` twins, `blog/{slug}/` permalink pages, `llms.txt`, and `sitemap.xml`. **Commit all generated files** in the same PR/commit as the JSON edit.
+- **Production deploys only from `main`.** Pushing a feature branch updates the PR preview, not https://steveknowsweb.com — merge to `main` to go live.
+- Blog modal on `blog.html` still uses hash URLs (`#slug`); permalink pages at `/blog/{slug}/` are generated separately for SEO and agents.
+- Core pages (`index.html`, `about.html`, `work/syndeo.html`) have `<link rel="alternate" type="text/markdown">` pointing at `md/` twins. Re-run the build script after meaningful edits to those pages.
+- Optional later: enable Cloudflare **Markdown for Agents** on the zone (Pro+ plan) for `Accept: text/markdown` edge conversion — static `md/` files are the primary path and work on any plan.
 - For posts with live/interactive demos (e.g. the Flash resurrection post), include the demo markup in the JSON content and add any required script (e.g. Ruffle CDN) to `blog.html` `<head>` + init logic in the modal JS. The demo should be self-contained in the post.
 - Keep the writing style consistent with existing posts (practical, slightly reflective, no hype).
 - Use real dates and accurate categories.

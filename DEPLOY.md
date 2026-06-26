@@ -174,7 +174,53 @@ The Cloudflare GitHub App may still show failed checks on each push (`Cloudflare
 
 - Every push to `main` triggers a production deployment (via GitHub Actions once `CLOUDFLARE_API_TOKEN` is set)
 - Every pull request automatically gets its own preview URL (e.g. `feature-new-hero.stevel4857.pages.dev`)
+- **Branch pushes alone do not update production.** https://steveknowsweb.com only changes after merges to `main`. If the live site looks stale after a hard refresh, check that the PR was merged and the GitHub Action succeeded.
 - You can add a `wrangler.toml` later if you want more control, but it's not required
+
+## Markdown for AI agents (added June 2026)
+
+The site serves lightweight Markdown twins alongside HTML so AI agents can read content without wading through template chrome.
+
+### What was added
+
+| Path | Purpose |
+|------|---------|
+| `scripts/build-markdown.mjs` | Build script (HTML/JSON → Markdown) |
+| `md/` | Generated `.md` files with YAML frontmatter |
+| `blog/{slug}/index.html` | Generated permalink pages |
+| `llms.txt` | Discovery index at site root |
+| `_headers` | `noindex` on `/md/*` so search engines don't index twins |
+| `_redirects` | `/blog/:slug` → `/blog/:slug/` trailing-slash redirect |
+
+HTML pages include `<link rel="alternate" type="text/markdown" href="/md/...">` for discovery.
+
+### After blog or core-page edits
+
+```powershell
+cd "D:\work\steveknowsweb"
+npm run build:markdown   # or: npm run build
+git add data/blog-posts.json md/ blog/ llms.txt sitemap.xml
+git commit -m "Describe your changes"
+git push origin main     # merge to main first if on a feature branch
+```
+
+### Verify production after deploy
+
+```powershell
+curl -I https://steveknowsweb.com/llms.txt
+curl -I https://steveknowsweb.com/md/blog/markdown-for-ai-agents.md
+curl -I https://steveknowsweb.com/blog/markdown-for-ai-agents
+```
+
+Expect `200` on all three. The `.md` URL should include `x-robots-tag: noindex, nofollow`.
+
+### Optional: Cloudflare edge conversion
+
+On **Pro+** plans, enable **Markdown for Agents** in the zone dashboard (AI Crawl Control). Agents sending `Accept: text/markdown` get on-the-fly HTML→Markdown conversion. The pre-built `md/` files remain the curated source; edge conversion is a fallback.
+
+```powershell
+curl https://steveknowsweb.com/blog/markdown-for-ai-agents -H "Accept: text/markdown"
+```
 
 ## Alternative Hosts (if you prefer)
 

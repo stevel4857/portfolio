@@ -36,7 +36,7 @@ This site is built as a clean, static, multi-file website. The goal is to keep i
 
 5. Request review (from a human or describe what you want an AI agent to check).
 
-6. Merge to `main` only after the preview looks good.
+6. Merge to `main` only after the preview looks good. **Production (https://steveknowsweb.com) only updates after the merge** — not when you push a branch alone.
 
 ## Folder Structure
 
@@ -47,6 +47,11 @@ steveknowsweb/
 ├── blog.html           # Blog listing + reader
 ├── data/               # Structured content (JSON)
 │   └── blog-posts.json
+├── md/                 # Generated Markdown twins for AI agents (do not hand-edit)
+├── blog/{slug}/        # Generated permalink pages (do not hand-edit)
+├── llms.txt            # Generated agent discovery index
+├── scripts/
+│   └── build-markdown.mjs
 ├── assets/             # Images, videos, fonts
 ├── flash/              # Legacy demo assets (SWF for live blog examples)
 ├── README.md
