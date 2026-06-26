@@ -1,5 +1,22 @@
 [
   {
+    "id": 15,
+    "slug": "impactstudios-app-is-live",
+    "title": "impactstudios.app Is Live — A Coming Soon Page on the Path I Already Trust",
+    "date": "2026-06-26",
+    "author": "Steve Luiting",
+    "category": "AI & Strategy",
+    "readTime": "3 min",
+    "excerpt": "The Impact Studio product is still in development, but the brand now has a home at impactstudios.app — a coming soon page deployed through the same GitHub-to-Cloudflare workflow I have been writing about. Set up June 26, 2026.",
+    "content": "<p>A few days ago I wrote about <a href=\"/blog/impact-studio-a-builder-for-offline-work-and-real-publishing\">Impact Studio</a> — the offline-first visual builder I am building for solo creators and small studios. The product itself is still in development. But the brand needed a real address on the web.</p><p>On <strong>June 26, 2026</strong>, I set up <a href=\"https://impactstudios.app\" target=\"_blank\" rel=\"noopener\">impactstudios.app</a> with a simple coming soon page. Nothing fancy. Just a clear placeholder while the builder matures.</p><figure class=\"my-8\"><img src=\"/assets/images/impactstudios-app-coming-soon.jpg\" alt=\"Screenshot of the impactstudios.app coming soon page with a dark gradient background, Impact Studios heading, and a coming soon badge\" class=\"w-full rounded-2xl border border-slate-200\" /><figcaption class=\"text-center text-sm text-slate-500 mt-2\">impactstudios.app — live coming soon page, set up June 26, 2026.</figcaption></figure><h3>Same workflow, separate repos</h3><p>This follows the publishing model I have been describing for Impact Studio itself: the <strong>product repository</strong> (<code>impactstudio</code>) is not what goes to Cloudflare. The <strong>site repository</strong> (<code>impactstudios-site</code>) holds static HTML only. Push to GitHub, Cloudflare Pages deploys, custom domain attached, DNS handled automatically.</p><p>That separation matters. The app source stays private and messy in the ways real software is messy. The public site stays small, portable, and easy to replace when Impact Studio can publish marketing pages on its own.</p><h3>What is next</h3><p>For now it is a holding page. When the builder can export and publish real sites, this repo will be the first candidate for a proper marketing site — designed in Impact Studio, rendered to static files, pushed to GitHub, live on Cloudflare.</p><p>Until then, <a href=\"https://impactstudios.app\" target=\"_blank\" rel=\"noopener\">impactstudios.app</a> is proof that the boring path works: own the domain, own the repo, own the deploy.</p><p><em>Status: coming soon page live — June 26, 2026. Site repo: <a href=\"https://github.com/stevel4857/impactstudios-site\" target=\"_blank\" rel=\"noopener\">github.com/stevel4857/impactstudios-site</a></em></p>",
+    "tags": [
+      "Product",
+      "Static Sites",
+      "Workflow",
+      "Impact Studio"
+    ]
+  },
+  {
     "id": 14,
     "slug": "markdown-for-ai-agents",
     "title": "Markdown for AI Agents: Same Page, Far Fewer Tokens",

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The Impact Studio product is still in development, but the brand now has a home at impactstudios.app — a coming soon page deployed through the same GitHub-to-Cloudflare workflow I have been writing about. Set up June 26, 2026.">
+  <title>impactstudios.app Is Live — A Coming Soon Page on the Path I Already Trust — Steve Luiting</title>
+  <link rel="canonical" href="https://steveknowsweb.com/blog/impactstudios-app-is-live">
+  <link rel="alternate" type="text/markdown" href="/md/blog/impactstudios-app-is-live.md">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/steveknowswebdesign-favicon.png">
+  <link rel="stylesheet" href="/css/tailwind.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Playfair+Display:wght@700&amp;display=swap');
+    body { font-family: "Inter", system_ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  </style>
+</head>
+<body class="bg-white text-slate-900">
+  <div data-component="nav"></div>
+
+  <main class="max-w-3xl mx-auto px-6 py-12 md:py-16">
+    <a href="/blog" class="inline-flex items-center gap-x-1.5 text-sm text-slate-500 hover:text-slate-900 transition mb-8">
+      <i class="fa-solid fa-arrow-left text-xs"></i> All articles
+    </a>
+
+    <div class="flex items-center gap-x-3 mb-6">
+      <span class="category-pill">AI &amp; Strategy</span>
+      <span class="text-sm text-slate-500">June 25, 2026</span>
+      <span class="text-sm text-slate-500">· 3 min</span>
+    </div>
+
+    <h1 class="heading-serif text-4xl md:text-5xl leading-none tracking-tighter mb-8">impactstudios.app Is Live — A Coming Soon Page on the Path I Already Trust</h1>
+
+    <div class="prose prose-slate max-w-none blog-content">
+      <p>A few days ago I wrote about <a href="/blog/impact-studio-a-builder-for-offline-work-and-real-publishing">Impact Studio</a> — the offline-first visual builder I am building for solo creators and small studios. The product itself is still in development. But the brand needed a real address on the web.</p><p>On <strong>June 26, 2026</strong>, I set up <a href="https://impactstudios.app" target="_blank" rel="noopener">impactstudios.app</a> with a simple coming soon page. Nothing fancy. Just a clear placeholder while the builder matures.</p><figure class="my-8"><img src="/assets/images/impactstudios-app-coming-soon.jpg" alt="Screenshot of the impactstudios.app coming soon page with a dark gradient background, Impact Studios heading, and a coming soon badge" class="w-full rounded-2xl border border-slate-200" /><figcaption class="text-center text-sm text-slate-500 mt-2">impactstudios.app — live coming soon page, set up June 26, 2026.</figcaption></figure><h3>Same workflow, separate repos</h3><p>This follows the publishing model I have been describing for Impact Studio itself: the <strong>product repository</strong> (<code>impactstudio</code>) is not what goes to Cloudflare. The <strong>site repository</strong> (<code>impactstudios-site</code>) holds static HTML only. Push to GitHub, Cloudflare Pages deploys, custom domain attached, DNS handled automatically.</p><p>That separation matters. The app source stays private and messy in the ways real software is messy. The public site stays small, portable, and easy to replace when Impact Studio can publish marketing pages on its own.</p><h3>What is next</h3><p>For now it is a holding page. When the builder can export and publish real sites, this repo will be the first candidate for a proper marketing site — designed in Impact Studio, rendered to static files, pushed to GitHub, live on Cloudflare.</p><p>Until then, <a href="https://impactstudios.app" target="_blank" rel="noopener">impactstudios.app</a> is proof that the boring path works: own the domain, own the repo, own the deploy.</p><p><em>Status: coming soon page live — June 26, 2026. Site repo: <a href="https://github.com/stevel4857/impactstudios-site" target="_blank" rel="noopener">github.com/stevel4857/impactstudios-site</a></em></p>
+    </div>
+
+    <div class="mt-10 pt-6 border-t border-slate-100 flex flex-wrap gap-2"><span class="text-xs px-3 py-1 bg-slate-100 rounded-full text-slate-600">Product</span><span class="text-xs px-3 py-1 bg-slate-100 rounded-full text-slate-600">Static Sites</span><span class="text-xs px-3 py-1 bg-slate-100 rounded-full text-slate-600">Workflow</span><span class="text-xs px-3 py-1 bg-slate-100 rounded-full text-slate-600">Impact Studio</span></div>
+  </main>
+
+  <footer class="border-t border-slate-200 bg-white py-10 mt-8">
+    <div class="max-w-3xl mx-auto px-6 text-sm text-slate-500 flex flex-col sm:flex-row gap-y-3 items-center justify-between">
+      <div>© Steve Luiting. All rights reserved.</div>
+      <div class="flex gap-x-5">
+        <a href="/" class="hover:text-slate-900 transition">Home</a>
+        <a href="/blog" class="hover:text-slate-900 transition">Insights</a>
+        <a href="mailto:steveknowsweb@gmail.com" class="hover:text-slate-900 transition">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/scripts/components.js"></script>
+</body>
+</html>
