@@ -61,12 +61,9 @@ function initMobileMenu() {
       }
     };
 
-    button.addEventListener('click', toggleMenu);
-
-    // Prevent default on touchstart to avoid 300ms delay and ghost clicks on mobile
-    button.addEventListener('touchstart', (e) => {
-      e.preventDefault();
-    }, { passive: false });
+    button.addEventListener('click', (e) => {
+      toggleMenu(e);
+    });
 
     // Close when clicking any link in the menu
     menu.querySelectorAll('a').forEach((link) => {
