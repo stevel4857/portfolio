@@ -11,6 +11,7 @@
 
 ## Articles
 
+- [Generative Engine Optimization: What GEO Actually Is](https://steveknowsweb.com/md/blog/generative-engine-optimization.md)
 - [impactstudios.app Is Live — A Coming Soon Page on the Path I Already Trust](https://steveknowsweb.com/md/blog/impactstudios-app-is-live.md)
 - [Markdown for AI Agents: Same Page, Far Fewer Tokens](https://steveknowsweb.com/md/blog/markdown-for-ai-agents.md)
 - [Impact Studio: A Builder for Offline Work and Real Publishing](https://steveknowsweb.com/md/blog/impact-studio-a-builder-for-offline-work-and-real-publishing.md)

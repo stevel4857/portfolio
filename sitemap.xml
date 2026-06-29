@@ -21,6 +21,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://steveknowsweb.com/blog/generative-engine-optimization</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://steveknowsweb.com/blog/impactstudios-app-is-live</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

@@ -9,6 +9,22 @@ language: "en"
 
 Articles by Steve Luiting on strategic web design, digital preservation, and AI-accelerated workflows.
 
+## [Generative Engine Optimization: What GEO Actually Is](https://steveknowsweb.com/blog/generative-engine-optimization)
+
+*2026-06-29 · AI & Strategy · 7 min*
+
+GEO is the new game for getting into AI answers instead of Google results. Here's how it works, how it differs from ads and SEO, and what it means for real websites.
+
+Markdown: [generative-engine-optimization.md](/md/blog/generative-engine-optimization.md)
+
+## [impactstudios.app Is Live — A Coming Soon Page on the Path I Already Trust](https://steveknowsweb.com/blog/impactstudios-app-is-live)
+
+*2026-06-26 · AI & Strategy · 3 min*
+
+The Impact Studio product is still in development, but the brand now has a home at impactstudios.app — a coming soon page deployed through the same GitHub-to-Cloudflare workflow I have been writing about. Set up June 26, 2026.
+
+Markdown: [impactstudios-app-is-live.md](/md/blog/impactstudios-app-is-live.md)
+
 ## [Markdown for AI Agents: Same Page, Far Fewer Tokens](https://steveknowsweb.com/blog/markdown-for-ai-agents)
 
 *2026-06-26 · AI & Strategy · 7 min*
