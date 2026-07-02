@@ -181,3 +181,72 @@
   padding: 0;
   border-radius: 0;
 }
+
+/* ── Animation presets (Lottie-style, CSS + Motion) ──
+   Apply via data-animate="preset-name" — see data/animation-presets.json
+   Preview: /demos/animations.html */
+
+.preset-reduced-instant {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+}
+
+/* pulse-ring: expanding ring via pseudo-element */
+.preset-pulse-ring {
+  position: relative;
+  isolation: isolate;
+}
+.preset-pulse-ring::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  border: 2px solid rgb(30 41 59 / 0.35);
+  animation: pulse-ring-scale 2.1s ease-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* draw-line: SVG stroke reveal (use on <svg data-animate="draw-line">) */
+.preset-draw-line .preset-draw-target {
+  stroke-dasharray: 120;
+  stroke-dashoffset: 120;
+}
+.preset-scroll-reveal.preset-draw-line.is-visible .preset-draw-target,
+.preset-draw-line:not(.preset-scroll-reveal) .preset-draw-target {
+  animation: draw-line 1.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* shimmer: gradient sweep */
+.preset-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgb(241 245 249) 0%,
+    rgb(248 250 252) 40%,
+    rgb(226 232 240) 50%,
+    rgb(248 250 252) 60%,
+    rgb(241 245 249) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2.2s linear infinite;
+}
+
+/* scroll-triggered presets start hidden until in view */
+.preset-scroll-reveal:not(.is-visible) {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-gentle,
+  .animate-morph-blob,
+  .preset-pulse-ring::after,
+  .preset-shimmer,
+  .preset-draw-line .preset-draw-target {
+    animation: none !important;
+  }
+
+  .preset-scroll-reveal:not(.is-visible) {
+    opacity: 1;
+  }
+}

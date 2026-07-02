@@ -32,12 +32,13 @@
   <!-- Top Navigation (loaded via component) -->
   <div data-component="nav"></div>
 
+  <div data-motion-page>
   <!-- Header -->
   <header class="max-w-6xl mx-auto px-6 pt-16 pb-10">
     <div class="max-w-2xl">
-      <div class="uppercase tracking-[3px] text-xs font-medium text-slate-500 mb-3">FIELD NOTES</div>
-      <h1 class="heading-serif text-6xl leading-none tracking-tighter">Insights &amp;<br>Experiments</h1>
-      <p class="mt-5 text-xl text-slate-600 max-w-md">
+      <div data-stagger-item class="uppercase tracking-[3px] text-xs font-medium text-slate-500 mb-3">FIELD NOTES</div>
+      <h1 data-stagger-item class="heading-serif text-6xl leading-none tracking-tighter">Insights &amp;<br>Experiments</h1>
+      <p data-stagger-item class="mt-5 text-xl text-slate-600 max-w-md">
         Straight talk on strategic web design, preserving digital history, and using AI to build better websites faster.
       </p>
     </div>
@@ -74,6 +75,7 @@
       <p class="text-slate-500">No posts found. Try a different search or filter.</p>
     </div>
   </main>
+  </div>
 
   <!-- Post Modal / Reader -->
   <div id="post-modal" class="hidden fixed inset-0 z-[100] bg-black/60 flex items-center justify-center p-4 md:p-8">
@@ -380,5 +382,6 @@
 
   <!-- Component loader -->
   <script src="/scripts/components.js"></script>
+  <script type="module" src="/js/motion-bundle.js"></script>
 </body>
 </html>

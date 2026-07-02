@@ -89,6 +89,9 @@ function initMobileMenu() {
   });
 }
 
+// Expose for Motion soft-navigation reinitialization
+window.loadAllComponents = loadAllComponents;
+
 // Auto-load when DOM is ready
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', loadAllComponents);

@@ -24,7 +24,7 @@
   <!-- Navigation (loaded via component for consistency + mobile menu) -->
   <div data-component="nav"></div>
 
-  <main>
+  <main data-motion-page>
 
   <!-- Hero -->
   <header class="relative flex items-start min-h-[68vh] bg-cover bg-center" 
@@ -35,20 +35,20 @@
 
     <div class="relative max-w-6xl mx-auto px-6 z-10 pt-16 pb-8">
       <div class="max-w-3xl">
-        <div class="inline-flex items-center gap-x-2 text-xs uppercase tracking-[3px] font-semibold text-white/80 mb-6">
+        <div data-stagger-item class="inline-flex items-center gap-x-2 text-xs uppercase tracking-[3px] font-semibold text-white/80 mb-6">
           <span class="w-8 h-px bg-white/60"></span> 
           COLORADO • 30+ YEARS
         </div>
         
-        <h1 class="heading-serif text-5xl sm:text-6xl md:text-7xl leading-[1.05] tracking-[-3.5px] max-w-4xl text-white">
+        <h1 data-stagger-item class="heading-serif text-5xl sm:text-6xl md:text-7xl leading-[1.05] tracking-[-3.5px] max-w-4xl text-white">
           Future-proof<br>your mission.
         </h1>
         
-        <p class="mt-6 text-2xl text-white/90 max-w-lg leading-tight">
+        <p data-stagger-item class="mt-6 text-2xl text-white/90 max-w-lg leading-tight">
           Strategic web design and digital experiences for museums, nonprofits, and purpose-driven organizations.
         </p>
 
-        <div class="mt-9 flex flex-wrap items-center gap-x-4 gap-y-3">
+        <div data-stagger-item class="mt-9 flex flex-wrap items-center gap-x-4 gap-y-3">
           <a href="#contact" 
              class="inline-flex items-center justify-center gap-x-2 px-8 h-14 rounded-2xl bg-white text-slate-900 font-semibold text-lg hover:bg-white/90 active:scale-[0.985] transition">
             Start a Conversation
@@ -59,7 +59,7 @@
           </a>
         </div>
         
-        <div class="mt-8 text-sm text-white/70 flex items-center gap-x-2">
+        <div data-stagger-item class="mt-8 text-sm text-white/70 flex items-center gap-x-2">
           <i class="fa-solid fa-check text-emerald-400" aria-hidden="true"></i>
           <span>Now building faster and better with AI (Grok + Claude) while keeping the same care for craft.</span>
         </div>
@@ -196,7 +196,7 @@
 
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
       <!-- Waterskiing Featured Project - Enhanced (Featured) -->
-      <div class="work-card group bg-white border border-slate-200 rounded-3xl overflow-hidden lg:col-span-2">
+      <div data-stagger-item class="work-card group bg-white border border-slate-200 rounded-3xl overflow-hidden lg:col-span-2">
         <div class="aspect-video bg-black relative overflow-hidden">
           <iframe 
             src="https://www.youtube.com/embed/c17442C1VsY?modestbranding=1&rel=0" 
@@ -252,7 +252,7 @@
       </div>
 
       <!-- Cable Center VR -->
-      <div class="work-card group bg-white border border-slate-200 rounded-3xl p-7 flex flex-col">
+      <div data-stagger-item class="work-card group bg-white border border-slate-200 rounded-3xl p-7 flex flex-col">
         <div class="flex-1">
           <div class="uppercase tracking-widest text-xs font-medium text-slate-500">THE CABLE CENTER • 2014–PRESENT</div>
           <h3 class="heading-serif text-3xl tracking-tight mt-2 leading-none">Virtual Archive Experience</h3>
@@ -275,7 +275,7 @@
       </div>
 
       <!-- Syndeo Institute -->
-      <div class="work-card group bg-white border border-slate-200 rounded-3xl p-7 flex flex-col">
+      <div data-stagger-item class="work-card group bg-white border border-slate-200 rounded-3xl p-7 flex flex-col">
         <div class="flex-1">
           <div class="uppercase tracking-widest text-xs font-medium text-slate-500">CORPORATE YET STYLISH</div>
           <h3 class="heading-serif text-3xl tracking-tight mt-2 leading-none">Syndeo Institute</h3>
@@ -295,7 +295,7 @@
       </div>
 
       <!-- Legacy Rescue -->
-      <div class="work-card group bg-white border border-slate-200 rounded-3xl p-7">
+      <div data-stagger-item class="work-card group bg-white border border-slate-200 rounded-3xl p-7">
         <div class="uppercase tracking-widest text-xs font-medium text-slate-500 mb-2">ARCHIVAL RESCUE</div>
         <h3 class="heading-serif text-3xl tracking-tight leading-none">Flash Kiosks &amp; Video Archives</h3>
         <p class="mt-4 text-slate-600">
@@ -306,7 +306,7 @@
       </div>
 
       <!-- Strategy & Rebuilds -->
-      <div class="work-card group bg-white border border-slate-200 rounded-3xl p-7 flex flex-col">
+      <div data-stagger-item class="work-card group bg-white border border-slate-200 rounded-3xl p-7 flex flex-col">
         <div>
           <div class="uppercase tracking-widest text-xs font-medium text-slate-500 mb-2">STRATEGY + REPLATFORMING</div>
           <h3 class="heading-serif text-3xl tracking-tight leading-none">Museum &amp; Nonprofit Websites</h3>
@@ -594,22 +594,30 @@
       loadBlogTeaser();
       initKeyboard();
       
-      // Smooth scroll for anchor links
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      // Smooth scroll for on-page section links (#contact and /#contact)
+      document.querySelectorAll('a[href^="#"], a[href^="/#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
-          const target = document.querySelector(this.getAttribute('href'));
+          const link = new URL(this.href, window.location.origin);
+          const onThisPage = link.pathname === window.location.pathname
+            || (link.pathname === '/' && window.location.pathname.endsWith('/index.html'));
+          if (!onThisPage || !link.hash) return;
+
+          const target = document.getElementById(link.hash.slice(1));
           if (target) {
             e.preventDefault();
+            history.pushState(null, '', link.hash);
             target.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }
         });
       });
     }
 
+    window.init = init;
+    window.addEventListener('motion:page-enter', init);
     window.onload = init;
   </script>
 
-  <!-- Component loader (for nav + mobile menu) -->
   <script src="scripts/components.js"></script>
+  <script type="module" src="/js/motion-bundle.js"></script>
 </body>
 </html>

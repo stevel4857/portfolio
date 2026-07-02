@@ -49,6 +49,48 @@ This file contains rules and context for AI agents (Grok, Claude, Cursor, etc.) 
 - Keep the writing style consistent with existing posts (practical, slightly reflective, no hype).
 - Use real dates and accurate categories.
 
+## Animation Presets (Lottie-style, CSS + Motion)
+
+The site has named animation presets for Lottie-like effects without Lottie JSON files.
+
+**Preview gallery:** `/demos/animations.html`  
+**Catalog:** `data/animation-presets.json` (agent-friendly) and `src/motion/presets/catalog.ts` (source of truth)  
+**Apply to HTML:** `data-animate="preset-name"` on any element. Optional override: `data-animate-trigger="load|scroll|hover|loop"`.
+
+| Preset | Engine | Trigger | Lottie-like feel |
+|--------|--------|---------|------------------|
+| `settle-up` | Motion | scroll | Fade-up / bounce-out entrance |
+| `float-gentle` | CSS | loop | Idle float / levitation |
+| `pulse-ring` | CSS | loop | Radar ping / notification ripple |
+| `draw-line` | CSS | scroll | Stroke draw-on (SVG + `.preset-draw-target`) |
+| `shimmer` | CSS | loop | Skeleton shimmer / loading sheen |
+| `morph-blob` | CSS | loop | Liquid blob morph |
+
+### When the human requests an animation
+
+Use this brief (also in `data/animation-presets.json`):
+
+```
+Animation request
+- Target: [element / section]
+- Trigger: on load | on scroll into view | on hover | loop
+- Feel: Lottie-style — [describe motion]
+- Reference: [Lottie name, GIF, or description]
+- Duration: ~0.6s once, or 3s loop
+- Reduced motion: instant | fade only | disable loop
+```
+
+**Agent workflow:**
+1. Check if an existing preset fits — reuse before creating a new one.
+2. **Simple loops / hovers** → CSS keyframes in `tailwind.config.js` + utilities in `src/input.css`.
+3. **Choreographed entrances / springs** → Motion preset in `src/motion/presets/motion.ts`.
+4. Register new presets in `src/motion/presets/catalog.ts` and `data/animation-presets.json`.
+5. Add a live example card to `demos/animations.html`.
+6. Always respect `prefers-reduced-motion` (see `src/motion/lib/applyPresets.ts`).
+7. Run `npm run build` (Tailwind + motion bundle) before committing.
+
+**Example request:** “Animation request: float-gentle on the hero eyebrow” → add `data-animate="float-gentle"` to that element in `index.html`.
+
 ## Styling Rules
 
 - Tailwind is built via PostCSS (see `package.json`, `src/input.css`, `tailwind.config.js`, `postcss.config.js`).

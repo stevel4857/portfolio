@@ -24,15 +24,15 @@
   <!-- Navigation (loaded via component for consistency + mobile menu) -->
   <div data-component="nav"></div>
 
-  <main>
+  <main data-motion-page>
 
   <!-- Hero -->
   <header class="max-w-6xl mx-auto px-6 pt-16 pb-12">
     <div class="max-w-3xl">
-      <div class="uppercase tracking-[3px] text-xs font-semibold text-slate-500 mb-4">A LIFE IN DIGITAL CRAFT</div>
-      <h1 class="heading-serif text-6xl md:text-7xl leading-none tracking-[-2.5px]">I build things<br>that are meant<br>to last.</h1>
+      <div data-stagger-item class="uppercase tracking-[3px] text-xs font-semibold text-slate-500 mb-4">A LIFE IN DIGITAL CRAFT</div>
+      <h1 data-stagger-item class="heading-serif text-6xl md:text-7xl leading-none tracking-[-2.5px]">I build things<br>that are meant<br>to last.</h1>
       
-      <div class="mt-8 flex items-center gap-x-4">
+      <div data-stagger-item class="mt-8 flex items-center gap-x-4">
         <img src="assets/images/profile.png" alt="Steve Luiting" 
              class="w-20 h-20 rounded-2xl object-cover ring-1 ring-slate-200">
         <div>
@@ -157,7 +157,7 @@
     </div>
   </footer>
 
-  <!-- Component loader (for nav + mobile menu) -->
   <script src="scripts/components.js"></script>
+  <script type="module" src="/js/motion-bundle.js"></script>
 </body>
 </html>

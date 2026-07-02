@@ -1,0 +1,55 @@
+{
+  "briefTemplate": {
+    "target": "hero eyebrow / work cards / contact CTA",
+    "trigger": "on load | on scroll into view | on hover | loop",
+    "feel": "Lottie-style — soft bounce settle, floating loop, draw-on line, pulse glow",
+    "reference": "Lottie name, GIF, or plain description",
+    "duration": "~0.6s once, or 3s loop",
+    "reducedMotion": "instant | fade only | disable loop"
+  },
+  "presets": [
+    {
+      "name": "settle-up",
+      "engine": "motion",
+      "trigger": "scroll",
+      "usage": "<div data-animate=\"settle-up\">...</div>",
+      "lottieLike": "Lottie fade-up / bounce-out entrance"
+    },
+    {
+      "name": "float-gentle",
+      "engine": "css",
+      "trigger": "loop",
+      "usage": "<div data-animate=\"float-gentle\">...</div>",
+      "lottieLike": "Lottie idle float / levitation loop"
+    },
+    {
+      "name": "pulse-ring",
+      "engine": "css",
+      "trigger": "loop",
+      "usage": "<div data-animate=\"pulse-ring\" class=\"relative\">...</div>",
+      "lottieLike": "Lottie radar ping / notification ripple"
+    },
+    {
+      "name": "draw-line",
+      "engine": "css",
+      "trigger": "scroll",
+      "usage": "<svg data-animate=\"draw-line\"><path class=\"preset-draw-target\" .../></svg>",
+      "lottieLike": "Lottie stroke draw-on / signature reveal"
+    },
+    {
+      "name": "shimmer",
+      "engine": "css",
+      "trigger": "loop",
+      "usage": "<div data-animate=\"shimmer\">...</div>",
+      "lottieLike": "Lottie skeleton shimmer / loading sheen"
+    },
+    {
+      "name": "morph-blob",
+      "engine": "css",
+      "trigger": "loop",
+      "usage": "<div data-animate=\"morph-blob\">...</div>",
+      "lottieLike": "Lottie blob morph / liquid shape loop"
+    }
+  ],
+  "previewUrl": "/demos/animations.html"
+}
