@@ -8,6 +8,10 @@ category: "Legacy Web"
 tags: "Flash, Archives, Museums"
 language: "en"
 ---
+At The Cable Center, the learning-station kiosks were built around Flash on two levels: **Flash drove the animation** visitors saw on screen, and the **kiosk UI itself was authored in Flash**. When those exhibits broke after Flash was discontinued, I restored them by **reverse-engineering the original .swf files** — pulling apart the compiled project, rebuilding what I could, and getting the interactives running again with modern tools.
+
+Kinect experiments on Cable Center learning stations, 2011 — Flash animation and a Flash-built kiosk interface, later restored from the original SWF sources.
+
 For museums and cultural organizations, Flash was once the standard for rich interactive exhibits. When it was killed off, a huge amount of important digital heritage effectively died with it.
 
 Thanks to open-source projects like Ruffle, many of those experiences can live again — safely, in the browser, with no plugins required from visitors.
