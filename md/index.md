@@ -159,6 +159,8 @@ Reverse-engineered and modernized dozens of early-2000s interactive exhibits and
 
 Legacy preserved
 
+[Flash kiosks](https://steveknowsweb.com/blog/the-resurrection-of-flash) [Video archive](https://steveknowsweb.com/blog/rescuing-the-video-archive-after-the-hack)
+
 STRATEGY + REPLATFORMING
 
 ### Museum & Nonprofit Websites
