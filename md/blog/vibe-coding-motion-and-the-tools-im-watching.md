@@ -78,6 +78,10 @@ Animations were the front-of-house upgrade. The next vibe-coded experiments are 
 
 None of that is live on steveknowsweb.com yet. But the pattern is the same as Motion: pick a real workflow pain, vibe-code a focused tool, document it, and keep the production site calm.
 
+### Find your people
+
+If you want company while you figure this out, I would join the [Vibe Code Guild on Skool](https://www.skool.com/vibecodeguild/). It is free — and you end up around like-minded builders who are also learning how to direct AI without pretending every line of code is still hand-typed.
+
 ### Where I land on this
 
 Vibe coding is not “AI writes your site while you nap.” It is closer to creative direction with a very fast junior team that never sleeps — and occasionally hallucinates a footer.
