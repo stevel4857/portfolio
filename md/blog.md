@@ -9,6 +9,14 @@ language: "en"
 
 Articles by Steve Luiting on strategic web design, digital preservation, and AI-accelerated workflows.
 
+## [Vibe Coding This Site — and Adding Motion Without Losing the Plot](https://steveknowsweb.com/blog/vibe-coding-motion-and-the-tools-im-watching)
+
+*2026-07-02 · AI & Workflow · 9 min*
+
+I watched a sharp video on vibe coding with Grok Build, then used the same workflow to add Lottie-style page animations to my static site — without migrating to React. Whisper, FFmpeg, and Pywebview are next on my radar.
+
+Markdown: [vibe-coding-motion-and-the-tools-im-watching.md](/md/blog/vibe-coding-motion-and-the-tools-im-watching.md)
+
 ## [Generative Engine Optimization: What GEO Actually Is](https://steveknowsweb.com/blog/generative-engine-optimization)
 
 *2026-06-29 · AI & Strategy · 7 min*

@@ -11,6 +11,7 @@
 
 ## Articles
 
+- [Vibe Coding This Site — and Adding Motion Without Losing the Plot](https://steveknowsweb.com/md/blog/vibe-coding-motion-and-the-tools-im-watching.md)
 - [Generative Engine Optimization: What GEO Actually Is](https://steveknowsweb.com/md/blog/generative-engine-optimization.md)
 - [impactstudios.app Is Live — A Coming Soon Page on the Path I Already Trust](https://steveknowsweb.com/md/blog/impactstudios-app-is-live.md)
 - [Markdown for AI Agents: Same Page, Far Fewer Tokens](https://steveknowsweb.com/md/blog/markdown-for-ai-agents.md)
