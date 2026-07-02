@@ -8,7 +8,7 @@ category: "Legacy Web"
 tags: "Flash, Archives, Museums"
 language: "en"
 ---
-At The Cable Center, the learning-station kiosks were built around Flash on two levels: **Flash drove the animation** visitors saw on screen, and the **kiosk UI itself was authored in Flash**. When those exhibits stopped working, the problem was not just that Flash had been discontinued — **the source files had disappeared**, and the **old working project files were corrupted**. I had no clean files left to rebuild the exhibit from, so I recovered what I could from the compiled .swf outputs and brought the interactives back with modern tools like Ruffle.
+At The Cable Center, the learning-station kiosks were built around Flash on two levels: **Flash drove the animation** visitors saw on screen, and the **kiosk UI itself was authored in Flash**. When those exhibits stopped working, the problem was not just that Flash had been discontinued — **the source files had disappeared**, and the **old working project files were corrupted**. I had no clean files left to rebuild the exhibit from, so I recovered what I could from the compiled .swf outputs and brought the interactives back. If today they wanted to use Flash once again, I could restore them via modern tools like Ruffle.
 
 Kinect experiments on Cable Center learning stations, 2011 — Flash animation and a Flash-built kiosk interface. The original source files were later lost; what remained of the working project files was corrupted.
 
