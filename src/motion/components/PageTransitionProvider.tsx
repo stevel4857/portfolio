@@ -81,8 +81,6 @@ export function PageTransitionProvider({ initialPage, children }: PageTransition
     if (queuedPage.href) {
       window.history.pushState({}, '', queuedPage.href);
     }
-
-    reinitializePageScripts();
   }, [pendingHardNavigation, queuedPage]);
 
   const navigate = useCallback(async (url: string) => {

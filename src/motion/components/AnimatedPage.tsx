@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
 import { getPageTransition, pageVariants, reducedMotionVariants } from '../lib/transitions';
 import { runStaggerReveal } from '../lib/staggerReveal';
-import { scrollToHash } from '../lib/navigation';
+import { reinitializePageScripts, scrollToHash } from '../lib/navigation';
 import { applyAnimationPresets } from '../lib/applyPresets';
 
 type AnimatedPageProps = {
@@ -22,6 +22,7 @@ export function AnimatedPage({ pageKey, html, className }: AnimatedPageProps) {
 
     runStaggerReveal(pageRef.current, reducedMotion);
     applyAnimationPresets(pageRef.current);
+    reinitializePageScripts();
 
     if (window.location.hash) {
       requestAnimationFrame(() => {

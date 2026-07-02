@@ -30,6 +30,11 @@ export function isInternalLink(anchor: HTMLAnchorElement): boolean {
     return false;
   }
 
+  const normalized = normalizePath(url.pathname);
+  if (normalized.startsWith('/blog/') || normalized.startsWith('/work/')) {
+    return true;
+  }
+
   return /\.html$/.test(url.pathname) || url.pathname === '/';
 }
 
