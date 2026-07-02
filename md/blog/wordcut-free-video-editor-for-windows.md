@@ -10,6 +10,10 @@ language: "en"
 ---
 I built **WordCut** — a free Windows desktop app that lets you edit video by editing text. Transcribe speech with Whisper, click words to remove, and export a trimmed MP4. No subscription. No account. [Open source on GitHub](https://github.com/stevel4857/wordcut).
 
+![Flat illustrated graphic of a friendly robot with scissors editing a video transcript — red words are cut from the export](https://steveknowsweb.com/assets/images/wordcut-blog-hero.jpg)
+
+*WordCut — click words in a transcript to cut them from your video.*
+
 This is the tool I hinted at in [my vibe coding post](https://steveknowsweb.com/blog/vibe-coding-motion-and-the-tools-im-watching) — Whisper, FFmpeg, and pywebview shipped as something real people can download and run.
 
 WordCut
