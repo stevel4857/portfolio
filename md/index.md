@@ -99,6 +99,8 @@ SELECTED WORK
 
 [See more in the Notes →](https://steveknowsweb.com/blog.html)
 
+[](https://expandbeyondinc.com)
+
 FEATURED • BRAND + APPAREL
 
 Adaptive Waterskiing
@@ -115,6 +117,8 @@ Logo Design Motion Graphics T-Shirt Design Program Video Nonprofit
 
 [expandbeyondinc.com](https://expandbeyondinc.com)
 
+[](https://store.steampowered.com/app/612440/The_Cable_Center__Virtual_Archive/)
+
 THE CABLE CENTER • 2014–PRESENT
 
 ### Virtual Archive Experience
@@ -124,6 +128,8 @@ Full interactive VR recreation of an entire historic building. Visitors can walk
 ![Screenshot from the Cable Center Virtual Archive VR experience (2016)](https://steveknowsweb.com/assets/images/Abel-Cable-TCC_2016VR.jpg)
 
 [Explore on Steam](https://store.steampowered.com/app/612440/The_Cable_Center__Virtual_Archive/)
+
+[](https://steveknowsweb.com/work/wordcut.html)
 
 OPEN SOURCE • 2026
 
@@ -141,6 +147,8 @@ Whisper FFmpeg Windows
 
 [View project](https://steveknowsweb.com/work/wordcut.html) [GitHub](https://github.com/stevel4857/wordcut)
 
+[](https://steveknowsweb.com/work/syndeo.html)
+
 CORPORATE YET STYLISH
 
 ### Syndeo Institute
@@ -151,6 +159,8 @@ Modernized the visual identity for The Cable Center’s new institute using vide
 
 [View case study](https://steveknowsweb.com/work/syndeo.html)
 
+[](https://steveknowsweb.com/blog/the-resurrection-of-flash)
+
 ARCHIVAL RESCUE
 
 ### Flash Kiosks & Video Archives
@@ -160,6 +170,8 @@ Reverse-engineered and modernized dozens of early-2000s interactive exhibits and
 Legacy preserved
 
 [Flash kiosks](https://steveknowsweb.com/blog/the-resurrection-of-flash) [Video archive](https://steveknowsweb.com/blog/rescuing-the-video-archive-after-the-hack)
+
+[](https://steveknowsweb.com/blog/working-with-museums-and-nonprofits)
 
 STRATEGY + REPLATFORMING
 
