@@ -5,6 +5,7 @@ module.exports = {
     "./about.html",
     "./blog.html",
     "./work/syndeo.html",
+    "./work/wordcut.html",
     "./components/**/*.html",
     "./demos/**/*.html",
   ],

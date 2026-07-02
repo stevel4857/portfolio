@@ -1,4 +1,5 @@
 ﻿/work/syndeo.html /work/syndeo 301
+/work/wordcut.html /work/wordcut 301
 /about.html /about 301
 /blog.html /blog 301
 /blog/:slug /blog/:slug/ 301

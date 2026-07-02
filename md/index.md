@@ -125,6 +125,22 @@ Full interactive VR recreation of an entire historic building. Visitors can walk
 
 [Explore on Steam](https://store.steampowered.com/app/612440/The_Cable_Center__Virtual_Archive/)
 
+OPEN SOURCE • 2026
+
+### WordCut
+
+A free Windows app — transcribe speech with Whisper, click words to remove, export a trimmed MP4. Built with Python, pywebview, and FFmpeg. MIT licensed.
+
+WordCut
+
+Edit video by editing text
+
+Click words to cut video
+
+Whisper FFmpeg Windows
+
+[View project](https://steveknowsweb.com/work/wordcut.html) [GitHub](https://github.com/stevel4857/wordcut)
+
 CORPORATE YET STYLISH
 
 ### Syndeo Institute

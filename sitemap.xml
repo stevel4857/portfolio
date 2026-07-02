@@ -21,6 +21,16 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://steveknowsweb.com/work/wordcut</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://steveknowsweb.com/blog/wordcut-free-video-editor-for-windows</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://steveknowsweb.com/blog/vibe-coding-motion-and-the-tools-im-watching</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

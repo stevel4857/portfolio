@@ -9,6 +9,14 @@ language: "en"
 
 Articles by Steve Luiting on strategic web design, digital preservation, and AI-accelerated workflows.
 
+## [WordCut — Free Video Editor for Windows](https://steveknowsweb.com/blog/wordcut-free-video-editor-for-windows)
+
+*2026-07-02 · AI & Tools · 4 min*
+
+WordCut is a free Windows app I built with Whisper, FFmpeg, and pywebview — click words in a transcript to cut them from your video. Open source on GitHub.
+
+Markdown: [wordcut-free-video-editor-for-windows.md](/md/blog/wordcut-free-video-editor-for-windows.md)
+
 ## [Vibe Coding This Site — and Adding Motion Without Losing the Plot](https://steveknowsweb.com/blog/vibe-coding-motion-and-the-tools-im-watching)
 
 *2026-07-02 · AI & Workflow · 9 min*

@@ -237,13 +237,172 @@
   opacity: 0;
 }
 
+/* WordCut demo — logo pulse + click-to-remove word loop */
+.wordcut-demo {
+  background: #12141d;
+  border: 1px solid #2a3142;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin: 1.75rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.wordcut-demo__header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.wordcut-demo__icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.65rem;
+  background: linear-gradient(135deg, #4a8cff 0%, #9f1239 100%);
+  animation: wordcut-logo-glow 2.8s ease-in-out infinite;
+  box-shadow: 0 0 0 0 rgb(74 140 255 / 0.35);
+}
+
+.wordcut-demo__title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #eef0f6;
+  letter-spacing: -0.02em;
+}
+
+.wordcut-demo__subtitle {
+  font-size: 0.8rem;
+  color: #9aa3b8;
+  margin-top: 0.15rem;
+}
+
+.wordcut-demo__transcript {
+  position: relative;
+  min-height: 4.5rem;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  background: #0f1219;
+  border: 1px solid #2a3142;
+  line-height: 2;
+}
+
+.wordcut-demo__chip {
+  display: inline-block;
+  margin: 0.1rem 0.2rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 0.4rem;
+  background: #243049;
+  color: #eef0f6;
+  font-size: 0.88rem;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.wordcut-demo__chip--cut-a {
+  animation: wordcut-cut-word 7s ease-in-out infinite;
+}
+
+.wordcut-demo__chip--cut-b {
+  animation: wordcut-cut-word 7s ease-in-out infinite 3.5s;
+}
+
+.wordcut-demo__cursor {
+  position: absolute;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 9999px;
+  border: 2px solid #4a8cff;
+  background: rgb(74 140 255 / 0.25);
+  top: 3.6rem;
+  left: 1.2rem;
+  opacity: 0;
+  pointer-events: none;
+  animation: wordcut-click-cursor 7s ease-in-out infinite;
+}
+
+.wordcut-demo__cursor::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: inherit;
+  border: 2px solid rgb(74 140 255 / 0.45);
+  animation: wordcut-click-ring 7s ease-in-out infinite;
+}
+
+.wordcut-demo__legend {
+  margin-top: 0.85rem;
+  font-size: 0.78rem;
+  color: #8ec0ff;
+}
+
+@keyframes wordcut-logo-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgb(74 140 255 / 0.35);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 22px 4px rgb(74 140 255 / 0.22);
+    transform: scale(1.04);
+  }
+}
+
+@keyframes wordcut-cut-word {
+  0%, 20% {
+    background: #243049;
+    color: #eef0f6;
+    text-decoration: none;
+    opacity: 1;
+  }
+  24%, 44% {
+    background: #5a2230;
+    color: #ffb4c0;
+    text-decoration: line-through;
+    opacity: 0.85;
+  }
+  48%, 100% {
+    background: #243049;
+    color: #eef0f6;
+    text-decoration: none;
+    opacity: 1;
+  }
+}
+
+@keyframes wordcut-click-cursor {
+  0%, 14% { opacity: 0; transform: translate(0, 0) scale(1); }
+  16%, 18% { opacity: 1; transform: translate(6.5rem, 0.2rem) scale(0.85); }
+  20%, 48% { opacity: 0; transform: translate(6.5rem, 0.2rem) scale(1); }
+  50%, 52% { opacity: 1; transform: translate(14.5rem, 0.2rem) scale(0.85); }
+  54%, 100% { opacity: 0; transform: translate(14.5rem, 0.2rem) scale(1); }
+}
+
+@keyframes wordcut-click-ring {
+  0%, 14% { opacity: 0; transform: scale(0.6); }
+  16% { opacity: 1; transform: scale(1); }
+  22%, 48% { opacity: 0; transform: scale(1.4); }
+  50% { opacity: 1; transform: scale(1); }
+  56%, 100% { opacity: 0; transform: scale(1.4); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-float-gentle,
   .animate-morph-blob,
   .preset-pulse-ring::after,
   .preset-shimmer,
-  .preset-draw-line .preset-draw-target {
+  .preset-draw-line .preset-draw-target,
+  .wordcut-demo__icon,
+  .wordcut-demo__chip--cut-a,
+  .wordcut-demo__chip--cut-b,
+  .wordcut-demo__cursor,
+  .wordcut-demo__cursor::after {
     animation: none !important;
+  }
+
+  .wordcut-demo__chip--cut-a,
+  .wordcut-demo__chip--cut-b {
+    background: #5a2230;
+    color: #ffb4c0;
+    text-decoration: line-through;
   }
 
   .preset-scroll-reveal:not(.is-visible) {

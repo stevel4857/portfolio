@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WordCut — Edit Video by Editing Text | Steve Luiting</title>
+  <meta name="description" content="WordCut is a free Windows app. Transcribe speech with Whisper, click words to remove, export a trimmed MP4. Open source on GitHub.">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/steveknowswebdesign-favicon.png">
+  <link rel="alternate" type="text/markdown" href="/md/work/wordcut.md">
+  <link rel="stylesheet" href="../css/tailwind.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    .heading-serif {
+      font-family: "Playfair Display", Georgia, serif;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+    }
+    .nav-link {
+      transition: color 0.15s ease, font-weight 0.15s ease;
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background-color: #9f1239;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    .nav-link:hover {
+      color: #9f1239;
+      font-weight: 600;
+    }
+    .nav-link:hover::after {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body class="bg-white text-slate-900">
+
+  <div data-component="nav"></div>
+
+  <div class="max-w-6xl mx-auto px-6 pt-6">
+    <a href="../index.html#work" class="text-sm text-slate-500 hover:text-slate-900 inline-flex items-center gap-x-1.5">
+      <i class="fa-solid fa-arrow-left text-xs"></i>
+      Back to Work
+    </a>
+  </div>
+
+  <section class="max-w-6xl mx-auto px-6 pt-8 pb-8">
+    <div class="max-w-3xl">
+      <div class="uppercase tracking-[3px] text-xs font-semibold text-slate-500 mb-3">2026 • Open Source • Windows</div>
+      <h1 class="heading-serif text-6xl tracking-tighter leading-none">WordCut</h1>
+      <p class="mt-4 text-2xl text-slate-600">A free Windows app — edit video by clicking words in a transcript.</p>
+      <div class="mt-6 flex flex-wrap gap-2 text-sm">
+        <span class="px-4 py-1.5 bg-slate-100 rounded-full">Whisper</span>
+        <span class="px-4 py-1.5 bg-slate-100 rounded-full">FFmpeg</span>
+        <span class="px-4 py-1.5 bg-slate-100 rounded-full">Python</span>
+        <span class="px-4 py-1.5 bg-slate-100 rounded-full">MIT License</span>
+      </div>
+      <div class="mt-8 flex flex-wrap gap-4">
+        <a href="https://github.com/stevel4857/wordcut" target="_blank" rel="noopener"
+           class="inline-flex items-center gap-2 px-5 py-3 bg-slate-900 text-white rounded-full text-sm font-medium hover:bg-slate-800 transition">
+          <i class="fa-brands fa-github"></i>
+          View on GitHub
+        </a>
+        <a href="../blog/wordcut-free-video-editor-for-windows/"
+           class="inline-flex items-center gap-2 px-5 py-3 border border-slate-300 rounded-full text-sm font-medium text-slate-700 hover:border-slate-400 transition">
+          Read the launch note
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-6xl mx-auto px-6 py-10">
+    <div class="bg-white border border-slate-200 rounded-3xl p-8">
+      <div class="uppercase tracking-[3px] text-xs font-semibold text-slate-500 mb-3">HOW IT WORKS</div>
+      <h2 class="heading-serif text-4xl tracking-tighter mb-6">Click a word. Cut that moment.</h2>
+
+      <div class="wordcut-demo max-w-2xl" aria-hidden="true">
+        <div class="wordcut-demo__header">
+          <div class="wordcut-demo__icon" role="presentation"></div>
+          <div>
+            <div class="wordcut-demo__title">WordCut</div>
+            <div class="wordcut-demo__subtitle">Free video editor for Windows</div>
+          </div>
+        </div>
+        <div class="wordcut-demo__transcript">
+          <span class="wordcut-demo__cursor" role="presentation"></span>
+          <span class="wordcut-demo__chip">Click</span>
+          <span class="wordcut-demo__chip wordcut-demo__chip--cut-a">words</span>
+          <span class="wordcut-demo__chip">to</span>
+          <span class="wordcut-demo__chip">remove</span>
+          <span class="wordcut-demo__chip wordcut-demo__chip--cut-b">them</span>
+          <span class="wordcut-demo__chip">from</span>
+          <span class="wordcut-demo__chip">your</span>
+          <span class="wordcut-demo__chip">video</span>
+        </div>
+        <p class="wordcut-demo__legend">Red words are removed from the exported MP4.</p>
+      </div>
+
+      <ol class="mt-8 grid md:grid-cols-3 gap-6 text-sm text-slate-600">
+        <li class="rounded-2xl border border-slate-100 p-5">
+          <div class="font-semibold text-slate-900 mb-2">1. Transcribe</div>
+          Whisper turns speech into clickable words with timestamps.
+        </li>
+        <li class="rounded-2xl border border-slate-100 p-5">
+          <div class="font-semibold text-slate-900 mb-2">2. Edit text</div>
+          Click words you want gone — same idea as Descript, built for solo creators.
+        </li>
+        <li class="rounded-2xl border border-slate-100 p-5">
+          <div class="font-semibold text-slate-900 mb-2">3. Export</div>
+          FFmpeg stitches the rest into <code class="text-xs bg-slate-100 px-1 rounded">YourVideo_edited.mp4</code>.
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="max-w-6xl mx-auto px-6 py-16 border-t border-slate-100">
+    <div class="grid lg:grid-cols-12 gap-x-12 gap-y-8">
+      <div class="lg:col-span-5">
+        <div class="uppercase tracking-[3px] text-xs font-semibold text-slate-500 mb-3">WHY I BUILT IT</div>
+        <h2 class="heading-serif text-4xl tracking-tighter leading-none">From vibe coding to shipping.</h2>
+      </div>
+      <div class="lg:col-span-7 text-[15px] text-slate-600 leading-relaxed space-y-4">
+        <p>WordCut started as a Python learning experiment — pywebview for the UI, Whisper for transcription, FFmpeg for the cuts. It grew into something I wanted to share: a <strong>free, standalone Windows app</strong> with no subscription and no account.</p>
+        <p>Load a local MP4 or paste a YouTube URL. The app estimates transcription time, shows progress while it works, and lets you cancel if you change your mind. Your original file stays untouched.</p>
+        <p>Source code and build instructions live on GitHub. Download the release zip, unzip, run <code>WordCut.exe</code>. That is it.</p>
+        <p>
+          <a href="https://github.com/stevel4857/wordcut" target="_blank" rel="noopener" class="font-medium text-slate-900 hover:text-[#9f1239]">
+            github.com/stevel4857/wordcut →
+          </a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="max-w-6xl mx-auto px-6 py-12 border-t border-slate-100 text-sm text-slate-500">
+    WordCut is free to use under the MIT License. Built by <a href="../about.html" class="text-slate-700 hover:text-slate-900">Steve Luiting</a>.
+  </footer>
+
+  <script src="../scripts/components.js"></script>
+</body>
+</html>
