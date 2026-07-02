@@ -129,6 +129,10 @@
   color: #374151;
 }
 
+.blog-content figure {
+  margin: 2rem 0 2.5rem;
+}
+
 .blog-content ul {
   margin-bottom: 1.25rem;
   padding-left: 1.25rem;
