@@ -12,6 +12,8 @@ In 2014 we set out to do something ambitious: recreate the entire Cable Center b
 
 Working with a small team headed by Nic van Dessel and myself, we modeled the architecture, digitized hundreds of artifacts, and integrated real 360° video oral histories so visitors could literally step inside the stories. The building was home to the **Syndeo Institute** — the cable industry's archive and education center in Denver.
 
+[Virtual Reality Exhibit Launch Video 2017](https://youtu.be/nDb2WEB9ZTo) — the original launch video for the Cable Center VR archive on Steam and Meta Quest.
+
 ### The building today
 
 The Cable Center is **no longer in that original building** — the organization has moved a few blocks away. The physical space we modeled, walked through, and filmed in 2014–2017 is not where visitors go today.
