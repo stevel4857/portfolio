@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,7 +5,6 @@
   <title>The Cable Center - VR Walkthrough</title>
   <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
   <script src="https://unpkg.com/aframe-environment-component@1.5.x/dist/aframe-environment-component.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.0/dist/aframe-physics-system.min.js"></script>
   <style>
     body { margin: 0; font-family: system-ui, sans-serif; background: #000; color: #fff; overflow: hidden; }
     .top-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(0,0,0,0.75); padding: 8px 16px; font-size: 13px; display: flex; align-items: center; gap: 12px; }
@@ -25,7 +23,7 @@
     }
   </style>
 </head>
-<body>
+<body><a href="https://steveknowsweb.com/cdn-cgi/content?id=e9qBTzFsOUQx9WPCFJaXOV5k7WGEVP09gfmv_ZV6TWY-1782075863.8951652-1.2.1.1-S2P.h0GAReuPFp4zid1ZryMbNG8R876cHrE1hB1RWUU" aria-hidden="true" rel="nofollow noopener" style="display: none !important; visibility: hidden !important"></a>
 
   <div class="top-bar">
     <a href="../index.html">← Back to site</a>
@@ -47,10 +45,8 @@
            shadow="type: pcfsoft"
            renderer="antialias: true; colorManagement: true"
            background="color: #87CEEB">
-physics="driver: ammo;"
-    <a-assets>
-      <a-asset-item id="building" src="../assets/models/scene/scene.gltf"></a-asset-item>
 
+    <a-assets>
       <img id="preview1" src="360assets/barcolibrary1.jpg" crossorigin="anonymous">
       <img id="preview2" src="360assets/office_preview.jpg" crossorigin="anonymous">
       <img id="preview3" src="360assets/barcolibrary1.jpg" crossorigin="anonymous">
@@ -67,20 +63,6 @@ physics="driver: ammo;"
 
       <a-entity id="environment" environment="preset: forest; groundTexture: none; dressing: none; dressingAmount: 0; groundColor: #2F4F4F;
     groundColor2: #2F4F4F; skyType: color; skyColor: #87CEEB"></a-entity>
-
-<!-- BIG TEST COLLIDER - Blue & Transparent -->
-<a-box
-  id="test-collider"
-  position="0 1.5 0"
-  width="8" 
-  height="4" 
-  depth="8"
-  color="#00A8FF"
-  opacity="0.3"
-  transparent="true"
-  static-body="shape: box"
-  shadow="receive: true">
-</a-box>
 
       <!-- Each cluster drifts on its own — same spheres as before, no extra assets -->
       <a-entity id="clouds">
@@ -151,7 +133,7 @@ physics="driver: ammo;"
       <a-light type="directional" color="#d0e8ff" intensity="0.35" position="-35 25 -40"></a-light>
 
       <a-entity id="model"
-                gltf-model="#building"
+                gltf-model="src: ../assets/models/scene/scene.gltf"
                 scale="1 1 1"
                 position="0 0 0"
                 rotation="0 180 0"
@@ -182,23 +164,6 @@ physics="driver: ammo;"
                 shadow="cast: true; receive: true"></a-entity>
 
     </a-entity>
-<a-box
-  id="collider-box"
-  position="-10.77 0.287 -2.750"
-  rotation="-26.5 0 0"
-  scale="3.7 0.25 1.0"
-  width="0.52"
-  height="3"
-  depth="4"
-  color="#00A8FF"
-  opacity="0.25"
-  transparent="true"
-  material="side: double; roughness: 0.8"
-  shadow="receive: true"
-  static-body="shape: box"
-  visible="true"
-  class="collider">   
-</a-box>
 
     <!-- Scene-level video sphere: must NOT be a camera child or it rotates with look-controls and drag appears broken -->
     <a-videosphere id="main-video-sphere"
@@ -688,5 +653,5 @@ physics="driver: ammo;"
       });
     });
   </script>
-</body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a0f5f7255940e759',t:'MTc4MjA3NTg2Mw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

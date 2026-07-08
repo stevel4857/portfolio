@@ -9,9 +9,13 @@ export default defineConfig({
     emptyOutDir: false,
     codeSplitting: false,
     rollupOptions: {
-      input: resolve(__dirname, 'src/motion/main.tsx'),
+      input: {
+        motion: resolve(__dirname, 'src/motion/main.tsx'),
+        'voice-scheduler': resolve(__dirname, 'src/voice-scheduler/main.ts'),
+      },
       output: {
-        entryFileNames: 'motion-bundle.js',
+        entryFileNames: (chunk) =>
+          chunk.name === 'motion' ? 'motion-bundle.js' : `${chunk.name}.js`,
       },
     },
   },

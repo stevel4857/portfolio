@@ -1,0 +1,15 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "steveknowsweb",
+  "pages_build_output_dir": ".",
+  "compatibility_date": "2026-01-01",
+  "kv_namespaces": [
+    {
+      "binding": "CALENDAR_STATE",
+      "id": "ec737b6418034f21af787b460f234e31"
+    }
+  ],
+  "triggers": {
+    "crons": ["0 12 * * *"]
+  }
+}

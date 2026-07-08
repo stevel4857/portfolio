@@ -177,6 +177,47 @@ This site is currently built as a **Tier 1 Multi-file Static** site (see the mas
 
 We may evolve toward a lightweight framework (likely Astro) when the number of contributors or content updates justifies it. Do not start that migration on your own.
 
+## Voice scheduling agent (`agent_YCy2O5AFU9NsAyEx`)
+
+The contact section opens an xAI Voice Agent popup (`src/voice-scheduler/main.ts`). Calendar changes run on xAI via the agent’s Google Calendar connector.
+
+### A. Gmail notification prompt (paste in Voice Agent Builder)
+
+In [console.x.ai → your agent → Instructions](https://console.x.ai/team/24dc3fd2-996c-459b-bca9-e5519409b8d8/voice/agents/agent_YCy2O5AFU9NsAyEx), append:
+
+```
+After every calendar action (create, update, or delete), send an email to steveknowsweb@gmail.com using your email connector. Include:
+- Action taken (booked / rescheduled / cancelled)
+- Visitor name and email if collected
+- Final date, time, and timezone
+- One-sentence summary of what they said they need
+If the calendar action fails, email Steve immediately with the error and what the visitor asked for.
+```
+
+Enable the **Gmail** connector on the same agent if it is not already connected.
+
+### B. Calendar push webhook (site code — backup notifications)
+
+`functions/api/calendar/webhook.ts` watches Google Calendar and emails Steve on add/update/delete (including changes made by the voice agent).
+
+**One-time setup**
+
+1. Google Cloud: OAuth client + enable **Calendar API** and **Gmail API**.
+2. Run `node scripts/google-calendar-oauth-setup.mjs` (set `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET`).
+3. Cloudflare Pages → **KV**: create namespace `CALENDAR_STATE`, put its ID in `wrangler.jsonc`.
+4. Cloudflare Pages → **Secrets**:
+   - `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `GOOGLE_REFRESH_TOKEN`
+   - `NOTIFY_EMAIL` (default `steveknowsweb@gmail.com`)
+   - `CALENDAR_WEBHOOK_SECRET`, `CALENDAR_SETUP_SECRET` (long random strings)
+   - `GOOGLE_CALENDAR_ID` (optional, default `primary`)
+   - `SITE_ORIGIN` = `https://steveknowsweb.com`
+5. Deploy, then register the watch:
+   ```bash
+   curl -X POST https://steveknowsweb.com/api/calendar/watch \
+     -H "Authorization: Bearer YOUR_CALENDAR_SETUP_SECRET"
+   ```
+6. Cron in `wrangler.jsonc` renews the watch daily (Google channels expire ~7 days).
+
 ## Contact
 
 For questions that aren't covered here, open a discussion or ask Steve directly before making large changes.

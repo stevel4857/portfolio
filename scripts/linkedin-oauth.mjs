@@ -15,6 +15,7 @@
 
 import http from 'node:http';
 import { URL, URLSearchParams } from 'node:url';
+import { getMemberUrn } from './lib/linkedin-api.mjs';
 
 const PORT = Number(process.env.LINKEDIN_OAUTH_PORT || 8888);
 const REDIRECT_URI = process.env.LINKEDIN_REDIRECT_URI || `http://localhost:${PORT}/callback`;
@@ -47,20 +48,6 @@ async function exchangeCode({ clientId, clientSecret, code }) {
   const data = await res.json();
   if (!res.ok) {
     throw new Error(`Token exchange failed (${res.status}): ${JSON.stringify(data)}`);
-  }
-  return data;
-}
-
-async function fetchUserinfo(accessToken) {
-  const res = await fetch('https://api.linkedin.com/v2/userinfo', {
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-      'Linkedin-Version': process.env.LINKEDIN_VERSION || '202506',
-    },
-  });
-  const data = await res.json();
-  if (!res.ok) {
-    throw new Error(`userinfo failed (${res.status}): ${JSON.stringify(data)}`);
   }
   return data;
 }
@@ -130,7 +117,6 @@ async function main() {
   });
 
   const tokens = await exchangeCode({ clientId, clientSecret, code });
-  const userinfo = await fetchUserinfo(tokens.access_token);
 
   console.log('\nSuccess. Add these GitHub repository secrets (Settings → Secrets → Actions):\n');
   console.log(`LINKEDIN_ACCESS_TOKEN=${tokens.access_token}`);
@@ -139,8 +125,14 @@ async function main() {
   }
   console.log(`LINKEDIN_CLIENT_ID=${clientId}`);
   console.log(`LINKEDIN_CLIENT_SECRET=${clientSecret}`);
-  if (userinfo.sub) {
-    console.log(`LINKEDIN_PERSON_URN=urn:li:person:${userinfo.sub}`);
+
+  try {
+    const personUrn = await getMemberUrn(tokens.access_token);
+    console.log(`LINKEDIN_PERSON_URN=${personUrn}`);
+  } catch (err) {
+    console.log('\nNote: Could not auto-detect LINKEDIN_PERSON_URN.');
+    console.log(err.message || err);
+    console.log('Posting may still work — add OpenID Connect product and re-auth, or set PERSON_URN manually later.\n');
   }
   console.log('\nOptional repo variable: SITE_URL=https://steveknowsweb.com');
   console.log(`\nToken expires in ~${tokens.expires_in || 'unknown'} seconds.`);

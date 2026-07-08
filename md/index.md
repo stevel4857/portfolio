@@ -207,6 +207,10 @@ What are you working on?
 
  Send Message
 
+Or schedule by voice
+
+Book a call with the scheduling assistant Talk through your project and pick a time — opens in a popup. Microphone required. →
+
 Message Sent ×
 
 ✓
