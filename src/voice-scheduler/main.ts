@@ -6,6 +6,10 @@ const SESSION_URL = "/api/voice/session";
 type RealtimeEvent = {
   type: string;
   delta?: string;
+  session?: {
+    instructions?: string;
+    audio?: { output?: { format?: { rate?: number } } };
+  };
   [key: string]: unknown;
 };
 
@@ -15,12 +19,15 @@ class VoiceScheduler {
   private audioCtx: AudioContext | null = null;
   private processor: ScriptProcessorNode | null = null;
   private playbackGain: GainNode | null = null;
-  private playbackSources: AudioBufferSourceNode[] = [];
+  private playbackQueue: Float32Array[] = [];
+  private isPlayingQueue = false;
   private playbackTime = 0;
   private assistantLine = "";
   private sessionReady = false;
-  private sessionConfigured = false;
+  private agentReady = false;
+  private micEnabled = false;
   private outputSampleRate = SAMPLE_RATE;
+  private audioChunks = 0;
 
   private readonly modal: HTMLElement;
   private readonly statusEl: HTMLElement;
@@ -71,8 +78,8 @@ class VoiceScheduler {
     this.startBtn.disabled = true;
     this.setStatus("Requesting secure session…");
     this.transcriptEl.innerHTML = "";
+    this.audioChunks = 0;
 
-    // Create AudioContext on click (before awaits) so playback isn't blocked.
     await this.ensureAudioContext();
 
     try {
@@ -91,10 +98,12 @@ class VoiceScheduler {
       this.setStatus("Connecting…");
       this.ws = new WebSocket(WS_URL, [`xai-client-secret.${token}`]);
       this.sessionReady = false;
+      this.agentReady = false;
+      this.micEnabled = false;
       this.assistantLine = "";
       this.playbackTime = 0;
 
-      this.ws.onopen = () => this.setStatus("Connected. Preparing microphone…");
+      this.ws.onopen = () => this.setStatus("Connected. Loading agent…");
 
       this.ws.onmessage = (raw) => {
         const event = JSON.parse(raw.data as string) as RealtimeEvent;
@@ -113,7 +122,8 @@ class VoiceScheduler {
         this.cleanupAudio();
         this.ws = null;
         this.sessionReady = false;
-        this.sessionConfigured = false;
+        this.agentReady = false;
+        this.micEnabled = false;
         this.startBtn.disabled = false;
         this.startBtn.classList.remove("hidden");
         this.stopBtn.classList.add("hidden");
@@ -131,31 +141,25 @@ class VoiceScheduler {
 
   private handleEvent(event: RealtimeEvent) {
     switch (event.type) {
-      case "session.created":
-      case "conversation.created":
-        if (!this.sessionConfigured) {
-          this.configureSession();
-          this.sessionConfigured = true;
-        }
-        break;
-
       case "session.updated": {
-        const session = event.session as {
-          audio?: { output?: { format?: { rate?: number } } };
-        } | undefined;
-        const rate = session?.audio?.output?.format?.rate;
+        const rate = event.session?.audio?.output?.format?.rate;
         if (typeof rate === "number" && rate > 0) {
           this.outputSampleRate = rate;
         }
-        if (!this.sessionReady) {
-          void this.onSessionReady();
+
+        // Wait for the agent's own config (instructions) — do not override with session.update.
+        if (!this.agentReady && event.session?.instructions) {
+          this.agentReady = true;
+          void this.onAgentReady();
         }
         break;
       }
 
       case "input_audio_buffer.speech_started":
-        this.stopPlayback();
-        this.assistantLine = "";
+        if (this.micEnabled) {
+          this.stopPlayback();
+          this.assistantLine = "";
+        }
         break;
 
       case "conversation.item.added": {
@@ -185,7 +189,14 @@ class VoiceScheduler {
 
       case "response.output_audio.delta":
         if (event.delta) {
+          this.audioChunks += 1;
           void this.playPcmDelta(event.delta);
+        }
+        break;
+
+      case "response.done":
+        if (!this.micEnabled) {
+          void this.enableMicAfterGreeting();
         }
         break;
 
@@ -197,30 +208,16 @@ class VoiceScheduler {
     }
   }
 
-  private configureSession() {
-    this.outputSampleRate = SAMPLE_RATE;
-    this.send({
-      type: "session.update",
-      session: {
-        turn_detection: { type: "server_vad" },
-        audio: {
-          input: { format: { type: "audio/pcm", rate: SAMPLE_RATE } },
-          output: { format: { type: "audio/pcm", rate: SAMPLE_RATE } },
-        },
-      },
-    });
-  }
-
-  private async onSessionReady() {
+  private async onAgentReady() {
     this.sessionReady = true;
     await this.primeAudioOutput();
-    await this.startMic();
-    this.setStatus("Listening — say when you would like to meet.");
+
+    this.setStatus("Assistant speaking…");
     this.startBtn.classList.add("hidden");
     this.stopBtn.classList.remove("hidden");
     this.startBtn.disabled = false;
 
-    // Kick off the agent greeting (same pattern as the deployment snippet).
+    // Greet before enabling the mic so VAD cannot cancel the first audio response.
     this.send({
       type: "conversation.item.create",
       item: {
@@ -233,6 +230,19 @@ class VoiceScheduler {
       },
     });
     this.send({ type: "response.create" });
+  }
+
+  private async enableMicAfterGreeting() {
+    if (this.micEnabled || !this.ws) return;
+    this.micEnabled = true;
+
+    this.send({
+      type: "session.update",
+      session: { turn_detection: { type: "server_vad" } },
+    });
+
+    await this.startMic();
+    this.setStatus("Listening — say when you would like to meet.");
   }
 
   private async ensureAudioContext() {
@@ -250,7 +260,7 @@ class VoiceScheduler {
 
   private async primeAudioOutput() {
     const audioCtx = await this.getReadyAudioContext();
-    const buffer = audioCtx.createBuffer(1, 1, SAMPLE_RATE);
+    const buffer = audioCtx.createBuffer(1, 1, this.outputSampleRate);
     const source = audioCtx.createBufferSource();
     source.buffer = buffer;
     source.connect(this.playbackGain ?? audioCtx.destination);
@@ -275,17 +285,15 @@ class VoiceScheduler {
         autoGainControl: true,
       },
     });
-    this.playbackTime = audioCtx.currentTime;
 
     const source = audioCtx.createMediaStreamSource(this.micStream);
     this.processor = audioCtx.createScriptProcessor(4096, 1, 1);
     this.processor.onaudioprocess = (ev) => {
-      if (!this.ws || this.ws.readyState !== WebSocket.OPEN || !this.sessionReady) return;
+      if (!this.ws || this.ws.readyState !== WebSocket.OPEN || !this.sessionReady || !this.micEnabled) return;
       const pcm = float32ToBase64Pcm16(ev.inputBuffer.getChannelData(0));
       this.send({ type: "input_audio_buffer.append", audio: pcm });
     };
 
-    // ScriptProcessor must connect to the graph; use silent output (no mic echo).
     const silent = audioCtx.createGain();
     silent.gain.value = 0;
     source.connect(this.processor);
@@ -298,32 +306,36 @@ class VoiceScheduler {
     const floats = base64Pcm16ToFloat32(base64);
     if (floats.length === 0) return;
 
-    const buffer = audioCtx.createBuffer(1, floats.length, this.outputSampleRate);
-    buffer.copyToChannel(floats, 0);
+    this.playbackQueue.push(floats);
+    if (!this.isPlayingQueue) {
+      this.isPlayingQueue = true;
+      void this.drainPlaybackQueue(audioCtx);
+    }
+  }
 
-    const source = audioCtx.createBufferSource();
-    source.buffer = buffer;
-    source.connect(this.playbackGain ?? audioCtx.destination);
+  private async drainPlaybackQueue(audioCtx: AudioContext) {
+    while (this.playbackQueue.length > 0) {
+      const floats = this.playbackQueue.shift()!;
+      const buffer = audioCtx.createBuffer(1, floats.length, this.outputSampleRate);
+      buffer.copyToChannel(floats, 0);
 
-    const startAt = Math.max(this.playbackTime, audioCtx.currentTime + 0.02);
-    source.start(startAt);
-    this.playbackTime = startAt + buffer.duration;
-    this.playbackSources.push(source);
-    source.onended = () => {
-      this.playbackSources = this.playbackSources.filter((s) => s !== source);
-    };
+      const source = audioCtx.createBufferSource();
+      source.buffer = buffer;
+      source.connect(this.playbackGain ?? audioCtx.destination);
+
+      const startAt = Math.max(this.playbackTime, audioCtx.currentTime + 0.02);
+      await new Promise<void>((resolve) => {
+        source.onended = () => resolve();
+        source.start(startAt);
+      });
+      this.playbackTime = startAt + buffer.duration;
+    }
+    this.isPlayingQueue = false;
   }
 
   private stopPlayback() {
-    for (const source of this.playbackSources) {
-      try {
-        source.stop();
-        source.disconnect();
-      } catch {
-        // already stopped
-      }
-    }
-    this.playbackSources = [];
+    this.playbackQueue = [];
+    this.isPlayingQueue = false;
     if (this.audioCtx && this.audioCtx.state !== "closed") {
       this.playbackTime = this.audioCtx.currentTime;
     }
@@ -350,7 +362,8 @@ class VoiceScheduler {
     this.ws = null;
     this.cleanupAudio();
     this.sessionReady = false;
-    this.sessionConfigured = false;
+    this.agentReady = false;
+    this.micEnabled = false;
     this.modal.classList.add("hidden");
     this.modal.classList.remove("flex");
     this.startBtn.disabled = false;
@@ -392,8 +405,6 @@ function ensureScheduler(): VoiceScheduler | null {
   return scheduler;
 }
 
-// Motion replaces <main> with React, which clones the open button without listeners.
-// Delegate open clicks at document level so they survive that swap.
 document.addEventListener("click", (e) => {
   const target = e.target as Element | null;
   if (!target?.closest("#voice-scheduler-open")) return;
