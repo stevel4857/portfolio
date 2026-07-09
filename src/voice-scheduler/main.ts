@@ -74,6 +74,9 @@ class VoiceScheduler {
   private agentReady = false;
   private micEnabled = false;
   private pendingMic = false;
+  private assistantSpeaking = false;
+  private finishingSpeech = false;
+  private speechChain: Promise<void> = Promise.resolve();
   private outputSampleRate = SAMPLE_RATE;
   private responseAudioChunks = 0;
 
@@ -121,31 +124,61 @@ class VoiceScheduler {
 
   /** Primary playback for agent_id — xAI often sends incomplete PCM over WebSocket. */
   private speakAssistant(text: string): Promise<void> {
+    this.speechChain = this.speechChain.then(() => this.playSpeech(text));
+    return this.speechChain;
+  }
+
+  private playSpeech(text: string): Promise<void> {
     return new Promise((resolve) => {
       if (!text.trim() || !("speechSynthesis" in window)) {
         resolve();
         return;
       }
 
+      this.assistantSpeaking = true;
+      this.setMicActive(false);
+
+      const synth = window.speechSynthesis;
       const run = () => {
-        window.speechSynthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.rate = 1;
-        const voices = window.speechSynthesis.getVoices();
-        const voice = voices.find((v) => v.lang.startsWith("en")) ?? voices[0];
-        if (voice) utterance.voice = voice;
-        utterance.onstart = () => this.setStatus("Assistant speaking…");
-        utterance.onend = () => resolve();
-        utterance.onerror = () => resolve();
-        window.speechSynthesis.speak(utterance);
+        synth.cancel();
+        // Chrome needs a tick between cancel() and speak() for repeat utterances.
+        setTimeout(() => {
+          const utterance = new SpeechSynthesisUtterance(text);
+          utterance.rate = 1;
+          const voices = synth.getVoices();
+          const voice = voices.find((v) => v.lang.startsWith("en")) ?? voices[0];
+          if (voice) utterance.voice = voice;
+          utterance.onstart = () => this.setStatus("Assistant speaking…");
+          const finish = () => {
+            this.assistantSpeaking = false;
+            if (this.micEnabled) {
+              this.setMicActive(true);
+              this.setStatus("Listening — say when you would like to meet.");
+            }
+            resolve();
+          };
+          utterance.onend = finish;
+          utterance.onerror = finish;
+          synth.speak(utterance);
+          // Chrome sometimes pauses the queue after the first utterance.
+          setTimeout(() => {
+            if (synth.paused) synth.resume();
+          }, 120);
+        }, 60);
       };
 
-      if (window.speechSynthesis.getVoices().length > 0) {
+      if (synth.getVoices().length > 0) {
         run();
       } else {
-        window.speechSynthesis.addEventListener("voiceschanged", () => run(), { once: true });
+        synth.addEventListener("voiceschanged", () => run(), { once: true });
         setTimeout(run, 300);
       }
+    });
+  }
+
+  private setMicActive(active: boolean) {
+    this.micStream?.getAudioTracks().forEach((t) => {
+      t.enabled = active;
     });
   }
 
@@ -256,13 +289,17 @@ class VoiceScheduler {
 
       case "response.created":
         this.responseAudioChunks = 0;
+        if (this.micEnabled) {
+          this.setStatus("Assistant thinking…");
+        }
         break;
 
       case "input_audio_buffer.speech_started":
-        if (this.micEnabled) {
+        if (this.micEnabled && !this.assistantSpeaking) {
           this.player.stop();
           window.speechSynthesis?.cancel();
           this.assistantLine = "";
+          this.setStatus("Listening…");
         }
         break;
 
@@ -303,19 +340,23 @@ class VoiceScheduler {
   }
 
   private async finishAssistantSpeech() {
+    if (this.finishingSpeech) return;
     const text = this.assistantLine.trim();
     if (!text) return;
-    this.appendLine("assistant", text);
+
+    this.finishingSpeech = true;
     this.assistantLine = "";
+    this.appendLine("assistant", text);
     this.player.stop();
     await this.speakAssistant(text);
+    this.finishingSpeech = false;
   }
 
   private async onResponseDone() {
     if (this.assistantLine.trim()) {
       await this.finishAssistantSpeech();
     } else {
-      await this.waitForSpeechEnd();
+      await this.speechChain;
     }
     if (!this.micEnabled && !this.pendingMic) {
       await this.prepareMic();
@@ -353,7 +394,12 @@ class VoiceScheduler {
     this.send({
       type: "session.update",
       session: {
-        turn_detection: { type: "server_vad" },
+        turn_detection: {
+          type: "server_vad",
+          threshold: 0.6,
+          silence_duration_ms: 700,
+          prefix_padding_ms: 300,
+        },
         audio: {
           input: { format: { type: "audio/pcm", rate: SAMPLE_RATE } },
         },
@@ -397,7 +443,7 @@ class VoiceScheduler {
     const chunkSamples = Math.floor((SAMPLE_RATE * MIC_CHUNK_MS) / 1000);
 
     this.processor.onaudioprocess = (ev) => {
-      if (!this.ws || this.ws.readyState !== WebSocket.OPEN || !this.micEnabled) return;
+      if (!this.ws || this.ws.readyState !== WebSocket.OPEN || !this.micEnabled || this.assistantSpeaking) return;
 
       const input = ev.inputBuffer.getChannelData(0);
       const samples = resampleToRate(input, ev.inputBuffer.sampleRate, SAMPLE_RATE);
