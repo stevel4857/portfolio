@@ -1,6 +1,7 @@
 const AGENT_ID = "agent_YCy2O5AFU9NsAyEx";
 const WS_URL = `wss://api.x.ai/v1/realtime?agent_id=${AGENT_ID}`;
-const SAMPLE_RATE = 24000;
+const DEFAULT_OUTPUT_RATE = 24000;
+const MIC_CHUNK_MS = 100;
 const SESSION_URL = "/api/voice/session";
 
 type RealtimeEvent = {
@@ -8,25 +9,68 @@ type RealtimeEvent = {
   delta?: string;
   session?: {
     instructions?: string;
-    audio?: { output?: { format?: { rate?: number } } };
+    audio?: {
+      input?: { format?: { rate?: number } };
+      output?: { format?: { rate?: number } };
+    };
   };
   [key: string]: unknown;
 };
 
+/** Plays PCM16 chunks via HTML Audio (WAV blobs) — reliable across browsers. */
+class PcmAudioPlayer {
+  private chain: Promise<void> = Promise.resolve();
+  private active: HTMLAudioElement | null = null;
+
+  enqueue(base64Pcm: string, sampleRate: number) {
+    this.chain = this.chain.then(() => this.playOne(base64Pcm, sampleRate));
+  }
+
+  stop() {
+    this.chain = Promise.resolve();
+    if (this.active) {
+      this.active.pause();
+      this.active.src = "";
+      this.active = null;
+    }
+  }
+
+  private playOne(base64Pcm: string, sampleRate: number): Promise<void> {
+    const pcm = base64ToPcm16(base64Pcm);
+    if (pcm.length === 0) return Promise.resolve();
+
+    const wav = pcm16ToWav(pcm, sampleRate);
+    const url = URL.createObjectURL(new Blob([wav], { type: "audio/wav" }));
+    const audio = new Audio(url);
+    this.active = audio;
+
+    return new Promise((resolve) => {
+      const done = () => {
+        URL.revokeObjectURL(url);
+        if (this.active === audio) this.active = null;
+        resolve();
+      };
+      audio.onended = done;
+      audio.onerror = done;
+      void audio.play().catch(done);
+    });
+  }
+}
+
 class VoiceScheduler {
   private ws: WebSocket | null = null;
   private micStream: MediaStream | null = null;
-  private audioCtx: AudioContext | null = null;
+  private captureCtx: AudioContext | null = null;
   private processor: ScriptProcessorNode | null = null;
-  private playbackGain: GainNode | null = null;
-  private playbackQueue: Float32Array[] = [];
-  private isPlayingQueue = false;
-  private playbackTime = 0;
+  private readonly player = new PcmAudioPlayer();
+  private micBuffer: Float32Array[] = [];
+  private micBufferedSamples = 0;
   private assistantLine = "";
   private sessionReady = false;
   private agentReady = false;
   private micEnabled = false;
-  private outputSampleRate = SAMPLE_RATE;
+  private inputSampleRate = DEFAULT_OUTPUT_RATE;
+  private outputSampleRate = DEFAULT_OUTPUT_RATE;
   private audioChunks = 0;
 
   private readonly modal: HTMLElement;
@@ -57,7 +101,6 @@ class VoiceScheduler {
   openModal() {
     this.modal.classList.remove("hidden");
     this.modal.classList.add("flex");
-    void this.ensureAudioContext();
   }
 
   private setStatus(text: string) {
@@ -80,8 +123,6 @@ class VoiceScheduler {
     this.transcriptEl.innerHTML = "";
     this.audioChunks = 0;
 
-    await this.ensureAudioContext();
-
     try {
       const sessionRes = await fetch(SESSION_URL, { method: "POST" });
       const sessionBody = (await sessionRes.json().catch(() => ({}))) as {
@@ -101,7 +142,6 @@ class VoiceScheduler {
       this.agentReady = false;
       this.micEnabled = false;
       this.assistantLine = "";
-      this.playbackTime = 0;
 
       this.ws.onopen = () => this.setStatus("Connected. Loading agent…");
 
@@ -142,12 +182,11 @@ class VoiceScheduler {
   private handleEvent(event: RealtimeEvent) {
     switch (event.type) {
       case "session.updated": {
-        const rate = event.session?.audio?.output?.format?.rate;
-        if (typeof rate === "number" && rate > 0) {
-          this.outputSampleRate = rate;
-        }
+        const outRate = event.session?.audio?.output?.format?.rate;
+        const inRate = event.session?.audio?.input?.format?.rate;
+        if (typeof outRate === "number" && outRate > 0) this.outputSampleRate = outRate;
+        if (typeof inRate === "number" && inRate > 0) this.inputSampleRate = inRate;
 
-        // Wait for the agent's own config (instructions) — do not override with session.update.
         if (!this.agentReady && event.session?.instructions) {
           this.agentReady = true;
           void this.onAgentReady();
@@ -157,7 +196,7 @@ class VoiceScheduler {
 
       case "input_audio_buffer.speech_started":
         if (this.micEnabled) {
-          this.stopPlayback();
+          this.player.stop();
           this.assistantLine = "";
         }
         break;
@@ -175,9 +214,7 @@ class VoiceScheduler {
       }
 
       case "response.output_audio_transcript.delta":
-        if (event.delta) {
-          this.assistantLine += event.delta;
-        }
+        if (event.delta) this.assistantLine += event.delta;
         break;
 
       case "response.output_audio_transcript.done":
@@ -190,7 +227,10 @@ class VoiceScheduler {
       case "response.output_audio.delta":
         if (event.delta) {
           this.audioChunks += 1;
-          void this.playPcmDelta(event.delta);
+          if (this.audioChunks === 1) {
+            this.setStatus("Assistant speaking…");
+          }
+          this.player.enqueue(event.delta, this.outputSampleRate);
         }
         break;
 
@@ -210,14 +250,11 @@ class VoiceScheduler {
 
   private async onAgentReady() {
     this.sessionReady = true;
-    await this.primeAudioOutput();
-
     this.setStatus("Assistant speaking…");
     this.startBtn.classList.add("hidden");
     this.stopBtn.classList.remove("hidden");
     this.startBtn.disabled = false;
 
-    // Greet before enabling the mic so VAD cannot cancel the first audio response.
     this.send({
       type: "conversation.item.create",
       item: {
@@ -236,49 +273,33 @@ class VoiceScheduler {
     if (this.micEnabled || !this.ws) return;
     this.micEnabled = true;
 
+    await this.startMic();
+
     this.send({
       type: "session.update",
-      session: { turn_detection: { type: "server_vad" } },
+      session: {
+        turn_detection: { type: "server_vad" },
+        audio: {
+          input: {
+            format: { type: "audio/pcm", rate: this.inputSampleRate },
+          },
+        },
+      },
     });
 
-    await this.startMic();
     this.setStatus("Listening — say when you would like to meet.");
   }
 
-  private async ensureAudioContext() {
-    if (!this.audioCtx || this.audioCtx.state === "closed") {
-      this.audioCtx = new AudioContext({ sampleRate: SAMPLE_RATE });
-      this.playbackGain = this.audioCtx.createGain();
-      this.playbackGain.gain.value = 1;
-      this.playbackGain.connect(this.audioCtx.destination);
-      this.playbackTime = this.audioCtx.currentTime;
-    }
-    if (this.audioCtx.state === "suspended") {
-      await this.audioCtx.resume();
-    }
-  }
-
-  private async primeAudioOutput() {
-    const audioCtx = await this.getReadyAudioContext();
-    const buffer = audioCtx.createBuffer(1, 1, this.outputSampleRate);
-    const source = audioCtx.createBufferSource();
-    source.buffer = buffer;
-    source.connect(this.playbackGain ?? audioCtx.destination);
-    source.start();
-  }
-
-  private async getReadyAudioContext() {
-    await this.ensureAudioContext();
-    return this.audioCtx!;
-  }
-
   private async startMic() {
-    await this.ensureAudioContext();
-    const audioCtx = this.audioCtx!;
+    this.captureCtx = new AudioContext();
+    this.inputSampleRate = this.captureCtx.sampleRate;
+
+    if (this.captureCtx.state === "suspended") {
+      await this.captureCtx.resume();
+    }
 
     this.micStream = await navigator.mediaDevices.getUserMedia({
       audio: {
-        sampleRate: SAMPLE_RATE,
         channelCount: 1,
         echoCancellation: true,
         noiseSuppression: true,
@@ -286,59 +307,49 @@ class VoiceScheduler {
       },
     });
 
-    const source = audioCtx.createMediaStreamSource(this.micStream);
-    this.processor = audioCtx.createScriptProcessor(4096, 1, 1);
+    const source = this.captureCtx.createMediaStreamSource(this.micStream);
+    this.processor = this.captureCtx.createScriptProcessor(4096, 1, 1);
+    const chunkSamples = Math.floor((this.inputSampleRate * MIC_CHUNK_MS) / 1000);
+
     this.processor.onaudioprocess = (ev) => {
       if (!this.ws || this.ws.readyState !== WebSocket.OPEN || !this.sessionReady || !this.micEnabled) return;
-      const pcm = float32ToBase64Pcm16(ev.inputBuffer.getChannelData(0));
-      this.send({ type: "input_audio_buffer.append", audio: pcm });
+
+      const input = ev.inputBuffer.getChannelData(0);
+      this.micBuffer.push(new Float32Array(input));
+      this.micBufferedSamples += input.length;
+
+      while (this.micBufferedSamples >= chunkSamples) {
+        const chunk = new Float32Array(chunkSamples);
+        let offset = 0;
+
+        while (offset < chunkSamples && this.micBuffer.length > 0) {
+          const buf = this.micBuffer[0];
+          const need = chunkSamples - offset;
+          if (buf.length <= need) {
+            chunk.set(buf, offset);
+            offset += buf.length;
+            this.micBufferedSamples -= buf.length;
+            this.micBuffer.shift();
+          } else {
+            chunk.set(buf.subarray(0, need), offset);
+            this.micBuffer[0] = buf.subarray(need);
+            offset += need;
+            this.micBufferedSamples -= need;
+          }
+        }
+
+        this.send({
+          type: "input_audio_buffer.append",
+          audio: float32ToBase64Pcm16(chunk),
+        });
+      }
     };
 
-    const silent = audioCtx.createGain();
+    const silent = this.captureCtx.createGain();
     silent.gain.value = 0;
     source.connect(this.processor);
     this.processor.connect(silent);
-    silent.connect(audioCtx.destination);
-  }
-
-  private async playPcmDelta(base64: string) {
-    const audioCtx = await this.getReadyAudioContext();
-    const floats = base64Pcm16ToFloat32(base64);
-    if (floats.length === 0) return;
-
-    this.playbackQueue.push(floats);
-    if (!this.isPlayingQueue) {
-      this.isPlayingQueue = true;
-      void this.drainPlaybackQueue(audioCtx);
-    }
-  }
-
-  private async drainPlaybackQueue(audioCtx: AudioContext) {
-    while (this.playbackQueue.length > 0) {
-      const floats = this.playbackQueue.shift()!;
-      const buffer = audioCtx.createBuffer(1, floats.length, this.outputSampleRate);
-      buffer.copyToChannel(floats, 0);
-
-      const source = audioCtx.createBufferSource();
-      source.buffer = buffer;
-      source.connect(this.playbackGain ?? audioCtx.destination);
-
-      const startAt = Math.max(this.playbackTime, audioCtx.currentTime + 0.02);
-      await new Promise<void>((resolve) => {
-        source.onended = () => resolve();
-        source.start(startAt);
-      });
-      this.playbackTime = startAt + buffer.duration;
-    }
-    this.isPlayingQueue = false;
-  }
-
-  private stopPlayback() {
-    this.playbackQueue = [];
-    this.isPlayingQueue = false;
-    if (this.audioCtx && this.audioCtx.state !== "closed") {
-      this.playbackTime = this.audioCtx.currentTime;
-    }
+    silent.connect(this.captureCtx.destination);
   }
 
   private send(payload: Record<string, unknown>) {
@@ -346,15 +357,15 @@ class VoiceScheduler {
   }
 
   private cleanupAudio() {
-    this.stopPlayback();
+    this.player.stop();
     this.processor?.disconnect();
     this.processor = null;
+    this.micBuffer = [];
+    this.micBufferedSamples = 0;
     this.micStream?.getTracks().forEach((t) => t.stop());
     this.micStream = null;
-    this.playbackGain?.disconnect();
-    this.playbackGain = null;
-    void this.audioCtx?.close();
-    this.audioCtx = null;
+    void this.captureCtx?.close();
+    this.captureCtx = null;
   }
 
   private async stop() {
@@ -379,22 +390,53 @@ function float32ToBase64Pcm16(samples: Float32Array): string {
     const s = Math.max(-1, Math.min(1, samples[i]));
     pcm[i] = s < 0 ? s * 0x8000 : s * 0x7fff;
   }
-  const bytes = new Uint8Array(pcm.buffer);
+  return bytesToBase64(new Uint8Array(pcm.buffer));
+}
+
+function base64ToPcm16(base64: string): Int16Array {
+  const bytes = base64ToBytes(base64);
+  return new Int16Array(bytes.buffer, bytes.byteOffset, Math.floor(bytes.byteLength / 2));
+}
+
+function bytesToBase64(bytes: Uint8Array): string {
   let binary = "";
   for (let i = 0; i < bytes.length; i++) binary += String.fromCharCode(bytes[i]);
   return btoa(binary);
 }
 
-function base64Pcm16ToFloat32(base64: string): Float32Array {
+function base64ToBytes(base64: string): Uint8Array {
   const binary = atob(base64);
   const bytes = new Uint8Array(binary.length);
   for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
-  const pcm = new Int16Array(bytes.buffer);
-  const floats = new Float32Array(pcm.length);
-  for (let i = 0; i < pcm.length; i++) {
-    floats[i] = pcm[i] / 32768;
-  }
-  return floats;
+  return bytes;
+}
+
+function pcm16ToWav(pcm: Int16Array, sampleRate: number): ArrayBuffer {
+  const dataSize = pcm.length * 2;
+  const buffer = new ArrayBuffer(44 + dataSize);
+  const view = new DataView(buffer);
+
+  const writeStr = (offset: number, str: string) => {
+    for (let i = 0; i < str.length; i++) view.setUint8(offset + i, str.charCodeAt(i));
+  };
+
+  writeStr(0, "RIFF");
+  view.setUint32(4, 36 + dataSize, true);
+  writeStr(8, "WAVE");
+  writeStr(12, "fmt ");
+  view.setUint32(16, 16, true);
+  view.setUint16(20, 1, true);
+  view.setUint16(22, 1, true);
+  view.setUint32(24, sampleRate, true);
+  view.setUint32(28, sampleRate * 2, true);
+  view.setUint16(32, 2, true);
+  view.setUint16(34, 16, true);
+  writeStr(36, "data");
+  view.setUint32(40, dataSize, true);
+
+  const out = new Int16Array(buffer, 44, pcm.length);
+  out.set(pcm);
+  return buffer;
 }
 
 let scheduler: VoiceScheduler | null = null;
