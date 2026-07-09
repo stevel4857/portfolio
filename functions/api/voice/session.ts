@@ -45,7 +45,11 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
     if (!upstream.ok) {
       const detail = await upstream.text();
       console.error("xAI client_secrets failed:", upstream.status, detail);
-      return json({ error: "Could not start voice session." }, 502, headers);
+      const hint =
+        upstream.status === 401 || upstream.status === 403
+          ? "Invalid or unauthorized xAI API key. Create a new key at console.x.ai and update XAI_API_KEY."
+          : "Could not start voice session.";
+      return json({ error: hint }, 502, headers);
     }
 
     const data = (await upstream.json()) as ClientSecretResponse;
