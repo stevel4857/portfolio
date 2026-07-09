@@ -25,7 +25,6 @@ class VoiceScheduler {
   private readonly stopBtn: HTMLButtonElement;
 
   constructor() {
-    const openBtn = document.getElementById("voice-scheduler-open");
     const closeBtn = document.getElementById("voice-scheduler-close");
     this.modal = document.getElementById("voice-scheduler-modal")!;
     this.statusEl = document.getElementById("voice-status")!;
@@ -33,10 +32,9 @@ class VoiceScheduler {
     this.startBtn = document.getElementById("voice-start") as HTMLButtonElement;
     this.stopBtn = document.getElementById("voice-stop") as HTMLButtonElement;
 
-    openBtn?.addEventListener("click", () => this.openModal());
     closeBtn?.addEventListener("click", () => void this.stop());
-    this.startBtn.addEventListener("click", () => void this.start());
-    this.stopBtn.addEventListener("click", () => void this.stop());
+    this.startBtn?.addEventListener("click", () => void this.start());
+    this.stopBtn?.addEventListener("click", () => void this.stop());
 
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && !this.modal.classList.contains("hidden")) {
@@ -45,7 +43,7 @@ class VoiceScheduler {
     });
   }
 
-  private openModal() {
+  openModal() {
     this.modal.classList.remove("hidden");
     this.modal.classList.add("flex");
   }
@@ -71,8 +69,16 @@ class VoiceScheduler {
 
     try {
       const sessionRes = await fetch(SESSION_URL, { method: "POST" });
-      if (!sessionRes.ok) throw new Error("Session request failed");
-      const { token } = (await sessionRes.json()) as { token: string };
+      const sessionBody = (await sessionRes.json().catch(() => ({}))) as {
+        token?: string;
+        error?: string;
+      };
+      if (!sessionRes.ok) {
+        const detail = sessionBody.error ?? `HTTP ${sessionRes.status}`;
+        throw new Error(detail);
+      }
+      const token = sessionBody.token;
+      if (!token) throw new Error("No session token returned");
 
       this.setStatus("Connecting…");
       this.ws = new WebSocket(WS_URL, [`xai-client-secret.${token}`]);
@@ -103,8 +109,13 @@ class VoiceScheduler {
         this.startBtn.classList.remove("hidden");
         this.stopBtn.classList.add("hidden");
       };
-    } catch {
-      this.setStatus("Could not connect. Try again later.");
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Could not connect";
+      if (message.toLowerCase().includes("not configured")) {
+        this.setStatus("Scheduling is not configured yet (missing API key on server).");
+      } else {
+        this.setStatus(`Could not connect: ${message}`);
+      }
       this.startBtn.disabled = false;
     }
   }
@@ -283,6 +294,21 @@ function base64Pcm16ToFloat32(base64: string): Float32Array {
   return floats;
 }
 
-if (document.getElementById("voice-scheduler-modal")) {
-  new VoiceScheduler();
+let scheduler: VoiceScheduler | null = null;
+
+function ensureScheduler(): VoiceScheduler | null {
+  if (!document.getElementById("voice-scheduler-modal")) return null;
+  if (!scheduler) scheduler = new VoiceScheduler();
+  return scheduler;
 }
+
+// Motion replaces <main> with React, which clones the open button without listeners.
+// Delegate open clicks at document level so they survive that swap.
+document.addEventListener("click", (e) => {
+  const target = e.target as Element | null;
+  if (!target?.closest("#voice-scheduler-open")) return;
+  e.preventDefault();
+  ensureScheduler()?.openModal();
+});
+
+ensureScheduler();
