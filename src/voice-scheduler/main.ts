@@ -17,6 +17,7 @@ class VoiceScheduler {
   private playbackTime = 0;
   private assistantLine = "";
   private sessionReady = false;
+  private outputSampleRate = SAMPLE_RATE;
 
   private readonly modal: HTMLElement;
   private readonly statusEl: HTMLElement;
@@ -66,6 +67,9 @@ class VoiceScheduler {
     this.startBtn.disabled = true;
     this.setStatus("Requesting secure session…");
     this.transcriptEl.innerHTML = "";
+
+    // Create AudioContext on click (before awaits) so playback isn't blocked.
+    await this.ensureAudioContext();
 
     try {
       const sessionRes = await fetch(SESSION_URL, { method: "POST" });
@@ -179,13 +183,16 @@ class VoiceScheduler {
   }
 
   private configureSession() {
+    const rate = this.audioCtx?.sampleRate ?? SAMPLE_RATE;
+    this.outputSampleRate = rate;
     this.send({
       type: "session.update",
       session: {
+        voice: "eve",
         turn_detection: { type: "server_vad" },
         audio: {
-          input: { format: { type: "audio/pcm", rate: SAMPLE_RATE } },
-          output: { format: { type: "audio/pcm", rate: SAMPLE_RATE } },
+          input: { format: { type: "audio/pcm", rate } },
+          output: { format: { type: "audio/pcm", rate } },
         },
       },
     });
@@ -214,26 +221,52 @@ class VoiceScheduler {
     this.send({ type: "response.create" });
   }
 
-  private async startMic() {
-    this.micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
-    this.audioCtx = new AudioContext({ sampleRate: SAMPLE_RATE });
-    this.playbackTime = this.audioCtx.currentTime;
+  private async ensureAudioContext() {
+    if (!this.audioCtx) {
+      this.audioCtx = new AudioContext();
+      this.playbackTime = this.audioCtx.currentTime;
+    }
+    if (this.audioCtx.state === "suspended") {
+      await this.audioCtx.resume();
+    }
+  }
 
-    const source = this.audioCtx.createMediaStreamSource(this.micStream);
-    this.processor = this.audioCtx.createScriptProcessor(4096, 1, 1);
+  private async startMic() {
+    await this.ensureAudioContext();
+    const audioCtx = this.audioCtx!;
+
+    this.micStream = await navigator.mediaDevices.getUserMedia({
+      audio: {
+        channelCount: 1,
+        echoCancellation: true,
+        noiseSuppression: true,
+        autoGainControl: true,
+      },
+    });
+    this.playbackTime = audioCtx.currentTime;
+
+    const source = audioCtx.createMediaStreamSource(this.micStream);
+    this.processor = audioCtx.createScriptProcessor(4096, 1, 1);
     this.processor.onaudioprocess = (ev) => {
       if (!this.ws || this.ws.readyState !== WebSocket.OPEN || !this.sessionReady) return;
       const pcm = float32ToBase64Pcm16(ev.inputBuffer.getChannelData(0));
       this.send({ type: "input_audio_buffer.append", audio: pcm });
     };
+
+    // ScriptProcessor must connect to the graph; use silent output (no mic echo).
+    const silent = audioCtx.createGain();
+    silent.gain.value = 0;
     source.connect(this.processor);
-    this.processor.connect(this.audioCtx.destination);
+    this.processor.connect(silent);
+    silent.connect(audioCtx.destination);
   }
 
   private playPcmDelta(base64: string) {
     if (!this.audioCtx) return;
+    void this.ensureAudioContext();
+
     const floats = base64Pcm16ToFloat32(base64);
-    const buffer = this.audioCtx.createBuffer(1, floats.length, SAMPLE_RATE);
+    const buffer = this.audioCtx.createBuffer(1, floats.length, this.outputSampleRate);
     buffer.copyToChannel(floats, 0);
 
     const source = this.audioCtx.createBufferSource();
@@ -290,7 +323,9 @@ function base64Pcm16ToFloat32(base64: string): Float32Array {
   for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
   const pcm = new Int16Array(bytes.buffer);
   const floats = new Float32Array(pcm.length);
-  for (let i = 0; i < pcm.length; i++) floats[i] = pcm[i] / 32768;
+  for (let i = 0; i < pcm.length; i++) {
+    floats[i] = pcm[i] / (pcm[i] < 0 ? 0x8000 : 0x7fff);
+  }
   return floats;
 }
 
