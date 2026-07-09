@@ -9,7 +9,7 @@ interface ClientSecretResponse {
 }
 
 export const onRequestPost: PagesFunction<Env> = async (context) => {
-  const apiKey = context.env.XAI_API_KEY;
+  const apiKey = context.env.XAI_API_KEY?.trim();
   if (!apiKey) {
     return json({ error: "Voice scheduling is not configured." }, 503);
   }
@@ -39,7 +39,6 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
       },
       body: JSON.stringify({
         expires_after: { seconds: 300 },
-        session: { model: "grok-voice-latest" },
       }),
     });
 

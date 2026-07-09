@@ -8,8 +8,5 @@
       "binding": "CALENDAR_STATE",
       "id": "ec737b6418034f21af787b460f234e31"
     }
-  ],
-  "triggers": {
-    "crons": ["0 12 * * *"]
-  }
+  ]
 }
