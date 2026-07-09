@@ -1,6 +1,6 @@
 const AGENT_ID = "agent_YCy2O5AFU9NsAyEx";
 const WS_URL = `wss://api.x.ai/v1/realtime?agent_id=${AGENT_ID}`;
-const DEFAULT_OUTPUT_RATE = 24000;
+const SAMPLE_RATE = 24000;
 const MIC_CHUNK_MS = 100;
 const SESSION_URL = "/api/voice/session";
 
@@ -9,6 +9,7 @@ type RealtimeEvent = {
   delta?: string;
   session?: {
     instructions?: string;
+    turn_detection?: { type?: string | null };
     audio?: {
       input?: { format?: { rate?: number } };
       output?: { format?: { rate?: number } };
@@ -17,13 +18,16 @@ type RealtimeEvent = {
   [key: string]: unknown;
 };
 
-/** Plays PCM16 chunks via HTML Audio (WAV blobs) — reliable across browsers. */
 class PcmAudioPlayer {
   private chain: Promise<void> = Promise.resolve();
   private active: HTMLAudioElement | null = null;
 
   enqueue(base64Pcm: string, sampleRate: number) {
     this.chain = this.chain.then(() => this.playOne(base64Pcm, sampleRate));
+  }
+
+  whenIdle(): Promise<void> {
+    return this.chain;
   }
 
   stop() {
@@ -69,9 +73,9 @@ class VoiceScheduler {
   private sessionReady = false;
   private agentReady = false;
   private micEnabled = false;
-  private inputSampleRate = DEFAULT_OUTPUT_RATE;
-  private outputSampleRate = DEFAULT_OUTPUT_RATE;
-  private audioChunks = 0;
+  private pendingMic = false;
+  private outputSampleRate = SAMPLE_RATE;
+  private responseAudioChunks = 0;
 
   private readonly modal: HTMLElement;
   private readonly statusEl: HTMLElement;
@@ -115,13 +119,21 @@ class VoiceScheduler {
     this.transcriptEl.scrollTop = this.transcriptEl.scrollHeight;
   }
 
+  private speakFallback(text: string) {
+    if (!text.trim() || !("speechSynthesis" in window)) return;
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.rate = 1.05;
+    window.speechSynthesis.speak(utterance);
+  }
+
   private async start() {
     if (this.ws) return;
 
     this.startBtn.disabled = true;
     this.setStatus("Requesting secure session…");
     this.transcriptEl.innerHTML = "";
-    this.audioChunks = 0;
+    this.responseAudioChunks = 0;
 
     try {
       const sessionRes = await fetch(SESSION_URL, { method: "POST" });
@@ -141,6 +153,7 @@ class VoiceScheduler {
       this.sessionReady = false;
       this.agentReady = false;
       this.micEnabled = false;
+      this.pendingMic = false;
       this.assistantLine = "";
 
       this.ws.onopen = () => this.setStatus("Connected. Loading agent…");
@@ -164,6 +177,7 @@ class VoiceScheduler {
         this.sessionReady = false;
         this.agentReady = false;
         this.micEnabled = false;
+        this.pendingMic = false;
         this.startBtn.disabled = false;
         this.startBtn.classList.remove("hidden");
         this.stopBtn.classList.add("hidden");
@@ -183,20 +197,33 @@ class VoiceScheduler {
     switch (event.type) {
       case "session.updated": {
         const outRate = event.session?.audio?.output?.format?.rate;
-        const inRate = event.session?.audio?.input?.format?.rate;
-        if (typeof outRate === "number" && outRate > 0) this.outputSampleRate = outRate;
-        if (typeof inRate === "number" && inRate > 0) this.inputSampleRate = inRate;
+        if (typeof outRate === "number" && outRate > 0) {
+          this.outputSampleRate = outRate;
+        }
 
         if (!this.agentReady && event.session?.instructions) {
           this.agentReady = true;
           void this.onAgentReady();
         }
+
+        if (
+          this.pendingMic &&
+          !this.micEnabled &&
+          event.session?.turn_detection?.type === "server_vad"
+        ) {
+          void this.startMicAfterVad();
+        }
         break;
       }
+
+      case "response.created":
+        this.responseAudioChunks = 0;
+        break;
 
       case "input_audio_buffer.speech_started":
         if (this.micEnabled) {
           this.player.stop();
+          window.speechSynthesis?.cancel();
           this.assistantLine = "";
         }
         break;
@@ -217,17 +244,24 @@ class VoiceScheduler {
         if (event.delta) this.assistantLine += event.delta;
         break;
 
-      case "response.output_audio_transcript.done":
-        if (this.assistantLine.trim()) {
-          this.appendLine("assistant", this.assistantLine.trim());
+      case "response.output_audio_transcript.done": {
+        const text = this.assistantLine.trim();
+        if (text) {
+          this.appendLine("assistant", text);
+          // Agent API often cancels after 1 audio chunk; speak the full line via TTS.
+          if (this.responseAudioChunks <= 2) {
+            this.player.stop();
+            this.speakFallback(text);
+          }
           this.assistantLine = "";
         }
         break;
+      }
 
       case "response.output_audio.delta":
         if (event.delta) {
-          this.audioChunks += 1;
-          if (this.audioChunks === 1) {
+          this.responseAudioChunks += 1;
+          if (this.responseAudioChunks === 1) {
             this.setStatus("Assistant speaking…");
           }
           this.player.enqueue(event.delta, this.outputSampleRate);
@@ -235,8 +269,8 @@ class VoiceScheduler {
         break;
 
       case "response.done":
-        if (!this.micEnabled) {
-          void this.enableMicAfterGreeting();
+        if (!this.micEnabled && !this.pendingMic) {
+          void this.prepareMic();
         }
         break;
 
@@ -269,30 +303,40 @@ class VoiceScheduler {
     this.send({ type: "response.create" });
   }
 
-  private async enableMicAfterGreeting() {
-    if (this.micEnabled || !this.ws) return;
-    this.micEnabled = true;
+  private async prepareMic() {
+    if (this.micEnabled || this.pendingMic || !this.ws) return;
+    this.pendingMic = true;
+    this.setStatus("Getting ready to listen…");
 
-    await this.startMic();
+    await this.player.whenIdle();
 
     this.send({
       type: "session.update",
       session: {
         turn_detection: { type: "server_vad" },
         audio: {
-          input: {
-            format: { type: "audio/pcm", rate: this.inputSampleRate },
-          },
+          input: { format: { type: "audio/pcm", rate: SAMPLE_RATE } },
         },
       },
     });
 
+    // Fallback if the server doesn't echo turn_detection back promptly.
+    setTimeout(() => {
+      if (this.pendingMic && !this.micEnabled) {
+        void this.startMicAfterVad();
+      }
+    }, 2000);
+  }
+
+  private async startMicAfterVad() {
+    this.pendingMic = false;
+    await this.startMic();
+    this.micEnabled = true;
     this.setStatus("Listening — say when you would like to meet.");
   }
 
   private async startMic() {
-    this.captureCtx = new AudioContext();
-    this.inputSampleRate = this.captureCtx.sampleRate;
+    this.captureCtx = new AudioContext({ sampleRate: SAMPLE_RATE });
 
     if (this.captureCtx.state === "suspended") {
       await this.captureCtx.resume();
@@ -300,6 +344,7 @@ class VoiceScheduler {
 
     this.micStream = await navigator.mediaDevices.getUserMedia({
       audio: {
+        sampleRate: SAMPLE_RATE,
         channelCount: 1,
         echoCancellation: true,
         noiseSuppression: true,
@@ -309,14 +354,15 @@ class VoiceScheduler {
 
     const source = this.captureCtx.createMediaStreamSource(this.micStream);
     this.processor = this.captureCtx.createScriptProcessor(4096, 1, 1);
-    const chunkSamples = Math.floor((this.inputSampleRate * MIC_CHUNK_MS) / 1000);
+    const chunkSamples = Math.floor((SAMPLE_RATE * MIC_CHUNK_MS) / 1000);
 
     this.processor.onaudioprocess = (ev) => {
-      if (!this.ws || this.ws.readyState !== WebSocket.OPEN || !this.sessionReady || !this.micEnabled) return;
+      if (!this.ws || this.ws.readyState !== WebSocket.OPEN || !this.micEnabled) return;
 
       const input = ev.inputBuffer.getChannelData(0);
-      this.micBuffer.push(new Float32Array(input));
-      this.micBufferedSamples += input.length;
+      const samples = resampleToRate(input, ev.inputBuffer.sampleRate, SAMPLE_RATE);
+      this.micBuffer.push(samples);
+      this.micBufferedSamples += samples.length;
 
       while (this.micBufferedSamples >= chunkSamples) {
         const chunk = new Float32Array(chunkSamples);
@@ -358,6 +404,7 @@ class VoiceScheduler {
 
   private cleanupAudio() {
     this.player.stop();
+    window.speechSynthesis?.cancel();
     this.processor?.disconnect();
     this.processor = null;
     this.micBuffer = [];
@@ -375,6 +422,7 @@ class VoiceScheduler {
     this.sessionReady = false;
     this.agentReady = false;
     this.micEnabled = false;
+    this.pendingMic = false;
     this.modal.classList.add("hidden");
     this.modal.classList.remove("flex");
     this.startBtn.disabled = false;
@@ -382,6 +430,22 @@ class VoiceScheduler {
     this.stopBtn.classList.add("hidden");
     this.setStatus("Click Start to talk");
   }
+}
+
+function resampleToRate(samples: Float32Array, fromRate: number, toRate: number): Float32Array {
+  if (fromRate === toRate) return new Float32Array(samples);
+  const ratio = fromRate / toRate;
+  const outLength = Math.floor(samples.length / ratio);
+  const out = new Float32Array(outLength);
+  for (let i = 0; i < outLength; i++) {
+    const pos = i * ratio;
+    const idx = Math.floor(pos);
+    const frac = pos - idx;
+    const a = samples[idx] ?? 0;
+    const b = samples[idx + 1] ?? a;
+    out[i] = a + (b - a) * frac;
+  }
+  return out;
 }
 
 function float32ToBase64Pcm16(samples: Float32Array): string {
