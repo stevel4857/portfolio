@@ -119,18 +119,56 @@ class VoiceScheduler {
     this.transcriptEl.scrollTop = this.transcriptEl.scrollHeight;
   }
 
-  private speakFallback(text: string) {
-    if (!text.trim() || !("speechSynthesis" in window)) return;
-    window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.rate = 1.05;
+  /** Primary playback for agent_id — xAI often sends incomplete PCM over WebSocket. */
+  private speakAssistant(text: string): Promise<void> {
+    return new Promise((resolve) => {
+      if (!text.trim() || !("speechSynthesis" in window)) {
+        resolve();
+        return;
+      }
+
+      const run = () => {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = 1;
+        const voices = window.speechSynthesis.getVoices();
+        const voice = voices.find((v) => v.lang.startsWith("en")) ?? voices[0];
+        if (voice) utterance.voice = voice;
+        utterance.onstart = () => this.setStatus("Assistant speaking…");
+        utterance.onend = () => resolve();
+        utterance.onerror = () => resolve();
+        window.speechSynthesis.speak(utterance);
+      };
+
+      if (window.speechSynthesis.getVoices().length > 0) {
+        run();
+      } else {
+        window.speechSynthesis.addEventListener("voiceschanged", () => run(), { once: true });
+        setTimeout(run, 300);
+      }
+    });
+  }
+
+  private primeSpeechOnClick() {
+    if (!("speechSynthesis" in window)) return;
+    window.speechSynthesis.getVoices();
+    const utterance = new SpeechSynthesisUtterance(" ");
+    utterance.volume = 0.01;
     window.speechSynthesis.speak(utterance);
+  }
+
+  private async waitForSpeechEnd() {
+    if (!("speechSynthesis" in window)) return;
+    while (window.speechSynthesis.speaking) {
+      await new Promise((r) => setTimeout(r, 100));
+    }
   }
 
   private async start() {
     if (this.ws) return;
 
     this.startBtn.disabled = true;
+    this.primeSpeechOnClick();
     this.setStatus("Requesting secure session…");
     this.transcriptEl.innerHTML = "";
     this.responseAudioChunks = 0;
@@ -244,34 +282,16 @@ class VoiceScheduler {
         if (event.delta) this.assistantLine += event.delta;
         break;
 
-      case "response.output_audio_transcript.done": {
-        const text = this.assistantLine.trim();
-        if (text) {
-          this.appendLine("assistant", text);
-          // Agent API often cancels after 1 audio chunk; speak the full line via TTS.
-          if (this.responseAudioChunks <= 2) {
-            this.player.stop();
-            this.speakFallback(text);
-          }
-          this.assistantLine = "";
-        }
+      case "response.output_audio_transcript.done":
+        void this.finishAssistantSpeech();
         break;
-      }
 
       case "response.output_audio.delta":
-        if (event.delta) {
-          this.responseAudioChunks += 1;
-          if (this.responseAudioChunks === 1) {
-            this.setStatus("Assistant speaking…");
-          }
-          this.player.enqueue(event.delta, this.outputSampleRate);
-        }
+        if (event.delta) this.responseAudioChunks += 1;
         break;
 
       case "response.done":
-        if (!this.micEnabled && !this.pendingMic) {
-          void this.prepareMic();
-        }
+        void this.onResponseDone();
         break;
 
       case "error": {
@@ -282,9 +302,29 @@ class VoiceScheduler {
     }
   }
 
+  private async finishAssistantSpeech() {
+    const text = this.assistantLine.trim();
+    if (!text) return;
+    this.appendLine("assistant", text);
+    this.assistantLine = "";
+    this.player.stop();
+    await this.speakAssistant(text);
+  }
+
+  private async onResponseDone() {
+    if (this.assistantLine.trim()) {
+      await this.finishAssistantSpeech();
+    } else {
+      await this.waitForSpeechEnd();
+    }
+    if (!this.micEnabled && !this.pendingMic) {
+      await this.prepareMic();
+    }
+  }
+
   private async onAgentReady() {
     this.sessionReady = true;
-    this.setStatus("Assistant speaking…");
+    this.setStatus("Waiting for assistant…");
     this.startBtn.classList.add("hidden");
     this.stopBtn.classList.remove("hidden");
     this.startBtn.disabled = false;
@@ -308,7 +348,7 @@ class VoiceScheduler {
     this.pendingMic = true;
     this.setStatus("Getting ready to listen…");
 
-    await this.player.whenIdle();
+    await this.waitForSpeechEnd();
 
     this.send({
       type: "session.update",
