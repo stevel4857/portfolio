@@ -9,9 +9,15 @@ interface ClientSecretResponse {
 }
 
 export const onRequestPost: PagesFunction<Env> = async (context) => {
-  const apiKey = context.env.XAI_API_KEY?.trim();
+  const apiKey = context.env.XAI_API_KEY?.trim().replace(/^["']|["']$/g, "");
   if (!apiKey) {
     return json({ error: "Voice scheduling is not configured." }, 503);
+  }
+  if (!apiKey.startsWith("xai-")) {
+    return json(
+      { error: "XAI_API_KEY looks invalid (expected a value starting with xai-). Re-run: npx wrangler pages secret put XAI_API_KEY --project-name steveknows" },
+      503,
+    );
   }
 
   const origin = context.request.headers.get("Origin") ?? "";
@@ -45,11 +51,24 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
     if (!upstream.ok) {
       const detail = await upstream.text();
       console.error("xAI client_secrets failed:", upstream.status, detail);
+      let upstreamMessage = "";
+      try {
+        const parsed = JSON.parse(detail) as { error?: string; message?: string; code?: string };
+        upstreamMessage = parsed.error ?? parsed.message ?? parsed.code ?? "";
+      } catch {
+        upstreamMessage = detail.slice(0, 200);
+      }
       const hint =
         upstream.status === 401 || upstream.status === 403
           ? "Invalid or unauthorized xAI API key. Create a new key at console.x.ai and update XAI_API_KEY."
-          : "Could not start voice session.";
-      return json({ error: hint }, 502, headers);
+          : upstream.status === 400
+            ? "xAI rejected the voice session request. Check billing/credits at console.x.ai and recreate the API key."
+            : "Could not start voice session.";
+      return json(
+        { error: hint, ...(upstreamMessage ? { detail: upstreamMessage } : {}) },
+        502,
+        headers,
+      );
     }
 
     const data = (await upstream.json()) as ClientSecretResponse;
