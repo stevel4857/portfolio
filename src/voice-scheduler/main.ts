@@ -14,9 +14,12 @@ class VoiceScheduler {
   private micStream: MediaStream | null = null;
   private audioCtx: AudioContext | null = null;
   private processor: ScriptProcessorNode | null = null;
+  private playbackGain: GainNode | null = null;
+  private playbackSources: AudioBufferSourceNode[] = [];
   private playbackTime = 0;
   private assistantLine = "";
   private sessionReady = false;
+  private sessionConfigured = false;
   private outputSampleRate = SAMPLE_RATE;
 
   private readonly modal: HTMLElement;
@@ -47,6 +50,7 @@ class VoiceScheduler {
   openModal() {
     this.modal.classList.remove("hidden");
     this.modal.classList.add("flex");
+    void this.ensureAudioContext();
   }
 
   private setStatus(text: string) {
@@ -109,6 +113,7 @@ class VoiceScheduler {
         this.cleanupAudio();
         this.ws = null;
         this.sessionReady = false;
+        this.sessionConfigured = false;
         this.startBtn.disabled = false;
         this.startBtn.classList.remove("hidden");
         this.stopBtn.classList.add("hidden");
@@ -128,18 +133,28 @@ class VoiceScheduler {
     switch (event.type) {
       case "session.created":
       case "conversation.created":
-        if (!this.sessionReady) {
+        if (!this.sessionConfigured) {
           this.configureSession();
+          this.sessionConfigured = true;
         }
         break;
 
-      case "session.updated":
+      case "session.updated": {
+        const session = event.session as {
+          audio?: { output?: { format?: { rate?: number } } };
+        } | undefined;
+        const rate = session?.audio?.output?.format?.rate;
+        if (typeof rate === "number" && rate > 0) {
+          this.outputSampleRate = rate;
+        }
         if (!this.sessionReady) {
           void this.onSessionReady();
         }
         break;
+      }
 
       case "input_audio_buffer.speech_started":
+        this.stopPlayback();
         this.assistantLine = "";
         break;
 
@@ -170,7 +185,7 @@ class VoiceScheduler {
 
       case "response.output_audio.delta":
         if (event.delta) {
-          this.playPcmDelta(event.delta);
+          void this.playPcmDelta(event.delta);
         }
         break;
 
@@ -183,16 +198,14 @@ class VoiceScheduler {
   }
 
   private configureSession() {
-    const rate = this.audioCtx?.sampleRate ?? SAMPLE_RATE;
-    this.outputSampleRate = rate;
+    this.outputSampleRate = SAMPLE_RATE;
     this.send({
       type: "session.update",
       session: {
-        voice: "eve",
         turn_detection: { type: "server_vad" },
         audio: {
-          input: { format: { type: "audio/pcm", rate } },
-          output: { format: { type: "audio/pcm", rate } },
+          input: { format: { type: "audio/pcm", rate: SAMPLE_RATE } },
+          output: { format: { type: "audio/pcm", rate: SAMPLE_RATE } },
         },
       },
     });
@@ -200,6 +213,7 @@ class VoiceScheduler {
 
   private async onSessionReady() {
     this.sessionReady = true;
+    await this.primeAudioOutput();
     await this.startMic();
     this.setStatus("Listening — say when you would like to meet.");
     this.startBtn.classList.add("hidden");
@@ -222,13 +236,30 @@ class VoiceScheduler {
   }
 
   private async ensureAudioContext() {
-    if (!this.audioCtx) {
-      this.audioCtx = new AudioContext();
+    if (!this.audioCtx || this.audioCtx.state === "closed") {
+      this.audioCtx = new AudioContext({ sampleRate: SAMPLE_RATE });
+      this.playbackGain = this.audioCtx.createGain();
+      this.playbackGain.gain.value = 1;
+      this.playbackGain.connect(this.audioCtx.destination);
       this.playbackTime = this.audioCtx.currentTime;
     }
     if (this.audioCtx.state === "suspended") {
       await this.audioCtx.resume();
     }
+  }
+
+  private async primeAudioOutput() {
+    const audioCtx = await this.getReadyAudioContext();
+    const buffer = audioCtx.createBuffer(1, 1, SAMPLE_RATE);
+    const source = audioCtx.createBufferSource();
+    source.buffer = buffer;
+    source.connect(this.playbackGain ?? audioCtx.destination);
+    source.start();
+  }
+
+  private async getReadyAudioContext() {
+    await this.ensureAudioContext();
+    return this.audioCtx!;
   }
 
   private async startMic() {
@@ -237,6 +268,7 @@ class VoiceScheduler {
 
     this.micStream = await navigator.mediaDevices.getUserMedia({
       audio: {
+        sampleRate: SAMPLE_RATE,
         channelCount: 1,
         echoCancellation: true,
         noiseSuppression: true,
@@ -261,21 +293,40 @@ class VoiceScheduler {
     silent.connect(audioCtx.destination);
   }
 
-  private playPcmDelta(base64: string) {
-    if (!this.audioCtx) return;
-    void this.ensureAudioContext();
-
+  private async playPcmDelta(base64: string) {
+    const audioCtx = await this.getReadyAudioContext();
     const floats = base64Pcm16ToFloat32(base64);
-    const buffer = this.audioCtx.createBuffer(1, floats.length, this.outputSampleRate);
+    if (floats.length === 0) return;
+
+    const buffer = audioCtx.createBuffer(1, floats.length, this.outputSampleRate);
     buffer.copyToChannel(floats, 0);
 
-    const source = this.audioCtx.createBufferSource();
+    const source = audioCtx.createBufferSource();
     source.buffer = buffer;
-    source.connect(this.audioCtx.destination);
+    source.connect(this.playbackGain ?? audioCtx.destination);
 
-    const startAt = Math.max(this.playbackTime, this.audioCtx.currentTime);
+    const startAt = Math.max(this.playbackTime, audioCtx.currentTime + 0.02);
     source.start(startAt);
     this.playbackTime = startAt + buffer.duration;
+    this.playbackSources.push(source);
+    source.onended = () => {
+      this.playbackSources = this.playbackSources.filter((s) => s !== source);
+    };
+  }
+
+  private stopPlayback() {
+    for (const source of this.playbackSources) {
+      try {
+        source.stop();
+        source.disconnect();
+      } catch {
+        // already stopped
+      }
+    }
+    this.playbackSources = [];
+    if (this.audioCtx && this.audioCtx.state !== "closed") {
+      this.playbackTime = this.audioCtx.currentTime;
+    }
   }
 
   private send(payload: Record<string, unknown>) {
@@ -283,10 +334,13 @@ class VoiceScheduler {
   }
 
   private cleanupAudio() {
+    this.stopPlayback();
     this.processor?.disconnect();
     this.processor = null;
     this.micStream?.getTracks().forEach((t) => t.stop());
     this.micStream = null;
+    this.playbackGain?.disconnect();
+    this.playbackGain = null;
     void this.audioCtx?.close();
     this.audioCtx = null;
   }
@@ -296,6 +350,7 @@ class VoiceScheduler {
     this.ws = null;
     this.cleanupAudio();
     this.sessionReady = false;
+    this.sessionConfigured = false;
     this.modal.classList.add("hidden");
     this.modal.classList.remove("flex");
     this.startBtn.disabled = false;
@@ -324,7 +379,7 @@ function base64Pcm16ToFloat32(base64: string): Float32Array {
   const pcm = new Int16Array(bytes.buffer);
   const floats = new Float32Array(pcm.length);
   for (let i = 0; i < pcm.length; i++) {
-    floats[i] = pcm[i] / (pcm[i] < 0 ? 0x8000 : 0x7fff);
+    floats[i] = pcm[i] / 32768;
   }
   return floats;
 }
