@@ -155,6 +155,8 @@ CORPORATE YET STYLISH
 
 Modernized the visual identity for The Cable Center’s new institute using video backgrounds and animated headers.
 
+![Screenshot of the Syndeo Institute website](https://steveknowsweb.com/assets/images/work/syndeo-screenshot.jpg)
+
 2018–2022 Visual Identity
 
 [View case study](https://steveknowsweb.com/work/syndeo.html)
