@@ -9,6 +9,14 @@ language: "en"
 
 Articles by Steve Luiting on strategic web design, digital preservation, and AI-accelerated workflows.
 
+## [A Matrix Birthday Card for Erin](https://steveknowsweb.com/blog/matrix-birthday-card-for-erin)
+
+*2026-07-10 · Design · 3 min*
+
+A custom Matrix-style birthday card for Erin — her likeness on the cover, 7.21.2026, and an inside that says we love you and you kick reality’s ass.
+
+Markdown: [matrix-birthday-card-for-erin.md](/md/blog/matrix-birthday-card-for-erin.md)
+
 ## [WordCut — Free Video Editor for Windows](https://steveknowsweb.com/blog/wordcut-free-video-editor-for-windows)
 
 *2026-07-02 · AI & Tools · 4 min*

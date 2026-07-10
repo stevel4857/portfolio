@@ -12,6 +12,7 @@
 
 ## Articles
 
+- [A Matrix Birthday Card for Erin](https://steveknowsweb.com/md/blog/matrix-birthday-card-for-erin.md)
 - [WordCut — Free Video Editor for Windows](https://steveknowsweb.com/md/blog/wordcut-free-video-editor-for-windows.md)
 - [Vibe Coding This Site — and Adding Motion Without Losing the Plot](https://steveknowsweb.com/md/blog/vibe-coding-motion-and-the-tools-im-watching.md)
 - [Generative Engine Optimization: What GEO Actually Is](https://steveknowsweb.com/md/blog/generative-engine-optimization.md)
