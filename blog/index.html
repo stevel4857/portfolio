@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Insights on strategic web design, AI-accelerated workflows, legacy web preservation, and building websites that last — by Steve Luiting.">
   <title>Insights &amp; Experiments — Steve Luiting</title>
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/steveknowswebdesign-favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/steveknowswebdesign-favicon.png">
   <link rel="alternate" type="text/markdown" href="/md/blog.md">
   
-  <link rel="stylesheet" href="css/tailwind.css">
+  <link rel="stylesheet" href="/css/tailwind.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
   <!-- Ruffle for playing legacy Flash (SWF) content - used for the "Resurrection of Flash" post demo -->
@@ -114,7 +114,7 @@
     <div class="max-w-6xl mx-auto px-6 text-sm text-slate-500 flex flex-col sm:flex-row gap-y-3 items-center justify-between">
       <div>© Steve Luiting. All rights reserved.</div>
       <div class="flex gap-x-5">
-        <a href="index.html" class="hover:text-slate-900 transition">Home</a>
+        <a href="/" class="hover:text-slate-900 transition">Home</a>
         <a href="mailto:steveknowsweb@gmail.com" class="hover:text-slate-900 transition">Email</a>
         <a href="tel:7205639377" class="hover:text-slate-900 transition">720-563-9377</a>
       </div>
@@ -132,7 +132,7 @@
     // Load posts from JSON
     async function loadPosts() {
       try {
-        const res = await fetch('data/blog-posts.json');
+        const res = await fetch('/data/blog-posts.json');
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
         }
