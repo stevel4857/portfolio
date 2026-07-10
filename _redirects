@@ -1,13 +1,12 @@
-﻿/work/syndeo.html /work/syndeo 301
+/work/syndeo.html /work/syndeo 301
 /work/wordcut.html /work/wordcut 301
 /about.html /about 301
 /index.html / 301
 
-# Blog listing is blog.html; post permalinks live under blog/{slug}/.
-# Serve the listing at /blog without a 301 back to blog.html (that pair loops:
-# /blog.html → /blog → rewrite blog.html → /blog.html → …).
-/blog /blog.html 200
-/blog/ /blog.html 200
+# Blog listing is blog/index.html (and blog.html kept in sync for local).
+# Do not rewrite /blog → blog.html: with a blog/ directory that loops with
+# Cloudflare pretty-URL redirects (ERR_TOO_MANY_REDIRECTS).
+/blog.html /blog/ 301
 /blog/:slug /blog/:slug/ 301
 
 # Custom 404 page (served for any unmatched routes)
