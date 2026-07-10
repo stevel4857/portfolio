@@ -12,10 +12,6 @@ I was asked to make a birthday card for Erin — and the brief was specific: **M
 
 That kind of request is fun when it is personal. Not a template. Not a stock “happy birthday” from a rack. A card that feels like the person who will open it.
 
-![Folded Matrix-style birthday card standing upright, front cover showing Erin in a black leather coat and sunglasses with Happy Birthday Erin and the date 7.21.2026](https://steveknowsweb.com/assets/images/matrix-birthday-erin/folded.jpg)
-
-*The finished card — poster-style cover, movie-print energy.*
-
 ### The cover
 
 The outside is a full Matrix-inspired poster treatment. Erin appears in black leather and sunglasses against digital rain and green code, with clean typography for the greeting:

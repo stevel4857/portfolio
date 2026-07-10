@@ -297,6 +297,14 @@
       grid.innerHTML = posts.map(post => `
         <article onclick="openPost(${post.id})" 
                  class="post-card group bg-white border border-slate-200 rounded-3xl p-7 cursor-pointer flex flex-col h-full hover:border-slate-300">
+          ${post.image ? `
+          <div class="mb-5 -mx-1">
+            <img
+              src="${post.image}"
+              alt=""
+              class="w-full aspect-[4/3] object-cover rounded-2xl border border-slate-200"
+              loading="lazy">
+          </div>` : ''}
           <div class="flex items-center justify-between mb-4">
             <span class="category-pill">${post.category}</span>
             <span class="text-xs text-slate-500 font-mono tracking-tight">${post.date}</span>
