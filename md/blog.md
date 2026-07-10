@@ -11,7 +11,7 @@ Articles by Steve Luiting on strategic web design, digital preservation, and AI-
 
 ## [A Matrix Birthday Card for Erin](https://steveknowsweb.com/blog/matrix-birthday-card-for-erin)
 
-*2026-07-10 · Design · 3 min*
+*2026-07-10 · Design · 4 min*
 
 A custom Matrix-style birthday card for Erin — her likeness on the cover, 7.21.2026, and an inside that says we love you and you kick reality’s ass.
 

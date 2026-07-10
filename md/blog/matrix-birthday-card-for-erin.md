@@ -46,6 +46,10 @@ On the back panel we added a small makers mark — a chibi-style illustration of
 
 *Back-panel badge — the team that built the card.*
 
+### And the motion
+
+Oh — and I can easily make short videos to go with a card like this. A few seconds of motion makes the printed piece feel like it jumped out of the movie, without turning the whole thing into a production.
+
 ### Why this kind of work still matters
 
 Most of what I write about here is websites, archives, and AI workflows. A custom card is a smaller canvas — but the craft is the same: listen to the brief, protect the person’s identity, and make one clear emotional hit.
