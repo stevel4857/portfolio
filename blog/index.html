@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Insights on strategic web design, AI-accelerated workflows, legacy web preservation, and building websites that last — by Steve Luiting.">
+  <title>Insights &amp; Experiments — Steve Luiting</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/steveknowswebdesign-favicon.png">
+  <link rel="alternate" type="text/markdown" href="/md/blog.md">
+  
+  <link rel="stylesheet" href="css/tailwind.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Ruffle for playing legacy Flash (SWF) content - used for the "Resurrection of Flash" post demo -->
+  <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+  
+  <!-- A-Frame is loaded dynamically only for the 3D A-Frame 2D post to avoid polluting other pages -->
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Playfair+Display:wght@700&amp;display=swap');
+    
+    :root {
+      --accent: #1e2937;
+    }
+    
+    body {
+      font-family: "Inter", system_ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-white text-slate-900">
+  <!-- Top Navigation (loaded via component) -->
+  <div data-component="nav"></div>
+
+  <div data-motion-page>
+  <!-- Header -->
+  <header class="max-w-6xl mx-auto px-6 pt-16 pb-10">
+    <div class="max-w-2xl">
+      <div data-stagger-item class="uppercase tracking-[3px] text-xs font-medium text-slate-500 mb-3">FIELD NOTES</div>
+      <h1 data-stagger-item class="heading-serif text-6xl leading-none tracking-tighter">Insights &amp;<br>Experiments</h1>
+      <p data-stagger-item class="mt-5 text-xl text-slate-600 max-w-md">
+        Straight talk on strategic web design, preserving digital history, and using AI to build better websites faster.
+      </p>
+    </div>
+  </header>
+
+  <!-- Filters -->
+  <div class="max-w-6xl mx-auto px-6 pb-8">
+    <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between border-b border-slate-200 pb-5">
+      <!-- Search -->
+      <div class="relative w-full sm:w-80">
+        <i class="fa-solid fa-search absolute left-4 top-3.5 text-slate-400"></i>
+        <input 
+          id="search-input" 
+          type="text" 
+          placeholder="Search articles..." 
+          class="w-full pl-11 pr-4 py-2.5 bg-slate-100 border border-transparent focus:border-slate-300 rounded-xl text-sm outline-none transition"
+        >
+      </div>
+
+      <!-- Category Filters -->
+      <div class="flex flex-wrap gap-2" id="category-filters">
+        <button data-category="all" class="category-btn active px-4 py-1.5 text-sm rounded-full bg-slate-900 text-white font-medium transition">All</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Posts Grid -->
+  <main class="max-w-6xl mx-auto px-6 pb-24">
+    <div id="posts-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Populated by JavaScript -->
+    </div>
+
+    <div id="no-results" class="hidden text-center py-16">
+      <p class="text-slate-500">No posts found. Try a different search or filter.</p>
+    </div>
+  </main>
+  </div>
+
+  <!-- Post Modal / Reader -->
+  <div id="post-modal" class="hidden fixed inset-0 z-[100] bg-black/60 flex items-center justify-center p-4 md:p-8">
+    <div class="bg-white w-full max-w-3xl max-h-[92vh] rounded-3xl overflow-hidden shadow-2xl modal flex flex-col">
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between px-4 md:px-8 py-4 md:py-5 border-b border-slate-100 flex-shrink-0">
+        <div class="flex items-center gap-x-3">
+          <span id="modal-category" class="category-pill"></span>
+          <span id="modal-date" class="text-sm text-slate-500"></span>
+        </div>
+        <button onclick="closePostModal()" class="text-slate-400 hover:text-slate-700 transition text-2xl leading-none w-9 h-9 flex items-center justify-center">×</button>
+      </div>
+
+      <!-- Modal Content -->
+      <div class="overflow-y-auto flex-1 px-4 md:px-8 py-6 md:py-8 blog-content" id="modal-content">
+        <!-- JS injected title + body -->
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="border-t border-slate-100 px-4 md:px-8 py-4 md:py-5 flex-shrink-0 bg-slate-50">
+        <div class="flex items-center justify-between text-sm">
+          <div class="text-slate-600">
+            <span class="font-medium text-slate-900" id="modal-author"></span> • <span id="modal-readtime"></span>
+          </div>
+          <button onclick="closePostModal()" 
+                  class="px-5 py-2 rounded-full bg-white border border-slate-200 hover:bg-slate-100 text-sm font-medium transition">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-200 bg-white py-10">
+    <div class="max-w-6xl mx-auto px-6 text-sm text-slate-500 flex flex-col sm:flex-row gap-y-3 items-center justify-between">
+      <div>© Steve Luiting. All rights reserved.</div>
+      <div class="flex gap-x-5">
+        <a href="index.html" class="hover:text-slate-900 transition">Home</a>
+        <a href="mailto:steveknowsweb@gmail.com" class="hover:text-slate-900 transition">Email</a>
+        <a href="tel:7205639377" class="hover:text-slate-900 transition">720-563-9377</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    let allPosts = [];
+    let currentFilter = 'all';
+
+    function sortPostsByDate(posts) {
+      return [...posts].sort((a, b) => b.date.localeCompare(a.date) || b.id - a.id);
+    }
+
+    // Load posts from JSON
+    async function loadPosts() {
+      try {
+        const res = await fetch('data/blog-posts.json');
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        allPosts = sortPostsByDate(await res.json());
+        
+        // Build category filters dynamically
+        buildCategoryFilters();
+        
+        // Initial render
+        renderPosts(allPosts);
+        openPostFromHash();
+      } catch (err) {
+        console.error('Failed to load blog posts:', err);
+        if (err instanceof SyntaxError && err.message.includes('JSON')) {
+          console.error('JSON parse error in data/blog-posts.json — this often happens when editing post "content" strings. Make sure all double-quotes inside the HTML content are escaped as \\" (and backslashes as \\\\ if needed). Use a JSON validator after edits.');
+        }
+        const grid = document.getElementById('posts-grid');
+        if (grid) {
+          grid.innerHTML = `
+            <div class="col-span-full text-center py-12 text-red-600">
+              Could not load articles.<br>
+              <span class="text-sm text-slate-500">Check browser console for details (F12).</span>
+            </div>
+          `;
+        }
+      }
+    }
+
+    function buildCategoryFilters() {
+      const container = document.getElementById('category-filters');
+      const categories = [...new Set(allPosts.map(p => p.category))];
+      
+      categories.forEach(cat => {
+        const btn = document.createElement('button');
+        btn.textContent = cat;
+        btn.dataset.category = cat;
+        btn.className = `category-btn px-4 py-1.5 text-sm rounded-full border border-slate-200 hover:bg-slate-100 transition font-medium`;
+        
+        btn.addEventListener('click', () => {
+          currentFilter = cat;
+          updateActiveFilter(btn);
+          filterAndRender();
+        });
+        
+        container.appendChild(btn);
+      });
+    }
+
+    function updateActiveFilter(activeBtn) {
+      document.querySelectorAll('.category-btn').forEach(b => {
+        b.classList.remove('bg-slate-900', 'text-white', 'border-slate-900');
+        b.classList.add('border-slate-200', 'hover:bg-slate-100');
+      });
+      activeBtn.classList.add('bg-slate-900', 'text-white', 'border-slate-900');
+      activeBtn.classList.remove('border-slate-200', 'hover:bg-slate-100');
+    }
+
+    // Wire up the "All" button
+    document.addEventListener('DOMContentLoaded', () => {
+      const allBtn = document.querySelector('[data-category="all"]');
+      if (allBtn) {
+        allBtn.addEventListener('click', () => {
+          currentFilter = 'all';
+          updateActiveFilter(allBtn);
+          filterAndRender();
+        });
+      }
+
+      // Search input
+      const searchInput = document.getElementById('search-input');
+      searchInput.addEventListener('input', () => {
+        filterAndRender();
+      });
+
+      // Keyboard support for modal
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          const modal = document.getElementById('post-modal');
+          if (!modal.classList.contains('hidden')) closePostModal();
+        }
+      });
+    });
+
+    function filterAndRender() {
+      const searchTerm = document.getElementById('search-input').value.toLowerCase().trim();
+      
+      let filtered = allPosts;
+
+      // Apply category filter
+      if (currentFilter !== 'all') {
+        filtered = filtered.filter(p => p.category === currentFilter);
+      }
+
+      // Apply search
+      if (searchTerm) {
+        filtered = filtered.filter(p => 
+          p.title.toLowerCase().includes(searchTerm) ||
+          p.excerpt.toLowerCase().includes(searchTerm) ||
+          (p.tags && p.tags.join(' ').toLowerCase().includes(searchTerm))
+        );
+      }
+
+      renderPosts(sortPostsByDate(filtered));
+    }
+
+    function renderPosts(posts) {
+      const grid = document.getElementById('posts-grid');
+      const noResults = document.getElementById('no-results');
+      
+      if (posts.length === 0) {
+        grid.innerHTML = '';
+        noResults.classList.remove('hidden');
+        return;
+      }
+      
+      noResults.classList.add('hidden');
+      
+      grid.innerHTML = posts.map(post => `
+        <article onclick="openPost(${post.id})" 
+                 class="post-card group bg-white border border-slate-200 rounded-3xl p-7 cursor-pointer flex flex-col h-full hover:border-slate-300">
+          <div class="flex items-center justify-between mb-4">
+            <span class="category-pill">${post.category}</span>
+            <span class="text-xs text-slate-500 font-mono tracking-tight">${post.date}</span>
+          </div>
+          
+          <h3 class="font-semibold text-2xl leading-tight tracking-tighter mb-3 group-hover:text-slate-700 transition">
+            ${post.title}
+          </h3>
+          
+          <p class="text-slate-600 text-[15px] leading-relaxed line-clamp-3 flex-1">
+            ${post.excerpt}
+          </p>
+          
+          <div class="mt-6 flex items-center justify-between text-sm">
+            <div class="flex items-center gap-x-2 text-slate-500">
+              <span>${post.readTime}</span>
+            </div>
+            <span class="inline-flex items-center gap-x-1 text-slate-900 font-medium group-hover:gap-x-2 transition-all">
+              Read <i class="fa-solid fa-arrow-right text-xs"></i>
+            </span>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function openPost(postId) {
+      const post = allPosts.find(p => p.id === postId);
+      if (!post) return;
+
+      const modal = document.getElementById('post-modal');
+      const contentEl = document.getElementById('modal-content');
+
+      // Populate header info
+      document.getElementById('modal-category').textContent = post.category;
+      document.getElementById('modal-date').textContent = new Date(post.date).toLocaleDateString('en-US', { 
+        month: 'long', day: 'numeric', year: 'numeric' 
+      });
+      document.getElementById('modal-author').textContent = post.author;
+      document.getElementById('modal-readtime').textContent = post.readTime;
+
+      // Main content setup (with special handling for dynamic scripts)
+      function setModalContent() {
+        contentEl.innerHTML = `
+          <h1 class="heading-serif text-4xl leading-none tracking-[-1.5px] mb-6">${post.title}</h1>
+          <div class="prose prose-slate max-w-none">
+            ${post.content}
+          </div>
+          
+          ${post.tags ? `
+            <div class="mt-10 pt-6 border-t border-slate-100 flex flex-wrap gap-2">
+              ${post.tags.map(tag => `<span class="text-xs px-3 py-1 bg-slate-100 rounded-full text-slate-600">${tag}</span>`).join('')}
+            </div>
+          ` : ''}
+        `;
+
+        // Special handling for the "Resurrection of Flash" post - auto-init live Ruffle demo
+        if (post.slug === 'the-resurrection-of-flash' && window.RufflePlayer) {
+          setTimeout(() => {
+            try {
+              window.RufflePlayer.config = {
+                "autoplay": "on",
+                "splashScreen": false,
+                "unmuteOverlay": "hidden",
+                "quality": "high"
+              };
+
+              const ruffle = window.RufflePlayer.newest();
+              const player = ruffle.createPlayer();
+              const container = document.getElementById('ruffle-demo');
+              if (container) {
+                container.innerHTML = '';
+                container.appendChild(player);
+                player.load('flash/techlogo.swf');
+                player.style.width = '100%';
+                player.style.height = '100%';
+              }
+            } catch (e) {
+              console.warn('Could not initialize Ruffle live demo:', e);
+            }
+          }, 200);
+        }
+
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+      }
+
+      if (post.slug === '3d-aframe-2d' && !window.AFRAME) {
+        // Load A-Frame only when needed for this post (prevents polluting other pages and the list view)
+        const script = document.createElement('script');
+        script.src = 'https://aframe.io/releases/1.5.0/aframe.min.js';
+        script.onload = setModalContent;
+        script.onerror = () => {
+          contentEl.innerHTML = '<p class="text-red-600">Failed to load 3D viewer. Please try again later.</p>';
+          modal.classList.remove('hidden');
+          modal.classList.add('flex');
+          document.body.style.overflow = 'hidden';
+        };
+        document.head.appendChild(script);
+      } else {
+        setModalContent();
+      }
+    }
+
+    function closePostModal() {
+      const modal = document.getElementById('post-modal');
+      modal.classList.remove('flex');
+      modal.classList.add('hidden');
+      document.body.style.overflow = '';
+      if (window.location.hash) {
+        history.replaceState(null, '', window.location.pathname + window.location.search);
+      }
+    }
+
+    function openPostFromHash() {
+      const slug = window.location.hash.slice(1);
+      if (!slug) return;
+      const post = allPosts.find(p => p.slug === slug);
+      if (post) openPost(post.id);
+    }
+
+    window.addEventListener('hashchange', openPostFromHash);
+
+    // Initialize everything
+    loadPosts();
+  </script>
+
+  <!-- Component loader -->
+  <script src="/scripts/components.js"></script>
+  <script type="module" src="/js/motion-bundle.js"></script>
+</body>
+</html>

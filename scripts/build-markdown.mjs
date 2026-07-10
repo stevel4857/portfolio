@@ -276,7 +276,7 @@ function buildBlogPermalinks(posts) {
   <div data-component="nav"></div>
 
   <main class="max-w-3xl mx-auto px-6 py-12 md:py-16">
-    <a href="/blog.html" class="inline-flex items-center gap-x-1.5 text-sm text-slate-500 hover:text-slate-900 transition mb-8">
+    <a href="/blog/" class="inline-flex items-center gap-x-1.5 text-sm text-slate-500 hover:text-slate-900 transition mb-8">
       <i class="fa-solid fa-arrow-left text-xs"></i> All articles
     </a>
 
@@ -300,7 +300,7 @@ function buildBlogPermalinks(posts) {
       <div>© Steve Luiting. All rights reserved.</div>
       <div class="flex gap-x-5">
         <a href="/" class="hover:text-slate-900 transition">Home</a>
-        <a href="/blog.html" class="hover:text-slate-900 transition">Insights</a>
+        <a href="/blog/" class="hover:text-slate-900 transition">Insights</a>
         <a href="mailto:steveknowsweb@gmail.com" class="hover:text-slate-900 transition">Email</a>
       </div>
     </div>
@@ -389,6 +389,15 @@ function main() {
 
   console.log('Blog permalinks:');
   buildBlogPermalinks(posts);
+
+  // Keep /blog/ serving the listing even though post folders live under blog/.
+  // Cloudflare pretty-URLs + a rewrite of /blog → blog.html caused redirect loops.
+  const blogListing = path.join(ROOT, 'blog.html');
+  const blogIndex = path.join(ROOT, 'blog', 'index.html');
+  if (fs.existsSync(blogListing)) {
+    fs.copyFileSync(blogListing, blogIndex);
+    console.log('  blog/index.html (synced from blog.html)');
+  }
 
   buildLlmsTxt(corePages, blogPages);
   buildSitemap(posts);
