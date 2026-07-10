@@ -1,3 +1,15 @@
 # Markdown twins for AI agents — not for search indexing
 /md/*
   X-Robots-Tag: noindex, nofollow
+
+# Avoid sticky HTML after deploys (Chrome caches 301/308 aggressively)
+/blog
+  Cache-Control: no-cache, must-revalidate
+/blog/
+  Cache-Control: no-cache, must-revalidate
+/blog/index.html
+  Cache-Control: no-cache, must-revalidate
+/blog.html
+  Cache-Control: no-cache, must-revalidate
+/data/blog-posts.json
+  Cache-Control: no-cache, must-revalidate

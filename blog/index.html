@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Insights on strategic web design, AI-accelerated workflows, legacy web preservation, and building websites that last — by Steve Luiting.">
   <title>Insights &amp; Experiments — Steve Luiting</title>
+  <!-- Root base so /blog/ (blog/index.html) resolves css/data/assets correctly -->
+  <base href="/">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/steveknowswebdesign-favicon.png">
   <link rel="alternate" type="text/markdown" href="/md/blog.md">
   
@@ -129,19 +131,33 @@
       return [...posts].sort((a, b) => b.date.localeCompare(a.date) || b.id - a.id);
     }
 
-    // Load posts from JSON
+    // Load posts from JSON (try root path first; fall back for odd local servers)
     async function loadPosts() {
+      const candidates = ['/data/blog-posts.json', 'data/blog-posts.json'];
+      let lastError = null;
+
       try {
-        const res = await fetch('/data/blog-posts.json');
-        if (!res.ok) {
-          throw new Error(`HTTP error! status: ${res.status}`);
+        let data = null;
+        for (const url of candidates) {
+          try {
+            const res = await fetch(url, { cache: 'no-cache' });
+            if (!res.ok) {
+              lastError = new Error(`HTTP ${res.status} for ${url}`);
+              continue;
+            }
+            data = await res.json();
+            break;
+          } catch (err) {
+            lastError = err;
+          }
         }
-        allPosts = sortPostsByDate(await res.json());
-        
-        // Build category filters dynamically
+
+        if (!Array.isArray(data)) {
+          throw lastError || new Error('Blog posts JSON was not an array');
+        }
+
+        allPosts = sortPostsByDate(data);
         buildCategoryFilters();
-        
-        // Initial render
         renderPosts(allPosts);
         openPostFromHash();
       } catch (err) {
@@ -154,7 +170,7 @@
           grid.innerHTML = `
             <div class="col-span-full text-center py-12 text-red-600">
               Could not load articles.<br>
-              <span class="text-sm text-slate-500">Check browser console for details (F12).</span>
+              <span class="text-sm text-slate-500">Hard-refresh (Ctrl+Shift+R) or try a private window. Check console (F12) if it persists.</span>
             </div>
           `;
         }
@@ -203,9 +219,11 @@
 
       // Search input
       const searchInput = document.getElementById('search-input');
-      searchInput.addEventListener('input', () => {
-        filterAndRender();
-      });
+      if (searchInput) {
+        searchInput.addEventListener('input', () => {
+          filterAndRender();
+        });
+      }
 
       // Keyboard support for modal
       document.addEventListener('keydown', (e) => {

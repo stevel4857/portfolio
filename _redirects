@@ -6,8 +6,9 @@
 # Blog listing is blog/index.html (and blog.html kept in sync for local).
 # Do not rewrite /blog → blog.html: with a blog/ directory that loops with
 # Cloudflare pretty-URL redirects (ERR_TOO_MANY_REDIRECTS).
-/blog.html /blog/ 301
-/blog/:slug /blog/:slug/ 301
+# 302 (not 301) so browsers don't permanently cache blog routing after deploys
+/blog.html /blog/ 302
+/blog/:slug /blog/:slug/ 302
 
 # Custom 404 page (served for any unmatched routes)
 /*    /404.html   404
