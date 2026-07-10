@@ -40,9 +40,9 @@ That second line is the one I wanted people to laugh at first and keep. It fits 
 
 ### Made by Steve & Cory
 
-On the back panel we added a small makers mark — a chibi-style illustration of Cory and me (and the cats) in Matrix gear, labeled *Made by Steve & Cory*. Birthday cards are better when they feel like they came from people, not a print shop queue.
+On the back panel we added a small makers mark — a chibi-style illustration of Cory and me (and our cats, Nani and Pumpkin) in Matrix gear, labeled *Made by Steve & Cory*. Birthday cards are better when they feel like they came from people, not a print shop queue.
 
-![Cute illustration of Steve and Cory in Matrix outfits with two orange cats in sunglasses, surrounded by a green heart reading Made by Steve and Cory](https://steveknowsweb.com/assets/images/matrix-birthday-erin/makers.jpg)
+![Cute illustration of Steve and Cory in Matrix outfits with our cats Nani and Pumpkin in sunglasses, surrounded by a green heart reading Made by Steve and Cory](https://steveknowsweb.com/assets/images/matrix-birthday-erin/makers.jpg)
 
 *Back-panel badge — the team that built the card.*
 
