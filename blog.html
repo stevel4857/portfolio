@@ -206,10 +206,11 @@
       activeBtn.classList.remove('border-slate-200', 'hover:bg-slate-100');
     }
 
-    // Wire up the "All" button
-    document.addEventListener('DOMContentLoaded', () => {
+    // Wire filters immediately (script is at end of body; do not rely on DOMContentLoaded alone)
+    function initFilters() {
       const allBtn = document.querySelector('[data-category="all"]');
-      if (allBtn) {
+      if (allBtn && !allBtn.dataset.bound) {
+        allBtn.dataset.bound = '1';
         allBtn.addEventListener('click', () => {
           currentFilter = 'all';
           updateActiveFilter(allBtn);
@@ -217,25 +218,29 @@
         });
       }
 
-      // Search input
       const searchInput = document.getElementById('search-input');
-      if (searchInput) {
-        searchInput.addEventListener('input', () => {
-          filterAndRender();
-        });
+      if (searchInput && !searchInput.dataset.bound) {
+        searchInput.dataset.bound = '1';
+        const runSearch = () => filterAndRender();
+        searchInput.addEventListener('input', runSearch);
+        searchInput.addEventListener('search', runSearch);
+        searchInput.addEventListener('keyup', runSearch);
       }
 
-      // Keyboard support for modal
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-          const modal = document.getElementById('post-modal');
-          if (!modal.classList.contains('hidden')) closePostModal();
-        }
-      });
-    });
+      if (!document.body.dataset.blogKeydownBound) {
+        document.body.dataset.blogKeydownBound = '1';
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            const modal = document.getElementById('post-modal');
+            if (modal && !modal.classList.contains('hidden')) closePostModal();
+          }
+        });
+      }
+    }
 
     function filterAndRender() {
-      const searchTerm = document.getElementById('search-input').value.toLowerCase().trim();
+      const searchInput = document.getElementById('search-input');
+      const searchTerm = (searchInput?.value || '').toLowerCase().trim();
       
       let filtered = allPosts;
 
@@ -244,16 +249,22 @@
         filtered = filtered.filter(p => p.category === currentFilter);
       }
 
-      // Apply search
+      // Apply search (title, excerpt, tags, category)
       if (searchTerm) {
         filtered = filtered.filter(p => 
-          p.title.toLowerCase().includes(searchTerm) ||
-          p.excerpt.toLowerCase().includes(searchTerm) ||
+          (p.title || '').toLowerCase().includes(searchTerm) ||
+          (p.excerpt || '').toLowerCase().includes(searchTerm) ||
+          (p.category || '').toLowerCase().includes(searchTerm) ||
           (p.tags && p.tags.join(' ').toLowerCase().includes(searchTerm))
         );
       }
 
       renderPosts(sortPostsByDate(filtered));
+    }
+
+    initFilters();
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initFilters);
     }
 
     function renderPosts(posts) {
