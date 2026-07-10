@@ -179,22 +179,25 @@
 
     function buildCategoryFilters() {
       const container = document.getElementById('category-filters');
+      if (!container) return;
+
+      // Keep the static "All" button; rebuild dynamic categories (Motion may re-render the page)
+      container.querySelectorAll('.category-btn:not([data-category="all"])').forEach((btn) => btn.remove());
+
       const categories = [...new Set(allPosts.map(p => p.category))];
-      
       categories.forEach(cat => {
         const btn = document.createElement('button');
+        btn.type = 'button';
         btn.textContent = cat;
         btn.dataset.category = cat;
         btn.className = `category-btn px-4 py-1.5 text-sm rounded-full border border-slate-200 hover:bg-slate-100 transition font-medium`;
-        
-        btn.addEventListener('click', () => {
-          currentFilter = cat;
-          updateActiveFilter(btn);
-          filterAndRender();
-        });
-        
         container.appendChild(btn);
       });
+
+      // Restore active category highlight after rebuild
+      const active = container.querySelector(`.category-btn[data-category="${currentFilter}"]`)
+        || container.querySelector('.category-btn[data-category="all"]');
+      if (active) updateActiveFilter(active);
     }
 
     function updateActiveFilter(activeBtn) {
@@ -204,38 +207,6 @@
       });
       activeBtn.classList.add('bg-slate-900', 'text-white', 'border-slate-900');
       activeBtn.classList.remove('border-slate-200', 'hover:bg-slate-100');
-    }
-
-    // Wire filters immediately (script is at end of body; do not rely on DOMContentLoaded alone)
-    function initFilters() {
-      const allBtn = document.querySelector('[data-category="all"]');
-      if (allBtn && !allBtn.dataset.bound) {
-        allBtn.dataset.bound = '1';
-        allBtn.addEventListener('click', () => {
-          currentFilter = 'all';
-          updateActiveFilter(allBtn);
-          filterAndRender();
-        });
-      }
-
-      const searchInput = document.getElementById('search-input');
-      if (searchInput && !searchInput.dataset.bound) {
-        searchInput.dataset.bound = '1';
-        const runSearch = () => filterAndRender();
-        searchInput.addEventListener('input', runSearch);
-        searchInput.addEventListener('search', runSearch);
-        searchInput.addEventListener('keyup', runSearch);
-      }
-
-      if (!document.body.dataset.blogKeydownBound) {
-        document.body.dataset.blogKeydownBound = '1';
-        document.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape') {
-            const modal = document.getElementById('post-modal');
-            if (modal && !modal.classList.contains('hidden')) closePostModal();
-          }
-        });
-      }
     }
 
     function filterAndRender() {
@@ -262,10 +233,54 @@
       renderPosts(sortPostsByDate(filtered));
     }
 
-    initFilters();
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initFilters);
+    /**
+     * Document-level delegation survives Motion replacing [data-motion-page]
+     * (React re-renders that subtree via dangerouslySetInnerHTML and drops node listeners).
+     */
+    function bindFilterDelegation() {
+      if (document.documentElement.dataset.blogFiltersBound === '1') return;
+      document.documentElement.dataset.blogFiltersBound = '1';
+
+      document.addEventListener('input', (e) => {
+        const t = e.target;
+        if (t instanceof HTMLInputElement && t.id === 'search-input') {
+          filterAndRender();
+        }
+      });
+
+      document.addEventListener('keyup', (e) => {
+        const t = e.target;
+        if (t instanceof HTMLInputElement && t.id === 'search-input') {
+          filterAndRender();
+        }
+      });
+
+      document.addEventListener('click', (e) => {
+        const t = e.target;
+        if (!(t instanceof Element)) return;
+        const btn = t.closest('.category-btn[data-category]');
+        if (!btn) return;
+        currentFilter = btn.getAttribute('data-category') || 'all';
+        updateActiveFilter(btn);
+        filterAndRender();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          const modal = document.getElementById('post-modal');
+          if (modal && !modal.classList.contains('hidden')) closePostModal();
+        }
+      });
+
+      // After Motion mounts/replaces the page tree, restore list + category chips
+      window.addEventListener('motion:page-enter', () => {
+        if (!allPosts.length) return;
+        buildCategoryFilters();
+        filterAndRender();
+      });
     }
+
+    bindFilterDelegation();
 
     function renderPosts(posts) {
       const grid = document.getElementById('posts-grid');
