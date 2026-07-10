@@ -264,6 +264,7 @@ function buildBlogPermalinks(posts) {
   <title>${escapeHtml(post.title)} — Steve Luiting</title>
   <link rel="canonical" href="${canonical}">
   <link rel="alternate" type="text/markdown" href="/md/blog/${post.slug}.md">
+  ${post.image ? `<meta property="og:image" content="${SITE}${post.image}">` : ''}
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/steveknowswebdesign-favicon.png">
   <link rel="stylesheet" href="/css/tailwind.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -287,6 +288,8 @@ function buildBlogPermalinks(posts) {
     </div>
 
     <h1 class="heading-serif text-4xl md:text-5xl leading-none tracking-tighter mb-8">${escapeHtml(post.title)}</h1>
+
+    ${post.image ? `<figure class="mb-10"><img src="${escapeHtml(post.image)}" alt="" class="w-full rounded-2xl border border-slate-200 shadow-sm" /></figure>` : ''}
 
     <div class="prose prose-slate max-w-none blog-content">
       ${post.content}
