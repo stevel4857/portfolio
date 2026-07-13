@@ -14,6 +14,14 @@ Working with a small team headed by Nic van Dessel and myself, we modeled the ar
 
 [Virtual Reality Exhibit Launch Video 2017](https://youtu.be/nDb2WEB9ZTo) — the original launch video for the Cable Center VR archive on Steam and Meta Quest.
 
+[Cable Center VR — first test](https://youtu.be/5K4nHnxV364) — an early test of the experience before the full web recreation.
+
+[First 360 video made for VR Exhibit](https://youtu.be/Ley119tRBF8) — click and drag to look around.
+
+This exhibit was never just a tech demo. The Cable Center held decades of cable-industry history — oral histories, artifacts, and a physical building most people would never walk through in person. The goal was to meet people where they already were: on a headset at home, or later in a browser, without requiring a trip to Denver.
+
+360° video was the bridge. Instead of reading about a conversation in a library or office, visitors could stand inside it. Combined with a full 3D model of the building, the exhibit let researchers, students, and industry pioneers explore the architecture and the stories in the same place — a digital archive you could inhabit, not just search.
+
 ### The building today
 
 The Cable Center is **no longer in that original building** — the organization has moved a few blocks away. The physical space we modeled, walked through, and filmed in 2014–2017 is not where visitors go today.
