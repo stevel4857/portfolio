@@ -1,5 +1,6 @@
 *.mp4 filter=lfs diff=lfs merge=lfs -text
 *.glb filter=lfs diff=lfs merge=lfs -text
 
-# Small blog clip — normal git blob so Cloudflare Pages deploys real media without LFS setup
-assets/images/matrix-birthday-erin/card-motion.mp4 filter= diff= merge= text
+# Small blog clip — normal git blob so Cloudflare Pages deploys real media without LFS setup.
+# MUST be -text (not text): text + core.autocrlf strips/injects CR bytes and corrupts MP4.
+assets/images/matrix-birthday-erin/card-motion.mp4 filter= diff= merge= -text
