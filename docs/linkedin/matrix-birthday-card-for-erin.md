@@ -13,7 +13,7 @@ Image files (local):
 - `assets/images/matrix-birthday-erin/outside.jpg`  
 - `assets/images/matrix-birthday-erin/inside.jpg`  
 - `assets/images/matrix-birthday-erin/makers.jpg`  
-- `assets/images/matrix-birthday-erin/card-motion.mp4` — optional video  
+- `assets/images/matrix-birthday-erin/https://youtube.com/shorts/We3lI6jREO0` — optional video  
 
 Live post: https://steveknowsweb.com/blog/matrix-birthday-card-for-erin/
 
@@ -69,7 +69,7 @@ On the back panel we added a small makers mark — a chibi-style illustration of
 
 **And the motion**
 
-[Video: card-motion.mp4 — optional]
+[Video: https://youtube.com/shorts/We3lI6jREO0 — optional]
 
 Oh — and I can easily make short videos to go with a card like this. A few seconds of motion makes the printed piece feel like it jumped out of the movie, without turning the whole thing into a production.
 
