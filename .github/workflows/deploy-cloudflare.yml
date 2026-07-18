@@ -17,18 +17,32 @@ jobs:
       contents: read
       deployments: write
     steps:
-      - name: Checkout (with Git LFS)
+      # lfs: false — full LFS pull currently fails when the repo LFS budget is exceeded,
+      # which blocked all deploys (including HTML/JSON-only updates like YouTube embeds).
+      - name: Checkout
         uses: actions/checkout@v4
         with:
-          lfs: true
+          lfs: false
 
-      - name: Verify LFS assets
+      - name: Optional Git LFS pull
+        continue-on-error: true
+        run: |
+          git lfs install
+          if git lfs pull; then
+            echo "LFS assets pulled successfully"
+          else
+            echo "::warning::Git LFS pull failed (budget or network). Deploying non-LFS files only."
+          fi
+
+      - name: Note unresolved LFS pointers
+        continue-on-error: true
         run: |
           for f in assets/VRVideooffice2019.mp4 assets/models/scene/scene.glb; do
-            size=$(stat -c%s "$f")
-            if [ "$size" -lt 1000 ]; then
-              echo "::error::LFS file $f is only ${size} bytes — pointer not resolved"
-              exit 1
+            if [ -f "$f" ]; then
+              size=$(stat -c%s "$f")
+              if [ "$size" -lt 1000 ]; then
+                echo "::warning::LFS file $f is only ${size} bytes (pointer). Media may 404 until LFS budget is restored."
+              fi
             fi
           done
 
