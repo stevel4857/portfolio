@@ -20,135 +20,164 @@ I've been quietly resurrecting Flash-based work for clients who need their histo
 
 ### Embedding Ruffle yourself
 
-Here are the exact steps and code snippets you can copy. Ruffle lets you play legacy Flash (SWF) files directly in modern browsers.
+Here are the exact steps and code snippets you can copy. Ruffle lets you play legacy Flash (SWF) files directly in modern browsers — no plugin required.
 
 ### Live Demo (right here on this page)
 
-Because we have included `<script src="https://unpkg.com/@ruffle-rs/ruffle"></script>` in the <head> of this blog page (as you requested), here is a live working Flash file using flash/techlogo.swf:
+This page loads Ruffle and plays a real SWF at `/flash/techlogo.swf`:
 
-Click if you see a sound/unmute overlay. The file is at /flash/techlogo.swf. If the player does not load, allow scripts from unpkg.com or jsdelivr.net.
+Click if you see a sound/unmute overlay. If the player does not load, allow scripts from unpkg.com or jsdelivr.net (some privacy tools block CDNs).
 
-To embed this on your own site, follow the steps below:
+To embed Flash on your own site, follow the steps below.
 
 #### Step 1: Include Ruffle
 
-First, add this code snippet into the <head> of your HTML page:
+Add this in the `<head>` of your HTML page:
 
 ```
 <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+<!-- If unpkg is blocked, use: https://cdn.jsdelivr.net/npm/@ruffle-rs/ruffle -->
 ```
 
-#### Step 2: Add the player with custom config
+#### Step 2: Add a sized container, then create the player
 
-Paste this code (or integrate the Ruffle init into an existing script block). This version forces autoplay, hides the splash screen, and enables sound without extra clicks:
-
-```
-<script>     
-window.RufflePlayer = window.RufflePlayer || {}; 
-// Below code forces autoplay, no splashscreen and allows sound 
-window.RufflePlayer.config = { 
-  "autoplay": "on",
-  "splashScreen": false,
-  "unmuteOverlay": "hidden"
-}; 
-// End custom configuration code above     
-window.addEventListener("load", (event) => {         
-  const ruffle = window.RufflePlayer.newest();         
-  const player = ruffle.createPlayer();         
-  const container = document.getElementById("container");         
-  container.appendChild(player);         
-  player.load("flash/techlogo.swf"); 
-  player.style.width = "600px";
-  player.style.height = "400px";   
-}); 
-</script> 
-<div id="container"></div>
-```
-
-#### Full standalone webpage example (non-Wix HTML site)
-
-Copy and paste the following into your index.html (change the .swf filename to match yours). AS2 Flash files typically play immediately with no overlays. AS3 files may show a play button if they work. Sound files will show a click-to-unmute warning.
+Put the container in the page first. Give it a **real width and height** (pixels work best). Then create the player after load. Avoid relying only on `height: 100%` when the parent has no definite height — that often collapses in Firefox.
 
 ```
-<html> 
-<head> 
-<script src="https://unpkg.com/@ruffle-rs/ruffle"></script> 
-<style>
-html, body {
-  margin: 0px;
-}
-</style>
-</head> 
-<body> 
-<script>     
-window.RufflePlayer = window.RufflePlayer || {}; 
-// Below code forces autoplay, no splashscreen and allows sound 
-window.RufflePlayer.config = { 
-  "autoplay": "on",
-  "splashScreen": false,
-  "unmuteOverlay": "hidden",
-  "quality": "medium"
-}; 
-// End custom configuration code above     
-window.addEventListener("load", (event) => {         
-  const ruffle = window.RufflePlayer.newest();         
-  const player = ruffle.createPlayer();         
-  const container = document.getElementById("container");         
-  container.appendChild(player);         
-  player.load("index-2023.swf"); 
+<div id="container" style="width:600px;height:400px;background:#000;"></div>
+<script>
+window.RufflePlayer = window.RufflePlayer || {};
+// Force autoplay, hide splash, hide unmute overlay (sound still needs a user gesture in some browsers)
+window.RufflePlayer.config = {
+  autoplay: "on",
+  splashScreen: false,
+  unmuteOverlay: "hidden"
+};
+window.addEventListener("load", () => {
+  const container = document.getElementById("container");
+  if (!container || !window.RufflePlayer) return;
+
+  const ruffle = window.RufflePlayer.newest();
+  const player = ruffle.createPlayer();
+  container.appendChild(player);
+
+  // Fill the sized container
   player.style.width = "100%";
-  player.style.height = "100%";   
-}); 
-</script> 
-<div id="container"></div> 
-</body> 
+  player.style.height = "100%";
+  player.style.display = "block";
+
+  // Path from your site root (change to match your SWF)
+  player.load("/flash/techlogo.swf");
+});
+</script>
+```
+
+#### Full standalone webpage example
+
+Copy into an `index.html` next to your `.swf` (or adjust the path). This version uses an aspect-ratio box and absolute-fill player so it sizes correctly in Chrome and Firefox. AS2 files usually play immediately; AS3 may show a play button; audio may still need a click-to-unmute depending on the browser.
+
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ruffle demo</title>
+  <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+  <style>
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      background: #111;
+    }
+    #container {
+      position: relative;
+      width: min(100%, 640px);
+      margin: 1rem auto;
+      aspect-ratio: 4 / 3;
+      max-height: 60vh;
+      min-height: 240px;
+      background: #000;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <div id="container"></div>
+  <script>
+    window.RufflePlayer = window.RufflePlayer || {};
+    window.RufflePlayer.config = {
+      autoplay: "on",
+      splashScreen: false,
+      unmuteOverlay: "hidden",
+      quality: "high",
+      letterbox: "on",
+      scale: "showAll"
+    };
+    window.addEventListener("load", () => {
+      const container = document.getElementById("container");
+      if (!container || !window.RufflePlayer) return;
+
+      const ruffle = window.RufflePlayer.newest();
+      const player = ruffle.createPlayer();
+      container.appendChild(player);
+
+      // Absolute fill — works with aspect-ratio parents in Firefox and Chrome
+      player.style.cssText = "position:absolute;inset:0;width:100%;height:100%;display:block;";
+
+      // Same folder as this HTML: "my-movie.swf"
+      // From site root: "/flash/my-movie.swf"
+      player.load("my-movie.swf");
+    });
+  </script>
+</body>
 </html>
 ```
 
 #### Complete list of configuration options
 
-Here are all the available options you can pass to `window.RufflePlayer.config`:
+Here are common options you can pass to `window.RufflePlayer.config` (set this *before* calling `createPlayer()`):
 
 ```
 window.RufflePlayer = window.RufflePlayer || {};
 window.RufflePlayer.config = {
-    // Options affecting the whole page
-    "publicPath": undefined,
-    "polyfills": true,
+  // Page-wide
+  publicPath: undefined,
+  polyfills: true,
 
-    // Options affecting files only
-    "allowScriptAccess": false,
-    "autoplay": "auto",
-    "unmuteOverlay": "visible",
-    "backgroundColor": null,
-    "wmode": "window",
-    "letterbox": "fullscreen",
-    "warnOnUnsupportedContent": true,
-    "contextMenu": "on",
-    "showSwfDownload": false,
-    "upgradeToHttps": window.location.protocol === "https:",
-    "maxExecutionDuration": 15,
-    "logLevel": "error",
-    "base": null,
-    "menu": true,
-    "salign": "",
-    "forceAlign": false,
-    "scale": "showAll",
-    "forceScale": false,
-    "frameRate": null,
-    "quality": "high",
-    "splashScreen": true,
-    "preferredRenderer": null,
-    "openUrlMode": "allow",
-    "allowNetworking": "all",
-    "favorFlash": true,
-    "socketProxy": [],
-    "fontSources": [],
-    "defaultFonts": {},
-    "credentialAllowList": [],
-    "playerRuntime": "flashPlayer",
-    "allowFullscreen": false
+  // Per-player behavior
+  allowScriptAccess: false,
+  autoplay: "auto",           // "on" | "off" | "auto"
+  unmuteOverlay: "visible",   // "visible" | "hidden"
+  backgroundColor: null,
+  wmode: "window",
+  letterbox: "on",            // "off" | "on" | "fullscreen"
+  warnOnUnsupportedContent: true,
+  contextMenu: "on",
+  showSwfDownload: false,
+  upgradeToHttps: window.location.protocol === "https:",
+  maxExecutionDuration: 15,
+  logLevel: "error",
+  base: null,
+  menu: true,
+  salign: "",
+  forceAlign: false,
+  scale: "showAll",
+  forceScale: false,
+  frameRate: null,
+  quality: "high",
+  splashScreen: true,
+  preferredRenderer: null,    // null | "webgl" | "canvas" | "webgpu"
+  openUrlMode: "allow",
+  allowNetworking: "all",
+  favorFlash: true,
+  socketProxy: [],
+  fontSources: [],
+  defaultFonts: {},
+  credentialAllowList: [],
+  playerRuntime: "flashPlayer",
+  allowFullscreen: false
 };
 ```
 
-Experiment with these to match your original Flash experience as closely as possible.
+Experiment with these to match your original Flash experience as closely as possible. If something plays in Chrome but not Firefox, check the container has a real height (or use the aspect-ratio + absolute-fill pattern above) and that Ruffle is not blocked by tracking protection.
