@@ -13,8 +13,10 @@
   <link rel="stylesheet" href="/css/tailwind.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
-  <!-- Ruffle for playing legacy Flash (SWF) content - used for the "Resurrection of Flash" post demo -->
+  <!-- Ruffle for playing legacy Flash (SWF) content - used for the "Resurrection of Flash" post demo.
+       Primary load here; js/ruffle-demo.js falls back to jsDelivr if unpkg is blocked (common in Firefox ETP). -->
   <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+  <script src="/js/ruffle-demo.js" defer></script>
   
   <!-- A-Frame is loaded dynamically only for the 3D A-Frame 2D post to avoid polluting other pages -->
 
@@ -360,31 +362,23 @@
           ` : ''}
         `;
 
-        // Special handling for the "Resurrection of Flash" post - auto-init live Ruffle demo
-        if (post.slug === 'the-resurrection-of-flash' && window.RufflePlayer) {
-          setTimeout(() => {
-            try {
-              window.RufflePlayer.config = {
-                "autoplay": "on",
-                "splashScreen": false,
-                "unmuteOverlay": "hidden",
-                "quality": "high"
-              };
-
-              const ruffle = window.RufflePlayer.newest();
-              const player = ruffle.createPlayer();
-              const container = document.getElementById('ruffle-demo');
-              if (container) {
-                container.innerHTML = '';
-                container.appendChild(player);
-                player.load('flash/techlogo.swf');
-                player.style.width = '100%';
-                player.style.height = '100%';
-              }
-            } catch (e) {
-              console.warn('Could not initialize Ruffle live demo:', e);
+        // Live Flash demo (Ruffle) — any post with #ruffle-demo; Firefox-safe sizing + CDN fallback in js/ruffle-demo.js
+        if (document.getElementById('ruffle-demo')) {
+          const startDemo = () => {
+            if (typeof window.initRuffleDemo === 'function') {
+              window.initRuffleDemo({ swfPath: '/flash/techlogo.swf' });
+              return true;
             }
-          }, 200);
+            return false;
+          };
+          if (!startDemo()) {
+            // defer script may still be loading when a hash opens a post immediately
+            let tries = 0;
+            const wait = setInterval(() => {
+              tries += 1;
+              if (startDemo() || tries > 40) clearInterval(wait);
+            }, 50);
+          }
         }
 
         modal.classList.remove('hidden');

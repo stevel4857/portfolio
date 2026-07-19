@@ -237,6 +237,10 @@ function escapeHtml(value) {
     .replace(/"/g, '&quot;');
 }
 
+function postNeedsRuffle(post) {
+  return typeof post.content === 'string' && /id=["']ruffle-demo["']/.test(post.content);
+}
+
 function buildBlogPermalinks(posts) {
   for (const post of posts) {
     const canonical = `${SITE}/blog/${post.slug}`;
@@ -255,6 +259,14 @@ function buildBlogPermalinks(posts) {
       year: 'numeric',
     });
 
+    // Posts with a live Flash demo need Ruffle + shared init (auto-runs for #ruffle-demo).
+    const ruffleHead = postNeedsRuffle(post)
+      ? `
+  <!-- Ruffle for live SWF demo in this post (js/ruffle-demo.js falls back to jsDelivr if unpkg is blocked) -->
+  <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+  <script src="/js/ruffle-demo.js" defer></script>`
+      : '';
+
     const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -267,7 +279,7 @@ function buildBlogPermalinks(posts) {
   ${post.image ? `<meta property="og:image" content="${SITE}${post.image}">` : ''}
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/steveknowswebdesign-favicon.png">
   <link rel="stylesheet" href="/css/tailwind.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">${ruffleHead}
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Playfair+Display:wght@700&amp;display=swap');
     body { font-family: "Inter", system_ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }

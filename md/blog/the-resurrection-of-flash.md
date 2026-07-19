@@ -26,7 +26,7 @@ Here are the exact steps and code snippets you can copy. Ruffle lets you play le
 
 Because we have included `<script src="https://unpkg.com/@ruffle-rs/ruffle"></script>` in the <head> of this blog page (as you requested), here is a live working Flash file using flash/techlogo.swf:
 
-Click if you see a sound/unmute overlay. The file is at flash/techlogo.swf relative to the site root.
+Click if you see a sound/unmute overlay. The file is at /flash/techlogo.swf. If the player does not load, allow scripts from unpkg.com or jsdelivr.net.
 
 To embed this on your own site, follow the steps below:
 
