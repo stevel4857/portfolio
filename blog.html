@@ -408,10 +408,23 @@
       modal.classList.remove('flex');
       modal.classList.add('hidden');
       document.body.style.overflow = '';
+      if (typeof window.resetRuffleDemo === 'function') {
+        window.resetRuffleDemo();
+      }
       if (window.location.hash) {
         history.replaceState(null, '', window.location.pathname + window.location.search);
       }
     }
+
+    // Click dimmed backdrop (outside the white panel) closes like the × button
+    (function bindPostModalBackdropClose() {
+      const modal = document.getElementById('post-modal');
+      if (!modal || modal.dataset.backdropCloseBound === '1') return;
+      modal.dataset.backdropCloseBound = '1';
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closePostModal();
+      });
+    })();
 
     function openPostFromHash() {
       const slug = window.location.hash.slice(1);

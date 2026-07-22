@@ -100,6 +100,11 @@ class VoiceScheduler {
     this.startBtn?.addEventListener("click", () => void this.start());
     this.stopBtn?.addEventListener("click", () => void this.stop());
 
+    // Click dimmed backdrop (outside the white panel) closes like the × button
+    this.modal.addEventListener("click", (e) => {
+      if (e.target === this.modal) void this.stop();
+    });
+
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && !this.modal.classList.contains("hidden")) {
         void this.stop();
