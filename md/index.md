@@ -189,11 +189,83 @@ FIELD NOTES
 
 [Browse all insights →](https://steveknowsweb.com/blog.html)
 
+INVESTMENT
+
+## Clear plans. No mystery quotes.
+
+Typical ranges for museums, nonprofits, and purpose-driven organizations. Final scope is confirmed after a short conversation — so you know what you’re getting before we start.
+
+Projects
+
+Refresh
+
+$4,500–$6,500
+
+Visual and structure polish on your current platform — key pages, mobile fixes, and basic SEO so the site feels current without a full rebuild.
+
+-   ✓ Same platform, sharper presence
+-   ✓ Priority pages & mobile
+-   ✓ About 2–4 weeks
+
+[Ask about a refresh](#contact)
+
+Most chosen
+
+Mission Site
+
+$9,500–$14,000
+
+Typical full project around $11k
+
+Strategy, design, and build for a durable site — clear story, solid structure, forms, accessibility baseline, and training so your team can keep it going.
+
+-   ✓ ~8–15 pages, end to end
+-   ✓ Forms, SEO basics, handoff
+-   ✓ About 5–8 weeks
+
+[Start with this](#contact)
+
+Rescue / Replatform
+
+From $12,000
+
+Fragile legacy systems, broken CMS, migrations, or “this has to last” rebuilds — scoped to your archive, risk, and content volume.
+
+-   ✓ Migration & cleanup
+-   ✓ Platform that fits the org
+-   ✓ Custom quote after discovery
+
+[Discuss a rescue](#contact)
+
+Monthly care
+
+Steady
+
+Updates, backups check, and one small content change per month.
+
+$225/mo
+
+[Add care →](#contact)
+
+Active
+
+A few hours of changes, seasonal pages, light SEO — for orgs that keep moving.
+
+$450/mo
+
+[Add care →](#contact)
+
+Brand, motion, or larger Mission Site+ work is quoted separately. Projects usually start with a 40–50% deposit. Prefer a written audit first? That’s $400, credited toward a project if we begin within 60 days.
+
+[Get a fit recommendation](#contact)
+
 LET'S WORK TOGETHER
 
 ## Ready when you are.
 
 If you're a museum, nonprofit, or purpose-driven organization in Colorado looking for a website that tells your story beautifully and keeps working for years — I'd love to talk.
+
+Not sure which plan fits? [See investment ranges](#pricing) — or just tell me what you’re working on.
 
 [720-563-9377](tel:7205639377) [steveknowsweb@gmail.com](mailto:steveknowsweb@gmail.com)
 

@@ -8,6 +8,7 @@ This file contains rules and context for AI agents (Grok, Claude, Cursor, etc.) 
 - Target audience: Museums, nonprofits, and purpose-driven organizations.
 - Tone: Professional, thoughtful, slightly understated, high-craft.
 - Tech: Static multi-file HTML + Tailwind CSS (built via PostCSS from `src/input.css` into committed `css/tailwind.css`) + vanilla JavaScript.
+- **Business context** (pricing, payment, 90-day goals, sales notes): see `docs/BUSINESS.md`. Update that file when investment plans or payment process change.
 
 ## Core Rules for AI Agents
 
