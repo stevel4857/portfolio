@@ -4,7 +4,7 @@
   "description": "Professional website for Steve Luiting, focused on museums, nonprofits, and purpose-driven organizations.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node --test scripts/test-testimonials.mjs",
     "build:markdown": "node scripts/build-markdown.mjs",
     "build:motion": "vite build",
     "build": "node scripts/build-markdown.mjs && node scripts/build-tailwind.mjs && vite build",
