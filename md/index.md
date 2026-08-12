@@ -189,6 +189,20 @@ FIELD NOTES
 
 [Browse all insights →](https://steveknowsweb.com/blog.html)
 
+What colleagues say
+
+## People I’ve built with.
+
+[See all testimonials →](https://steveknowsweb.com/testimonials.html)
+
+> One of the most inspired, innovative and forward thinking individuals I've ever had the pleasure of meeting or working with.
+> 
+> Nic van Dessel · The Cable Center
+
+> Steve is a talented designer. He's smart, funny, inventive and basically a joy to have around.
+> 
+> Susan Fey · Wisconsin Public Television
+
 INVESTMENT
 
 ## Clear plans. No mystery quotes.
