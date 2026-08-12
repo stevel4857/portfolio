@@ -1,0 +1,50 @@
+{
+  "page": {
+    "eyebrow": "Testimonials",
+    "headline": "People I’ve built with.",
+    "intro": "Colleagues from museums, public media, and the work at The Cable Center. A few words — and one conversation — about what it’s like to build together."
+  },
+  "people": [
+    {
+      "id": "jana-henthorn",
+      "name": "Jana Henthorn",
+      "role": "Former CEO, Syndeo Institute (The Cable Center)",
+      "kind": "video",
+      "featured": true,
+      "homepage": false,
+      "quote": null,
+      "video": {
+        "provider": "vimeo",
+        "id": "1096427800",
+        "hash": "05af90934b",
+        "start": "35m24s",
+        "title": "Jana Henthorn on working with Steve Luiting"
+      },
+      "photo": null
+    },
+    {
+      "id": "nic-van-dessel",
+      "name": "Nic van Dessel",
+      "role": "VR collaborator, The Cable Center",
+      "kind": "quote",
+      "featured": false,
+      "homepage": true,
+      "homepageExcerpt": "One of the most inspired, innovative and forward thinking individuals I've ever had the pleasure of meeting or working with.",
+      "homepageCredit": "Nic van Dessel · The Cable Center",
+      "quote": "Steve is one of the most inspired, innovative and forward thinking individuals I've ever had the pleasure of meeting or working with. Not only was Steve an innovator, but he was an excellent manager.",
+      "photo": "/assets/images/testimonials/nic-van-dessel-circle.png"
+    },
+    {
+      "id": "susan-fey",
+      "name": "Susan Fey",
+      "role": "Art Director, Wisconsin Public Television (retired)",
+      "kind": "quote",
+      "featured": false,
+      "homepage": true,
+      "homepageExcerpt": "Steve is a talented designer. He's smart, funny, inventive and basically a joy to have around.",
+      "homepageCredit": "Susan Fey · Wisconsin Public Television",
+      "quote": "Steve is a talented designer. He's smart, funny, inventive and basically a joy to have around. I have no reservations in recommending him to any potential employer.",
+      "photo": "/assets/images/testimonials/sue-fey-circle.png"
+    }
+  ]
+}

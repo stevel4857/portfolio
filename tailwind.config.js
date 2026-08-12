@@ -3,6 +3,7 @@ module.exports = {
   content: [
     "./index.html",
     "./about.html",
+    "./testimonials.html",
     "./blog.html",
     "./work/syndeo.html",
     "./work/wordcut.html",

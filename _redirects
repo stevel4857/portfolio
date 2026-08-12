@@ -1,6 +1,7 @@
 /work/syndeo.html /work/syndeo 301
 /work/wordcut.html /work/wordcut 301
 /about.html /about 301
+/testimonials.html /testimonials 301
 /index.html / 301
 
 # Blog listing is blog/index.html (and blog.html kept in sync for local).

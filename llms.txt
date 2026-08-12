@@ -6,6 +6,7 @@
 
 - [Steve Luiting — Strategic Web Design & Digital Experiences | Denver](https://steveknowsweb.com/md/index.md)
 - [About Steve Luiting — Strategic Web Design | Denver](https://steveknowsweb.com/md/about.md)
+- [Testimonials — Steve Luiting | Denver](https://steveknowsweb.com/md/testimonials.md)
 - [Syndeo Institute — Visual Identity | Steve Luiting](https://steveknowsweb.com/md/work/syndeo.md)
 - [WordCut — Edit Video by Editing Text | Steve Luiting](https://steveknowsweb.com/md/work/wordcut.md)
 - [Blog index](https://steveknowsweb.com/md/blog.md)
