@@ -27,6 +27,7 @@ test('Latest from the workbench has three static post cards in the HTML', () => 
   assert.match(teaser, /src="\/assets\/images\/vibe-coding-blog-hero\.jpg"/);
 });
 
-test('homepage teaser JS does not replace static cards', () => {
-  assert.match(html, /if \(!container \|\| container\.querySelector\('a'\)\) return/);
+test('homepage teaser is not rebuilt or erased by JS', () => {
+  assert.doesNotMatch(html, /loadBlogTeaser/);
+  assert.doesNotMatch(html, /Could not load latest posts/);
 });

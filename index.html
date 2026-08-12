@@ -818,43 +818,6 @@
       // No-op — Tailwind is included via the static build artifact.
     }
 
-    // Load recent blog posts for the teaser section on home
-    async function loadBlogTeaser() {
-      const container = document.getElementById('blog-teaser');
-      if (!container || container.querySelector('a')) return;
-
-      try {
-        const res = await fetch('data/blog-posts.json');
-        const posts = await res.json();
-        
-        // Get the 3 most recent
-        const recent = [...posts]
-          .sort((a, b) => b.date.localeCompare(a.date))
-          .slice(0, 3);
-
-        container.innerHTML = recent.map(post => `
-          <a href="/blog/${post.slug}"
-             class="group block bg-white border border-slate-200 hover:border-slate-300 rounded-2xl p-5 transition">
-            ${post.image ? `<img src="${post.image}" alt="" class="w-full aspect-[4/3] object-cover rounded-2xl border border-slate-200 mb-4" loading="lazy">` : ''}
-            <div class="flex justify-between text-xs mb-2">
-              <span class="px-2.5 py-0.5 bg-slate-100 text-slate-600 rounded-full">${post.category}</span>
-              <span class="text-slate-500 font-mono">${post.date}</span>
-            </div>
-            <div class="font-semibold text-lg leading-tight tracking-tight group-hover:text-slate-700 transition">
-              ${post.title}
-            </div>
-            <div class="text-sm text-slate-600 line-clamp-2 mt-2">${post.excerpt}</div>
-          </a>
-        `).join('');
-      } catch (e) {
-        console.error('Blog teaser failed to load:', e);
-        const container = document.getElementById('blog-teaser');
-        if (container) {
-          container.innerHTML = `<div class="text-sm text-slate-500">Could not load latest posts.</div>`;
-        }
-      }
-    }
-
     // Keyboard accessibility niceties
     function initKeyboard() {
       document.addEventListener('keydown', (e) => {
@@ -869,7 +832,6 @@
     // Boot
     function init() {
       initTailwind();
-      loadBlogTeaser();
       initKeyboard();
       
       // Smooth scroll for on-page section links (#contact and /#contact)
