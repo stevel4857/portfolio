@@ -24,3 +24,9 @@ demos/360assets/LibraryShoot_browser_audio.mp4
 review-*.png
 lighthouse-reports/
 .video-compress-tmp/
+
+# Visual brainstorm mockups (local only)
+.superpowers/
+
+# Isolated git worktrees
+.worktrees/
