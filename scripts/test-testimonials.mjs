@@ -36,6 +36,7 @@ test('Jana is video-only with the Syndeo Vimeo id', () => {
   assert.equal(jana.video.provider, 'vimeo');
   assert.equal(jana.video.id, '1096427800');
   assert.equal(jana.video.hash, '05af90934b');
+  assert.equal(jana.video.start, '35m24s');
   assert.equal(jana.role, 'Former CEO, Syndeo Institute (The Cable Center)');
 });
 
@@ -58,7 +59,7 @@ test('testimonials.html is real HTML with Jana video and both quotes', () => {
   const html = read('testimonials.html');
   assert.match(html, /<main[^>]*data-motion-page/);
   assert.match(html, /People I’ve built with/);
-  assert.match(html, /player\.vimeo\.com\/video\/1096427800\?h=05af90934b/);
+  assert.match(html, /player\.vimeo\.com\/video\/1096427800\?h=05af90934b#t=35m24s/);
   assert.match(html, /Jana Henthorn on working with Steve Luiting/);
   assert.ok(html.includes(NIC_QUOTE));
   assert.ok(html.includes(SUE_QUOTE));

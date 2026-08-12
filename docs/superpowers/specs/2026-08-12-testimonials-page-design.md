@@ -47,7 +47,7 @@ Ship a public testimonials page plus a thin homepage strip. Three people only: J
 
 ### Jana Henthorn (featured, video only)
 
-- Embed: `https://player.vimeo.com/video/1096427800?h=05af90934b`
+- Embed: `https://player.vimeo.com/video/1096427800?h=05af90934b#t=35m24s` (same start as the Syndeo “comments about Steve” clip)
 - Iframe title: `Jana Henthorn on working with Steve Luiting` (same as Syndeo)
 - Name: `Jana Henthorn`
 - Role: `Former CEO, Syndeo Institute (The Cable Center)`
@@ -146,6 +146,7 @@ Static HTML site. No new framework, no JS-rendered empty shell.
         "provider": "vimeo",
         "id": "1096427800",
         "hash": "05af90934b",
+        "start": "35m24s",
         "title": "Jana Henthorn on working with Steve Luiting"
       },
       "photo": null
