@@ -10,7 +10,7 @@ const html = readFileSync(join(ROOT, 'index.html'), 'utf8');
 function teaserBlock() {
   const start = html.indexOf('id="blog-teaser"');
   assert.ok(start > 0, 'homepage must include #blog-teaser');
-  const slice = html.slice(start, start + 4000);
+  const slice = html.slice(start, start + 8000);
   return slice;
 }
 
@@ -22,4 +22,7 @@ test('Latest from the workbench has three static post cards in the HTML', () => 
   assert.match(teaser, /href="\/blog\/matrix-birthday-card-for-erin"/);
   assert.match(teaser, /href="\/blog\/wordcut-free-video-editor-for-windows"/);
   assert.match(teaser, /href="\/blog\/vibe-coding-motion-and-the-tools-im-watching"/);
+  assert.match(teaser, /src="\/assets\/images\/matrix-birthday-erin\/folded\.jpg"/);
+  assert.match(teaser, /src="\/assets\/images\/wordcut-blog-hero\.jpg"/);
+  assert.match(teaser, /src="\/assets\/images\/vibe-coding-blog-hero\.jpg"/);
 });
