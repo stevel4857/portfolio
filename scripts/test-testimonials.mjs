@@ -99,3 +99,12 @@ test('pretty URL redirect and markdown build include testimonials', () => {
   assert.match(builder, /html: 'testimonials\.html'/);
   assert.match(builder, /loc: '\/testimonials'/);
 });
+
+test('Sue and Nic circle headshots are committed and small', () => {
+  const nic = join(ROOT, 'assets/images/testimonials/nic-van-dessel-circle.png');
+  const sue = join(ROOT, 'assets/images/testimonials/sue-fey-circle.png');
+  assert.equal(existsSync(nic), true);
+  assert.equal(existsSync(sue), true);
+  assert.ok(readFileSync(sue).length > 1000);
+  assert.ok(readFileSync(sue).length < 500_000);
+});
