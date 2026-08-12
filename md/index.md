@@ -189,6 +189,32 @@ FIELD NOTES
 
 [Browse all insights →](https://steveknowsweb.com/blog.html)
 
+[
+
+Design 2026-07-10
+
+A Matrix Birthday Card for Erin
+
+A custom Matrix-style birthday card for Erin — her likeness on the cover, 7.21.2026, and an inside that says we love you and you kick reality’s ass.
+
+](https://steveknowsweb.com/blog/matrix-birthday-card-for-erin)[
+
+AI & Tools 2026-07-02
+
+WordCut — Free Video Editor for Windows
+
+WordCut is a free Windows app I built with Whisper, FFmpeg, and pywebview — click words in a transcript to cut them from your video. Open source on GitHub.
+
+](https://steveknowsweb.com/blog/wordcut-free-video-editor-for-windows)[
+
+AI & Workflow 2026-07-02
+
+Vibe Coding This Site — and Adding Motion Without Losing the Plot
+
+I watched a sharp video on vibe coding with Grok Build, then used the same workflow to add Lottie-style page animations to my static site — without migrating to React. Whisper, FFmpeg, and Pywebview are next on my radar.
+
+](https://steveknowsweb.com/blog/vibe-coding-motion-and-the-tools-im-watching)
+
 What colleagues say
 
 ## People I’ve built with.
