@@ -26,3 +26,7 @@ test('Latest from the workbench has three static post cards in the HTML', () => 
   assert.match(teaser, /src="\/assets\/images\/wordcut-blog-hero\.jpg"/);
   assert.match(teaser, /src="\/assets\/images\/vibe-coding-blog-hero\.jpg"/);
 });
+
+test('homepage teaser JS does not replace static cards', () => {
+  assert.match(html, /if \(!container \|\| container\.querySelector\('a'\)\) return/);
+});
