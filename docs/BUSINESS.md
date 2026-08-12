@@ -89,7 +89,11 @@ Section lives on **index.html** above Contact; nav label **Investment** → `/#p
 - Investment section added on homepage (2026-07); may need **merge to main** to go live  
 - Two domains: keep **steveknowsweb.com** primary  
 - LinkedIn should eventually match niche (museums/nonprofits) more than pure “AI AI AI” headline  
-- Testimonials stronger on older domain — pull onto main site when improving conversion  
+- Testimonials page shipped (2026-08): `/testimonials` — Jana Vimeo + Nic/Sue quotes; homepage strip above `#pricing`
+
+## Testimonials (public, 2026-08)
+
+**Public page:** Live copy is `data/testimonials.json` + `testimonials.html`. Jana is video-only. Nic and Sue quotes were approved for publish (2026-08-12). Dave Cook still unpublished (no quote).
 
 ## What not to push in a 90-day cash window
 
