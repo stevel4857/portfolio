@@ -411,6 +411,11 @@
       <div class="mt-8 grid md:grid-cols-3 gap-5" id="blog-teaser">
         <a href="/blog/matrix-birthday-card-for-erin"
            class="group block bg-white border border-slate-200 hover:border-slate-300 rounded-2xl p-5 transition">
+          <img
+            src="/assets/images/matrix-birthday-erin/folded.jpg"
+            alt=""
+            class="w-full aspect-[4/3] object-cover rounded-2xl border border-slate-200 mb-4"
+            loading="lazy">
           <div class="flex justify-between text-xs mb-2">
             <span class="px-2.5 py-0.5 bg-slate-100 text-slate-600 rounded-full">Design</span>
             <span class="text-slate-500 font-mono">2026-07-10</span>
@@ -422,6 +427,11 @@
         </a>
         <a href="/blog/wordcut-free-video-editor-for-windows"
            class="group block bg-white border border-slate-200 hover:border-slate-300 rounded-2xl p-5 transition">
+          <img
+            src="/assets/images/wordcut-blog-hero.jpg"
+            alt=""
+            class="w-full aspect-[4/3] object-cover rounded-2xl border border-slate-200 mb-4"
+            loading="lazy">
           <div class="flex justify-between text-xs mb-2">
             <span class="px-2.5 py-0.5 bg-slate-100 text-slate-600 rounded-full">AI &amp; Tools</span>
             <span class="text-slate-500 font-mono">2026-07-02</span>
@@ -433,6 +443,11 @@
         </a>
         <a href="/blog/vibe-coding-motion-and-the-tools-im-watching"
            class="group block bg-white border border-slate-200 hover:border-slate-300 rounded-2xl p-5 transition">
+          <img
+            src="/assets/images/vibe-coding-blog-hero.jpg"
+            alt=""
+            class="w-full aspect-[4/3] object-cover rounded-2xl border border-slate-200 mb-4"
+            loading="lazy">
           <div class="flex justify-between text-xs mb-2">
             <span class="px-2.5 py-0.5 bg-slate-100 text-slate-600 rounded-full">AI &amp; Workflow</span>
             <span class="text-slate-500 font-mono">2026-07-02</span>
@@ -818,6 +833,7 @@
         container.innerHTML = recent.map(post => `
           <a href="/blog/${post.slug}"
              class="group block bg-white border border-slate-200 hover:border-slate-300 rounded-2xl p-5 transition">
+            ${post.image ? `<img src="${post.image}" alt="" class="w-full aspect-[4/3] object-cover rounded-2xl border border-slate-200 mb-4" loading="lazy">` : ''}
             <div class="flex justify-between text-xs mb-2">
               <span class="px-2.5 py-0.5 bg-slate-100 text-slate-600 rounded-full">${post.category}</span>
               <span class="text-slate-500 font-mono">${post.date}</span>
