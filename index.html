@@ -820,6 +820,9 @@
 
     // Load recent blog posts for the teaser section on home
     async function loadBlogTeaser() {
+      const container = document.getElementById('blog-teaser');
+      if (!container || container.querySelector('a')) return;
+
       try {
         const res = await fetch('data/blog-posts.json');
         const posts = await res.json();
@@ -829,7 +832,6 @@
           .sort((a, b) => b.date.localeCompare(a.date))
           .slice(0, 3);
 
-        const container = document.getElementById('blog-teaser');
         container.innerHTML = recent.map(post => `
           <a href="/blog/${post.slug}"
              class="group block bg-white border border-slate-200 hover:border-slate-300 rounded-2xl p-5 transition">
