@@ -16,15 +16,15 @@ function teaserBlock() {
 
 test('Latest from the workbench has three static post cards in the HTML', () => {
   const teaser = teaserBlock();
+  assert.match(teaser, /A Birthday Card for Skoog/);
   assert.match(teaser, /A Matrix Birthday Card for Erin/);
-  assert.match(teaser, /WordCut — Free Video Editor for Windows/);
-  assert.match(teaser, /Vibe Coding This Site/);
+  assert.match(teaser, /WordCut/);
+  assert.match(teaser, /href="\/blog\/a-birthday-card-for-skoog"/);
   assert.match(teaser, /href="\/blog\/matrix-birthday-card-for-erin"/);
   assert.match(teaser, /href="\/blog\/wordcut-free-video-editor-for-windows"/);
-  assert.match(teaser, /href="\/blog\/vibe-coding-motion-and-the-tools-im-watching"/);
+  assert.match(teaser, /src="\/assets\/images\/skoog-birthday-card\/outside\.jpg"/);
   assert.match(teaser, /src="\/assets\/images\/matrix-birthday-erin\/folded\.jpg"/);
   assert.match(teaser, /src="\/assets\/images\/wordcut-blog-hero\.jpg"/);
-  assert.match(teaser, /src="\/assets\/images\/vibe-coding-blog-hero\.jpg"/);
 });
 
 test('homepage teaser is not rebuilt or erased by JS', () => {

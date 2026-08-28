@@ -9,6 +9,14 @@ language: "en"
 
 Articles by Steve Luiting on strategic web design, digital preservation, and AI-accelerated workflows.
 
+## [A Birthday Card for Skoog](https://steveknowsweb.com/blog/a-birthday-card-for-skoog)
+
+*2026-08-28 · Design · 4 min*
+
+A custom birthday card for Larry Watson, Skoog, built from his own book covers and his real likeness, plus two short films that put him and Susie into pictures he already loved.
+
+Markdown: [a-birthday-card-for-skoog.md](/md/blog/a-birthday-card-for-skoog.md)
+
 ## [A Matrix Birthday Card for Erin](https://steveknowsweb.com/blog/matrix-birthday-card-for-erin)
 
 *2026-07-10 · Design · 4 min*

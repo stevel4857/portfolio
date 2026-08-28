@@ -189,7 +189,15 @@ FIELD NOTES
 
 [Browse all insights →](https://steveknowsweb.com/blog.html)
 
-[![](https://steveknowsweb.com/assets/images/matrix-birthday-erin/folded.jpg)
+[![](https://steveknowsweb.com/assets/images/skoog-birthday-card/outside.jpg)
+
+Design 2026-08-28
+
+A Birthday Card for Skoog
+
+A custom birthday card for Larry Watson, Skoog, built from his own book covers and his real likeness, plus two short films that put him and Susie into pictures he already loved.
+
+](https://steveknowsweb.com/blog/a-birthday-card-for-skoog)[![](https://steveknowsweb.com/assets/images/matrix-birthday-erin/folded.jpg)
 
 Design 2026-07-10
 
@@ -205,15 +213,7 @@ WordCut — Free Video Editor for Windows
 
 WordCut is a free Windows app I built with Whisper, FFmpeg, and pywebview — click words in a transcript to cut them from your video. Open source on GitHub.
 
-](https://steveknowsweb.com/blog/wordcut-free-video-editor-for-windows)[![](https://steveknowsweb.com/assets/images/vibe-coding-blog-hero.jpg)
-
-AI & Workflow 2026-07-02
-
-Vibe Coding This Site — and Adding Motion Without Losing the Plot
-
-I watched a sharp video on vibe coding with Grok Build, then used the same workflow to add Lottie-style page animations to my static site — without migrating to React. Whisper, FFmpeg, and Pywebview are next on my radar.
-
-](https://steveknowsweb.com/blog/vibe-coding-motion-and-the-tools-im-watching)
+](https://steveknowsweb.com/blog/wordcut-free-video-editor-for-windows)
 
 What colleagues say
 

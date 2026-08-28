@@ -31,6 +31,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://steveknowsweb.com/blog/a-birthday-card-for-skoog</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://steveknowsweb.com/blog/matrix-birthday-card-for-erin</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
