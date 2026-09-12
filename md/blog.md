@@ -9,6 +9,14 @@ language: "en"
 
 Articles by Steve Luiting on strategic web design, digital preservation, and AI-accelerated workflows.
 
+## [I Was Asked to Fix Their Site. A Year Later, I Built Them a New One in Half an Hour.](https://steveknowsweb.com/blog/wheelers-phcc-redesign-from-broken-wordpress)
+
+*2026-09-12 · Design · 8 min*
+
+A year after a broken WordPress rescue stalled, I rebuilt Wheeler’s PHCC as a static site—Formspree, GitHub, and free Cloudflare hosting—in about half an hour for the first solid pass.
+
+Markdown: [wheelers-phcc-redesign-from-broken-wordpress.md](/md/blog/wheelers-phcc-redesign-from-broken-wordpress.md)
+
 ## [A Birthday Card for Skoog](https://steveknowsweb.com/blog/a-birthday-card-for-skoog)
 
 *2026-08-28 · Design · 4 min*

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A year after a broken WordPress rescue stalled, I rebuilt Wheeler’s PHCC as a static site—Formspree, GitHub, and free Cloudflare hosting—in about half an hour for the first solid pass.">
+  <title>I Was Asked to Fix Their Site. A Year Later, I Built Them a New One in Half an Hour. — Steve Luiting</title>
+  <link rel="canonical" href="https://steveknowsweb.com/blog/wheelers-phcc-redesign-from-broken-wordpress">
+  <link rel="alternate" type="text/markdown" href="/md/blog/wheelers-phcc-redesign-from-broken-wordpress.md">
+  <meta property="og:image" content="https://steveknowsweb.com/assets/images/wheelers-phcc-redesign/new-homepage.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/steveknowswebdesign-favicon.png">
+  <link rel="stylesheet" href="/css/tailwind.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Playfair+Display:wght@700&amp;display=swap');
+    body { font-family: "Inter", system_ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  </style>
+</head>
+<body class="bg-white text-slate-900">
+  <div data-component="nav"></div>
+
+  <main class="max-w-3xl mx-auto px-6 py-12 md:py-16">
+    <a href="/blog/" class="inline-flex items-center gap-x-1.5 text-sm text-slate-500 hover:text-slate-900 transition mb-8">
+      <i class="fa-solid fa-arrow-left text-xs"></i> All articles
+    </a>
+
+    <div class="flex items-center gap-x-3 mb-6">
+      <span class="category-pill">Design</span>
+      <span class="text-sm text-slate-500">September 11, 2026</span>
+      <span class="text-sm text-slate-500">· 8 min</span>
+    </div>
+
+    <h1 class="heading-serif text-4xl md:text-5xl leading-none tracking-tighter mb-8">I Was Asked to Fix Their Site. A Year Later, I Built Them a New One in Half an Hour.</h1>
+
+    <figure class="mb-10"><img src="/assets/images/wheelers-phcc-redesign/new-homepage.png" alt="" class="w-full rounded-2xl border border-slate-200 shadow-sm" /></figure>
+
+    <div class="prose prose-slate max-w-none blog-content">
+      <p>About a year ago, I was asked to redesign the website for <strong>Wheeler’s Plumbing, Heating &amp; Cooling</strong>—a family HVAC company in the Brighton / Denver metro area.</p>
+<p>When I opened the site, it wasn’t just “dated.” It was fragile: an old <strong>WordPress</strong> install, old plugins, and a host I didn’t control. As I updated plugins to stabilize things, the site broke. I figured out how to fix it—but I didn’t have backend access. Another company owned the hosting relationship.</p>
+<p>I wrote a clear email explaining the fix and gave it to the client’s rep to pass along. The hosting company wouldn’t talk to me because I wasn’t the account owner. Fair from their side; frustrating from mine.</p>
+<p>The site did come back up with the partial repairs I’d managed before it went down. Then I heard they didn’t feel comfortable continuing to work with me. That stung, but I respected it and left the live domain alone.</p>
+<p>A year later I checked again. Same site. Broken forms. Code showing where graphics should be. Logo issues. Still waiting on a stack that needs constant babysitting.</p>
+<p>So out of that frustration—and because the business still deserves a site that matches how they work—I rebuilt it. With AI-assisted design help, the first solid redesign came together in roughly <strong>30 minutes</strong> of focused work (then we polished type, photography, products, logos, Formspree, and hosting over the next sessions).</p>
+<p>This post is the honest version of that story, plus what’s under the hood.</p>
+<h3>Before and after</h3>
+<p><strong>Before:</strong> <a href="https://www.wheelersphcc.com/" target="_blank" rel="noopener">wheelersphcc.com</a> — WordPress on a third-party host, DNS at GoDaddy. Real history and trust signals, trapped in a brittle CMS.</p>
+<p><strong>After (preview):</strong> <a href="https://wheelers-redesign.steveknowsweb.workers.dev/" target="_blank" rel="noopener">wheelers-redesign.steveknowsweb.workers.dev</a> — plain HTML, CSS, and a little JavaScript. No WordPress. No plugin roulette. Versioned on GitHub. Easy to host and improve—and the hosting is on <strong>Cloudflare’s free tier</strong>.</p>
+<figure class="my-8"><img src="/assets/images/wheelers-phcc-redesign/old-homepage.png" alt="Archived old Wheeler's homepage showing dated WordPress layout and raw widgetkit shortcode" class="w-full rounded-2xl border border-slate-200" /><figcaption class="text-center text-sm text-slate-500 mt-2">Before (Wayback, Apr 2024): dated WordPress layout—and raw shortcode like <code>[widgetkit id="2"]</code> sitting on the page where a widget should render.</figcaption></figure>
+<figure class="my-8"><img src="/assets/images/wheelers-phcc-redesign/old-about.png" alt="Archived old Wheeler's About page" class="w-full rounded-2xl border border-slate-200" /><figcaption class="text-center text-sm text-slate-500 mt-2">Old About page from the same archive—sparse, aging theme, partner logos in a simple banner.</figcaption></figure>
+<figure class="my-8"><img src="/assets/images/wheelers-phcc-redesign/new-homepage.png" alt="New Wheeler's redesign homepage with navy teal copper editorial design" class="w-full rounded-2xl border border-slate-200" /><figcaption class="text-center text-sm text-slate-500 mt-2">After: editorial layout, clear calls to action, modern type and color—still the same family business story.</figcaption></figure>
+<figure class="my-8"><img src="/assets/images/wheelers-phcc-redesign/new-services.png" alt="New Wheeler's redesign services section" class="w-full rounded-2xl border border-slate-200" /><figcaption class="text-center text-sm text-slate-500 mt-2">Below the fold: services and trust signals without the clutter.</figcaption></figure>
+<p>Important: the <strong>live domain is untouched</strong>. DNS still points at the old host until everyone is ready for a careful cutover. The redesign is a preview you can share, not a surprise takeover.</p>
+<h3>What the redesign includes</h3>
+<p>A <strong>static multi-page site</strong>—a folder of pages, not a CMS.</p>
+<ul>
+<li><strong>Home</strong> — hero, trust strip, services, family story, service area, call-to-action</li>
+<li><strong>Services</strong> — maintenance, repair, install</li>
+<li><strong>Products</strong> — equipment hub plus air conditioners, furnaces, heat pumps, water heaters</li>
+<li><strong>About</strong> — family history and credentials</li>
+<li><strong>Contact</strong> — phone, hours, address, and a working inquiry form</li>
+</ul>
+<p><strong>Design system:</strong> Fraunces (headlines) + Plus Jakarta Sans (body/UI); deep navy, teal, and copper on warm sand; custom square mark + “Wheeler’s” wordmark with <em>Plumbing · Heating · Cooling</em>; sticky header with phone; strong “call an owner” messaging.</p>
+<p>Copy and product facts were pulled from the existing site (tightened, not invented)—so it stays honest to the business.</p>
+<h3>Under the hood</h3>
+<p><strong>1. Static front end</strong> — No React build. No database. Browsers load HTML/CSS/JS and images. That means fast loads, cheap hosting, and far fewer ways for a plugin update to take the whole business offline.</p>
+<p><strong>2. Formspree (contact form)</strong> — The old site’s forms were part of the pain. The redesign doesn’t need WordPress mail or a server mailbox on the host.</p>
+<ol>
+<li>Visitor fills out name, phone, email, message</li>
+<li>JavaScript sends the data to <strong>Formspree</strong></li>
+<li>Formspree emails the notification to the inbox you configure</li>
+</ol>
+<p><strong>Why Formspree?</strong> Browsers can’t safely send email alone. Formspree is the middleman.</p>
+<p><strong>Lessons from wiring it:</strong></p>
+<ul>
+<li>A honeypot field meant to stop bots can get auto-filled by browsers—and land in Formspree’s Spam tab. We removed it.</li>
+<li>Free-plan <strong>Formshield</strong> can be aggressive; turning it off helped real tests arrive.</li>
+<li>Captcha can stay off for a low-volume local form until bots show up.</li>
+<li>Domain verification works for domains you control (like steveknowsweb.com). A <code>*.workers.dev</code> preview usually can’t be verified the same way—and that’s fine for a preview.</li>
+</ul>
+<p><strong>3. GitHub (source of truth)</strong> — Private repo for the redesign. Every meaningful change can be committed and pushed so the work doesn’t live only on one laptop.</p>
+<p><strong>4. Cloudflare Workers (preview) — free hosting</strong> — Live preview at <a href="https://wheelers-redesign.steveknowsweb.workers.dev/" target="_blank" rel="noopener">wheelers-redesign.steveknowsweb.workers.dev</a>. Hosting sits on <strong>Cloudflare’s free tier</strong>. No monthly WordPress host bill. For a local service site this size, free is usually enough: global CDN, HTTPS, and room to grow before you’d ever need a paid plan.</p>
+<p><strong>5. What we deliberately didn’t touch</strong> — Live <code>wheelersphcc.com</code> still points (via GoDaddy) at the old company’s servers. No DNS cutover yet. When the time is right: attach the domain with Cloudflare’s custom domain / CNAME flow—not by guessing an IP.</p>
+<h3>Folder → GitHub → Cloudflare (short version)</h3>
+<ol>
+<li><strong>Build locally</strong></li>
+<li><strong>Commit &amp; push</strong> to the private GitHub repo</li>
+<li><strong>Deploy</strong> the Worker on the free plan and open the <code>*.workers.dev</code> URL</li>
+<li><strong>Wire Formspree</strong> on the contact page; tune spam settings so real messages aren’t buried</li>
+<li><strong>Optional later:</strong> point www only after stakeholder sign-off</li>
+</ol>
+<h3>Why this stack fits (especially after WordPress pain)</h3>
+<ul>
+<li>A family “owners on the tools” brand needs a site that’s clear and call-first—not a fragile CMS.</li>
+<li><strong>Static + Formspree</strong> avoids the plugin trap that broke things last time.</li>
+<li><strong>GitHub + Cloudflare (free hosting)</strong> means the preview is under control and cheap to run, while the client’s live domain waits until trust and timing are right.</li>
+<li>And yes: a solid first pass in about <strong>half an hour</strong> is possible when you’re not fighting plugins—you’re just designing and shipping pages.</li>
+</ul>
+<h3>What’s next</h3>
+<ul>
+<li>Share the preview for feedback</li>
+<li>Swap stock photography for real job / family photos when available</li>
+<li>Careful DNS cutover only when everyone’s ready</li>
+<li>Optional later: a simple admin/CMS path—without going back to brittle plugins</li>
+</ul>
+<p><em>Built with respect for Wheeler’s Plumbing, Heating &amp; Cooling—family-owned since 1995.<br>Preview: <a href="https://wheelers-redesign.steveknowsweb.workers.dev/" target="_blank" rel="noopener">wheelers-redesign.steveknowsweb.workers.dev</a> · Stack: HTML/CSS/JS · Formspree · GitHub · Cloudflare (free hosting)</em></p>
+    </div>
+
+    <div class="mt-10 pt-6 border-t border-slate-100 flex flex-wrap gap-2"><span class="text-xs px-3 py-1 bg-slate-100 rounded-full text-slate-600">Web Design</span><span class="text-xs px-3 py-1 bg-slate-100 rounded-full text-slate-600">Static Sites</span><span class="text-xs px-3 py-1 bg-slate-100 rounded-full text-slate-600">WordPress</span><span class="text-xs px-3 py-1 bg-slate-100 rounded-full text-slate-600">Cloudflare</span><span class="text-xs px-3 py-1 bg-slate-100 rounded-full text-slate-600">Formspree</span><span class="text-xs px-3 py-1 bg-slate-100 rounded-full text-slate-600">Case Study</span></div>
+  </main>
+
+  <footer class="border-t border-slate-200 bg-white py-10 mt-8">
+    <div class="max-w-3xl mx-auto px-6 text-sm text-slate-500 flex flex-col sm:flex-row gap-y-3 items-center justify-between">
+      <div>© Steve Luiting. All rights reserved.</div>
+      <div class="flex gap-x-5">
+        <a href="/" class="hover:text-slate-900 transition">Home</a>
+        <a href="/blog/" class="hover:text-slate-900 transition">Insights</a>
+        <a href="mailto:steveknowsweb@gmail.com" class="hover:text-slate-900 transition">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/scripts/components.js"></script>
+</body>
+</html>
