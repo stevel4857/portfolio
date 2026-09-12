@@ -189,7 +189,15 @@ FIELD NOTES
 
 [Browse all insights →](https://steveknowsweb.com/blog.html)
 
-[![](https://steveknowsweb.com/assets/images/skoog-birthday-card/outside.jpg)
+[![](https://steveknowsweb.com/assets/images/wheelers-phcc-redesign/new-homepage.png)
+
+Design 2026-09-12
+
+I Was Asked to Fix Their Site. A Year Later, I Built Them a New One in Half an Hour.
+
+A year after a broken WordPress rescue stalled, I rebuilt Wheeler’s PHCC as a static site—Formspree, GitHub, and free Cloudflare hosting—in about half an hour for the first solid pass.
+
+](https://steveknowsweb.com/blog/wheelers-phcc-redesign-from-broken-wordpress)[![](https://steveknowsweb.com/assets/images/skoog-birthday-card/outside.jpg)
 
 Design 2026-08-28
 
@@ -205,15 +213,7 @@ A Matrix Birthday Card for Erin
 
 A custom Matrix-style birthday card for Erin — her likeness on the cover, 7.21.2026, and an inside that says we love you and you kick reality’s ass.
 
-](https://steveknowsweb.com/blog/matrix-birthday-card-for-erin)[![](https://steveknowsweb.com/assets/images/wordcut-blog-hero.jpg)
-
-AI & Tools 2026-07-02
-
-WordCut — Free Video Editor for Windows
-
-WordCut is a free Windows app I built with Whisper, FFmpeg, and pywebview — click words in a transcript to cut them from your video. Open source on GitHub.
-
-](https://steveknowsweb.com/blog/wordcut-free-video-editor-for-windows)
+](https://steveknowsweb.com/blog/matrix-birthday-card-for-erin)
 
 What colleagues say
 
