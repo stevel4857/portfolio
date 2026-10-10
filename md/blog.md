@@ -9,6 +9,14 @@ language: "en"
 
 Articles by Steve Luiting on strategic web design, digital preservation, and AI-accelerated workflows.
 
+## [The Making of Nomad Pet Dental](https://steveknowsweb.com/blog/the-making-of-nomad-pet-dental)
+
+*2026-10-10 · Design · 6 min*
+
+A behind-the-scenes look at how Steve Knows Web built Nomad Pet Dental, a mobile, dental-only vet in Denver: the logo, colors, booking, privacy, print materials, and the decisions in between.
+
+Markdown: [the-making-of-nomad-pet-dental.md](/md/blog/the-making-of-nomad-pet-dental.md)
+
 ## [I Was Asked to Fix Their Site. A Year Later, I Built Them a New One in Half an Hour.](https://steveknowsweb.com/blog/wheelers-phcc-redesign-from-broken-wordpress)
 
 *2026-09-12 · Design · 8 min*
