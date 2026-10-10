@@ -30,22 +30,24 @@ Section lives on **index.html** above Contact; nav label **Investment** → `/#p
 
 | Plan | Price | Notes |
 |------|-------|--------|
-| Refresh | **$4,500–$6,500** | Same platform polish; ~2–4 weeks |
-| Mission Site | **$9,500–$14,000** | Hero offer; typical ~**$11k**; ~8–15 pages; 5–8 weeks |
-| Rescue / Replatform | **From $12,000** | Legacy/broken CMS, migrations; custom quote |
+| Starter Site | **$2,500–$3,500** | Small local businesses; ~5 pages, contact form, basic local SEO; ~2–3 weeks |
+| Refresh | **$3,500–$5,000** | Same platform polish; ~2–4 weeks |
+| Mission Site | **$7,000–$10,500** | Hero offer; typical ~**$8,500**; ~8–15 pages; 5–8 weeks |
+| Rescue / Replatform | **From $9,000** | Legacy/broken CMS, migrations; custom quote |
 | Mission Site+ / brand | Higher / separate | Donations/events, brand+motion (EXPAND-style) |
 
 ### Monthly care
 
 | Plan | Price |
 |------|-------|
-| Steady | **$225/mo** |
-| Active | **$450/mo** |
+| Basic (Starter Sites) | **$99/mo** |
+| Steady | **$175/mo** |
+| Active | **$350/mo** |
 | Partner (optional, not always listed) | ~$750–$1,200/mo |
 
 ### Other
 
-- Written audit: **$400**, credited if they hire within 60 days
+- Written audit: **$300**, credited if they hire within 60 days
 - Deposit: **40–50%** to start; balance at launch (mid milestone optional on large jobs)
 - Free 15–20 min site teardown as pipeline tool is OK
 

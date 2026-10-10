@@ -233,13 +233,25 @@ INVESTMENT
 
 ## Clear plans. No mystery quotes.
 
-Typical ranges for museums, nonprofits, and purpose-driven organizations. Final scope is confirmed after a short conversation — so you know what you’re getting before we start.
+Typical ranges for small local businesses, museums, nonprofits, and purpose-driven organizations. Final scope is confirmed after a short conversation — so you know what you’re getting before we start.
 
 Projects
 
+Starter Site
+
+$2,500–$3,500
+
+A simple, professional site for small local businesses — the essentials done well, so customers can find you, trust you, and get in touch.
+
+-   ✓ ~5 pages, mobile-friendly
+-   ✓ Contact form & basic local SEO
+-   ✓ About 2–3 weeks
+
+[Start small](#contact)
+
 Refresh
 
-$4,500–$6,500
+$3,500–$5,000
 
 Visual and structure polish on your current platform — key pages, mobile fixes, and basic SEO so the site feels current without a full rebuild.
 
@@ -253,9 +265,9 @@ Most chosen
 
 Mission Site
 
-$9,500–$14,000
+$7,000–$10,500
 
-Typical full project around $11k
+Typical full project around $8,500
 
 Strategy, design, and build for a durable site — clear story, solid structure, forms, accessibility baseline, and training so your team can keep it going.
 
@@ -267,7 +279,7 @@ Strategy, design, and build for a durable site — clear story, solid structure,
 
 Rescue / Replatform
 
-From $12,000
+From $9,000
 
 Fragile legacy systems, broken CMS, migrations, or “this has to last” rebuilds — scoped to your archive, risk, and content volume.
 
@@ -279,11 +291,19 @@ Fragile legacy systems, broken CMS, migrations, or “this has to last” rebuil
 
 Monthly care
 
+Basic
+
+For Starter Sites: hosting check, updates, and a quick fix when you need one.
+
+$99/mo
+
+[Add care →](#contact)
+
 Steady
 
 Updates, backups check, and one small content change per month.
 
-$225/mo
+$175/mo
 
 [Add care →](#contact)
 
@@ -291,11 +311,11 @@ Active
 
 A few hours of changes, seasonal pages, light SEO — for orgs that keep moving.
 
-$450/mo
+$350/mo
 
 [Add care →](#contact)
 
-Brand, motion, or larger Mission Site+ work is quoted separately. Projects usually start with a 40–50% deposit. Prefer a written audit first? That’s $400, credited toward a project if we begin within 60 days.
+Brand, motion, or larger Mission Site+ work is quoted separately. Projects usually start with a 40–50% deposit. Prefer a written audit first? That’s $300, credited toward a project if we begin within 60 days.
 
 [Get a fit recommendation](#contact)
 
@@ -320,10 +340,6 @@ Email Address
 What are you working on?
 
  Send Message
-
-Or schedule by voice
-
-Book a call with the scheduling assistant Talk through your project and pick a time — opens in a popup. Microphone required. →
 
 Message Sent ×
 
