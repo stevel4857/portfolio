@@ -9,7 +9,7 @@ Purpose: Durable context for AI agents and Steve. Not public site content.
 - **Site:** https://steveknowsweb.com (Cloudflare Pages; source in this repo)
 - **Also:** older domain/brand SteveKnowsWebdesign.com — prefer **steveknowsweb.com** as canonical
 - **LinkedIn:** https://www.linkedin.com/in/luiting — headline historically AI-forward; site is mission/nonprofit-forward (keep them aligned)
-- **Contact:** 720-563-9377 · steveknowsweb@gmail.com
+- **Contact:** 720-563-9377 · hello@steveknowsweb.com
 - **Niche:** Strategic web design & digital experiences for **museums, nonprofits, purpose-driven orgs** (Colorado-heavy)
 - **Background:** 30+ years craft; 13 years lead digital at The Cable Center / Syndeo Institute; VR archive on Steam; Flash/video archive rescue; EXPAND Beyond brand work; WordCut open source
 - **Delivery style:** AI-accelerated (Grok + Claude) with personal craft and attention — not a pure AI agency

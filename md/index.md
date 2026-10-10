@@ -327,7 +327,7 @@ If you're a museum, nonprofit, or purpose-driven organization in Colorado lookin
 
 Not sure which plan fits? [See investment ranges](#pricing) — or just tell me what you’re working on.
 
-[720-563-9377](tel:7205639377) [steveknowsweb@gmail.com](mailto:steveknowsweb@gmail.com) [LinkedIn](https://www.linkedin.com/in/luiting)
+[720-563-9377](tel:7205639377) [hello@steveknowsweb.com](mailto:hello@steveknowsweb.com) [LinkedIn](https://www.linkedin.com/in/luiting)
 
 No hard sell. No sales team. Just a real conversation.
 
