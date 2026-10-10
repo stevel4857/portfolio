@@ -16,9 +16,9 @@ From a truck, family owned, dental care for cats and dogs only. My job was to gi
 
 ### Narrowing it down to one thing
 
-To move fast, I started from a general mobile-vet website template, rebuilt as clean, hand-written pages. It came with a lot that didn’t belong: a pet hospice section, an online shop, more than forty general pet-care articles and bios for vets who don’t work here.
+To move fast, I started from a generic website template and rebuilt it as clean, hand-written pages. A template gives you structure. It doesn’t give you focus.
 
-So the first design decision was subtraction. Every page had to be about dental care for cats and dogs. The shop and hospice were parked, the old articles archived (with redirects, so no dead ends), and the services page lists exactly what Cooper does: exams, cleanings, dental X-rays and extractions.
+So the first design decision was subtraction. Every page had to be about dental care for cats and dogs, and anything that wasn’t got cut. The services page lists exactly what Cooper does: exams, cleanings, dental X-rays and extractions.
 
 Cooper had a clear sense of how he wanted to be seen: **family owned and owner operated**. In his words: “A lot of customers are trying to find something that’s owner operated, locally... family operated.” That positioning shows up all over the site.
 
@@ -28,7 +28,7 @@ The headline came out of that same narrowing: **“The moving pet dentist.”** 
 
 The logo took the longest, which is normal. It has to feel right to the person whose name is on it.
 
--   **Version one** was a van made of animals, carried over from the template’s look and redrawn with a new wordmark.
+-   **Version one** was my first sketch: a van made of animals with a simple wordmark.
 -   **Version two** brought that van to life in the homepage hero as a gently bouncing animation.
 -   **Version three** was bolder: a big truck with a chunky “NØMÄD” wordmark. I liked it. Cooper called it “butch-y”. He liked the fonts, but the bold logo and the lettering didn’t go together, and it didn’t match the gentle, family feel of the business.
 -   **The final “hybrid”** keeps the big truck’s body and animals but swaps the lettering for **NOMAD / PET DENTAL** in Fredoka, a softer, rounded font. Cooper especially liked the serif headline font next to the new truck, so that pairing stayed. Solid white letters, wheels with little dots so you can see them turn, and a gentle bob that holds still for visitors who prefer less motion.
