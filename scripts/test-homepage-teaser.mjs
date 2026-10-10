@@ -16,15 +16,16 @@ function teaserBlock() {
 
 test('Latest from the workbench has three static post cards in the HTML', () => {
   const teaser = teaserBlock();
+  assert.match(teaser, /The Making of Nomad Pet Dental/);
+  assert.match(teaser, /I Was Asked to Fix Their Site/);
   assert.match(teaser, /A Birthday Card for Skoog/);
-  assert.match(teaser, /A Matrix Birthday Card for Erin/);
-  assert.match(teaser, /WordCut/);
+  assert.match(teaser, /href="\/blog\/the-making-of-nomad-pet-dental"/);
+  assert.match(teaser, /href="\/blog\/wheelers-phcc-redesign-from-broken-wordpress"/);
   assert.match(teaser, /href="\/blog\/a-birthday-card-for-skoog"/);
-  assert.match(teaser, /href="\/blog\/matrix-birthday-card-for-erin"/);
-  assert.match(teaser, /href="\/blog\/wordcut-free-video-editor-for-windows"/);
+  assert.match(teaser, /src="\/assets\/images\/nomad-pet-dental\/home-desktop\.jpg"/);
+  assert.match(teaser, /src="\/assets\/images\/wheelers-phcc-redesign\/new-homepage\.png"/);
   assert.match(teaser, /src="\/assets\/images\/skoog-birthday-card\/outside\.jpg"/);
-  assert.match(teaser, /src="\/assets\/images\/matrix-birthday-erin\/folded\.jpg"/);
-  assert.match(teaser, /src="\/assets\/images\/wordcut-blog-hero\.jpg"/);
+  assert.equal((teaser.match(/href="\/blog\//g) || []).length >= 3, true);
 });
 
 test('homepage teaser is not rebuilt or erased by JS', () => {

@@ -258,6 +258,7 @@ function buildBlogPermalinks(posts) {
       month: 'long',
       day: 'numeric',
       year: 'numeric',
+      timeZone: 'UTC',
     });
 
     // Posts with a live Flash demo need Ruffle + shared init (auto-runs for #ruffle-demo).

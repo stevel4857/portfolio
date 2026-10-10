@@ -189,7 +189,15 @@ FIELD NOTES
 
 [Browse all insights →](https://steveknowsweb.com/blog.html)
 
-[![](https://steveknowsweb.com/assets/images/wheelers-phcc-redesign/new-homepage.png)
+[![](https://steveknowsweb.com/assets/images/nomad-pet-dental/home-desktop.jpg)
+
+Design 2026-10-10
+
+The Making of Nomad Pet Dental
+
+A behind-the-scenes look at how Steve Knows Web built Nomad Pet Dental, a mobile, dental-only vet in Denver: the logo, colors, booking, privacy, print materials, and the decisions in between.
+
+](https://steveknowsweb.com/blog/the-making-of-nomad-pet-dental)[![](https://steveknowsweb.com/assets/images/wheelers-phcc-redesign/new-homepage.png)
 
 Design 2026-09-12
 
@@ -205,15 +213,7 @@ A Birthday Card for Skoog
 
 A custom birthday card for Larry Watson, Skoog, built from his own book covers and his real likeness, plus two short films that put him and Susie into pictures he already loved.
 
-](https://steveknowsweb.com/blog/a-birthday-card-for-skoog)[![](https://steveknowsweb.com/assets/images/matrix-birthday-erin/folded.jpg)
-
-Design 2026-07-10
-
-A Matrix Birthday Card for Erin
-
-A custom Matrix-style birthday card for Erin — her likeness on the cover, 7.21.2026, and an inside that says we love you and you kick reality’s ass.
-
-](https://steveknowsweb.com/blog/matrix-birthday-card-for-erin)
+](https://steveknowsweb.com/blog/a-birthday-card-for-skoog)
 
 What colleagues say
 

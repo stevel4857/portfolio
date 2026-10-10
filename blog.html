@@ -342,7 +342,7 @@
       // Populate header info
       document.getElementById('modal-category').textContent = post.category;
       document.getElementById('modal-date').textContent = new Date(post.date).toLocaleDateString('en-US', { 
-        month: 'long', day: 'numeric', year: 'numeric' 
+        month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC'
       });
       document.getElementById('modal-author').textContent = post.author;
       document.getElementById('modal-readtime').textContent = post.readTime;
