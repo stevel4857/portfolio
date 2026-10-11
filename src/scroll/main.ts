@@ -30,33 +30,42 @@ function setup() {
     const mm = gsap.matchMedia();
     mm.add({ desktop: '(min-width: 768px)', mobile: '(max-width: 767px)' }, (c) => {
       const desktop = !!c.conditions?.desktop;
-      const dist = desktop ? 48 : 24;
+      const article = root.querySelector<HTMLElement>('.blog-content');
+      const reading = !!article;
+      const dist = reading ? (desktop ? 18 : 12) : desktop ? 48 : 24;
 
-      // Hero: content drifts up and softens, background parallax (desktop only).
-      const hero = root.querySelector<HTMLElement>('header');
+      const reveal = (els: HTMLElement[], d = dist, stagger = 0.1) => {
+        els = els.filter((el, i, a) => a.indexOf(el) === i && below(el));
+        if (!els.length) return;
+        gsap.set(els, { opacity: 0, y: d });
+        ScrollTrigger.batch(els, {
+          start: 'top 97%', once: true,
+          onEnter: (b) => gsap.to(b, { opacity: 1, y: 0, duration: reading ? 0.7 : 0.9, ease: 'power3.out', stagger, overwrite: true, clearProps: 'transform' }),
+        });
+      };
+
+      // Homepage hero: content drifts up and softens, background parallax (desktop only).
+      const hero = root.querySelector<HTMLElement>('header[style*="background-image"]');
       if (hero && desktop) {
         const inner = hero.querySelector(':scope > .relative');
         if (inner) gsap.to(inner, { yPercent: -18, opacity: 0.35, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
         gsap.fromTo(hero, { backgroundPosition: '50% 50%' }, { backgroundPosition: '50% 75%', ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
       }
 
-      // Section headings + eyebrows.
-      root.querySelectorAll<HTMLElement>('section h2, section h2 ~ p, section .uppercase.tracking-\\[3px\\]').forEach((el) => {
-        if (!below(el)) return;
-        gsap.from(el, { y: dist * 0.6, opacity: 0, duration: 0.9, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
-      });
+      // Section headings, eyebrows and intro lines (not inside the article body).
+      reveal(Array.from(root.querySelectorAll<HTMLElement>('section h2, section h2 ~ p, section .uppercase.tracking-\\[3px\\]')).filter((el) => !article?.contains(el) && !hero?.contains(el)), dist * 0.6, 0.06);
 
-      // Cards (work, notes, pricing, testimonials) reveal in batches.
-      const cards = Array.from(root.querySelectorAll<HTMLElement>('[data-stagger-item], #pricing .rounded-3xl, #work .work-card')).filter((el, i, a) => a.indexOf(el) === i && below(el) && !hero?.contains(el));
-      gsap.set(cards, { opacity: 0, y: dist });
-      ScrollTrigger.batch(cards, {
-        start: 'top 90%', once: true,
-        onEnter: (els) => gsap.to(els, { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out', stagger: 0.1, overwrite: true, clearProps: 'transform' }),
-      });
+      // Cards (work, notes, pricing, testimonials, blog index).
+      reveal(Array.from(root.querySelectorAll<HTMLElement>('[data-stagger-item], #pricing .rounded-3xl, .work-card, article.rounded-3xl, a.rounded-3xl')).filter((el) => !hero?.contains(el) && !article?.contains(el)));
 
-      // Image parallax inside clipped frames (desktop only).
-      if (desktop) {
-        root.querySelectorAll<HTMLImageElement>('.overflow-hidden > img, .overflow-hidden img.object-cover').forEach((img) => {
+      // Blog posts: subtle reveals for headings and media only; body text stays put.
+      if (article) {
+        reveal(Array.from(article.querySelectorAll<HTMLElement>(':scope > h2, :scope > h3, :scope > figure, :scope > img, :scope > pre, :scope > blockquote, :scope > iframe, :scope > div')), dist, 0.05);
+      }
+
+      // Image parallax inside clipped frames (desktop, non-reading pages).
+      if (desktop && !reading) {
+        root.querySelectorAll<HTMLImageElement>('.overflow-hidden > img').forEach((img) => {
           gsap.fromTo(img, { yPercent: -5, scale: 1.1 }, { yPercent: 5, scale: 1.1, ease: 'none', scrollTrigger: { trigger: img.parentElement, start: 'top bottom', end: 'bottom top', scrub: true } });
         });
       }
@@ -69,7 +78,7 @@ function boot() {
   startLenis();
   // motion-bundle swaps <main> for #motion-root; wait for it.
   const go = () => requestAnimationFrame(() => requestAnimationFrame(setup));
-  if (document.getElementById('motion-root')) go();
+  if (document.getElementById('motion-root') || !document.querySelector('[data-motion-page]')) go();
   else {
     const mo = new MutationObserver(() => { if (document.getElementById('motion-root')) { mo.disconnect(); go(); } });
     mo.observe(document.body, { childList: true, subtree: true });

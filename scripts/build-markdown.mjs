@@ -270,7 +270,7 @@ function buildBlogPermalinks(posts) {
       : '';
 
     const html = `<!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-scroll-fx>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -324,6 +324,7 @@ function buildBlogPermalinks(posts) {
   </footer>
 
   <script src="/scripts/components.js"></script>
+  <script type="module" src="/js/scroll-fx.js?v=2"></script>
 </body>
 </html>
 `;
