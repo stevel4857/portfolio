@@ -27,6 +27,7 @@ function below(el: Element) {
 
 function setup() {
   ctx?.revert();
+  document.querySelectorAll('[data-sfx-pending]').forEach((el) => el.removeAttribute('data-sfx-pending'));
   if (reduced.matches) return;
   const root = document.getElementById('motion-root') ?? document.querySelector('main');
   if (!root) return;
@@ -43,10 +44,16 @@ function setup() {
         els = els.filter((el, i, a) => a.indexOf(el) === i && below(el));
         if (!els.length) return;
         gsap.set(els, { opacity: 0, y: d });
+        els.forEach((el) => el.setAttribute('data-sfx-pending', ''));
         ScrollTrigger.batch(els, {
           start: 'top 97%', once: true,
-          onEnter: (b) => gsap.to(b, { opacity: 1, y: 0, duration: reading ? 0.7 : 0.9, ease: 'power3.out', stagger, overwrite: true, clearProps: 'transform' }),
+          onEnter: (b) => show(b as HTMLElement[], stagger),
         });
+      };
+      const show = (b: HTMLElement[], stagger: number) => {
+        b = b.filter((el) => el.hasAttribute('data-sfx-pending'));
+        b.forEach((el) => el.removeAttribute('data-sfx-pending'));
+        if (b.length) gsap.to(b, { opacity: 1, y: 0, duration: reading ? 0.7 : 0.9, ease: 'power3.out', stagger, overwrite: true, clearProps: 'transform' });
       };
 
       // Homepage hero: content drifts up and softens, background parallax (desktop only).
@@ -74,6 +81,12 @@ function setup() {
           gsap.fromTo(img, { yPercent: -5, scale: 1.1 }, { yPercent: 5, scale: 1.1, ease: 'none', scrollTrigger: { trigger: img.parentElement, start: 'top bottom', end: 'bottom top', scrub: true } });
         });
       }
+      // Safety net: after jumps (anchor links, /#section arrivals) reveal anything already in or above view.
+      const sweep = () => show(Array.from(root.querySelectorAll<HTMLElement>('[data-sfx-pending]')).filter((el) => el.getBoundingClientRect().top < window.innerHeight), 0.05);
+      ScrollTrigger.addEventListener('scrollEnd', sweep);
+      window.addEventListener('hashchange', () => setTimeout(sweep, 1200));
+      const iv = window.setInterval(sweep, 1000);
+      return () => { ScrollTrigger.removeEventListener('scrollEnd', sweep); window.clearInterval(iv); };
     });
   });
   ScrollTrigger.refresh();
