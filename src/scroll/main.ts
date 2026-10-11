@@ -101,12 +101,24 @@ function landOnHash() {
   if (!target) return;
   const go = () => (lenis ? lenis.scrollTo(target, { immediate: true, force: true }) : target.scrollIntoView({ block: 'start' }));
   go();
+  // Clean the hash once we've landed so a later reload starts at the top.
+  const clean = () => history.replaceState(history.state, '', location.pathname + location.search);
+  window.setTimeout(clean, 2500);
   if (document.readyState !== 'complete') window.addEventListener('load', () => setTimeout(() => { ScrollTrigger.refresh(); go(); }, 50), { once: true });
   else setTimeout(go, 300);
   landed = true;
 }
 
 function boot() {
+  // Reload always starts at the top (no browser scroll restoration, no #section jump).
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  const nav = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming | undefined;
+  if (nav?.type === 'reload') {
+    landed = true;
+    if (location.hash) history.replaceState(history.state, '', location.pathname + location.search);
+    window.scrollTo(0, 0);
+    window.addEventListener('load', () => { window.scrollTo(0, 0); lenis?.scrollTo(0, { immediate: true, force: true }); }, { once: true });
+  }
   startLenis();
   // motion-bundle swaps <main> for #motion-root; wait for it.
   let started = false;

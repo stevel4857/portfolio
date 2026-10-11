@@ -84,8 +84,9 @@ export function initHashNavigation(): void {
 
     const url = new URL(anchor.href, window.location.origin);
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    history.pushState(null, '', `${url.pathname}${url.search}${url.hash}`);
+    // Scroll to the section without leaving #hash in the URL, so a reload starts at the top.
     scrollToHash(url.hash, reducedMotion ? 'auto' : 'smooth');
+    history.replaceState(history.state, '', `${url.pathname}${url.search}`);
   });
 }
 
