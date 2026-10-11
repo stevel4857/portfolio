@@ -109,7 +109,7 @@ function boot() {
     else if (!lenis) startLenis();
     lenis?.resize();
     setup();
-  }, 50));
+  }, 350));
   window.addEventListener('load', () => ScrollTrigger.refresh());
   reduced.addEventListener('change', () => { if (reduced.matches) { ctx?.revert(); lenis?.destroy(); lenis = null; delete (window as Window & { __lenis?: Lenis }).__lenis; } else { startLenis(); setup(); } });
 }
