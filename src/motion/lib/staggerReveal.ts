@@ -5,7 +5,11 @@ export function runStaggerReveal(root: HTMLElement, reducedMotion: boolean): voi
     return;
   }
 
-  const items = root.querySelectorAll<HTMLElement>('[data-stagger-item]');
+  // Pages opted into scroll effects reveal below-the-fold items with ScrollTrigger instead.
+  const scrollFx = document.documentElement.hasAttribute('data-scroll-fx');
+  const items = Array.from(root.querySelectorAll<HTMLElement>('[data-stagger-item]')).filter(
+    (el) => !scrollFx || el.getBoundingClientRect().top < window.innerHeight,
+  );
   if (!items.length) {
     return;
   }

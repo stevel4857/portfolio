@@ -11,6 +11,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         motion: resolve(__dirname, 'src/motion/main.tsx'),
+        'scroll-fx': resolve(__dirname, 'src/scroll/main.ts'),
         'voice-scheduler': resolve(__dirname, 'src/voice-scheduler/main.ts'),
       },
       output: {
