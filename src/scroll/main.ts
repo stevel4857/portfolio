@@ -27,7 +27,8 @@ function below(el: Element) {
 
 function setup() {
   ctx?.revert();
-  document.querySelectorAll('[data-sfx-pending]').forEach((el) => el.removeAttribute('data-sfx-pending'));
+  // Clear anything a previous run left hidden so a re-run never strands content.
+  document.querySelectorAll<HTMLElement>('[data-sfx-pending]').forEach((el) => { el.removeAttribute('data-sfx-pending'); gsap.set(el, { clearProps: 'opacity,transform' }); });
   if (reduced.matches) return;
   const root = document.getElementById('motion-root') ?? document.querySelector('main');
   if (!root) return;
@@ -109,7 +110,8 @@ function landOnHash() {
 function boot() {
   startLenis();
   // motion-bundle swaps <main> for #motion-root; wait for it.
-  const go = () => requestAnimationFrame(() => requestAnimationFrame(setup));
+  let started = false;
+  const go = () => { if (started) return; started = true; requestAnimationFrame(() => requestAnimationFrame(setup)); };
   if (document.getElementById('motion-root') || !document.querySelector('[data-motion-page]')) go();
   else {
     const mo = new MutationObserver(() => { if (document.getElementById('motion-root')) { mo.disconnect(); go(); } });
