@@ -10,8 +10,12 @@ let ctx: gsap.Context | null = null;
 
 function startLenis() {
   if (lenis || reduced.matches) return;
+  // Reading pages (blog posts) keep native scrolling: wheel/trackpad must always work there.
+  if (document.querySelector('.blog-content')) return;
   lenis = new Lenis({ duration: 1.1, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
   (window as Window & { __lenis?: Lenis }).__lenis = lenis;
+  // Keep Lenis' scroll limit in sync as images, embeds and soft-navigated pages change height.
+  new ResizeObserver(() => { lenis?.resize(); ScrollTrigger.refresh(); }).observe(document.body);
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add((time) => lenis?.raf(time * 1000));
   gsap.ticker.lagSmoothing(0);
@@ -99,7 +103,13 @@ function boot() {
     mo.observe(document.body, { childList: true, subtree: true });
     setTimeout(() => { mo.disconnect(); go(); }, 1500);
   }
-  window.addEventListener('motion:page-enter', () => setTimeout(setup, 50));
+  window.addEventListener('motion:page-enter', () => setTimeout(() => {
+    // Soft navigation can swap a normal page for a blog post (or back): toggle smooth scroll to match.
+    if (document.querySelector('.blog-content') && lenis) { lenis.destroy(); lenis = null; delete (window as Window & { __lenis?: Lenis }).__lenis; }
+    else if (!lenis) startLenis();
+    lenis?.resize();
+    setup();
+  }, 50));
   window.addEventListener('load', () => ScrollTrigger.refresh());
   reduced.addEventListener('change', () => { if (reduced.matches) { ctx?.revert(); lenis?.destroy(); lenis = null; delete (window as Window & { __lenis?: Lenis }).__lenis; } else { startLenis(); setup(); } });
 }
