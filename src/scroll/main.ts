@@ -28,7 +28,7 @@ function below(el: Element) {
 function setup() {
   ctx?.revert();
   // Clear anything a previous run left hidden so a re-run never strands content.
-  document.querySelectorAll<HTMLElement>('[data-sfx-pending]').forEach((el) => { el.removeAttribute('data-sfx-pending'); gsap.set(el, { clearProps: 'opacity,transform' }); });
+  document.querySelectorAll<HTMLElement>('[data-sfx]').forEach((el) => el.removeAttribute('data-sfx'));
   if (reduced.matches) return;
   const root = document.getElementById('motion-root') ?? document.querySelector('main');
   if (!root) return;
@@ -42,19 +42,18 @@ function setup() {
       const dist = reading ? (desktop ? 18 : 12) : desktop ? 48 : 24;
 
       const reveal = (els: HTMLElement[], d = dist, stagger = 0.1) => {
-        els = els.filter((el, i, a) => a.indexOf(el) === i && below(el));
+        els = els.filter((el, i, a) => a.indexOf(el) === i && below(el) && !el.hasAttribute('data-sfx'));
         if (!els.length) return;
-        gsap.set(els, { opacity: 0, y: d });
-        els.forEach((el) => el.setAttribute('data-sfx-pending', ''));
-        ScrollTrigger.batch(els, {
-          start: 'top 97%', once: true,
-          onEnter: (b) => show(b as HTMLElement[], stagger),
-        });
+        els.forEach((el) => { el.style.setProperty('--sfx-d', `${d}px`); el.style.setProperty('--sfx-t', `${reading ? 0.7 : 0.9}s`); el.setAttribute('data-sfx', 'pending'); });
+        ScrollTrigger.batch(els, { start: 'top 97%', once: true, onEnter: (b) => show(b as HTMLElement[], stagger) });
       };
       const show = (b: HTMLElement[], stagger: number) => {
-        b = b.filter((el) => el.hasAttribute('data-sfx-pending'));
-        b.forEach((el) => el.removeAttribute('data-sfx-pending'));
-        if (b.length) gsap.to(b, { opacity: 1, y: 0, duration: reading ? 0.7 : 0.9, ease: 'power3.out', stagger, overwrite: true, clearProps: 'transform' });
+        b.filter((el) => el.getAttribute('data-sfx') === 'pending').forEach((el, i) => {
+          el.style.transitionDelay = `${Math.min(i * stagger, 0.6)}s`;
+          el.setAttribute('data-sfx', 'shown');
+          // Hand the element back to its own styles (hover transitions etc.) once revealed.
+          window.setTimeout(() => { if (el.getAttribute('data-sfx') === 'shown') { el.removeAttribute('data-sfx'); el.style.transitionDelay = ''; } }, (Math.min(i * stagger, 0.6) + (reading ? 0.7 : 0.9)) * 1000 + 100);
+        });
       };
 
       // Homepage hero: content drifts up and softens, background parallax (desktop only).
@@ -83,7 +82,7 @@ function setup() {
         });
       }
       // Safety net: after jumps (anchor links, /#section arrivals) reveal anything already in or above view.
-      const sweep = () => show(Array.from(document.querySelectorAll<HTMLElement>('[data-sfx-pending]')).filter((el) => el.getBoundingClientRect().top < window.innerHeight), 0.05);
+      const sweep = () => show(Array.from(document.querySelectorAll<HTMLElement>('[data-sfx="pending"]')).filter((el) => el.getBoundingClientRect().top < window.innerHeight), 0.05);
       ScrollTrigger.addEventListener('scrollEnd', sweep);
       window.addEventListener('hashchange', () => setTimeout(sweep, 1200));
       const iv = window.setInterval(sweep, 1000);
@@ -126,7 +125,7 @@ function boot() {
     setup();
   }, 350));
   window.addEventListener('load', () => ScrollTrigger.refresh());
-  reduced.addEventListener('change', () => { if (reduced.matches) { ctx?.revert(); lenis?.destroy(); lenis = null; delete (window as Window & { __lenis?: Lenis }).__lenis; } else { startLenis(); setup(); } });
+  reduced.addEventListener('change', () => { if (reduced.matches) { ctx?.revert(); document.querySelectorAll('[data-sfx]').forEach((el) => el.removeAttribute('data-sfx')); lenis?.destroy(); lenis = null; delete (window as Window & { __lenis?: Lenis }).__lenis; } else { startLenis(); setup(); } });
 }
 
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
