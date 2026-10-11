@@ -90,11 +90,13 @@ function setup() {
     });
   });
   ScrollTrigger.refresh();
+  if (reloadTop) { window.scrollTo(0, 0); lenis?.scrollTo(0, { immediate: true, force: true }); }
   landOnHash();
 }
 
 // Cross-page links like /#contact: land on the section once effects are set up and again after load.
 let landed = false;
+let reloadTop = false;
 function landOnHash() {
   if (landed || !location.hash) return;
   const target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
@@ -111,13 +113,18 @@ function landOnHash() {
 
 function boot() {
   // Reload always starts at the top (no browser scroll restoration, no #section jump).
-  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  // ScrollTrigger keeps its own scroll memory; clear it and switch restoration to manual.
+  ScrollTrigger.clearScrollMemory('manual');
   const nav = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming | undefined;
   if (nav?.type === 'reload') {
     landed = true;
+    reloadTop = true;
+    window.addEventListener('load', () => window.setTimeout(() => { reloadTop = false; }, 1500), { once: true });
     if (location.hash) history.replaceState(history.state, '', location.pathname + location.search);
-    window.scrollTo(0, 0);
-    window.addEventListener('load', () => { window.scrollTo(0, 0); lenis?.scrollTo(0, { immediate: true, force: true }); }, { once: true });
+    const top = () => { ScrollTrigger.clearScrollMemory('manual'); window.scrollTo(0, 0); lenis?.scrollTo(0, { immediate: true, force: true }); };
+    top();
+    requestAnimationFrame(top);
+    window.addEventListener('load', () => { top(); window.setTimeout(top, 150); }, { once: true });
   }
   startLenis();
   // motion-bundle swaps <main> for #motion-root; wait for it.

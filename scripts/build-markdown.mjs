@@ -324,7 +324,7 @@ function buildBlogPermalinks(posts) {
   </footer>
 
   <script src="/scripts/components.js"></script>
-  <script type="module" src="/js/scroll-fx.js?v=10"></script>
+  <script type="module" src="/js/scroll-fx.js?v=11"></script>
 </body>
 </html>
 `;
