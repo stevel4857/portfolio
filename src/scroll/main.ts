@@ -10,7 +10,8 @@ let ctx: gsap.Context | null = null;
 
 function startLenis() {
   if (lenis || reduced.matches) return;
-  lenis = new Lenis({ duration: 1.1, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), anchors: true });
+  lenis = new Lenis({ duration: 1.1, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+  (window as Window & { __lenis?: Lenis }).__lenis = lenis;
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add((time) => lenis?.raf(time * 1000));
   gsap.ticker.lagSmoothing(0);
@@ -72,6 +73,20 @@ function setup() {
     });
   });
   ScrollTrigger.refresh();
+  landOnHash();
+}
+
+// Cross-page links like /#contact: land on the section once effects are set up and again after load.
+let landed = false;
+function landOnHash() {
+  if (landed || !location.hash) return;
+  const target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+  if (!target) return;
+  const go = () => (lenis ? lenis.scrollTo(target, { immediate: true, force: true }) : target.scrollIntoView({ block: 'start' }));
+  go();
+  if (document.readyState !== 'complete') window.addEventListener('load', () => setTimeout(() => { ScrollTrigger.refresh(); go(); }, 50), { once: true });
+  else setTimeout(go, 300);
+  landed = true;
 }
 
 function boot() {
@@ -86,7 +101,7 @@ function boot() {
   }
   window.addEventListener('motion:page-enter', () => setTimeout(setup, 50));
   window.addEventListener('load', () => ScrollTrigger.refresh());
-  reduced.addEventListener('change', () => { if (reduced.matches) { ctx?.revert(); lenis?.destroy(); lenis = null; } else { startLenis(); setup(); } });
+  reduced.addEventListener('change', () => { if (reduced.matches) { ctx?.revert(); lenis?.destroy(); lenis = null; delete (window as Window & { __lenis?: Lenis }).__lenis; } else { startLenis(); setup(); } });
 }
 
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);

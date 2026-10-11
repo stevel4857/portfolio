@@ -49,6 +49,13 @@ export function scrollToHash(hash?: string, behavior: ScrollBehavior = 'smooth')
     return;
   }
 
+  // When smooth scrolling (Lenis) is active, let it drive the scroll so the two don't fight.
+  const lenis = (window as Window & { __lenis?: { scrollTo: (t: Element, o?: object) => void } }).__lenis;
+  if (lenis) {
+    lenis.scrollTo(target, { immediate: behavior !== 'smooth', force: true });
+    return;
+  }
+
   target.scrollIntoView({ behavior, block: 'start' });
 }
 
