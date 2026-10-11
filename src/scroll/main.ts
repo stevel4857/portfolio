@@ -82,7 +82,7 @@ function setup() {
         });
       }
       // Safety net: after jumps (anchor links, /#section arrivals) reveal anything already in or above view.
-      const sweep = () => show(Array.from(root.querySelectorAll<HTMLElement>('[data-sfx-pending]')).filter((el) => el.getBoundingClientRect().top < window.innerHeight), 0.05);
+      const sweep = () => show(Array.from(document.querySelectorAll<HTMLElement>('[data-sfx-pending]')).filter((el) => el.getBoundingClientRect().top < window.innerHeight), 0.05);
       ScrollTrigger.addEventListener('scrollEnd', sweep);
       window.addEventListener('hashchange', () => setTimeout(sweep, 1200));
       const iv = window.setInterval(sweep, 1000);
