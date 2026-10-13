@@ -189,7 +189,7 @@ FIELD NOTES
 
 [Browse all insights →](https://steveknowsweb.com/blog.html)
 
-[![](https://steveknowsweb.com/assets/images/nomad-pet-dental/collage.jpg)
+[![Dark navy illustration of a laptop surrounded by browser windows, a color palette, a film clapperboard and a pencil](https://steveknowsweb.com/assets/images/art-director/hero.jpg)
 
 AI & Workflow 2026-10-13
 

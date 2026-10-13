@@ -303,7 +303,7 @@ function buildBlogPermalinks(posts) {
 
     <h1 class="heading-serif text-4xl md:text-5xl leading-none tracking-tighter mb-8">${escapeHtml(post.title)}</h1>
 
-    ${post.image ? `<figure class="mb-10"><img src="${escapeHtml(post.image)}" alt="" class="w-full rounded-2xl border border-slate-200 shadow-sm" /></figure>` : ''}
+    ${post.image ? `<figure class="mb-10"><img src="${escapeHtml(post.image)}" alt="${escapeHtml(post.imageAlt || '')}" class="w-full rounded-2xl border border-slate-200 shadow-sm" /></figure>` : ''}
 
     <div class="prose prose-slate max-w-none blog-content">
       ${post.content}
