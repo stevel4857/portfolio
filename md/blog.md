@@ -9,6 +9,14 @@ language: "en"
 
 Articles by Steve Luiting on strategic web design, digital preservation, and AI-accelerated workflows.
 
+## [From Web Builder to Art Director: How AI Changed My Process](https://steveknowsweb.com/blog/from-web-builder-to-art-director)
+
+*2026-10-13 · AI & Workflow · 3 min*
+
+Building a website used to mean hours in the weeds. Now it feels more like art directing: an AI assistant does the build, I bring the taste and judgment, and clients request updates with a simple email.
+
+Markdown: [from-web-builder-to-art-director.md](/md/blog/from-web-builder-to-art-director.md)
+
 ## [The Making of Nomad Pet Dental](https://steveknowsweb.com/blog/the-making-of-nomad-pet-dental)
 
 *2026-10-10 · Design · 6 min*

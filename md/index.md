@@ -189,7 +189,15 @@ FIELD NOTES
 
 [Browse all insights →](https://steveknowsweb.com/blog.html)
 
-[![](https://steveknowsweb.com/assets/images/nomad-pet-dental/home-desktop.jpg)
+[![](https://steveknowsweb.com/assets/images/nomad-pet-dental/collage.jpg)
+
+AI & Workflow 2026-10-13
+
+From Web Builder to Art Director: How AI Changed My Process
+
+Building a website used to mean hours in the weeds. Now it feels more like art directing: an AI assistant does the build, I bring the taste and judgment, and clients request updates with a simple email.
+
+](https://steveknowsweb.com/blog/from-web-builder-to-art-director)[![](https://steveknowsweb.com/assets/images/nomad-pet-dental/home-desktop.jpg)
 
 Design 2026-10-10
 
@@ -205,15 +213,7 @@ I Was Asked to Fix Their Site. A Year Later, I Built Them a New One in Half an H
 
 A year after a broken WordPress rescue stalled, I rebuilt Wheeler’s PHCC as a static site—Formspree, GitHub, and free Cloudflare hosting—in about half an hour for the first solid pass.
 
-](https://steveknowsweb.com/blog/wheelers-phcc-redesign-from-broken-wordpress)[![](https://steveknowsweb.com/assets/images/skoog-birthday-card/outside.jpg)
-
-Design 2026-08-28
-
-A Birthday Card for Skoog
-
-A custom birthday card for Larry Watson, Skoog, built from his own book covers and his real likeness, plus two short films that put him and Susie into pictures he already loved.
-
-](https://steveknowsweb.com/blog/a-birthday-card-for-skoog)
+](https://steveknowsweb.com/blog/wheelers-phcc-redesign-from-broken-wordpress)
 
 What colleagues say
 
