@@ -1,0 +1,43 @@
+.mbp{--mb-accent:#b45309;background:#0f172a;color:#f8fafc;border-radius:1.5rem;padding:1.5rem;box-shadow:0 20px 50px -20px rgba(15,23,42,.5)}
+.mbp-now{display:grid;grid-template-columns:minmax(0,220px) 1fr;gap:1.5rem;align-items:center}
+.mbp-art{width:100%;aspect-ratio:1;object-fit:cover;border-radius:1rem;background:#1e293b}
+.mbp-kicker{font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:#94a3b8;margin:0}
+.mbp-title{font-family:"Playfair Display",Georgia,serif;font-size:2rem;line-height:1.1;margin:.3rem 0 .2rem}
+.mbp-artist{color:#cbd5e1;margin:0}
+.mbp-controls{display:flex;gap:.75rem;align-items:center;margin:1.1rem 0 .8rem}
+.mbp-btn{display:grid;place-items:center;width:44px;height:44px;border-radius:999px;border:1px solid rgba(255,255,255,.2);background:transparent;color:#fff;cursor:pointer}
+.mbp-btn svg{width:22px;height:22px;fill:currentColor}
+.mbp-play{width:60px;height:60px;background:#f8fafc;color:#0f172a;border:0}
+.mbp-play svg{width:28px;height:28px}.mbp .i-pause{display:none}.mbp.is-playing .i-pause{display:block}.mbp.is-playing .i-play{display:none}
+.mbp-btn:hover{background:rgba(255,255,255,.12)}.mbp-play:hover{background:#e2e8f0}
+.mbp button:focus-visible,.mbp a:focus-visible,.mbp input:focus-visible,.mbp summary:focus-visible{outline:3px solid #fbbf24;outline-offset:2px}
+.mbp-seekrow{display:flex;align-items:center;gap:.6rem;font-size:.8rem;color:#cbd5e1;font-variant-numeric:tabular-nums}
+.mbp-seek{flex:1;accent-color:#fbbf24;height:28px;cursor:pointer}
+.mbp-list{list-style:none;margin:1.5rem 0 0;padding:0;border-top:1px solid rgba(255,255,255,.1);max-height:none}
+.mbp-item{border-bottom:1px solid rgba(255,255,255,.08)}
+.mbp-row{display:flex;align-items:center}
+.mbp-pick{flex:1;display:flex;align-items:center;gap:.8rem;min-height:56px;padding:.4rem .3rem;background:none;border:0;color:inherit;text-align:left;cursor:pointer;font:inherit}
+.mbp-pick img{width:44px;height:44px;border-radius:.5rem;object-fit:cover}
+.mbp-n{width:1.5rem;color:#64748b;font-size:.8rem;text-align:right}
+.mbp-t{flex:1}.mbp-d{color:#94a3b8;font-size:.85rem;font-variant-numeric:tabular-nums}
+.mbp-item.is-current .mbp-t{color:#fbbf24;font-weight:600}
+.mbp-pick:hover{background:rgba(255,255,255,.05)}
+.mbp-dl{display:grid;place-items:center;width:44px;height:44px;color:#cbd5e1;border-radius:999px}
+.mbp-dl svg{width:20px;height:20px;fill:currentColor}.mbp-dl:hover{color:#fff;background:rgba(255,255,255,.1)}
+.mbp-lyrics{padding:0 0 .6rem 4.6rem}
+.mbp-lyrics summary{cursor:pointer;color:#94a3b8;font-size:.8rem;width:max-content}
+.mbp-lyrics pre{white-space:pre-wrap;font-family:inherit;font-size:.9rem;line-height:1.6;color:#e2e8f0;max-height:22rem;overflow:auto;margin:.6rem 0 0;overscroll-behavior:contain}
+@media (max-width:640px){.mbp{padding:1rem;border-radius:1rem}.mbp-now{grid-template-columns:96px 1fr;gap:1rem}.mbp-title{font-size:1.3rem}.mbp-controls{margin:.6rem 0 .3rem}.mbp-seekrow{grid-column:1/-1}.mbp-lyrics{padding-left:.5rem}.mbp-n{display:none}}
+.mb-yt,.mb-yt-frame{position:relative;display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:1rem;overflow:hidden;background:#0f172a;cursor:pointer;padding:0}
+.mb-yt img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.mb-yt:hover img{transform:scale(1.03)}
+.mb-yt::after{content:"";position:absolute;inset:50% auto auto 50%;width:68px;height:48px;transform:translate(-50%,-50%);border-radius:12px;background:rgba(15,23,42,.8) url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"%3E%3Cpath d="M9 7v10l8-5z"/%3E%3C/svg%3E') center/28px no-repeat}
+.mb-yt:focus-visible{outline:3px solid #b45309;outline-offset:3px}
+.mb-gallery a{display:block;border-radius:1rem;overflow:hidden;background:#f1f5f9}
+.mb-gallery img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/3;transition:transform .4s}
+.mb-gallery a:hover img{transform:scale(1.04)}
+.mb-lb{border:0;padding:0;background:transparent;max-width:96vw;max-height:94vh;overflow:visible}
+.mb-lb::backdrop{background:rgba(2,6,23,.9)}
+.mb-lb img{max-width:96vw;max-height:90vh;border-radius:.75rem;display:block}
+.mb-lb button{position:fixed;width:48px;height:48px;border-radius:999px;border:0;background:rgba(255,255,255,.15);color:#fff;font-size:2rem;line-height:1;cursor:pointer}
+.mb-lb-x{top:16px;right:16px}.mb-lb-p{left:12px;top:50%}.mb-lb-n{right:12px;top:50%}
