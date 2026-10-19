@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en" data-scroll-fx>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mike Bollig: songs, music videos and photos. Folk-rock and country songs with a few EDM versions, all on one page.">
+  <title>Mike Bollig — Music, Videos &amp; Photos</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/steveknowswebdesign-favicon.png">
+  <meta property="og:title" content="Mike Bollig — Music, Videos &amp; Photos">
+  <meta property="og:description" content="Listen to Mike Bollig's songs, watch the music videos and browse photos.">
+  <meta property="og:image" content="https://steveknowsweb.com/assets/mike-bollig/art/logo.jpg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="/css/tailwind.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Playfair+Display:wght@700&amp;display=swap');
+    body { font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    .mb-player { display:grid; gap:2rem; }
+    @media (min-width:1024px){ .mb-player { grid-template-columns: minmax(0,5fr) minmax(0,7fr); gap:3rem; align-items:start; } .mb-now { position:sticky; top:6rem; } }
+    .mb-art { aspect-ratio:1/1; width:100%; border-radius:1.5rem; object-fit:cover; background:#0f172a; box-shadow:0 20px 50px -20px rgba(15,23,42,.45); }
+    .mb-ctrls { display:flex; align-items:center; justify-content:center; gap:1rem; margin-top:1rem; }
+    .mb-btn { width:3rem; height:3rem; border-radius:9999px; display:inline-flex; align-items:center; justify-content:center; color:#0f172a; background:#f1f5f9; transition:background .2s; }
+    .mb-btn:hover { background:#e2e8f0; }
+    .mb-btn.mb-play { width:4rem; height:4rem; background:#0f172a; color:#fff; font-size:1.25rem; }
+    .mb-btn.mb-play:hover { background:#1e293b; }
+    .mb-btn:focus-visible, .mb-track:focus-visible, .mb-thumb:focus-visible, .mb-seek:focus-visible, .mb-lyrics summary:focus-visible { outline:2px solid #0f172a; outline-offset:3px; }
+    .mb-seek { width:100%; accent-color:#0f172a; height:1.5rem; cursor:pointer; touch-action:none; }
+    .mb-time { display:flex; justify-content:space-between; font-size:.75rem; color:#64748b; font-variant-numeric:tabular-nums; }
+    .mb-list { border-top:1px solid #e2e8f0; }
+    .mb-track { width:100%; display:flex; align-items:center; gap:.875rem; padding:.625rem .75rem; text-align:left; border-bottom:1px solid #f1f5f9; border-radius:.75rem; transition:background .15s; }
+    .mb-track:hover { background:#f8fafc; }
+    .mb-track[aria-current="true"] { background:#f1f5f9; }
+    .mb-track[aria-current="true"] .mb-num { color:#0f172a; font-weight:600; }
+    .mb-track img { width:48px; height:48px; border-radius:.5rem; object-fit:cover; flex:none; }
+    .mb-num { width:1.5rem; font-size:.75rem; color:#94a3b8; font-variant-numeric:tabular-nums; flex:none; }
+    .mb-ttl { flex:1; min-width:0; }
+    .mb-len { font-size:.8rem; color:#64748b; font-variant-numeric:tabular-nums; }
+    .mb-lyrics { border-bottom:1px solid #e2e8f0; }
+    .mb-lyrics summary { cursor:pointer; padding:1rem 0; font-weight:500; list-style:none; display:flex; justify-content:space-between; }
+    .mb-lyrics summary::after { content:"+"; color:#64748b; }
+    .mb-lyrics[open] summary::after { content:"–"; }
+    .mb-lyr-body { padding-bottom:1.5rem; color:#334155; line-height:1.7; font-size:15px; }
+    .mb-lyr-body p { margin-bottom:1rem; }
+    .mb-lyr-tag { font-size:.7rem !important; text-transform:uppercase; letter-spacing:2px; color:#94a3b8; margin-bottom:.25rem !important; }
+    .mb-vgrid { display:grid; gap:2rem; }
+    @media (min-width:768px){ .mb-vgrid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    .mb-vframe { border-radius:1rem; overflow:hidden; background:#020617; aspect-ratio:16/9; }
+    .mb-vframe video { width:100%; height:100%; display:block; background:#020617; }
+    .mb-gal { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.75rem; }
+    @media (min-width:768px){ .mb-gal { grid-template-columns:repeat(4,minmax(0,1fr)); gap:1rem; } }
+    .mb-thumb { display:block; width:100%; aspect-ratio:1/1; border-radius:1rem; overflow:hidden; background:#e2e8f0; }
+    .mb-thumb img { width:100%; height:100%; object-fit:cover; transition:transform .4s; }
+    .mb-thumb:hover img { transform:scale(1.04); }
+    .mb-lb { max-width:100vw; max-height:100vh; width:100vw; height:100vh; margin:0; padding:0; border:0; background:rgba(2,6,23,.94); color:#fff; }
+    .mb-lb[open] { display:flex; align-items:center; justify-content:center; }
+    .mb-lb::backdrop { background:rgba(2,6,23,.6); }
+    .mb-lb img { max-width:92vw; max-height:84vh; object-fit:contain; border-radius:.5rem; }
+    .mb-lb button { position:absolute; width:3rem; height:3rem; border-radius:9999px; background:rgba(255,255,255,.12); color:#fff; display:inline-flex; align-items:center; justify-content:center; }
+    .mb-lb button:hover { background:rgba(255,255,255,.22); }
+    .mb-lb .mb-lb-close { top:1rem; right:1rem; }
+    .mb-lb .mb-lb-prev { left:1rem; top:50%; transform:translateY(-50%); }
+    .mb-lb .mb-lb-next { right:1rem; top:50%; transform:translateY(-50%); }
+    .mb-lb-cap { position:absolute; bottom:1rem; left:0; right:0; text-align:center; font-size:.85rem; color:#cbd5e1; }
+    .mb-hero-img { width:100%; max-width:56rem; border-radius:1.5rem; }
+  </style>
+</head>
+<body class="bg-white text-slate-900">
+
+  <div data-component="nav"></div>
+
+  <main data-motion-page>
+
+  <header class="bg-slate-950 text-white">
+    <div class="max-w-6xl mx-auto px-6 pt-16 pb-16 text-center">
+      <div class="uppercase tracking-[3px] text-xs font-semibold text-slate-400 mb-6">Songs · Videos · Photos</div>
+      <h1 class="sr-only">Mike Bollig</h1>
+      <img src="/assets/mike-bollig/art/logo.webp" alt="Mike Bollig logo" width="1600" height="819" class="mb-hero-img mx-auto" fetchpriority="high">
+      <p class="mt-8 max-w-xl mx-auto text-lg text-slate-300">Folk-rock and country songs with a few EDM versions mixed in. Press play and let it run, or jump to the videos and photos.</p>
+      <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#listen" class="inline-flex items-center justify-center px-8 h-12 rounded-2xl bg-white text-slate-900 font-semibold hover:bg-slate-100 transition"><i class="fa-solid fa-play mr-2" aria-hidden="true"></i>Listen</a>
+        <a href="#videos" class="inline-flex items-center justify-center px-8 h-12 rounded-2xl border border-white/30 text-white font-medium hover:bg-white/10 transition">Watch the videos</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="listen" class="max-w-6xl mx-auto px-6 py-16 scroll-mt-24">
+    <div class="uppercase tracking-[3px] text-xs font-semibold text-slate-500 mb-3">Listen</div>
+    <h2 class="heading-serif text-4xl tracking-tighter leading-none mb-10">18 songs</h2>
+
+    <div class="mb-player" id="mb-player" role="region" aria-label="Mike Bollig music player">
+      <div class="mb-now">
+        <img id="mb-art" class="mb-art" src="/assets/mike-bollig/art/alabama-blood-512.webp" alt="" width="512" height="512">
+        <div class="mt-5 text-center">
+          <div id="mb-title" class="font-semibold text-xl" aria-live="polite">Alabama Blood</div>
+          <div id="mb-ver" class="text-sm text-slate-500 min-h-[1.25rem]"></div>
+        </div>
+        <div class="mt-4">
+          <input id="mb-seek" class="mb-seek" type="range" min="0" max="100" step="0.1" value="0" aria-label="Seek" aria-valuetext="0:00">
+          <div class="mb-time"><span id="mb-cur">0:00</span><span id="mb-dur">0:00</span></div>
+        </div>
+        <div class="mb-ctrls">
+          <button type="button" class="mb-btn" data-mb="prev" aria-label="Previous track"><i class="fa-solid fa-backward-step" aria-hidden="true"></i></button>
+          <button type="button" class="mb-btn mb-play" data-mb="toggle" id="mb-toggle" aria-label="Play"><i class="fa-solid fa-play" aria-hidden="true"></i></button>
+          <button type="button" class="mb-btn" data-mb="next" aria-label="Next track"><i class="fa-solid fa-forward-step" aria-hidden="true"></i></button>
+        </div>
+        <div class="mt-4 text-center"><a id="mb-lyrlink" href="#lyrics" class="text-sm font-medium text-slate-900 hover:underline hidden">Read the lyrics</a></div>
+      </div>
+      <ol class="mb-list" id="mb-list">
+<li><button type="button" class="mb-track" data-mb-track="0" aria-label="Play Alabama Blood"><span class="mb-num" aria-hidden="true">01</span><img src="/assets/mike-bollig/art/alabama-blood-512.webp" alt="" width="48" height="48" loading="lazy" decoding="async"><span class="mb-ttl"><span class="block font-medium text-slate-900">Alabama Blood</span></span><span class="mb-len">2:33</span></button></li>
+<li><button type="button" class="mb-track" data-mb-track="1" aria-label="Play Alabama Blood (EDM Version)"><span class="mb-num" aria-hidden="true">02</span><img src="/assets/mike-bollig/art/alabama-blood-edm-512.webp" alt="" width="48" height="48" loading="lazy" decoding="async"><span class="mb-ttl"><span class="block font-medium text-slate-900">Alabama Blood</span><span class="block text-xs text-slate-500">EDM Version</span></span><span class="mb-len">3:17</span></button></li>
+<li><button type="button" class="mb-track" data-mb-track="2" aria-label="Play Angel Last Night"><span class="mb-num" aria-hidden="true">03</span><img src="/assets/mike-bollig/art/logo.webp" alt="" width="48" height="48" loading="lazy" decoding="async"><span class="mb-ttl"><span class="block font-medium text-slate-900">Angel Last Night</span></span><span class="mb-len">2:43</span></button></li>
+<li><button type="button" class="mb-track" data-mb-track="3" aria-label="Play Anyway"><span class="mb-num" aria-hidden="true">04</span><img src="/assets/mike-bollig/art/anyway-512.webp" alt="" width="48" height="48" loading="lazy" decoding="async"><span class="mb-ttl"><span class="block font-medium text-slate-900">Anyway</span></span><span class="mb-len">3:17</span></button></li>
+<li><button type="button" class="mb-track" data-mb-track="4" aria-label="Play Children of the City"><span class="mb-num" aria-hidden="true">05</span><img src="/assets/mike-bollig/art/children-of-the-city-512.webp" alt="" width="48" height="48" loading="lazy" decoding="async"><span class="mb-ttl"><span class="block font-medium text-slate-900">Children of the City</span></span><span class="mb-len">3:34</span></button></li>
+<li><button type="button" class="mb-track" data-mb-track="5" aria-label="Play Colorado Girl"><span class="mb-num" aria-hidden="true">06</span><img src="/assets/mike-bollig/art/colorado-girl-512.webp" alt="" width="48" height="48" loading="lazy" decoding="async"><span class="mb-ttl"><span class="block font-medium text-slate-900">Colorado Girl</span></span><span class="mb-len">4:03</span></button></li>
+<li><button type="button" class="mb-track" data-mb-track="6" aria-label="Play Dream About You"><span class="mb-num" aria-hidden="true">07</span><img src="/assets/mike-bollig/art/dream-about-you-512.webp" alt="" width="48" height="48" loading="lazy" decoding="async"><span class="mb-ttl"><span class="block font-medium text-slate-900">Dream About You</span></span><span class="mb-len">3:52</span></button></li>
+<li><button type="button" class="mb-track" data-mb-track="7" aria-label="Play Fishin&#x27;"><span class="mb-num" aria-hidden="true">08</span><img src="/assets/mike-bollig/art/fishin-512.webp" alt="" width="48" height="48" loading="lazy" decoding="async"><span class="mb-ttl"><span class="block font-medium text-slate-900">Fishin&#x27;</span></span><span class="mb-len">3:09</span></button></li>
+<li><button type="button" class="mb-track" data-mb-track="8" aria-label="Play Fishin&#x27; (Instrumental)"><span class="mb-num" aria-hidden="true">09</span><img src="/assets/mike-bollig/art/fishin-512.webp" alt="" width="48" height="48" loading="lazy" decoding="async"><span class="mb-ttl"><span class="block font-medium text-slate-900">Fishin&#x27;</span><span class="block text-xs text-slate-500">Instrumental</span></span><span class="mb-len">3:10</span></button></li>
+<li><button type="button" class="mb-track" data-mb-track="9" aria-label="Play Jailbait"><span class="mb-num" aria-hidden="true">10</span><img src="/assets/mike-bollig/art/jailbait-512.webp" alt="" width="48" height="48" loading="lazy" decoding="async"><span class="mb-ttl"><span class="block font-medium text-slate-900">Jailbait</span></span><span class="mb-len">3:51</span></button></li>
+<li><button type="button" class="mb-track" data-mb-track="10" aria-label="Play Mama Talks to Jesus (Country)"><span class="mb-num" aria-hidden="true">11</span><img src="/assets/mike-bollig/art/mama-talks-to-jesus-512.webp" alt="" width="48" height="48" loading="lazy" decoding="async"><span class="mb-ttl"><span class="block font-medium text-slate-900">Mama Talks to Jesus</span><span class="block text-xs text-slate-500">Country</span></span><span class="mb-len">4:22</span></button></li>
+<li><button type="button" class="mb-track" data-mb-track="11" aria-label="Play Mama Talks to Jesus (EDM Version)"><span class="mb-num" aria-hidden="true">12</span><img src="/assets/mike-bollig/art/mama-talks-to-jesus-512.webp" alt="" width="48" height="48" loading="lazy" decoding="async"><span class="mb-ttl"><span class="block font-medium text-slate-900">Mama Talks to Jesus</span><span class="block text-xs text-slate-500">EDM Version</span></span><span class="mb-len">4:28</span></button></li>
+<li><button type="button" class="mb-track" data-mb-track="12" aria-label="Play River (One of a Kind Love)"><span class="mb-num" aria-hidden="true">13</span><img src="/assets/mike-bollig/art/river-one-of-a-kind-love-512.webp" alt="" width="48" height="48" loading="lazy" decoding="async"><span class="mb-ttl"><span class="block font-medium text-slate-900">River (One of a Kind Love)</span></span><span class="mb-len">4:40</span></button></li>
+<li><button type="button" class="mb-track" data-mb-track="13" aria-label="Play Snowfall"><span class="mb-num" aria-hidden="true">14</span><img src="/assets/mike-bollig/art/snowfall-512.webp" alt="" width="48" height="48" loading="lazy" decoding="async"><span class="mb-ttl"><span class="block font-medium text-slate-900">Snowfall</span></span><span class="mb-len">3:48</span></button></li>
+<li><button type="button" class="mb-track" data-mb-track="14" aria-label="Play Soda J."><span class="mb-num" aria-hidden="true">15</span><img src="/assets/mike-bollig/art/soda-j-512.webp" alt="" width="48" height="48" loading="lazy" decoding="async"><span class="mb-ttl"><span class="block font-medium text-slate-900">Soda J.</span></span><span class="mb-len">1:16</span></button></li>
+<li><button type="button" class="mb-track" data-mb-track="15" aria-label="Play Soda J. (Extended Version)"><span class="mb-num" aria-hidden="true">16</span><img src="/assets/mike-bollig/art/soda-j-extended-512.webp" alt="" width="48" height="48" loading="lazy" decoding="async"><span class="mb-ttl"><span class="block font-medium text-slate-900">Soda J.</span><span class="block text-xs text-slate-500">Extended Version</span></span><span class="mb-len">4:04</span></button></li>
+<li><button type="button" class="mb-track" data-mb-track="16" aria-label="Play Soda J. (EDM Version)"><span class="mb-num" aria-hidden="true">17</span><img src="/assets/mike-bollig/art/soda-j-edm-512.webp" alt="" width="48" height="48" loading="lazy" decoding="async"><span class="mb-ttl"><span class="block font-medium text-slate-900">Soda J.</span><span class="block text-xs text-slate-500">EDM Version</span></span><span class="mb-len">2:12</span></button></li>
+<li><button type="button" class="mb-track" data-mb-track="17" aria-label="Play Stay a While"><span class="mb-num" aria-hidden="true">18</span><img src="/assets/mike-bollig/art/stay-a-while-512.webp" alt="" width="48" height="48" loading="lazy" decoding="async"><span class="mb-ttl"><span class="block font-medium text-slate-900">Stay a While</span></span><span class="mb-len">4:03</span></button></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="videos" class="bg-slate-50 py-16 scroll-mt-16">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="uppercase tracking-[3px] text-xs font-semibold text-slate-500 mb-3">Watch</div>
+      <h2 class="heading-serif text-4xl tracking-tighter leading-none mb-10">Music videos</h2>
+      <div class="mb-vgrid">
+<figure class="mb-video"><div class="mb-vframe"><video controls playsinline preload="none" poster="/assets/mike-bollig/video/alabama-blood.webp" width="1280" height="720" aria-label="Alabama Blood music video"><source src="/assets/mike-bollig/video/alabama-blood.mp4" type="video/mp4"></video></div><figcaption class="mt-3 font-medium text-slate-900">Alabama Blood</figcaption></figure>
+<figure class="mb-video"><div class="mb-vframe"><video controls playsinline preload="none" poster="/assets/mike-bollig/video/anyway.webp" width="1280" height="720" aria-label="Anyway music video"><source src="/assets/mike-bollig/video/anyway.mp4" type="video/mp4"></video></div><figcaption class="mt-3 font-medium text-slate-900">Anyway</figcaption></figure>
+<figure class="mb-video"><div class="mb-vframe"><video controls playsinline preload="none" poster="/assets/mike-bollig/video/children-of-the-city.webp" width="1280" height="720" aria-label="Children of the City music video"><source src="/assets/mike-bollig/video/children-of-the-city.mp4" type="video/mp4"></video></div><figcaption class="mt-3 font-medium text-slate-900">Children of the City</figcaption></figure>
+<figure class="mb-video"><div class="mb-vframe"><video controls playsinline preload="none" poster="/assets/mike-bollig/video/colorado-girl.webp" width="1280" height="720" aria-label="Colorado Girl music video"><source src="/assets/mike-bollig/video/colorado-girl.mp4" type="video/mp4"></video></div><figcaption class="mt-3 font-medium text-slate-900">Colorado Girl</figcaption></figure>
+<figure class="mb-video"><div class="mb-vframe"><video controls playsinline preload="none" poster="/assets/mike-bollig/video/dream-about-you.webp" width="1280" height="720" aria-label="Dream About You music video"><source src="/assets/mike-bollig/video/dream-about-you.mp4" type="video/mp4"></video></div><figcaption class="mt-3 font-medium text-slate-900">Dream About You</figcaption></figure>
+<figure class="mb-video"><div class="mb-vframe"><video controls playsinline preload="none" poster="/assets/mike-bollig/video/fishin.webp" width="1280" height="720" aria-label="Fishin&#x27; music video"><source src="/assets/mike-bollig/video/fishin.mp4" type="video/mp4"></video></div><figcaption class="mt-3 font-medium text-slate-900">Fishin&#x27;</figcaption></figure>
+<figure class="mb-video"><div class="mb-vframe"><video controls playsinline preload="none" poster="/assets/mike-bollig/video/jailbait.webp" width="1280" height="720" aria-label="Jailbait music video"><source src="/assets/mike-bollig/video/jailbait.mp4" type="video/mp4"></video></div><figcaption class="mt-3 font-medium text-slate-900">Jailbait</figcaption></figure>
+<figure class="mb-video"><div class="mb-vframe"><video controls playsinline preload="none" poster="/assets/mike-bollig/video/mama-talks-to-jesus.webp" width="1280" height="720" aria-label="Mama Talks to Jesus music video"><source src="/assets/mike-bollig/video/mama-talks-to-jesus.mp4" type="video/mp4"></video></div><figcaption class="mt-3 font-medium text-slate-900">Mama Talks to Jesus</figcaption></figure>
+<figure class="mb-video"><div class="mb-vframe"><video controls playsinline preload="none" poster="/assets/mike-bollig/video/river-one-of-a-kind-love.webp" width="1280" height="720" aria-label="River (One of a Kind Love) music video"><source src="/assets/mike-bollig/video/river-one-of-a-kind-love.mp4" type="video/mp4"></video></div><figcaption class="mt-3 font-medium text-slate-900">River (One of a Kind Love)</figcaption></figure>
+<figure class="mb-video"><div class="mb-vframe"><video controls playsinline preload="none" poster="/assets/mike-bollig/video/snowfall.webp" width="1280" height="720" aria-label="Snowfall music video"><source src="/assets/mike-bollig/video/snowfall.mp4" type="video/mp4"></video></div><figcaption class="mt-3 font-medium text-slate-900">Snowfall</figcaption></figure>
+<figure class="mb-video"><div class="mb-vframe"><video controls playsinline preload="none" poster="/assets/mike-bollig/video/soda-j.webp" width="1280" height="720" aria-label="Soda J. music video"><source src="/assets/mike-bollig/video/soda-j.mp4" type="video/mp4"></video></div><figcaption class="mt-3 font-medium text-slate-900">Soda J.</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="photos" class="max-w-6xl mx-auto px-6 py-16 scroll-mt-16">
+    <div class="uppercase tracking-[3px] text-xs font-semibold text-slate-500 mb-3">Photos</div>
+    <h2 class="heading-serif text-4xl tracking-tighter leading-none mb-10">On stage, off stage &amp; the cover art</h2>
+    <ul class="mb-gal" id="mb-gal">
+<li><button type="button" class="mb-thumb" data-mb-photo="0" data-full="/assets/mike-bollig/photos/mike-bollig-live-1600.webp" aria-label="View larger: Mike Bollig on stage"><img src="/assets/mike-bollig/photos/mike-bollig-live-640.webp" alt="Mike Bollig on stage" loading="lazy" decoding="async"></button></li>
+<li><button type="button" class="mb-thumb" data-mb-photo="1" data-full="/assets/mike-bollig/photos/live-band-1600.webp" aria-label="View larger: Mike Bollig playing live with the band"><img src="/assets/mike-bollig/photos/live-band-640.webp" alt="Mike Bollig playing live with the band" loading="lazy" decoding="async"></button></li>
+<li><button type="button" class="mb-thumb" data-mb-photo="2" data-full="/assets/mike-bollig/photos/mike-on-stage-1600.webp" aria-label="View larger: Mike Bollig singing with his acoustic guitar"><img src="/assets/mike-bollig/photos/mike-on-stage-640.webp" alt="Mike Bollig singing with his acoustic guitar" loading="lazy" decoding="async"></button></li>
+<li><button type="button" class="mb-thumb" data-mb-photo="3" data-full="/assets/mike-bollig/photos/mike-standing-1600.webp" aria-label="View larger: Mike Bollig outdoors"><img src="/assets/mike-bollig/photos/mike-standing-640.webp" alt="Mike Bollig outdoors" loading="lazy" decoding="async"></button></li>
+<li><button type="button" class="mb-thumb" data-mb-photo="4" data-full="/assets/mike-bollig/photos/friends-1600.webp" aria-label="View larger: Mike Bollig with friends"><img src="/assets/mike-bollig/photos/friends-640.webp" alt="Mike Bollig with friends" loading="lazy" decoding="async"></button></li>
+<li><button type="button" class="mb-thumb" data-mb-photo="5" data-full="/assets/mike-bollig/photos/mike-and-friend-1600.webp" aria-label="View larger: Mike Bollig outdoors with a friend and a dog"><img src="/assets/mike-bollig/photos/mike-and-friend-640.webp" alt="Mike Bollig outdoors with a friend and a dog" loading="lazy" decoding="async"></button></li>
+<li><button type="button" class="mb-thumb" data-mb-photo="6" data-full="/assets/mike-bollig/photos/backstage-1600.webp" aria-label="View larger: Mike Bollig with friends at a gathering"><img src="/assets/mike-bollig/photos/backstage-640.webp" alt="Mike Bollig with friends at a gathering" loading="lazy" decoding="async"></button></li>
+<li><button type="button" class="mb-thumb" data-mb-photo="7" data-full="/assets/mike-bollig/photos/mike-candid-1600.webp" aria-label="View larger: A candid moment with Mike Bollig"><img src="/assets/mike-bollig/photos/mike-candid-640.webp" alt="A candid moment with Mike Bollig" loading="lazy" decoding="async"></button></li>
+<li><button type="button" class="mb-thumb" data-mb-photo="8" data-full="/assets/mike-bollig/photos/mike-portrait-1600.webp" aria-label="View larger: Mike Bollig portrait"><img src="/assets/mike-bollig/photos/mike-portrait-640.webp" alt="Mike Bollig portrait" loading="lazy" decoding="async"></button></li>
+<li><button type="button" class="mb-thumb" data-mb-photo="9" data-full="/assets/mike-bollig/art/anyway-1400.webp" aria-label="View larger: Anyway cover art"><img src="/assets/mike-bollig/art/anyway-512.webp" alt="Anyway cover art" loading="lazy" decoding="async"></button></li>
+<li><button type="button" class="mb-thumb" data-mb-photo="10" data-full="/assets/mike-bollig/art/jailbait-1400.webp" aria-label="View larger: Jailbait cover art"><img src="/assets/mike-bollig/art/jailbait-512.webp" alt="Jailbait cover art" loading="lazy" decoding="async"></button></li>
+<li><button type="button" class="mb-thumb" data-mb-photo="11" data-full="/assets/mike-bollig/art/fishin-1400.webp" aria-label="View larger: Fishin&#x27; cover art"><img src="/assets/mike-bollig/art/fishin-512.webp" alt="Fishin&#x27; cover art" loading="lazy" decoding="async"></button></li>
+<li><button type="button" class="mb-thumb" data-mb-photo="12" data-full="/assets/mike-bollig/art/colorado-girl-1400.webp" aria-label="View larger: Colorado Girl cover art"><img src="/assets/mike-bollig/art/colorado-girl-512.webp" alt="Colorado Girl cover art" loading="lazy" decoding="async"></button></li>
+<li><button type="button" class="mb-thumb" data-mb-photo="13" data-full="/assets/mike-bollig/art/snowfall-1400.webp" aria-label="View larger: Snowfall cover art"><img src="/assets/mike-bollig/art/snowfall-512.webp" alt="Snowfall cover art" loading="lazy" decoding="async"></button></li>
+<li><button type="button" class="mb-thumb" data-mb-photo="14" data-full="/assets/mike-bollig/art/snowfall-2-1400.webp" aria-label="View larger: Snowfall cover art"><img src="/assets/mike-bollig/art/snowfall-2-512.webp" alt="Snowfall cover art" loading="lazy" decoding="async"></button></li>
+<li><button type="button" class="mb-thumb" data-mb-photo="15" data-full="/assets/mike-bollig/art/children-of-the-city-1400.webp" aria-label="View larger: Children of the City cover art"><img src="/assets/mike-bollig/art/children-of-the-city-512.webp" alt="Children of the City cover art" loading="lazy" decoding="async"></button></li>
+<li><button type="button" class="mb-thumb" data-mb-photo="16" data-full="/assets/mike-bollig/art/dream-about-you-1400.webp" aria-label="View larger: Dream About You cover art"><img src="/assets/mike-bollig/art/dream-about-you-512.webp" alt="Dream About You cover art" loading="lazy" decoding="async"></button></li>
+<li><button type="button" class="mb-thumb" data-mb-photo="17" data-full="/assets/mike-bollig/art/river-one-of-a-kind-love-1400.webp" aria-label="View larger: River (One of a Kind Love) cover art"><img src="/assets/mike-bollig/art/river-one-of-a-kind-love-512.webp" alt="River (One of a Kind Love) cover art" loading="lazy" decoding="async"></button></li>
+<li><button type="button" class="mb-thumb" data-mb-photo="18" data-full="/assets/mike-bollig/art/mama-talks-to-jesus-1400.webp" aria-label="View larger: Mama Talks to Jesus cover art"><img src="/assets/mike-bollig/art/mama-talks-to-jesus-512.webp" alt="Mama Talks to Jesus cover art" loading="lazy" decoding="async"></button></li>
+<li><button type="button" class="mb-thumb" data-mb-photo="19" data-full="/assets/mike-bollig/art/alabama-blood-1400.webp" aria-label="View larger: Alabama Blood cover art"><img src="/assets/mike-bollig/art/alabama-blood-512.webp" alt="Alabama Blood cover art" loading="lazy" decoding="async"></button></li>
+<li><button type="button" class="mb-thumb" data-mb-photo="20" data-full="/assets/mike-bollig/art/alabama-blood-edm-1400.webp" aria-label="View larger: Alabama Blood (EDM Version) cover art"><img src="/assets/mike-bollig/art/alabama-blood-edm-512.webp" alt="Alabama Blood (EDM Version) cover art" loading="lazy" decoding="async"></button></li>
+<li><button type="button" class="mb-thumb" data-mb-photo="21" data-full="/assets/mike-bollig/art/soda-j-1400.webp" aria-label="View larger: Soda J. cover art"><img src="/assets/mike-bollig/art/soda-j-512.webp" alt="Soda J. cover art" loading="lazy" decoding="async"></button></li>
+<li><button type="button" class="mb-thumb" data-mb-photo="22" data-full="/assets/mike-bollig/art/soda-j-extended-1400.webp" aria-label="View larger: Soda J. (Extended Version) cover art"><img src="/assets/mike-bollig/art/soda-j-extended-512.webp" alt="Soda J. (Extended Version) cover art" loading="lazy" decoding="async"></button></li>
+<li><button type="button" class="mb-thumb" data-mb-photo="23" data-full="/assets/mike-bollig/art/soda-j-edm-1400.webp" aria-label="View larger: Soda J. (EDM Version) cover art"><img src="/assets/mike-bollig/art/soda-j-edm-512.webp" alt="Soda J. (EDM Version) cover art" loading="lazy" decoding="async"></button></li>
+<li><button type="button" class="mb-thumb" data-mb-photo="24" data-full="/assets/mike-bollig/art/anyway-alt-1400.webp" aria-label="View larger: Anyway cover art"><img src="/assets/mike-bollig/art/anyway-alt-512.webp" alt="Anyway cover art" loading="lazy" decoding="async"></button></li>
+<li><button type="button" class="mb-thumb" data-mb-photo="25" data-full="/assets/mike-bollig/art/stay-a-while-1400.webp" aria-label="View larger: Stay a While cover art"><img src="/assets/mike-bollig/art/stay-a-while-512.webp" alt="Stay a While cover art" loading="lazy" decoding="async"></button></li>
+<li><button type="button" class="mb-thumb" data-mb-photo="26" data-full="/assets/mike-bollig/art/stay-a-while-2-1400.webp" aria-label="View larger: Stay a While cover art"><img src="/assets/mike-bollig/art/stay-a-while-2-512.webp" alt="Stay a While cover art" loading="lazy" decoding="async"></button></li>
+    </ul>
+  </section>
+
+  <section id="lyrics" class="border-t border-slate-100 py-16 scroll-mt-16">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="uppercase tracking-[3px] text-xs font-semibold text-slate-500 mb-3">Lyrics</div>
+      <h2 class="heading-serif text-4xl tracking-tighter leading-none mb-8">Sing along</h2>
+<details class="mb-lyrics" id="lyrics-alabama-blood"><summary>Alabama Blood</summary><div class="mb-lyr-body"><p class="text-xs uppercase tracking-[2px] text-slate-500">Written by Charlie Pavese</p><p class="mb-lyr-tag">Verse 1</p>
+<p>Was that I see in a far away distance<br>Looks like the moon is turning red<br>Future contrabands, hard to understand<br>The voices echo in my head</p>
+<p class="mb-lyr-tag">Chorus</p>
+<p>Misses his Alabama blood<br>Flowing through my veins<br>Keeps me on my toes<br>Shelters me from the rain<br>It&#x27;s this Alabama blood<br>Flowing through my veins<br>Keeps me on my toes<br>Shelters me from the rain</p>
+<p class="mb-lyr-tag">Verse 2</p>
+<p>Was that I hear, whispering through the trees<br>Must be the piper calling me<br>Leftover memories, hard not easy to erase<br>So refreshing to be free</p>
+<p class="mb-lyr-tag">Chorus</p>
+<p>It&#x27;s this Alabama blood<br>Flowing through my veins<br>Keeps me on my toes<br>Shelters me from the rain<br>It&#x27;s this Alabama blood<br>Flowing through my veins<br>Keeps me on my toes<br>Shelters me from the rain</p></div></details>
+<details class="mb-lyrics" id="lyrics-children-of-the-city"><summary>Children of the City</summary><div class="mb-lyr-body"><p class="mb-lyr-tag">Verse 1</p>
+<p>Mom and dad were country folks<br>Lived on in the city<br>They never really lost their simple ways<br>Dad took a job in a factory<br>Deep inside the city<br>The work got harder every day</p>
+<p class="mb-lyr-tag">Chorus</p>
+<p>And then big sis is to keep along<br>Followed by three brothers<br>Now mom&#x27;s mouths to feed<br>Bills to pay<br>And then sending the kids to school<br>So they can learn how to grow up in the city<br>Till it&#x27;s taken his own life away</p>
+<p class="mb-lyr-tag">Verse 2</p>
+<p>And years went by and the family grew<br>Lived on in the city<br>Mom and dad don&#x27;t know what to do<br>Strangers in the city<br>Except to watch the kids<br>Act like their city friends do<br>Children of the city<br>Children of this city</p>
+<p class="mb-lyr-tag">Chorus</p>
+<p>When dad goes into an early grave<br>Going to blame it on the city<br>Well I hate to see it coming that way<br>Well, you know he went down working<br>Guess there&#x27;s something some folks don&#x27;t remember<br>Well, daddy going to take that emptiness away</p>
+<p class="mb-lyr-tag">Verse 3</p>
+<p>Little brother took a job in the factory<br>Deep inside the city<br>He&#x27;s searching, searching for a better way<br>To just get to feed his family<br>Got to get them to the city<br>And the work keeps getting harder every day<br>You know the work keeps getting harder<br>With every passing day</p></div></details>
+<details class="mb-lyrics" id="lyrics-dream-about-you"><summary>Dream About You</summary><div class="mb-lyr-body"><p class="mb-lyr-tag">Verse 1</p>
+<p>When I&#x27;m sitting at home, sitting alone<br>I like to turn the music on home<br>Turn down the lights, close my eyes and dream about you<br>When I finally find the time to unwind<br>Take the hassles out of my mind<br>I like to kick off my shoes, kick off the blues and dream about you</p>
+<p class="mb-lyr-tag">Chorus</p>
+<p>When I dream about you, there&#x27;s only good times<br>Mellow and sweet, just like a good wine<br>I dream about picnics in the country<br>Holding your hand and little babies, too<br>There&#x27;s no place my mind don&#x27;t wander<br>When I dream about you</p>
+<p class="mb-lyr-tag">Verse 2</p>
+<p>I like to play my guitar, stay out of the bar<br>Cause that&#x27;s not where my good times are<br>And he knew honky tonki, so let me make my dreams come true<br>Cause I&#x27;ll go out in the yard, look up at the stars<br>Maybe have a wild-looking mood<br>And I&#x27;ll pick out a song that&#x27;s been for very long<br>I&#x27;ll be dreaming about you</p>
+<p class="mb-lyr-tag">Chorus</p>
+<p>When I dream about you, there&#x27;s only good times<br>Mellow and sweet, just like a good wine<br>I dream about picnics in the country<br>Holding your hand and little babies, too<br>There&#x27;s no place my mind don&#x27;t wander<br>When I dream about you</p>
+<p class="mb-lyr-tag">Chorus</p>
+<p>When I dream about you, there&#x27;s only good times<br>Mellow and sweet, just like a good wine<br>I dream about picnics in the country<br>Holding your hand and little babies, too<br>There&#x27;s no place my mind don&#x27;t wander<br>When I dream about you</p>
+<p class="mb-lyr-tag">Chorus</p>
+<p>When I dream about you, there&#x27;s only good times<br>Mellow and sweet, just like a good wine<br>I dream about picnics in the country<br>Holding your hand and little babies, too<br>There&#x27;s no place my mind don&#x27;t wander<br>When I dream about you<br>When I dream about you</p></div></details>
+<details class="mb-lyrics" id="lyrics-fishin"><summary>Fishin&#x27;</summary><div class="mb-lyr-body"><p class="mb-lyr-tag">Verse</p>
+<p>I don&#x27;t know if I&#x27;m a real musician<br>I can play a few good songs<br>Last night I dreamed we went fishin&#x27;<br>Bobby Jackson came along<br>We sat there till the sun went down<br>Didn&#x27;t catch a single thing<br>Headed home with empty buckets<br>When I heard old Jackson sing</p>
+<p class="mb-lyr-tag">Chorus</p>
+<p>Next time we go fishin&#x27;<br>I&#x27;m bringin&#x27; my guitar<br>Gonna sing them old Pop Jackson songs<br>Right off the sandbar<br>If the fish won&#x27;t take a worm<br>Maybe they&#x27;ll take a song<br>And when I die, I&#x27;m goin&#x27; to heaven<br>If I ain&#x27;t gone fishin&#x27;</p>
+<p class="mb-lyr-tag">Verse 2</p>
+<p>Next mornin&#x27;, crack of dawn<br>Bobby&#x27;s knockin&#x27; on my door<br>I rubbed my eyes and told him plain<br>I ain&#x27;t fishin&#x27; no more<br>His jaw hit the floor<br>He kept pokin&#x27; my arm<br>Said man what&#x27;s the harm<br>I know a hole so hot<br>You can catch &#x27;em without bait<br>Well he finally got his way</p>
+<p class="mb-lyr-tag">Chorus</p>
+<p>Next time we go fishin&#x27;<br>I&#x27;m bringin&#x27; my guitar<br>Gonna sing them old Pop Jackson songs<br>Right off the sandbar<br>If the fish won&#x27;t take a worm<br>Maybe they&#x27;ll take a song<br>And when I die, I&#x27;m goin&#x27; to heaven<br>If I ain&#x27;t gone fishin&#x27;</p>
+<p class="mb-lyr-tag">Bridge</p>
+<p>The only fish we got all day<br>Were the ones that got away<br>But Jackson swears them old songs<br>Can call &#x27;em back someday</p>
+<p class="mb-lyr-tag">Chorus</p>
+<p>Next time we go fishin&#x27;<br>I&#x27;m bringin&#x27; my guitar<br>Gonna sing them old Pop Jackson songs<br>Right off the sandbar<br>If the fish won&#x27;t take a worm<br>Maybe they&#x27;ll take a song<br>And when I die, I&#x27;m goin&#x27; to heaven<br>If I ain&#x27;t gone fishin&#x27;</p>
+<p class="mb-lyr-tag">Outro</p>
+<p>If I ain&#x27;t gone fishin&#x27;</p></div></details>
+<details class="mb-lyrics" id="lyrics-jailbait"><summary>Jailbait</summary><div class="mb-lyr-body"><p class="mb-lyr-tag">Verse 1</p>
+<p>Now I was drivin&#x27; my Chevy down the street<br>I lost my breath, my heart skipped a beat<br>Lord, and now, mama, I thought it was a movie star<br>Sure was sweet, about seventeen<br>Her legs were long and her shape was mean<br>I took one look at her in my conscience said &quot;Don&#x27;t do it&quot;<br>Well, I saw her again in the rearview mirror<br>And I throwed the transmission down a second gear<br>I put on the brakes and the devil said &quot;Go to it&quot;<br>Well, I&#x27;m runnin&#x27; round jail bait again<br>I had lots of people tell me it&#x27;s a sin<br>Ooh, they look so bad &#x27;cause this game never win<br>I&#x27;m runnin&#x27; round jail bait again</p>
+<p class="mb-lyr-tag">Verse 2</p>
+<p>She showed me some leg as she hopped in the car<br>And she asked me to take her to the liquor store<br>Right then and there, I knowed what was on her mind<br>Well, I snuck me a look, the hammer of regrets<br>My mind said no, but my eyes said yes<br>And then she blew in my ear and said &quot;Buy me a bottle of wine&quot;<br>Well, I&#x27;m runnin&#x27; round jail bait again<br>I had lots of people tell me it&#x27;s a sin<br>Ooh, they look so bank &#x27;cause this game never win<br>I&#x27;m runnin&#x27; round jail bait again</p>
+<p class="mb-lyr-tag">Verse 3</p>
+<p>Wheels hittin&#x27; park cars up and down the street<br>The local policeman that was poundin&#x27; the beat<br>Pulled us over and demanded some ID cards<br>He whipped out his pencil, filled up his pad<br>Radio the station to call a girl&#x27;s dad<br>And I somehow felt he was gon&#x27; take this rather hard<br>And then he said, &quot;Hey, boy, come here, boy<br>You&#x27;ve been runnin&#x27; round that jail bait again<br>Didn&#x27;t your mama never tell you, boy, that there&#x27;s a sin?<br>I told you what&#x27;s gon&#x27; happen if I caught your ass again&quot;<br>You&#x27;d be manufacturin&#x27; license plates out of tin<br>Oh, yeah, now I gotcha, you little horn-eared city slicker<br>Hippie freak, I caught you with the goods<br>Aw, I win</p>
+<p class="mb-lyr-tag">Outro</p>
+<p>You&#x27;re gonna be in trouble now, boy<br>You&#x27;re on my pace and attention on this final verse<br>You know this boy&#x27;s luck just took a turn for the worst<br>On account the county judge just turned me on to fifteen years<br>Fifteen years, can you imagine?<br>Fifteen long hard years<br>Bustin&#x27; big rocks up into little ones<br>Kind of makes a fellow seriously think about wanting to go insane</p></div></details>
+<details class="mb-lyrics" id="lyrics-river-one-of-a-kind-love"><summary>River (One of a Kind Love)</summary><div class="mb-lyr-body"><p class="mb-lyr-tag">Intro</p>
+<p class="mb-lyr-tag">Verse 1</p>
+<p>Last night you told me you love me<br>Under a lover&#x27;s sky<br>Tonight you don&#x27;t even remember<br>And here I am wondering why<br>Was it something I said<br>Is that how you are<br>Just crazy and loose for no other excuse than to have a good time<br>Get out of my heart<br>And be on your way<br>There&#x27;s so much in loving and too much in living<br>To waste it away</p>
+<p class="mb-lyr-tag">Chorus</p>
+<p>For love is a river<br>That never runs dry<br>For as many a day and as many a night<br>As the stars in the sky<br>Life is a diamond<br>On a solid gold ring<br>When two people find love, a one-of-a-kind love<br>It&#x27;s a beautiful thing</p>
+<p class="mb-lyr-tag">Verse 2</p>
+<p>Tonight he might tell you he loves you<br>Under a lover&#x27;s sky<br>Tomorrow night he won&#x27;t remember<br>And there you are wondering why<br>Was it something you said<br>Is that how he is<br>Just crazy and loose for no other excuse than to mess with your head<br>He&#x27;s stealing your heart<br>And going astray<br>He&#x27;s stealing your loving and stealing your living<br>And stealing away</p>
+<p class="mb-lyr-tag">Chorus</p>
+<p>For love is a river<br>That never runs dry<br>For as many a day and as many a night<br>As the stars in the sky<br>Life is a diamond<br>On a solid gold ring<br>When two people find love, a one-of-a-kind love<br>It&#x27;s a beautiful thing</p>
+<p class="mb-lyr-tag">Bridge</p>
+<p>Love is a river<br>That never runs dry</p>
+<p class="mb-lyr-tag">Final chorus</p>
+<p>For love is a river<br>That never runs dry<br>For as many a day and as many a night<br>As the stars in the sky<br>Life is a diamond<br>On a solid gold ring<br>When two people find love, a one-of-a-kind love<br>It&#x27;s a beautiful thing</p>
+<p class="mb-lyr-tag">Outro</p>
+<p>It&#x27;s a beautiful thing</p></div></details>
+<details class="mb-lyrics" id="lyrics-soda-j"><summary>Soda J.</summary><div class="mb-lyr-body"><p class="mb-lyr-tag">Verse 1</p>
+<p>Soda J. Poolstick was his name<br>Last pop and eat ball was his game<br>He was bigger than the hills<br>Of South Dakota</p>
+<p class="mb-lyr-tag">Verse 2</p>
+<p>Soda never had no time for a wife<br>Cause his best friends, his favorite things in life<br>Was last pop and eight ball<br>Deep fried chicken wings and soda</p>
+<p class="mb-lyr-tag">Chorus</p>
+<p>Soda, Lord, now<br>Soda J., Soda J. Poolstick<br>Bigger than the Black Mountain hills</p>
+<p class="mb-lyr-tag">Outro</p>
+<p>Soda J., Soda J., Soda J.<br>Soda J., Soda J., Poolstick</p></div></details>
+    </div>
+  </section>
+
+  <dialog class="mb-lb" id="mb-lb" aria-label="Photo viewer" data-lenis-prevent>
+    <img id="mb-lb-img" src="data:," alt="">
+    <div class="mb-lb-cap" id="mb-lb-cap"></div>
+    <button type="button" class="mb-lb-prev" data-mb="lb-prev" aria-label="Previous photo"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+    <button type="button" class="mb-lb-next" data-mb="lb-next" aria-label="Next photo"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+    <button type="button" class="mb-lb-close" data-mb="lb-close" aria-label="Close"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+  </dialog>
+
+  </main>
+
+  <footer class="border-t border-slate-100 py-8">
+    <div class="max-w-6xl mx-auto px-6 text-sm text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-y-2">
+      <div>© Mike Bollig. Site by Steve Luiting.</div>
+      <div class="flex gap-x-5">
+        <a href="/" class="hover:text-slate-700">Home</a>
+        <a href="/blog/" class="hover:text-slate-700">Insights</a>
+        <a href="https://www.linkedin.com/in/luiting" target="_blank" rel="noopener" class="hover:text-slate-700">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  (function () {
+    var TRACKS = [{"src": "/assets/mike-bollig/audio/alabama-blood.mp3", "title": "Alabama Blood", "version": "", "art": "/assets/mike-bollig/art/alabama-blood-512.webp", "dur": 153.2, "lyrics": "lyrics-alabama-blood"}, {"src": "/assets/mike-bollig/audio/alabama-blood-edm.mp3", "title": "Alabama Blood", "version": "EDM Version", "art": "/assets/mike-bollig/art/alabama-blood-edm-512.webp", "dur": 197.2, "lyrics": "lyrics-alabama-blood"}, {"src": "/assets/mike-bollig/audio/angel-last-night.mp3", "title": "Angel Last Night", "version": "", "art": "/assets/mike-bollig/art/logo.webp", "dur": 162.7, "lyrics": ""}, {"src": "/assets/mike-bollig/audio/anyway.mp3", "title": "Anyway", "version": "", "art": "/assets/mike-bollig/art/anyway-512.webp", "dur": 197.2, "lyrics": ""}, {"src": "/assets/mike-bollig/audio/children-of-the-city.mp3", "title": "Children of the City", "version": "", "art": "/assets/mike-bollig/art/children-of-the-city-512.webp", "dur": 213.9, "lyrics": "lyrics-children-of-the-city"}, {"src": "/assets/mike-bollig/audio/colorado-girl.mp3", "title": "Colorado Girl", "version": "", "art": "/assets/mike-bollig/art/colorado-girl-512.webp", "dur": 242.8, "lyrics": ""}, {"src": "/assets/mike-bollig/audio/dream-about-you.mp3", "title": "Dream About You", "version": "", "art": "/assets/mike-bollig/art/dream-about-you-512.webp", "dur": 232.0, "lyrics": "lyrics-dream-about-you"}, {"src": "/assets/mike-bollig/audio/fishin.mp3", "title": "Fishin'", "version": "", "art": "/assets/mike-bollig/art/fishin-512.webp", "dur": 189.2, "lyrics": "lyrics-fishin"}, {"src": "/assets/mike-bollig/audio/fishin-instrumental.mp3", "title": "Fishin'", "version": "Instrumental", "art": "/assets/mike-bollig/art/fishin-512.webp", "dur": 190.0, "lyrics": ""}, {"src": "/assets/mike-bollig/audio/jailbait.mp3", "title": "Jailbait", "version": "", "art": "/assets/mike-bollig/art/jailbait-512.webp", "dur": 230.5, "lyrics": "lyrics-jailbait"}, {"src": "/assets/mike-bollig/audio/mama-talks-to-jesus-country.mp3", "title": "Mama Talks to Jesus", "version": "Country", "art": "/assets/mike-bollig/art/mama-talks-to-jesus-512.webp", "dur": 262.0, "lyrics": ""}, {"src": "/assets/mike-bollig/audio/mama-talks-to-jesus-edm.mp3", "title": "Mama Talks to Jesus", "version": "EDM Version", "art": "/assets/mike-bollig/art/mama-talks-to-jesus-512.webp", "dur": 268.4, "lyrics": ""}, {"src": "/assets/mike-bollig/audio/river-one-of-a-kind-love.mp3", "title": "River (One of a Kind Love)", "version": "", "art": "/assets/mike-bollig/art/river-one-of-a-kind-love-512.webp", "dur": 280.0, "lyrics": "lyrics-river-one-of-a-kind-love"}, {"src": "/assets/mike-bollig/audio/snowfall.mp3", "title": "Snowfall", "version": "", "art": "/assets/mike-bollig/art/snowfall-512.webp", "dur": 228.0, "lyrics": ""}, {"src": "/assets/mike-bollig/audio/soda-j.mp3", "title": "Soda J.", "version": "", "art": "/assets/mike-bollig/art/soda-j-512.webp", "dur": 76.0, "lyrics": "lyrics-soda-j"}, {"src": "/assets/mike-bollig/audio/soda-j-extended.mp3", "title": "Soda J.", "version": "Extended Version", "art": "/assets/mike-bollig/art/soda-j-extended-512.webp", "dur": 243.6, "lyrics": "lyrics-soda-j"}, {"src": "/assets/mike-bollig/audio/soda-j-edm.mp3", "title": "Soda J.", "version": "EDM Version", "art": "/assets/mike-bollig/art/soda-j-edm-512.webp", "dur": 132.4, "lyrics": "lyrics-soda-j"}, {"src": "/assets/mike-bollig/audio/stay-a-while.mp3", "title": "Stay a While", "version": "", "art": "/assets/mike-bollig/art/stay-a-while-512.webp", "dur": 242.8, "lyrics": ""}];
+    var audio = new Audio(); audio.preload = 'none';
+    var idx = 0, seeking = false;
+    var $ = function (id) { return document.getElementById(id); };
+    function fmt(s) { if (!isFinite(s) || s < 0) s = 0; s = Math.floor(s); return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); }
+    function pauseVideos(except) { document.querySelectorAll('video').forEach(function (v) { if (v !== except && !v.paused) v.pause(); }); }
+    function render() {
+      var t = TRACKS[idx]; if (!$('mb-title')) return;
+      $('mb-title').textContent = t.title; $('mb-ver').textContent = t.version || '';
+      $('mb-art').src = t.art; $('mb-art').alt = t.title + ' cover art';
+      $('mb-dur').textContent = fmt(audio.duration || t.dur);
+      var l = $('mb-lyrlink'); if (t.lyrics) { l.href = '#' + t.lyrics; l.classList.remove('hidden'); } else l.classList.add('hidden');
+      document.querySelectorAll('[data-mb-track]').forEach(function (b) { b.setAttribute('aria-current', +b.dataset.mbTrack === idx ? 'true' : 'false'); });
+      var playing = !audio.paused;
+      var tg = $('mb-toggle'); tg.setAttribute('aria-label', playing ? 'Pause' : 'Play');
+      tg.innerHTML = '<i class="fa-solid ' + (playing ? 'fa-pause' : 'fa-play') + '" aria-hidden="true"></i>';
+      if ('mediaSession' in navigator) { try { navigator.mediaSession.metadata = new MediaMetadata({ title: t.title + (t.version ? ' (' + t.version + ')' : ''), artist: 'Mike Bollig', artwork: [{ src: t.art, sizes: '512x512', type: 'image/webp' }] }); } catch (e) {} }
+    }
+    function load(i, play) {
+      idx = (i + TRACKS.length) % TRACKS.length;
+      audio.src = TRACKS[idx].src; audio.preload = 'none';
+      if ($('mb-seek')) { $('mb-seek').value = 0; $('mb-cur').textContent = '0:00'; }
+      render(); if (play) playNow();
+    }
+    function playNow() { if (!audio.src) audio.src = TRACKS[idx].src; pauseVideos(); var p = audio.play(); if (p && p.catch) p.catch(function () { render(); }); }
+    function toggle() { if (audio.paused) playNow(); else audio.pause(); }
+    audio.addEventListener('play', render); audio.addEventListener('pause', render);
+    audio.addEventListener('loadedmetadata', render);
+    audio.addEventListener('timeupdate', function () {
+      var s = $('mb-seek'); if (!s || seeking) return;
+      var d = audio.duration || TRACKS[idx].dur; s.value = d ? (audio.currentTime / d) * 100 : 0;
+      $('mb-cur').textContent = fmt(audio.currentTime); s.setAttribute('aria-valuetext', fmt(audio.currentTime) + ' of ' + fmt(d));
+    });
+    audio.addEventListener('ended', function () { load(idx + 1, idx + 1 < TRACKS.length); });
+    window.__mbPlayer = { audio: audio, tracks: TRACKS, get index() { return idx; }, load: load, next: function () { load(idx + 1, !audio.paused); } };
+
+    var lbIdx = 0;
+    function lbShow(i) {
+      var thumbs = document.querySelectorAll('[data-mb-photo]'); if (!thumbs.length) return;
+      lbIdx = (i + thumbs.length) % thumbs.length; var b = thumbs[lbIdx], im = b.querySelector('img');
+      $('mb-lb-img').src = b.dataset.full; $('mb-lb-img').alt = im.alt; $('mb-lb-cap').textContent = im.alt + '  ·  ' + (lbIdx + 1) + ' / ' + thumbs.length;
+      var d = $('mb-lb'); if (!d.open) { d.showModal(); window.__lenis && window.__lenis.stop(); }
+    }
+    document.addEventListener('click', function (e) {
+      var el = e.target instanceof Element ? e.target : null; if (!el) return;
+      var tr = el.closest('[data-mb-track]'); if (tr) { var i = +tr.dataset.mbTrack; if (i === idx && audio.src) toggle(); else load(i, true); return; }
+      var ph = el.closest('[data-mb-photo]'); if (ph) { lbShow(+ph.dataset.mbPhoto); return; }
+      var c = el.closest('[data-mb]'); var a = c && c.dataset.mb;
+      if (a === 'toggle') toggle(); else if (a === 'prev') { if (audio.currentTime > 3) audio.currentTime = 0; else load(idx - 1, !audio.paused); } else if (a === 'next') load(idx + 1, !audio.paused);
+      else if (a === 'lb-prev') lbShow(lbIdx - 1); else if (a === 'lb-next') lbShow(lbIdx + 1); else if (a === 'lb-close') $('mb-lb').close();
+      else if (el.id === 'mb-lb') $('mb-lb').close();
+      var ll = el.closest('#mb-lyrlink'); if (ll) { var d = document.getElementById(ll.getAttribute('href').slice(1)); if (d) d.open = true; }
+    });
+    document.addEventListener('close', function (e) { if (e.target && e.target.id === 'mb-lb') window.__lenis && window.__lenis.start(); }, true);
+    document.addEventListener('keydown', function (e) {
+      var d = $('mb-lb'); if (!d || !d.open) return;
+      if (e.key === 'ArrowLeft') lbShow(lbIdx - 1); else if (e.key === 'ArrowRight') lbShow(lbIdx + 1);
+    });
+    document.addEventListener('input', function (e) {
+      if (e.target.id !== 'mb-seek') return; seeking = true;
+      var d = audio.duration || TRACKS[idx].dur; $('mb-cur').textContent = fmt(e.target.value / 100 * d);
+    });
+    document.addEventListener('change', function (e) {
+      if (e.target.id !== 'mb-seek') return; seeking = false;
+      var d = audio.duration || TRACKS[idx].dur;
+      if (!audio.src) audio.src = TRACKS[idx].src;
+      try { audio.currentTime = e.target.value / 100 * d; } catch (x) {}
+    });
+    document.addEventListener('play', function (e) { if (e.target.tagName === 'VIDEO') { audio.pause(); pauseVideos(e.target); } }, true);
+    if ('mediaSession' in navigator) { try { navigator.mediaSession.setActionHandler('nexttrack', function () { load(idx + 1, true); }); navigator.mediaSession.setActionHandler('previoustrack', function () { load(idx - 1, true); }); } catch (e) {} }
+    // Stop the music if a soft navigation swaps this page out.
+    window.addEventListener('motion:page-enter', function () { setTimeout(function () { if (!$('mb-player')) audio.pause(); else render(); }, 400); });
+    function init() { render(); }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+    setTimeout(render, 1600);
+  })();
+  </script>
+  <script src="/scripts/components.js"></script>
+  <script type="module" src="/js/motion-bundle.js?v=4"></script>
+  <script type="module" src="/js/scroll-fx.js?v=11"></script>
+</body>
+</html>

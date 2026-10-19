@@ -9,6 +9,7 @@ module.exports = {
     "./work/wordcut.html",
     "./components/**/*.html",
     "./demos/**/*.html",
+    "./mike-bollig/**/*.html",
   ],
   theme: {
     extend: {
