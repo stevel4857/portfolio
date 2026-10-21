@@ -22,6 +22,35 @@
         '</div>' +
       '</div>' +
       '<ol class="mbp-list"></ol>';
+    var collapsible = root.hasAttribute('data-collapsible'), bar, panel, mini, setOpen = function () {};
+    if (collapsible) {
+      var pid = (root.id || 'mbp') + '-panel';
+      panel = document.createElement('div'); panel.className = 'mbp-panel'; panel.id = pid;
+      while (root.firstChild) panel.appendChild(root.firstChild);
+      bar = document.createElement('div'); bar.className = 'mbp-bar';
+      bar.innerHTML = '<button type="button" class="mbp-toggle" aria-expanded="false" aria-controls="' + pid + '">' +
+        '<span class="mbp-bar-txt"><span class="mbp-bar-title">Listen: ' + tracks.length + ' tracks</span><span class="mbp-bar-now"></span></span>' +
+        '<span class="mbp-bar-cta">Open player</span><svg class="mbp-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.4 8.6 12 13.2l4.6-4.6L18 10l-6 6-6-6z"/></svg></button>' +
+        '<button type="button" class="mbp-btn mbp-mini" aria-label="Play"><svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg></button>';
+      root.appendChild(bar); root.appendChild(panel);
+      root.classList.add('mbp-collapsible');
+      var toggle = bar.querySelector('.mbp-toggle'), cta = bar.querySelector('.mbp-bar-cta'); mini = bar.querySelector('.mbp-mini');
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+      var refresh = function () { window.dispatchEvent(new Event('resize')); };
+      panel.hidden = true;
+      setOpen = function (open) {
+        if ((toggle.getAttribute('aria-expanded') === 'true') === open) return;
+        toggle.setAttribute('aria-expanded', String(open)); root.classList.toggle('is-open', open); cta.textContent = open ? 'Close player' : 'Open player';
+        var done = function () { panel.style.height = ''; panel.style.overflow = ''; if (!open) panel.hidden = true; refresh(); };
+        if (reduce.matches) { panel.hidden = !open; done(); return; }
+        panel.hidden = false; var h = panel.scrollHeight; panel.style.overflow = 'hidden';
+        panel.style.height = (open ? 0 : h) + 'px'; panel.offsetHeight; panel.style.height = (open ? h : 0) + 'px';
+        var t, fin = function (e) { if (e && e.target !== panel) return; panel.removeEventListener('transitionend', fin); clearTimeout(t); done(); };
+        t = setTimeout(fin, 600); panel.addEventListener('transitionend', fin);
+      };
+      toggle.addEventListener('click', function () { setOpen(toggle.getAttribute('aria-expanded') !== 'true'); });
+      root.mbpOpen = setOpen;
+    }
     var $ = function (s) { return root.querySelector(s); };
     var art = $('.mbp-art'), title = $('.mbp-title'), play = $('.mbp-play'), seek = $('.mbp-seek'), tcur = $('.mbp-cur'), tdur = $('.mbp-dur'), list = $('.mbp-list');
     tracks.forEach(function (t, i) {
@@ -32,13 +61,14 @@
       list.appendChild(li);
     });
     function show(i) {
-      var t = tracks[i]; art.src = t.art; art.alt = t.title + ' cover art'; title.textContent = t.title;
+      var t = tracks[i]; if (bar) bar.querySelector('.mbp-bar-now').textContent = (loaded >= 0 ? 'Now playing: ' : 'Up next: ') + t.title; art.src = t.art; art.alt = t.title + ' cover art'; title.textContent = t.title;
       tdur.textContent = fmt(t.duration); tcur.textContent = '0:00'; seek.value = 0;
       list.querySelectorAll('.mbp-item').forEach(function (li, k) { li.classList.toggle('is-current', k === i); var b = li.querySelector('.mbp-pick'); if (k === i) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current'); });
     }
-    function load(i) { cur = (i + tracks.length) % tracks.length; show(cur); audio.src = tracks[cur].src; loaded = cur; }
+    function load(i) { cur = (i + tracks.length) % tracks.length; loaded = cur; show(cur); audio.src = tracks[cur].src; }
     function start(i) { if (i !== undefined && i !== loaded) load(i); else if (loaded < 0) load(cur); var p = audio.play(); if (p && p.catch) p.catch(function () {}); }
-    function setState() { var on = !audio.paused; root.classList.toggle('is-playing', on); play.setAttribute('aria-label', on ? 'Pause' : 'Play'); }
+    function setState() { var on = !audio.paused; root.classList.toggle('is-playing', on); play.setAttribute('aria-label', on ? 'Pause' : 'Play'); if (mini) mini.setAttribute('aria-label', (on ? 'Pause ' : 'Play ') + tracks[cur].title); }
+    if (mini) mini.addEventListener('click', function () { audio.paused ? start() : audio.pause(); });
     play.addEventListener('click', function () { audio.paused ? start() : audio.pause(); });
     $('.mbp-prev').addEventListener('click', function () { var w = !audio.paused || loaded < 0; if (audio.currentTime > 3) { audio.currentTime = 0; return; } load(cur - 1); if (w) start(); });
     $('.mbp-next').addEventListener('click', function () { var w = !audio.paused || loaded < 0; load(cur + 1); if (w) start(); });
@@ -50,7 +80,7 @@
     var seeking = false;
     seek.addEventListener('input', function () { seeking = true; var d = audio.duration || tracks[cur].duration; tcur.textContent = fmt(seek.value / 100 * d); });
     seek.addEventListener('change', function () { seeking = false; if (loaded < 0) load(cur); var d = audio.duration; if (d) audio.currentTime = seek.value / 100 * d; else audio.addEventListener('loadedmetadata', function f() { audio.currentTime = seek.value / 100 * audio.duration; audio.removeEventListener('loadedmetadata', f); }); });
-    root.addEventListener('keydown', function (e) { if (e.target.matches('input,summary,a')) return; if (e.key === ' ' && !e.target.matches('button')) { e.preventDefault(); play.click(); } });
+    root.addEventListener('keydown', function (e) { if (e.target.matches('input,summary,a,.mbp-toggle')) return; if (e.key === ' ' && !e.target.matches('button')) { e.preventDefault(); play.click(); } });
     // Only one media element plays at a time on the page.
     document.addEventListener('play', function (e) { if (e.target !== audio) audio.pause(); }, true);
     audio.addEventListener('play', function () { document.querySelectorAll('audio,video').forEach(function (m) { if (m !== audio) m.pause(); }); window.dispatchEvent(new CustomEvent('mbp:play')); });
