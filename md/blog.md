@@ -9,6 +9,14 @@ language: "en"
 
 Articles by Steve Luiting on strategic web design, digital preservation, and AI-accelerated workflows.
 
+## [Building a Home for Mike Bollig's Songs](https://steveknowsweb.com/blog/building-a-home-for-mike-bolligs-songs)
+
+*2026-10-23 · Music · 2 min*
+
+Mike Bollig is a singer-songwriter whose songs reach back to the late 1970s. I help him turn his cassette recordings into fuller songs with Suno, and I built mikebollig.com so people can press play and listen.
+
+Markdown: [building-a-home-for-mike-bolligs-songs.md](/md/blog/building-a-home-for-mike-bolligs-songs.md)
+
 ## [From Web Builder to Art Director: How AI Changed My Process](https://steveknowsweb.com/blog/from-web-builder-to-art-director)
 
 *2026-10-13 · AI & Workflow · 3 min*

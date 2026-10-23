@@ -189,7 +189,15 @@ FIELD NOTES
 
 [Browse all insights →](https://steveknowsweb.com/blog.html)
 
-[![Dark navy illustration of a laptop surrounded by browser windows, a color palette, a film clapperboard and a pencil](https://steveknowsweb.com/assets/images/art-director/hero.jpg)
+[![](https://steveknowsweb.com/assets/images/mike-bollig-post/hero.jpg)
+
+Music 2026-10-23
+
+Building a Home for Mike Bollig's Songs
+
+Mike Bollig is a singer-songwriter whose songs reach back to the late 1970s. I help him turn his cassette recordings into fuller songs with Suno, and I built mikebollig.com so people can press play and listen.
+
+](https://steveknowsweb.com/blog/building-a-home-for-mike-bolligs-songs)[![Dark navy illustration of a laptop surrounded by browser windows, a color palette, a film clapperboard and a pencil](https://steveknowsweb.com/assets/images/art-director/hero.jpg)
 
 AI & Workflow 2026-10-13
 
@@ -205,15 +213,7 @@ The Making of Nomad Pet Dental
 
 A behind-the-scenes look at how Steve Knows Web built Nomad Pet Dental, a mobile, dental-only vet in Denver: the logo, colors, booking, privacy, print materials, and the decisions in between.
 
-](https://steveknowsweb.com/blog/the-making-of-nomad-pet-dental)[![](https://steveknowsweb.com/assets/images/wheelers-phcc-redesign/new-homepage.png)
-
-Design 2026-09-12
-
-I Was Asked to Fix Their Site. A Year Later, I Built Them a New One in Half an Hour.
-
-A year after a broken WordPress rescue stalled, I rebuilt Wheeler’s PHCC as a static site—Formspree, GitHub, and free Cloudflare hosting—in about half an hour for the first solid pass.
-
-](https://steveknowsweb.com/blog/wheelers-phcc-redesign-from-broken-wordpress)
+](https://steveknowsweb.com/blog/the-making-of-nomad-pet-dental)
 
 What colleagues say
 

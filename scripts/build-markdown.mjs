@@ -316,6 +316,7 @@ function buildBlogPermalinks(posts) {
     <div class="max-w-3xl mx-auto px-6 text-sm text-slate-500 flex flex-col sm:flex-row gap-y-3 items-center justify-between">
       <div>© Steve Luiting. All rights reserved.</div>
       <div class="flex gap-x-5">
+        <a href="/mike-bollig/" class="hover:text-slate-900 transition">Featured: Mike Bollig – Music</a>
         <a href="/" class="hover:text-slate-900 transition">Home</a>
         <a href="/blog/" class="hover:text-slate-900 transition">Insights</a>
         <a href="mailto:hello@steveknowsweb.com" class="hover:text-slate-900 transition">Email</a>
@@ -371,7 +372,8 @@ function buildSitemap(posts) {
     priority: '0.6',
   }));
 
-  const all = [...staticUrls, ...blogUrls];
+  const extraUrls = [{ loc: '/mike-bollig/', changefreq: 'monthly', priority: '0.7' }];
+  const all = [...staticUrls, ...blogUrls, ...extraUrls];
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${all
