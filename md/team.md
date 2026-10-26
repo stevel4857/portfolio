@@ -20,11 +20,15 @@ Designer, developer, and video maker in Denver. I set the direction, make the ca
 
 ## The agents
 
+![Chief of Staff icon](https://steveknowsweb.com/assets/images/team/chief-of-staff.png)
+
 Chief of Staff
 
 Operations
 
 Keeps the calendar, inbox, and files in order.
+
+![Website Designer icon](https://steveknowsweb.com/assets/images/team/website-designer.png)
 
 Website Designer
 
@@ -32,11 +36,15 @@ Web & Design Lead
 
 Builds and updates client sites, from copy and layout to launch.
 
+![Best Video Editor icon](https://steveknowsweb.com/assets/images/team/best-video-editor.png)
+
 Best Video Editor
 
 Video Production
 
 Plans shots, cuts the edit, and keeps every frame on style.
+
+![Content / Social Bot icon](https://steveknowsweb.com/assets/images/team/content-social.png)
 
 Content / Social Bot
 
@@ -44,11 +52,15 @@ Social & Content
 
 Writes posts, review replies, and monthly recaps.
 
+![Client Scout icon](https://steveknowsweb.com/assets/images/team/client-scout.png)
+
 Client Scout
 
 Lead Finder
 
 Finds local businesses whose websites are holding them back.
+
+![Account / Studio Lead icon](https://steveknowsweb.com/assets/images/team/account-studio-lead.png)
 
 Account / Studio Lead
 
