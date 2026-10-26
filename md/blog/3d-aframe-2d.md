@@ -1,6 +1,6 @@
 ---
 title: "3D A-Frame 2D"
-description: "Embed rich, interactive 3D experiences directly into normal 2D web pages using A-Frame. No apps, no installs — click to explore with WASD + mouse look."
+description: "Embed rich, interactive 3D experiences directly into normal 2D web pages using A-Frame. No apps, no installs - click to explore with WASD + mouse look."
 canonical: "https://steveknowsweb.com/blog/3d-aframe-2d"
 date: "2026-06-03"
 author: "Steve Luiting"

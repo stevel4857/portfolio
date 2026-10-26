@@ -1,6 +1,6 @@
 ---
 title: "I Finally Left Squarespace"
-description: "I was paying $10 a month for a Squarespace site I hadn't touched in years — just to keep redirects alive. Here's how I moved everything to Cloudflare and stopped renting a platform I didn't need."
+description: "I was paying $10 a month for a Squarespace site I hadn't touched in years - just to keep redirects alive. Here's how I moved everything to Cloudflare and stopped renting a platform I didn't need."
 canonical: "https://steveknowsweb.com/blog/i-finally-left-squarespace"
 date: "2026-06-12"
 author: "Steve Luiting"

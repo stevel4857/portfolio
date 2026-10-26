@@ -1,6 +1,6 @@
 ---
 title: "Building the Cable Center VR Archive"
-description: "The Cable Center has moved a few blocks away — but the original building lives on in VR. Here's the browser walkthrough with glTF architecture, floating 360° video spheres, and the same preservation story from 2014."
+description: "The Cable Center has moved a few blocks away - but the original building lives on in VR. Here's the browser walkthrough with glTF architecture, floating 360° video spheres, and the same preservation story from 2014."
 canonical: "https://steveknowsweb.com/blog/building-the-cable-center-vr-archive"
 date: "2026-06-20"
 author: "Steve Luiting"

@@ -1,6 +1,6 @@
 ---
-title: "Vibe Coding This Site — and Adding Motion Without Losing the Plot"
-description: "I watched a sharp video on vibe coding with Grok Build, then used the same workflow to add Lottie-style page animations to my static site — without migrating to React. Whisper, FFmpeg, and Pywebview are next on my radar."
+title: "Vibe Coding This Site - and Adding Motion Without Losing the Plot"
+description: "I watched a sharp video on vibe coding with Grok Build, then used the same workflow to add Lottie-style page animations to my static site - without migrating to React. Whisper, FFmpeg, and Pywebview are next on my radar."
 canonical: "https://steveknowsweb.com/blog/vibe-coding-motion-and-the-tools-im-watching"
 date: "2026-07-02"
 author: "Steve Luiting"

@@ -1,6 +1,6 @@
 ---
-title: "WordCut — Free Video Editor for Windows"
-description: "WordCut is a free Windows app I built with Whisper, FFmpeg, and pywebview — click words in a transcript to cut them from your video. Open source on GitHub."
+title: "WordCut - Free Video Editor for Windows"
+description: "WordCut is a free Windows app I built with Whisper, FFmpeg, and pywebview - click words in a transcript to cut them from your video. Open source on GitHub."
 canonical: "https://steveknowsweb.com/blog/wordcut-free-video-editor-for-windows"
 date: "2026-07-02"
 author: "Steve Luiting"

@@ -1,6 +1,6 @@
 ---
 title: "AI and UI/UX Web Design News"
-description: "\"Awesome Design MD\" goes viral as the \"Figma for AI agents\" — a look at the tools that are actually changing how we design and build in 2026."
+description: "\"Awesome Design MD\" goes viral as the \"Figma for AI agents\" - a look at the tools that are actually changing how we design and build in 2026."
 canonical: "https://steveknowsweb.com/blog/ai-and-uiux-web-design-news"
 date: "2026-04-15"
 author: "Steve Luiting"

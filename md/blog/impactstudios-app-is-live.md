@@ -1,6 +1,6 @@
 ---
-title: "impactstudios.app Is Live — A Coming Soon Page on the Path I Already Trust"
-description: "The Impact Studio product is still in development, but the brand now has a home at impactstudios.app — a coming soon page deployed through the same GitHub-to-Cloudflare workflow I have been writing about. Set up June 26, 2026."
+title: "impactstudios.app Is Live - A Coming Soon Page on the Path I Already Trust"
+description: "The Impact Studio product is still in development, but the brand now has a home at impactstudios.app - a coming soon page deployed through the same GitHub-to-Cloudflare workflow I have been writing about. Set up June 26, 2026."
 canonical: "https://steveknowsweb.com/blog/impactstudios-app-is-live"
 date: "2026-06-26"
 author: "Steve Luiting"

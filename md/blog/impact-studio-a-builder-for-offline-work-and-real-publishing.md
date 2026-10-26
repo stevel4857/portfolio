@@ -1,6 +1,6 @@
 ---
 title: "Impact Studio: A Builder for Offline Work and Real Publishing"
-description: "I am building Impact Studio — an offline-first visual builder with AI that works beside you in the editor and on a schedule. Same GitHub-to-Cloudflare publishing I already trust. Early code lives in a private GitHub repo."
+description: "I am building Impact Studio - an offline-first visual builder with AI that works beside you in the editor and on a schedule. Same GitHub-to-Cloudflare publishing I already trust. Early code lives in a private GitHub repo."
 canonical: "https://steveknowsweb.com/blog/impact-studio-a-builder-for-offline-work-and-real-publishing"
 date: "2026-06-24"
 author: "Steve Luiting"

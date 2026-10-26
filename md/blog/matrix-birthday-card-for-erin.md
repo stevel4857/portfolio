@@ -1,6 +1,6 @@
 ---
 title: "A Matrix Birthday Card for Erin"
-description: "A custom Matrix-style birthday card for Erin — her likeness on the cover, 7.21.2026, and an inside that says we love you and you kick reality’s ass."
+description: "A custom Matrix-style birthday card for Erin - her likeness on the cover, 7.21.2026, and an inside that says we love you and you kick reality’s ass."
 canonical: "https://steveknowsweb.com/blog/matrix-birthday-card-for-erin"
 date: "2026-07-10"
 author: "Steve Luiting"

@@ -1,6 +1,6 @@
 ---
-title: "About Steve Luiting — Strategic Web Design | Denver"
-description: "The story of Steve Luiting — 30+ years building digital experiences for museums, nonprofits, and purpose-driven organizations in Colorado."
+title: "About Steve Luiting - Strategic Web Design | Denver"
+description: "The story of Steve Luiting - 30+ years building digital experiences for museums, nonprofits, and purpose-driven organizations in Colorado."
 canonical: "https://steveknowsweb.com/about"
 language: "en"
 ---

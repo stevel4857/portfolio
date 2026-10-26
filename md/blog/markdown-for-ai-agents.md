@@ -1,6 +1,6 @@
 ---
 title: "Markdown for AI Agents: Same Page, Far Fewer Tokens"
-description: "When AI reads your website, it pays for every byte of HTML — menus, scripts, and template chrome included. Serving a Markdown twin gives agents your actual words without the markup tax."
+description: "When AI reads your website, it pays for every byte of HTML - menus, scripts, and template chrome included. Serving a Markdown twin gives agents your actual words without the markup tax."
 canonical: "https://steveknowsweb.com/blog/markdown-for-ai-agents"
 date: "2026-06-26"
 author: "Steve Luiting"

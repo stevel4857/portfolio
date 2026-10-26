@@ -1,6 +1,6 @@
 ---
 title: "Rescuing the Video Archive After the Hack"
-description: "The main server at The Cable Center was compromised. Irreplaceable oral history videos were scattered across untrusted backups. I recovered the archive — and that experience still shapes how I approach long-term digital preservation."
+description: "The main server at The Cable Center was compromised. Irreplaceable oral history videos were scattered across untrusted backups. I recovered the archive - and that experience still shapes how I approach long-term digital preservation."
 canonical: "https://steveknowsweb.com/blog/rescuing-the-video-archive-after-the-hack"
 date: "2026-04-28"
 author: "Steve Luiting"

@@ -175,7 +175,7 @@ function buildCoreMarkdown() {
 function buildBlogMarkdown(posts) {
   const indexLines = [
     frontmatter({
-      title: 'Insights & Experiments — Steve Luiting',
+      title: 'Insights & Experiments - Steve Luiting',
       description:
         'Articles on strategic web design, AI-accelerated workflows, legacy web preservation, and building websites that last.',
       canonical: `${SITE}/blog`,
@@ -275,7 +275,7 @@ function buildBlogPermalinks(posts) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="${escapeHtml(post.excerpt)}">
-  <title>${escapeHtml(post.title)} — Steve Luiting</title>
+  <title>${escapeHtml(post.title)} - Steve Luiting</title>
   <link rel="canonical" href="${canonical}">
   <link rel="alternate" type="text/markdown" href="/md/blog/${post.slug}.md">
   ${post.image ? `<meta property="og:image" content="${SITE}${post.image}">` : ''}
@@ -337,7 +337,7 @@ function buildBlogPermalinks(posts) {
 
 function buildLlmsTxt(corePages, blogPages) {
   const fixed = [
-    '# Steve Luiting — steveknowsweb.com',
+    '# Steve Luiting - steveknowsweb.com',
     '',
     '> Strategic web design and digital experiences for museums, nonprofits, and purpose-driven organizations.',
     '',

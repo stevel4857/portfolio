@@ -1,14 +1,14 @@
-# Steve Luiting — steveknowsweb.com
+# Steve Luiting - steveknowsweb.com
 
 > Strategic web design and digital experiences for museums, nonprofits, and purpose-driven organizations.
 
 ## Pages
 
-- [Steve Luiting — Strategic Web Design & Digital Experiences | Denver](https://steveknowsweb.com/md/index.md)
-- [About Steve Luiting — Strategic Web Design | Denver](https://steveknowsweb.com/md/about.md)
-- [Testimonials — Steve Luiting | Denver](https://steveknowsweb.com/md/testimonials.md)
-- [Syndeo Institute — Visual Identity | Steve Luiting](https://steveknowsweb.com/md/work/syndeo.md)
-- [WordCut — Edit Video by Editing Text | Steve Luiting](https://steveknowsweb.com/md/work/wordcut.md)
+- [Steve Luiting - Strategic Web Design & Digital Experiences | Denver](https://steveknowsweb.com/md/index.md)
+- [About Steve Luiting - Strategic Web Design | Denver](https://steveknowsweb.com/md/about.md)
+- [Testimonials - Steve Luiting | Denver](https://steveknowsweb.com/md/testimonials.md)
+- [Syndeo Institute - Visual Identity | Steve Luiting](https://steveknowsweb.com/md/work/syndeo.md)
+- [WordCut - Edit Video by Editing Text | Steve Luiting](https://steveknowsweb.com/md/work/wordcut.md)
 - [Blog index](https://steveknowsweb.com/md/blog.md)
 
 ## Articles
@@ -20,10 +20,10 @@
 - [I Was Asked to Fix Their Site. A Year Later, I Built Them a New One in Half an Hour.](https://steveknowsweb.com/md/blog/wheelers-phcc-redesign-from-broken-wordpress.md)
 - [A Birthday Card for Skoog](https://steveknowsweb.com/md/blog/a-birthday-card-for-skoog.md)
 - [A Matrix Birthday Card for Erin](https://steveknowsweb.com/md/blog/matrix-birthday-card-for-erin.md)
-- [WordCut — Free Video Editor for Windows](https://steveknowsweb.com/md/blog/wordcut-free-video-editor-for-windows.md)
-- [Vibe Coding This Site — and Adding Motion Without Losing the Plot](https://steveknowsweb.com/md/blog/vibe-coding-motion-and-the-tools-im-watching.md)
+- [WordCut - Free Video Editor for Windows](https://steveknowsweb.com/md/blog/wordcut-free-video-editor-for-windows.md)
+- [Vibe Coding This Site - and Adding Motion Without Losing the Plot](https://steveknowsweb.com/md/blog/vibe-coding-motion-and-the-tools-im-watching.md)
 - [Generative Engine Optimization: What GEO Actually Is](https://steveknowsweb.com/md/blog/generative-engine-optimization.md)
-- [impactstudios.app Is Live — A Coming Soon Page on the Path I Already Trust](https://steveknowsweb.com/md/blog/impactstudios-app-is-live.md)
+- [impactstudios.app Is Live - A Coming Soon Page on the Path I Already Trust](https://steveknowsweb.com/md/blog/impactstudios-app-is-live.md)
 - [Markdown for AI Agents: Same Page, Far Fewer Tokens](https://steveknowsweb.com/md/blog/markdown-for-ai-agents.md)
 - [Impact Studio: A Builder for Offline Work and Real Publishing](https://steveknowsweb.com/md/blog/impact-studio-a-builder-for-offline-work-and-real-publishing.md)
 - [Building the Cable Center VR Archive](https://steveknowsweb.com/md/blog/building-the-cable-center-vr-archive.md)

@@ -1,5 +1,5 @@
 ---
-title: "Steve Luiting — Strategic Web Design & Digital Experiences | Denver"
+title: "Steve Luiting - Strategic Web Design & Digital Experiences | Denver"
 description: "Strategic web design and digital experiences for museums, nonprofits, and purpose-driven organizations in Colorado. 30+ years of craft, now accelerated with AI."
 canonical: "https://steveknowsweb.com/"
 language: "en"

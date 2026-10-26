@@ -1,6 +1,6 @@
 ---
-title: "Testimonials — Steve Luiting | Denver"
-description: "What colleagues say about working with Steve Luiting — museums, public media, and The Cable Center."
+title: "Testimonials - Steve Luiting | Denver"
+description: "What colleagues say about working with Steve Luiting - museums, public media, and The Cable Center."
 canonical: "https://steveknowsweb.com/testimonials"
 language: "en"
 ---

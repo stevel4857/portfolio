@@ -1,6 +1,6 @@
 ---
 title: "The Resurrection of Flash"
-description: "Flash is back from the dead it seems — and for certain archival and cultural projects, that's actually good news."
+description: "Flash is back from the dead it seems - and for certain archival and cultural projects, that's actually good news."
 canonical: "https://steveknowsweb.com/blog/the-resurrection-of-flash"
 date: "2023-11-23"
 author: "Steve Luiting"

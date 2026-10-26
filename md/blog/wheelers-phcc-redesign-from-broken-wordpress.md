@@ -1,6 +1,6 @@
 ---
 title: "I Was Asked to Fix Their Site. A Year Later, I Built Them a New One in Half an Hour."
-description: "A year after a broken WordPress rescue stalled, I rebuilt Wheeler’s PHCC as a static site—Formspree, GitHub, and free Cloudflare hosting—in about half an hour for the first solid pass."
+description: "A year after a broken WordPress rescue stalled, I rebuilt Wheeler’s PHCC as a static site-Formspree, GitHub, and free Cloudflare hosting-in about half an hour for the first solid pass."
 canonical: "https://steveknowsweb.com/blog/wheelers-phcc-redesign-from-broken-wordpress"
 date: "2026-09-12"
 author: "Steve Luiting"

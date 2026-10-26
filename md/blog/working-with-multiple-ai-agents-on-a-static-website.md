@@ -1,6 +1,6 @@
 ---
 title: "Working with Multiple AI Agents on a Static Website"
-description: "I'm experimenting with treating AI agents as ongoing collaborators on my website — not just one-off tools. Here's what that actually looks like right now."
+description: "I'm experimenting with treating AI agents as ongoing collaborators on my website - not just one-off tools. Here's what that actually looks like right now."
 canonical: "https://steveknowsweb.com/blog/working-with-multiple-ai-agents-on-a-static-website"
 date: "2026-06-10"
 author: "Steve Luiting"
