@@ -205,7 +205,15 @@ FIELD NOTES
 
 [Browse all insights →](https://steveknowsweb.com/blog.html)
 
-[![Mike Bollig's cassette recordings turned into finished songs](https://steveknowsweb.com/assets/images/mike-bollig-post/hero.jpg)
+[![](https://steveknowsweb.com/assets/images/ruston-post/title.jpg)
+
+AI Video 2026-10-26
+
+Behind the Scenes: Ruston and the End of the Rainbow
+
+A work-in-progress look at an animated short I'm making with AI video tools: locked character looks, one approved still per shot, a strict color rule, and the fixes that kept it on model.
+
+](https://steveknowsweb.com/blog/behind-the-scenes-ruston-and-the-end-of-the-rainbow)[![Mike Bollig's cassette recordings turned into finished songs](https://steveknowsweb.com/assets/images/mike-bollig-post/hero.jpg)
 
 Music 2026-10-23
 
@@ -221,15 +229,7 @@ From Web Builder to Art Director: How AI Changed My Process
 
 Building a website used to mean hours in the weeds. Now it feels more like art directing: an AI assistant does the build, I bring the taste and judgment, and clients request updates with a simple email.
 
-](https://steveknowsweb.com/blog/from-web-builder-to-art-director)[![](https://steveknowsweb.com/assets/images/nomad-pet-dental/home-desktop.jpg)
-
-Design 2026-10-10
-
-The Making of Nomad Pet Dental
-
-A behind-the-scenes look at how Steve Knows Web built Nomad Pet Dental, a mobile, dental-only vet in Denver: the logo, colors, booking, privacy, print materials, and the decisions in between.
-
-](https://steveknowsweb.com/blog/the-making-of-nomad-pet-dental)
+](https://steveknowsweb.com/blog/from-web-builder-to-art-director)
 
 What colleagues say
 

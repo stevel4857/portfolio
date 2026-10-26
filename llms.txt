@@ -13,6 +13,7 @@
 
 ## Articles
 
+- [Behind the Scenes: Ruston and the End of the Rainbow](https://steveknowsweb.com/md/blog/behind-the-scenes-ruston-and-the-end-of-the-rainbow.md)
 - [Building a Home for Mike Bollig's Songs](https://steveknowsweb.com/md/blog/building-a-home-for-mike-bolligs-songs.md)
 - [From Web Builder to Art Director: How AI Changed My Process](https://steveknowsweb.com/md/blog/from-web-builder-to-art-director.md)
 - [The Making of Nomad Pet Dental](https://steveknowsweb.com/md/blog/the-making-of-nomad-pet-dental.md)

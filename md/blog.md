@@ -9,6 +9,14 @@ language: "en"
 
 Articles by Steve Luiting on strategic web design, digital preservation, and AI-accelerated workflows.
 
+## [Behind the Scenes: Ruston and the End of the Rainbow](https://steveknowsweb.com/blog/behind-the-scenes-ruston-and-the-end-of-the-rainbow)
+
+*2026-10-26 · AI Video · 4 min*
+
+A work-in-progress look at an animated short I'm making with AI video tools: locked character looks, one approved still per shot, a strict color rule, and the fixes that kept it on model.
+
+Markdown: [behind-the-scenes-ruston-and-the-end-of-the-rainbow.md](/md/blog/behind-the-scenes-ruston-and-the-end-of-the-rainbow.md)
+
 ## [Building a Home for Mike Bollig's Songs](https://steveknowsweb.com/blog/building-a-home-for-mike-bolligs-songs)
 
 *2026-10-23 · Music · 2 min*
