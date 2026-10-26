@@ -10,7 +10,7 @@ Meet the Team
 
 Every decision still runs through me.
 
-SL
+![Steve Luiting](https://steveknowsweb.com/assets/images/team/steve-luiting.jpg)
 
 Founder
 
