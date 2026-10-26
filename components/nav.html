@@ -1,3 +1,13 @@
+<style>
+  .nav-dropdown { position: relative; }
+  .nav-dropdown-btn { display: inline-flex; align-items: center; gap: .35rem; background: none; border: 0; padding: 0; font: inherit; cursor: pointer; }
+  .nav-dropdown-caret { font-size: .6rem; transition: transform .2s ease; }
+  .nav-dropdown.is-open .nav-dropdown-caret { transform: rotate(180deg); }
+  .nav-dropdown-menu { position: absolute; top: 100%; left: -1rem; margin-top: .75rem; min-width: 11rem; padding: .5rem; background: #fff; border: 1px solid #e2e8f0; border-radius: 1rem; box-shadow: 0 10px 30px rgba(15,23,42,.08); z-index: 60; }
+  .nav-dropdown-menu::before { content: ""; position: absolute; left: 0; right: 0; top: -.85rem; height: .85rem; }
+  .nav-dropdown-item { display: block; padding: .55rem .75rem; border-radius: .6rem; color: #475569; white-space: nowrap; }
+  .nav-dropdown-item:hover, .nav-dropdown-item:focus-visible { background: #f8fafc; color: #0f172a; outline: none; }
+</style>
 <nav class="border-b border-slate-100 bg-white/80 backdrop-blur-sm sticky top-0 z-50">
   <div class="max-w-6xl mx-auto px-6 relative">
     <div class="flex items-center justify-between h-20">
@@ -8,10 +18,17 @@
 
       <!-- Desktop navigation -->
       <div class="hidden md:flex items-center gap-x-9 text-sm font-medium">
-        <a href="/about.html" class="nav-link text-slate-600 hover:text-slate-900 transition">About</a>
+        <div class="nav-dropdown" data-nav-dropdown>
+          <button type="button" class="nav-link nav-dropdown-btn text-slate-600 hover:text-slate-900 transition" aria-expanded="false" aria-haspopup="true" aria-controls="about-dropdown-menu">
+            About <i class="fa-solid fa-chevron-down nav-dropdown-caret" aria-hidden="true"></i>
+          </button>
+          <div id="about-dropdown-menu" class="nav-dropdown-menu" hidden>
+            <a href="/about.html" class="nav-dropdown-item">About</a>
+            <a href="/team" class="nav-dropdown-item">Team</a>
+            <a href="/testimonials.html" class="nav-dropdown-item">Testimonials</a>
+          </div>
+        </div>
         <a href="/#work" class="nav-link text-slate-600 hover:text-slate-900 transition">Work</a>
-        <a href="/testimonials.html" class="nav-link text-slate-600 hover:text-slate-900 transition">Testimonials</a>
-        <a href="/team" class="nav-link text-slate-600 hover:text-slate-900 transition">Team</a>
         <a href="/#pricing" class="nav-link text-slate-600 hover:text-slate-900 transition">Investment</a>
         <a href="/blog/" class="nav-link text-slate-600 hover:text-slate-900 transition">Insights</a>
         <a href="/#contact" class="nav-link text-slate-600 hover:text-slate-900 transition">Contact</a>
@@ -48,10 +65,15 @@
       class="md:hidden hidden absolute top-full left-0 right-0 z-50 bg-white border-t border-slate-100 shadow-sm"
       role="menu">
       <div class="px-6 py-5 flex flex-col text-[15px] bg-slate-50">
-        <a href="/about.html" class="py-3 text-slate-700 hover:text-slate-900 transition border-b border-slate-200 last:border-0" role="menuitem">About</a>
+        <div class="py-3 border-b border-slate-200">
+          <div class="text-slate-700">About</div>
+          <div class="mt-2 pl-4 flex flex-col border-l border-slate-200">
+            <a href="/about.html" class="py-2 text-slate-600 hover:text-slate-900 transition" role="menuitem">About</a>
+            <a href="/team" class="py-2 text-slate-600 hover:text-slate-900 transition" role="menuitem">Team</a>
+            <a href="/testimonials.html" class="py-2 text-slate-600 hover:text-slate-900 transition" role="menuitem">Testimonials</a>
+          </div>
+        </div>
         <a href="/#work" class="py-3 text-slate-700 hover:text-slate-900 transition border-b border-slate-200 last:border-0" role="menuitem">Work</a>
-        <a href="/testimonials.html" class="py-3 text-slate-700 hover:text-slate-900 transition border-b border-slate-200 last:border-0" role="menuitem">Testimonials</a>
-        <a href="/team" class="py-3 text-slate-700 hover:text-slate-900 transition border-b border-slate-200 last:border-0" role="menuitem">Team</a>
         <a href="/#pricing" class="py-3 text-slate-700 hover:text-slate-900 transition border-b border-slate-200 last:border-0" role="menuitem">Investment</a>
         <a href="/blog/" class="py-3 text-slate-700 hover:text-slate-900 transition border-b border-slate-200 last:border-0" role="menuitem">Insights</a>
         <a href="/#contact" class="py-3 text-slate-700 hover:text-slate-900 transition border-b border-slate-200 last:border-0" role="menuitem">Contact</a>

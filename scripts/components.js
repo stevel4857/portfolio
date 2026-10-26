@@ -22,6 +22,7 @@ async function loadAllComponents() {
   const placeholders = document.querySelectorAll('[data-component]');
   await Promise.all(Array.from(placeholders).map(loadComponent));
   initMobileMenu();
+  initNavDropdowns();
 }
 
 function initMobileMenu() {
@@ -97,4 +98,22 @@ if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', loadAllComponents);
 } else {
   loadAllComponents();
+}
+
+function initNavDropdowns() {
+  document.querySelectorAll('[data-nav-dropdown]').forEach((wrap) => {
+    const btn = wrap.querySelector('.nav-dropdown-btn');
+    const menu = wrap.querySelector('.nav-dropdown-menu');
+    if (!btn || !menu) return;
+    let timer; let openedAt = 0;
+    const open = () => { clearTimeout(timer); if (menu.hidden) openedAt = Date.now(); menu.hidden = false; wrap.classList.add('is-open'); btn.setAttribute('aria-expanded', 'true'); };
+    const close = () => { menu.hidden = true; wrap.classList.remove('is-open'); btn.setAttribute('aria-expanded', 'false'); };
+    btn.addEventListener('click', (e) => { e.stopPropagation(); if (menu.hidden) open(); else if (Date.now() - openedAt > 400) close(); });
+    wrap.addEventListener('mouseenter', open);
+    wrap.addEventListener('mouseleave', () => { timer = setTimeout(close, 150); });
+    wrap.addEventListener('focusin', open);
+    wrap.addEventListener('focusout', (e) => { if (!wrap.contains(e.relatedTarget)) close(); });
+    wrap.addEventListener('keydown', (e) => { if (e.key === 'Escape') { close(); btn.focus(); } });
+    document.addEventListener('click', (e) => { if (!wrap.contains(e.target)) close(); });
+  });
 }
