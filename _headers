@@ -13,3 +13,9 @@
   Cache-Control: no-cache, must-revalidate
 /data/blog-posts.json
   Cache-Control: no-cache, must-revalidate
+
+# Shared nav/footer + their JS must update together after deploys (revalidate via ETag)
+/components/*
+  Cache-Control: no-cache, must-revalidate
+/scripts/*
+  Cache-Control: no-cache, must-revalidate
