@@ -117,6 +117,22 @@ Logo Design Motion Graphics T-Shirt Design Program Video Nonprofit
 
 [expandbeyondinc.com](https://expandbeyondinc.com)
 
+[](https://steveknowsweb.com/mike-bollig/)
+
+MUSIC • COVER ART • VIDEO • WEB • 2026
+
+### Mike Bollig: Songs Brought Home
+
+Mike Bollig wrote and recorded his original songs himself on cassette and sent them to me as MP3s. I reworked those recordings into finished releases, designed the cover art, made the music videos, and built his website, mikebollig.com, so people can press play and listen.
+
+![Cover art for Colorado Girl by Mike Bollig](https://steveknowsweb.com/mike-bollig/art/colorado-girl.jpg)
+
+Music Production Cover Art Music Video Web Design
+
+Listen: [Colorado Girl](https://steveknowsweb.com/mike-bollig/audio/colorado-girl.mp3) · [Snowfall](https://steveknowsweb.com/mike-bollig/audio/snowfall.mp3)
+
+[mikebollig.com](https://mikebollig.com) [Project page](https://steveknowsweb.com/mike-bollig/) [The story](https://steveknowsweb.com/blog/building-a-home-for-mike-bolligs-songs/)
+
 [](https://store.steampowered.com/app/612440/The_Cable_Center__Virtual_Archive/)
 
 THE CABLE CENTER • 2014–PRESENT
@@ -189,13 +205,13 @@ FIELD NOTES
 
 [Browse all insights →](https://steveknowsweb.com/blog.html)
 
-[![](https://steveknowsweb.com/assets/images/mike-bollig-post/hero.jpg)
+[![Mike Bollig's cassette recordings turned into finished songs](https://steveknowsweb.com/assets/images/mike-bollig-post/hero.jpg)
 
 Music 2026-10-23
 
 Building a Home for Mike Bollig's Songs
 
-Mike Bollig is a singer-songwriter whose songs reach back to the late 1970s. I help him turn his cassette recordings into fuller songs with Suno, and I built mikebollig.com so people can press play and listen.
+Mike Bollig is a singer-songwriter whose songs reach back to the late 1970s. He records his songs on cassette and sends them as MP3s. I reworked them into finished releases with cover art and music videos, and built mikebollig.com.
 
 ](https://steveknowsweb.com/blog/building-a-home-for-mike-bolligs-songs)[![Dark navy illustration of a laptop surrounded by browser windows, a color palette, a film clapperboard and a pencil](https://steveknowsweb.com/assets/images/art-director/hero.jpg)
 
