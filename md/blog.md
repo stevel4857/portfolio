@@ -13,7 +13,7 @@ Articles by Steve Luiting on strategic web design, digital preservation, and AI-
 
 *2026-10-26 · AI Video · 4 min*
 
-A work-in-progress look at an animated short I'm making with AI video tools: locked character looks, one approved still per shot, a strict color rule, and the fixes that kept it on model.
+How I'm directing and editing an animated short with AI: numbered shot plans, character sheets and a strict color rule, close-up inserts for continuity, an approve and lock process, and FFmpeg assembly.
 
 Markdown: [behind-the-scenes-ruston-and-the-end-of-the-rainbow.md](/md/blog/behind-the-scenes-ruston-and-the-end-of-the-rainbow.md)
 

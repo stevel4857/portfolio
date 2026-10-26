@@ -211,7 +211,7 @@ AI Video 2026-10-26
 
 Behind the Scenes: Ruston and the End of the Rainbow
 
-A work-in-progress look at an animated short I'm making with AI video tools: locked character looks, one approved still per shot, a strict color rule, and the fixes that kept it on model.
+How I'm directing and editing an animated short with AI: numbered shot plans, character sheets and a strict color rule, close-up inserts for continuity, an approve and lock process, and FFmpeg assembly.
 
 ](https://steveknowsweb.com/blog/behind-the-scenes-ruston-and-the-end-of-the-rainbow)[![Mike Bollig's cassette recordings turned into finished songs](https://steveknowsweb.com/assets/images/mike-bollig-post/hero.jpg)
 
