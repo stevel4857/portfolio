@@ -7,12 +7,14 @@
   .nav-dropdown-menu::before { content: ""; position: absolute; left: 0; right: 0; top: -.85rem; height: .85rem; }
   .nav-dropdown-item { display: block; padding: .55rem .75rem .55rem 1.25rem; border-radius: .6rem; color: #475569; white-space: nowrap; }
   .nav-dropdown-item:hover, .nav-dropdown-item:focus-visible { background: #f8fafc; color: #0f172a; outline: none; }
+  .nav-brand { color: #9f1239; transition: color .15s ease; }
+  .nav-brand:hover, .nav-brand:focus-visible { color: #881337; }
 </style>
 <nav class="border-b border-slate-100 bg-white/80 backdrop-blur-sm sticky top-0 z-50">
   <div class="max-w-6xl mx-auto px-6 relative">
     <div class="flex items-center justify-between h-20">
       <div class="flex items-baseline gap-x-2 md:gap-x-1 lg:gap-x-1 mr-4 md:mr-6">
-        <a href="/" class="font-semibold text-2xl tracking-tighter">Steve Luiting</a>
+        <a href="/" class="nav-brand font-semibold text-2xl tracking-tighter">Steve Luiting</a>
         <span class="text-xs font-mono uppercase tracking-[2px] text-slate-500 -mt-0.5 md:mt-0 lg:mt-0">Denver</span>
       </div>
 
