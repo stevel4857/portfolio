@@ -76,4 +76,4 @@ The agents do the legwork: research, first drafts, builds, edits, and follow-ups
 
 Tell me what you're working on and I'll get back to you personally.
 
-[hello@steveknowsweb.com](mailto:hello@steveknowsweb.com)
+[hello@steveknowsweb.com](mailto:hello@steveknowsweb.com) [(720) 526-2114](tel:+17205262114)

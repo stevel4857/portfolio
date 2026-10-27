@@ -321,6 +321,7 @@ function buildBlogPermalinks(posts) {
         <a href="/" class="hover:text-slate-900 transition">Home</a>
         <a href="/blog/" class="hover:text-slate-900 transition">Insights</a>
         <a href="mailto:hello@steveknowsweb.com" class="hover:text-slate-900 transition">Email</a>
+        <a href="tel:+17205262114" class="hover:text-slate-900 transition">(720) 526-2114</a>
       </div>
     </div>
   </footer>
