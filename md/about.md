@@ -1,5 +1,5 @@
 ---
-title: "About Steve Luiting - Strategic Web Design | Denver"
+title: "About Steve Luiting - Strategic Web Design | Westminster, CO"
 description: "The story of Steve Luiting - 30+ years building digital experiences for museums, nonprofits, and purpose-driven organizations in Colorado."
 canonical: "https://steveknowsweb.com/about"
 language: "en"
@@ -14,7 +14,7 @@ to last.
 
 Steve Luiting
 
-Strategic Web Designer • Denver, Colorado
+Strategic Web Designer • Westminster, Colorado
 
 For more than thirty years I've helped museums, historical organizations, and purpose-driven groups turn complex missions into clear, durable digital experiences. I don't chase trends. I build things that still feel right and work properly a decade later.
 

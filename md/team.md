@@ -1,5 +1,5 @@
 ---
-title: "Meet the Team - Steve Luiting | Denver"
+title: "Meet the Team - Steve Luiting | Westminster, CO"
 description: "Meet the team behind Steve Knows Web: one designer, Steve Luiting, working with a team of AI agents. Every decision still runs through him."
 canonical: "https://steveknowsweb.com/team"
 language: "en"
@@ -16,7 +16,7 @@ Founder
 
 Steve Luiting
 
-Designer, developer, and video maker in Denver. I set the direction, make the calls, and sign off on every piece of work before it reaches a client.
+Designer, developer, and video maker in Westminster, Colorado. I set the direction, make the calls, and sign off on every piece of work before it reaches a client.
 
 ## The agents
 
