@@ -305,6 +305,8 @@ Fragile legacy systems, broken CMS, migrations, or “this has to last” rebuil
 
 [Discuss a rescue](#contact)
 
+On a tight budget? Let's talk. For solo folks and small businesses, I also build simple sites in the $500 to $800 range. [Tell me what you need](#contact).
+
 Monthly care
 
 Basic
