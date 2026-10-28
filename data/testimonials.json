@@ -2,7 +2,7 @@
   "page": {
     "eyebrow": "Testimonials",
     "headline": "People I’ve built with.",
-    "intro": "Colleagues from museums, public media, and the work at The Cable Center. A few words — and one conversation — about what it’s like to build together."
+    "intro": "Colleagues from museums, public media, and the work at The Cable Center. A few words, and one conversation, about what it’s like to build together."
   },
   "people": [
     {
@@ -43,7 +43,7 @@
       "homepage": true,
       "homepageExcerpt": "Steve is a talented designer. He's smart, funny, inventive and basically a joy to have around.",
       "homepageCredit": "Susan Fey · Wisconsin Public Television",
-      "quote": "Steve is a talented designer. He's smart, funny, inventive and basically a joy to have around. I have no reservations in recommending him to any potential employer.",
+      "quote": "Steve is a talented designer. He's smart, funny, inventive and basically a joy to have around.",
       "photo": "/assets/images/testimonials/sue-fey-circle.png"
     }
   ]

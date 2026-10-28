@@ -10,7 +10,7 @@ const read = (rel) => readFileSync(join(ROOT, rel), 'utf8');
 const NIC_QUOTE =
   "Steve is one of the most inspired, innovative and forward thinking individuals I've ever had the pleasure of meeting or working with. Not only was Steve an innovator, but he was an excellent manager.";
 const SUE_QUOTE =
-  "Steve is a talented designer. He's smart, funny, inventive and basically a joy to have around. I have no reservations in recommending him to any potential employer.";
+  "Steve is a talented designer. He's smart, funny, inventive and basically a joy to have around.";
 const NIC_EXCERPT =
   "One of the most inspired, innovative and forward thinking individuals I've ever had the pleasure of meeting or working with.";
 const SUE_EXCERPT =
@@ -81,12 +81,12 @@ test('nav lists Testimonials after Work on desktop and mobile', () => {
   assert.match(mobile[0], /\/#work[\s\S]*\/testimonials\.html[\s\S]*\/#pricing/);
 });
 
-test('homepage strip sits above Investment and uses the excerpts', () => {
+test('homepage strip sits below Pricing and uses the excerpts', () => {
   const html = read('index.html');
   const idxStrip = html.indexOf('What colleagues say');
   const idxPricing = html.indexOf('id="pricing"');
   assert.ok(idxStrip > 0);
-  assert.ok(idxPricing > idxStrip);
+  assert.ok(idxStrip > idxPricing);
   assert.ok(html.includes(NIC_EXCERPT));
   assert.ok(html.includes(SUE_EXCERPT));
   assert.match(html, /See all testimonials/);
