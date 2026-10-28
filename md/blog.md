@@ -11,7 +11,7 @@ Articles by Steve Luiting on strategic web design, digital preservation, and AI-
 
 ## [Behind the Scenes: Ruston and the End of the Rainbow](https://steveknowsweb.com/blog/behind-the-scenes-ruston-and-the-end-of-the-rainbow)
 
-*2026-10-26 · AI Video · 4 min*
+*2026-10-26 · AI · 4 min*
 
 How I'm directing and editing an animated short with AI: numbered shot plans, character sheets and a strict color rule, close-up inserts for continuity, an approve and lock process, and FFmpeg assembly.
 
@@ -27,7 +27,7 @@ Markdown: [building-a-home-for-mike-bolligs-songs.md](/md/blog/building-a-home-f
 
 ## [From Web Builder to Art Director: How AI Changed My Process](https://steveknowsweb.com/blog/from-web-builder-to-art-director)
 
-*2026-10-13 · AI & Workflow · 3 min*
+*2026-10-13 · AI · 3 min*
 
 Building a website used to mean hours in the weeds. Now it feels more like art directing: an AI assistant does the build, I bring the taste and judgment, and clients request updates with a simple email.
 
@@ -51,7 +51,7 @@ Markdown: [wheelers-phcc-redesign-from-broken-wordpress.md](/md/blog/wheelers-ph
 
 ## [A Birthday Card for Skoog](https://steveknowsweb.com/blog/a-birthday-card-for-skoog)
 
-*2026-08-28 · Design · 4 min*
+*2026-08-28 · Fun projects · 4 min*
 
 A custom birthday card for Larry Watson, Skoog, built from his own book covers and his real likeness, plus two short films that put him and Susie into pictures he already loved.
 
@@ -59,7 +59,7 @@ Markdown: [a-birthday-card-for-skoog.md](/md/blog/a-birthday-card-for-skoog.md)
 
 ## [A Matrix Birthday Card for Erin](https://steveknowsweb.com/blog/matrix-birthday-card-for-erin)
 
-*2026-07-10 · Design · 4 min*
+*2026-07-10 · Fun projects · 4 min*
 
 A custom Matrix-style birthday card for Erin - her likeness on the cover, 7.21.2026, and an inside that says we love you and you kick reality’s ass.
 
@@ -67,7 +67,7 @@ Markdown: [matrix-birthday-card-for-erin.md](/md/blog/matrix-birthday-card-for-e
 
 ## [WordCut - Free Video Editor for Windows](https://steveknowsweb.com/blog/wordcut-free-video-editor-for-windows)
 
-*2026-07-02 · AI & Tools · 4 min*
+*2026-07-02 · AI · 4 min*
 
 WordCut is a free Windows app I built with Whisper, FFmpeg, and pywebview - click words in a transcript to cut them from your video. Open source on GitHub.
 
@@ -75,7 +75,7 @@ Markdown: [wordcut-free-video-editor-for-windows.md](/md/blog/wordcut-free-video
 
 ## [Vibe Coding This Site - and Adding Motion Without Losing the Plot](https://steveknowsweb.com/blog/vibe-coding-motion-and-the-tools-im-watching)
 
-*2026-07-02 · AI & Workflow · 9 min*
+*2026-07-02 · AI · 9 min*
 
 I watched a sharp video on vibe coding with Grok Build, then used the same workflow to add Lottie-style page animations to my static site - without migrating to React. Whisper, FFmpeg, and Pywebview are next on my radar.
 
@@ -83,7 +83,7 @@ Markdown: [vibe-coding-motion-and-the-tools-im-watching.md](/md/blog/vibe-coding
 
 ## [Generative Engine Optimization: What GEO Actually Is](https://steveknowsweb.com/blog/generative-engine-optimization)
 
-*2026-06-29 · AI & Strategy · 7 min*
+*2026-06-29 · AI · 7 min*
 
 GEO is the new game for getting into AI answers instead of Google results. Here's how it works, how it differs from ads and SEO, and what it means for real websites.
 
@@ -91,7 +91,7 @@ Markdown: [generative-engine-optimization.md](/md/blog/generative-engine-optimiz
 
 ## [impactstudios.app Is Live - A Coming Soon Page on the Path I Already Trust](https://steveknowsweb.com/blog/impactstudios-app-is-live)
 
-*2026-06-26 · AI & Strategy · 3 min*
+*2026-06-26 · AI · 3 min*
 
 The Impact Studio product is still in development, but the brand now has a home at impactstudios.app - a coming soon page deployed through the same GitHub-to-Cloudflare workflow I have been writing about. Set up June 26, 2026.
 
@@ -99,7 +99,7 @@ Markdown: [impactstudios-app-is-live.md](/md/blog/impactstudios-app-is-live.md)
 
 ## [Markdown for AI Agents: Same Page, Far Fewer Tokens](https://steveknowsweb.com/blog/markdown-for-ai-agents)
 
-*2026-06-26 · AI & Strategy · 7 min*
+*2026-06-26 · AI · 7 min*
 
 When AI reads your website, it pays for every byte of HTML - menus, scripts, and template chrome included. Serving a Markdown twin gives agents your actual words without the markup tax.
 
@@ -107,7 +107,7 @@ Markdown: [markdown-for-ai-agents.md](/md/blog/markdown-for-ai-agents.md)
 
 ## [Impact Studio: A Builder for Offline Work and Real Publishing](https://steveknowsweb.com/blog/impact-studio-a-builder-for-offline-work-and-real-publishing)
 
-*2026-06-24 · AI & Strategy · 10 min*
+*2026-06-24 · AI · 10 min*
 
 I am building Impact Studio - an offline-first visual builder with AI that works beside you in the editor and on a schedule. Same GitHub-to-Cloudflare publishing I already trust. Early code lives in a private GitHub repo.
 
@@ -123,7 +123,7 @@ Markdown: [building-the-cable-center-vr-archive.md](/md/blog/building-the-cable-
 
 ## [I Finally Left Squarespace](https://steveknowsweb.com/blog/i-finally-left-squarespace)
 
-*2026-06-12 · AI & Workflow · 8 min*
+*2026-06-12 · AI · 8 min*
 
 I was paying $10 a month for a Squarespace site I hadn't touched in years - just to keep redirects alive. Here's how I moved everything to Cloudflare and stopped renting a platform I didn't need.
 
@@ -131,7 +131,7 @@ Markdown: [i-finally-left-squarespace.md](/md/blog/i-finally-left-squarespace.md
 
 ## [Working with Multiple AI Agents on a Static Website](https://steveknowsweb.com/blog/working-with-multiple-ai-agents-on-a-static-website)
 
-*2026-06-10 · AI & Workflow · 7 min*
+*2026-06-10 · AI · 7 min*
 
 I'm experimenting with treating AI agents as ongoing collaborators on my website - not just one-off tools. Here's what that actually looks like right now.
 
@@ -147,7 +147,7 @@ Markdown: [3d-aframe-2d.md](/md/blog/3d-aframe-2d.md)
 
 ## [Core Principles of AEO](https://steveknowsweb.com/blog/core-principles-of-aeo)
 
-*2026-05-30 · AI & Strategy · 8 min*
+*2026-05-30 · AI · 8 min*
 
 SEO is important but now so is AEO. Here's what Answer Engine Optimization actually means for how we build websites in 2026 and beyond.
 
@@ -163,7 +163,7 @@ Markdown: [rescuing-the-video-archive-after-the-hack.md](/md/blog/rescuing-the-v
 
 ## [AI and UI/UX Web Design News](https://steveknowsweb.com/blog/ai-and-uiux-web-design-news)
 
-*2026-04-15 · AI & Tools · 6 min*
+*2026-04-15 · AI · 6 min*
 
 "Awesome Design MD" goes viral as the "Figma for AI agents" - a look at the tools that are actually changing how we design and build in 2026.
 

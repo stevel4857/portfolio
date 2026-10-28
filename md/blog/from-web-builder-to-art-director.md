@@ -4,7 +4,7 @@ description: "Building a website used to mean hours in the weeds. Now it feels m
 canonical: "https://steveknowsweb.com/blog/from-web-builder-to-art-director"
 date: "2026-10-13"
 author: "Steve Luiting"
-category: "AI & Workflow"
+category: "AI"
 tags: "AI, Web Design, Process, Static Sites, Cloudflare, Small Business"
 language: "en"
 ---

@@ -4,7 +4,7 @@ description: "I watched a sharp video on vibe coding with Grok Build, then used 
 canonical: "https://steveknowsweb.com/blog/vibe-coding-motion-and-the-tools-im-watching"
 date: "2026-07-02"
 author: "Steve Luiting"
-category: "AI & Workflow"
+category: "AI"
 tags: "Vibe Coding, AI, Motion, Workflow, Static Sites"
 language: "en"
 ---

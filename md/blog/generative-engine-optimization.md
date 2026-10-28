@@ -4,7 +4,7 @@ description: "GEO is the new game for getting into AI answers instead of Google 
 canonical: "https://steveknowsweb.com/blog/generative-engine-optimization"
 date: "2026-06-29"
 author: "Steve Luiting"
-category: "AI & Strategy"
+category: "AI"
 tags: "GEO, AEO, AI, Strategy"
 language: "en"
 ---

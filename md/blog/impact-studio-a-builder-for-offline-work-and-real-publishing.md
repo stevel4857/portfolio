@@ -4,7 +4,7 @@ description: "I am building Impact Studio - an offline-first visual builder with
 canonical: "https://steveknowsweb.com/blog/impact-studio-a-builder-for-offline-work-and-real-publishing"
 date: "2026-06-24"
 author: "Steve Luiting"
-category: "AI & Strategy"
+category: "AI"
 tags: "AI, Strategy, Static Sites, Workflow, Product"
 language: "en"
 ---

@@ -8,7 +8,7 @@ category: "Music"
 tags: "Music, Suno, AI, Web Design, Songwriting"
 language: "en"
 ---
-Some of the best songs never get a fair shot because the person who wrote them has no way to share them. [Mike Bollig](https://steveknowsweb.com/mike-bollig/) is a singer-songwriter whose songs reach back to the late 1970s, and I've been lucky enough to help him change that.
+Some of the best songs never get a fair shot because the person who wrote them has no way to share them. [Mike Bollig](https://mikebollig.com) is a singer-songwriter whose songs reach back to the late 1970s, and I've been lucky enough to help him change that.
 
 ### It starts with Mike
 

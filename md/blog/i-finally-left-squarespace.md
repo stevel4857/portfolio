@@ -4,7 +4,7 @@ description: "I was paying $10 a month for a Squarespace site I hadn't touched i
 canonical: "https://steveknowsweb.com/blog/i-finally-left-squarespace"
 date: "2026-06-12"
 author: "Steve Luiting"
-category: "AI & Workflow"
+category: "AI"
 tags: "Squarespace, Cloudflare, Migration, Static Sites, Workflow"
 language: "en"
 ---

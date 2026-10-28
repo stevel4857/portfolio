@@ -305,7 +305,7 @@ function buildBlogPermalinks(posts) {
 
     <h1 class="heading-serif text-4xl md:text-5xl leading-none tracking-tighter mb-8">${escapeHtml(post.title)}</h1>
 
-    ${post.image ? `<figure class="mb-10"><img src="${escapeHtml(post.image)}" alt="${escapeHtml(post.imageAlt || '')}" class="w-full rounded-2xl border border-slate-200 shadow-sm" /></figure>` : ''}
+    ${post.image ? `<figure class="mb-10"><picture>${post.imageWebp ? `<source srcset="${escapeHtml(post.imageWebp)}" type="image/webp">` : ''}<img src="${escapeHtml(post.image)}" alt="${escapeHtml(post.imageAlt || '')}" class="w-full rounded-2xl border border-slate-200 shadow-sm" /></picture></figure>` : ''}
 
     <div class="prose prose-slate max-w-none blog-content">
       <!--email_off-->${post.content}<!--/email_off-->
@@ -318,7 +318,7 @@ function buildBlogPermalinks(posts) {
     <div class="max-w-3xl mx-auto px-6 text-sm text-slate-500 flex flex-col sm:flex-row gap-y-3 items-center justify-between">
       <div>© Steve Luiting. All rights reserved.</div>
       <div class="flex gap-x-5">
-        <a href="/mike-bollig/" class="hover:text-slate-900 transition">Featured: Mike Bollig - Music</a>
+        <a href="https://mikebollig.com" target="_blank" rel="noopener" class="hover:text-slate-900 transition">Featured: Mike Bollig - Music</a>
         <a href="/" class="hover:text-slate-900 transition">Home</a>
         <a href="/blog/" class="hover:text-slate-900 transition">Insights</a>
         <!--email_off--><a href="mailto:hello@steveknowsweb.com" class="hover:text-slate-900 transition">Email</a><!--/email_off-->
@@ -338,11 +338,45 @@ function buildBlogPermalinks(posts) {
   }
 }
 
+// Prerender the post cards and category chips into blog.html so /blog/ has real links
+// without JavaScript (crawlers, AI agents, slow phones). The page script replaces them at runtime.
+function replaceBetween(html, startMarker, endMarker, inner) {
+  const re = new RegExp(`(<!-- ${startMarker}[^>]*-->)[\\s\\S]*?(\\s*<!-- ${endMarker} -->)`);
+  if (!re.test(html)) throw new Error(`blog.html is missing the ${startMarker} / ${endMarker} markers`);
+  return html.replace(re, (_, a, b) => `${a}${inner}${b}`);
+}
+
+function prerenderBlogListing(posts) {
+  const file = path.join(ROOT, 'blog.html');
+  if (!fs.existsSync(file)) return;
+  const original = fs.readFileSync(file, 'utf8');
+  const eol = original.includes('\r\n') ? '\r\n' : '\n';
+  const categories = [...new Set(posts.map((p) => p.category))];
+  const chips = categories
+    .map(
+      (cat) =>
+        `${eol}        <button type="button" data-category="${escapeHtml(cat)}" class="category-btn px-4 py-1.5 text-sm rounded-full border border-slate-200 hover:bg-slate-100 transition font-medium">${escapeHtml(cat)}</button>`,
+    )
+    .join('');
+  const cards = posts
+    .map((post) => {
+      const img = post.image
+        ? `<div class="mb-5 -mx-1"><picture>${post.imageWebp ? `<source srcset="${escapeHtml(post.imageWebp)}" type="image/webp">` : ''}<img src="${escapeHtml(post.image)}" alt="" class="w-full aspect-[4/3] object-cover rounded-2xl border border-slate-200" loading="lazy"></picture></div>`
+        : '';
+      return `${eol}      <a href="/blog/${post.slug}/" class="post-card group bg-white border border-slate-200 rounded-3xl p-7 flex flex-col h-full hover:border-slate-300">${img}<div class="flex items-center justify-between mb-4"><span class="category-pill">${escapeHtml(post.category)}</span><span class="text-xs text-slate-500 font-mono tracking-tight">${escapeHtml(post.date)}</span></div><h3 class="font-semibold text-2xl leading-tight tracking-tighter mb-3">${escapeHtml(post.title)}</h3><p class="text-slate-600 text-[15px] leading-relaxed line-clamp-3 flex-1">${escapeHtml(post.excerpt)}</p><div class="mt-6 flex items-center justify-between text-sm"><span class="text-slate-500">${escapeHtml(post.readTime || '')}</span><span class="inline-flex items-center gap-x-1 text-slate-900 font-medium">Read <i class="fa-solid fa-arrow-right text-xs" aria-hidden="true"></i></span></div></a>`;
+    })
+    .join('');
+  let html = replaceBetween(original, 'CATEGORIES:START', 'CATEGORIES:END', chips);
+  html = replaceBetween(html, 'POSTS:START', 'POSTS:END', cards);
+  if (html !== original) fs.writeFileSync(file, html, 'utf8');
+  console.log(`  blog.html (prerendered ${posts.length} post cards)`);
+}
+
 function buildLlmsTxt(corePages, blogPages) {
   const fixed = [
     '# Steve Luiting - steveknowsweb.com',
     '',
-    '> Strategic web design and digital experiences for museums, nonprofits, and purpose-driven organizations.',
+    '> Websites and digital experiences for Colorado small businesses, nonprofits and museums.',
     '',
     '## Pages',
     '',
@@ -418,6 +452,7 @@ function main() {
 
   // Keep /blog/ serving the listing even though post folders live under blog/.
   // Cloudflare pretty-URLs + a rewrite of /blog → blog.html caused redirect loops.
+  prerenderBlogListing(posts);
   const blogListing = path.join(ROOT, 'blog.html');
   const blogIndex = path.join(ROOT, 'blog', 'index.html');
   if (fs.existsSync(blogListing)) {

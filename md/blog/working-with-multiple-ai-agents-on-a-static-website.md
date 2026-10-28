@@ -4,7 +4,7 @@ description: "I'm experimenting with treating AI agents as ongoing collaborators
 canonical: "https://steveknowsweb.com/blog/working-with-multiple-ai-agents-on-a-static-website"
 date: "2026-06-10"
 author: "Steve Luiting"
-category: "AI & Workflow"
+category: "AI"
 tags: "AI, Workflow, Collaboration, Static Sites"
 language: "en"
 ---

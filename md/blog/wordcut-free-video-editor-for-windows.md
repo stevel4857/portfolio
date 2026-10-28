@@ -4,7 +4,7 @@ description: "WordCut is a free Windows app I built with Whisper, FFmpeg, and py
 canonical: "https://steveknowsweb.com/blog/wordcut-free-video-editor-for-windows"
 date: "2026-07-02"
 author: "Steve Luiting"
-category: "AI & Tools"
+category: "AI"
 tags: "WordCut, Open Source, Video, Whisper, Windows"
 language: "en"
 ---

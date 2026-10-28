@@ -4,7 +4,7 @@ description: "How I'm directing and editing an animated short with AI: numbered 
 canonical: "https://steveknowsweb.com/blog/behind-the-scenes-ruston-and-the-end-of-the-rainbow"
 date: "2026-10-26"
 author: "Steve Luiting"
-category: "AI Video"
+category: "AI"
 tags: "Video Editing, Animation, AI Video, Grok Imagine, FFmpeg, Visual Style"
 language: "en"
 ---

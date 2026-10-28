@@ -4,7 +4,7 @@ description: "A custom birthday card for Larry Watson, Skoog, built from his own
 canonical: "https://steveknowsweb.com/blog/a-birthday-card-for-skoog"
 date: "2026-08-28"
 author: "Steve Luiting"
-category: "Design"
+category: "Fun projects"
 tags: "Design, Print, Birthday, Personal, Larry Watson"
 language: "en"
 ---

@@ -4,7 +4,7 @@ description: "When AI reads your website, it pays for every byte of HTML - menus
 canonical: "https://steveknowsweb.com/blog/markdown-for-ai-agents"
 date: "2026-06-26"
 author: "Steve Luiting"
-category: "AI & Strategy"
+category: "AI"
 tags: "AI, Markdown, AEO, Strategy, Static Sites"
 language: "en"
 ---

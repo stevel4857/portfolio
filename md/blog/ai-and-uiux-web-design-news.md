@@ -4,7 +4,7 @@ description: "\"Awesome Design MD\" goes viral as the \"Figma for AI agents\" - 
 canonical: "https://steveknowsweb.com/blog/ai-and-uiux-web-design-news"
 date: "2026-04-15"
 author: "Steve Luiting"
-category: "AI & Tools"
+category: "AI"
 tags: "AI, Tools, UI/UX"
 language: "en"
 ---

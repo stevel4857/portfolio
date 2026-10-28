@@ -4,7 +4,7 @@ description: "SEO is important but now so is AEO. Here's what Answer Engine Opti
 canonical: "https://steveknowsweb.com/blog/core-principles-of-aeo"
 date: "2026-05-30"
 author: "Steve Luiting"
-category: "AI & Strategy"
+category: "AI"
 tags: "AEO, AI, Strategy"
 language: "en"
 ---

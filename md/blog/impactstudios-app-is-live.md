@@ -4,7 +4,7 @@ description: "The Impact Studio product is still in development, but the brand n
 canonical: "https://steveknowsweb.com/blog/impactstudios-app-is-live"
 date: "2026-06-26"
 author: "Steve Luiting"
-category: "AI & Strategy"
+category: "AI"
 tags: "Product, Static Sites, Workflow, Impact Studio"
 language: "en"
 ---

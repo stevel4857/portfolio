@@ -4,7 +4,7 @@ description: "A custom Matrix-style birthday card for Erin - her likeness on the
 canonical: "https://steveknowsweb.com/blog/matrix-birthday-card-for-erin"
 date: "2026-07-10"
 author: "Steve Luiting"
-category: "Design"
+category: "Fun projects"
 tags: "Design, Print, Birthday, Matrix, Personal"
 language: "en"
 ---
