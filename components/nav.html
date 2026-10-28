@@ -9,9 +9,9 @@
   .nav-dropdown-item:hover, .nav-dropdown-item:focus-visible { background: #f8fafc; color: #0f172a; outline: none; }
   .nav-brand { color: #9f1239; transition: color .15s ease; }
   .nav-brand:hover, .nav-brand:focus-visible { color: #881337; }
-  @media (min-width: 768px) { .nav-brand, .nav-links a, .nav-links button, .nav-notes-btn, .nav-notes-btn + a { white-space: nowrap; } }
+  @media (min-width: 768px) { .nav-brand, .nav-links a, .nav-links button { white-space: nowrap; } }
   @media (min-width: 768px) and (max-width: 1279px) { .nav-links { column-gap: 1.5rem; margin-right: 1rem; } .nav-tagline { display: none; } }
-  @media (min-width: 768px) and (max-width: 1023px) { .nav-links { column-gap: 1.25rem; } .nav-notes-btn { display: none !important; } }
+  @media (min-width: 768px) and (max-width: 1023px) { .nav-links { column-gap: 1.25rem; } }
 </style>
 <nav class="border-b border-slate-100 bg-white/80 backdrop-blur-sm sticky top-0 z-50">
   <div class="max-w-6xl mx-auto px-6 relative">
@@ -34,7 +34,7 @@
           </div>
         </div>
         <a href="/#work" class="nav-link text-slate-600 hover:text-slate-900 transition">Work</a>
-        <a href="/#pricing" class="nav-link text-slate-600 hover:text-slate-900 transition">Investment</a>
+        <a href="/#pricing" class="nav-link text-slate-600 hover:text-slate-900 transition">Pricing</a>
         <a href="/getting-started" class="nav-link text-slate-600 hover:text-slate-900 transition whitespace-nowrap">How it works</a>
         <a href="/blog/" class="nav-link text-slate-600 hover:text-slate-900 transition">Insights</a>
         <a href="/#contact" class="nav-link text-slate-600 hover:text-slate-900 transition">Contact</a>
@@ -42,10 +42,6 @@
 
       <!-- Right side actions + mobile hamburger -->
       <div class="flex items-center gap-x-3">
-        <a href="/blog/" 
-           class="nav-notes-btn hidden sm:inline-flex items-center justify-center px-4 h-9 rounded-full border border-slate-300 text-sm font-medium text-slate-700 hover:bg-slate-50 transition">
-          Read the Notes
-        </a>
         <a href="/#contact" 
            class="hidden md:inline-flex items-center px-5 h-9 rounded-full bg-slate-900 text-white text-sm font-semibold hover:bg-black transition">
           Let's Talk
@@ -80,17 +76,12 @@
           </div>
         </div>
         <a href="/#work" class="py-3 text-slate-700 hover:text-slate-900 transition border-b border-slate-200 last:border-0" role="menuitem">Work</a>
-        <a href="/#pricing" class="py-3 text-slate-700 hover:text-slate-900 transition border-b border-slate-200 last:border-0" role="menuitem">Investment</a>
+        <a href="/#pricing" class="py-3 text-slate-700 hover:text-slate-900 transition border-b border-slate-200 last:border-0" role="menuitem">Pricing</a>
         <a href="/getting-started" class="py-3 text-slate-700 hover:text-slate-900 transition border-b border-slate-200 last:border-0" role="menuitem">How it works</a>
         <a href="/blog/" class="py-3 text-slate-700 hover:text-slate-900 transition border-b border-slate-200 last:border-0" role="menuitem">Insights</a>
         <a href="/#contact" class="py-3 text-slate-700 hover:text-slate-900 transition border-b border-slate-200 last:border-0" role="menuitem">Contact</a>
 
         <div class="pt-4 mt-3 border-t border-slate-100 flex flex-col gap-y-2.5">
-          <a href="/blog/" 
-             class="inline-flex items-center justify-center px-4 h-9 rounded-full border border-slate-300 text-xs font-medium text-slate-700 hover:bg-slate-50 active:bg-slate-100 transition whitespace-nowrap"
-             role="menuitem">
-            Read the Notes
-          </a>
           <a href="/#contact" 
              class="inline-flex items-center justify-center px-4 h-9 rounded-full bg-slate-900 text-white text-xs font-semibold hover:bg-black active:bg-slate-950 transition whitespace-nowrap"
              role="menuitem">
