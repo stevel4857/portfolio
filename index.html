@@ -17,6 +17,8 @@
     body {
       font-family: "Inter", system_ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
+    .btn-book { background-color: #9f1239; color: #fff; }
+    .btn-book:hover, .btn-book:focus-visible { background-color: #881337; color: #fff; }
   </style>
 </head>
 <body class="bg-white text-slate-900 antialiased">
@@ -56,6 +58,11 @@
           <a href="#story" 
              class="inline-flex items-center justify-center gap-x-2 px-7 h-14 rounded-2xl border border-white/70 text-white font-medium hover:bg-white/10 transition">
             My Story
+          </a>
+          <a href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ1T1zm7da_pGWxzOqu2Rft8mMNeYrvMpkGAhiCJMK9mowlW5daEhJYU7loS-3ubAi8b0XNyWzZA?gv=true" target="_blank" rel="noopener" data-booking-link
+             class="btn-book inline-flex items-center justify-center gap-x-2 px-7 h-14 rounded-2xl font-semibold active:scale-[0.985] transition">
+            <i class="fa-regular fa-calendar-check" aria-hidden="true"></i>
+            Book a free consult
           </a>
         </div>
         
@@ -700,6 +707,19 @@
 
         <!-- Right: Contact Form -->
         <div id="contact-form-container">
+          <!-- Booking -->
+          <div class="mb-8 rounded-2xl border border-slate-200 bg-slate-50/70 p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <div class="text-sm font-semibold text-slate-900">Prefer to talk it through?</div>
+              <div class="text-sm text-slate-600">Pick a time for a free consult on my calendar.</div>
+            </div>
+            <a href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ1T1zm7da_pGWxzOqu2Rft8mMNeYrvMpkGAhiCJMK9mowlW5daEhJYU7loS-3ubAi8b0XNyWzZA?gv=true" target="_blank" rel="noopener" data-booking-link
+               class="btn-book inline-flex shrink-0 items-center justify-center gap-x-2 px-6 h-12 rounded-2xl text-sm font-semibold active:scale-[0.985] transition">
+              <i class="fa-regular fa-calendar-check" aria-hidden="true"></i>
+              Book a free consult
+            </a>
+          </div>
+
           <!-- Form -->
           <form id="contact-form" action="https://formspree.io/f/xaqkggrv" method="POST" class="space-y-4">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
