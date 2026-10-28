@@ -333,6 +333,8 @@ $350/mo
 
 Brand, motion, or larger Mission Site+ work is quoted separately. Projects usually start with a 40–50% deposit. Prefer a written audit first? That’s $300, credited toward a project if we begin within 60 days.
 
+Pay by card or bank transfer through Stripe invoices, or by Venmo.
+
 [Get a fit recommendation](#contact)
 
 LET'S WORK TOGETHER
