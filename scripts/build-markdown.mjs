@@ -307,7 +307,7 @@ function buildBlogPermalinks(posts) {
     ${post.image ? `<figure class="mb-10"><img src="${escapeHtml(post.image)}" alt="${escapeHtml(post.imageAlt || '')}" class="w-full rounded-2xl border border-slate-200 shadow-sm" /></figure>` : ''}
 
     <div class="prose prose-slate max-w-none blog-content">
-      ${post.content}
+      <!--email_off-->${post.content}<!--/email_off-->
     </div>
 
     ${tagsHtml}
@@ -320,7 +320,7 @@ function buildBlogPermalinks(posts) {
         <a href="/mike-bollig/" class="hover:text-slate-900 transition">Featured: Mike Bollig – Music</a>
         <a href="/" class="hover:text-slate-900 transition">Home</a>
         <a href="/blog/" class="hover:text-slate-900 transition">Insights</a>
-        <a href="mailto:hello@steveknowsweb.com" class="hover:text-slate-900 transition">Email</a>
+        <!--email_off--><a href="mailto:hello@steveknowsweb.com" class="hover:text-slate-900 transition">Email</a><!--/email_off-->
         <a href="tel:+17205262114" class="hover:text-slate-900 transition">(720) 526-2114</a>
       </div>
     </div>

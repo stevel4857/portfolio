@@ -11,7 +11,7 @@ your mission.
 
 Strategic web design and digital experiences for museums, nonprofits, and purpose-driven organizations.
 
-[Start a Conversation](#contact) [My Story](#story)
+[Start a Conversation](#contact) [My Story](#story) [Book a free consult](https://calendar.google.com/calendar/appointments/schedules/AcZssZ1T1zm7da_pGWxzOqu2Rft8mMNeYrvMpkGAhiCJMK9mowlW5daEhJYU7loS-3ubAi8b0XNyWzZA?gv=true)
 
 Now building faster and better with AI (Grok + Claude) while keeping the same care for craft.
 
@@ -346,6 +346,12 @@ Not sure which plan fits? [See investment ranges](#pricing) — or just tell me 
 [(720) 526-2114](tel:+17205262114) [hello@steveknowsweb.com](mailto:hello@steveknowsweb.com) [LinkedIn](https://www.linkedin.com/in/luiting)
 
 No hard sell. No sales team. Just a real conversation.
+
+Prefer to talk it through?
+
+Pick a time for a free consult on my calendar.
+
+[Book a free consult](https://calendar.google.com/calendar/appointments/schedules/AcZssZ1T1zm7da_pGWxzOqu2Rft8mMNeYrvMpkGAhiCJMK9mowlW5daEhJYU7loS-3ubAi8b0XNyWzZA?gv=true)
 
 Your Name 
 
