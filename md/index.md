@@ -333,11 +333,11 @@ $350/mo
 
 [Add care →](#contact)
 
-Brand, motion, or larger Mission Site+ work is quoted separately. Projects usually start with a 40–50% deposit. Prefer a written audit first? That’s $300, credited toward a project if we begin within 60 days.
+Brand, motion, or larger Mission Site+ work is quoted separately. Projects are half down to start and half on completion. Prefer a written audit first? That’s $300, credited toward a project if we begin within 60 days.
 
 Pay by card or bank transfer through Stripe invoices, or by [Venmo](https://venmo.com/u/Steven-Luiting).
 
-[Get a fit recommendation](#contact)
+[Get a fit recommendation](#contact) [See how it works](https://steveknowsweb.com/getting-started)
 
 LET'S WORK TOGETHER
 

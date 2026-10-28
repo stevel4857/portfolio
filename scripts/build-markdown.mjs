@@ -16,6 +16,7 @@ const CORE_PAGES = [
   { html: 'about.html', md: 'about.md', canonical: '/about', pageDir: '' },
   { html: 'testimonials.html', md: 'testimonials.md', canonical: '/testimonials', pageDir: '' },
   { html: 'team.html', md: 'team.md', canonical: '/team', pageDir: '' },
+  { html: 'getting-started.html', md: 'getting-started.md', canonical: '/getting-started', pageDir: '' },
   { html: 'work/syndeo.html', md: 'work/syndeo.md', canonical: '/work/syndeo', pageDir: 'work' },
   { html: 'work/wordcut.html', md: 'work/wordcut.md', canonical: '/work/wordcut', pageDir: 'work' },
 ];
@@ -364,6 +365,7 @@ function buildSitemap(posts) {
     { loc: '/about', changefreq: 'monthly', priority: '0.8' },
     { loc: '/testimonials', changefreq: 'monthly', priority: '0.8' },
     { loc: '/team', changefreq: 'monthly', priority: '0.7' },
+    { loc: '/getting-started', changefreq: 'monthly', priority: '0.7' },
     { loc: '/blog', changefreq: 'weekly', priority: '0.8' },
     { loc: '/work/syndeo', changefreq: 'monthly', priority: '0.7' },
     { loc: '/work/wordcut', changefreq: 'monthly', priority: '0.7' },

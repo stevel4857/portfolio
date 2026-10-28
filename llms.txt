@@ -8,6 +8,7 @@
 - [About Steve Luiting - Strategic Web Design | Westminster, CO](https://steveknowsweb.com/md/about.md)
 - [Testimonials - Steve Luiting | Westminster, CO](https://steveknowsweb.com/md/testimonials.md)
 - [Meet the Team - Steve Luiting | Westminster, CO](https://steveknowsweb.com/md/team.md)
+- [Getting Started - Steve Luiting | Westminster, CO](https://steveknowsweb.com/md/getting-started.md)
 - [Syndeo Institute - Visual Identity | Steve Luiting](https://steveknowsweb.com/md/work/syndeo.md)
 - [WordCut - Edit Video by Editing Text | Steve Luiting](https://steveknowsweb.com/md/work/wordcut.md)
 - [Blog index](https://steveknowsweb.com/md/blog.md)
