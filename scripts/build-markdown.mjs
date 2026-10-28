@@ -317,7 +317,7 @@ function buildBlogPermalinks(posts) {
     <div class="max-w-3xl mx-auto px-6 text-sm text-slate-500 flex flex-col sm:flex-row gap-y-3 items-center justify-between">
       <div>© Steve Luiting. All rights reserved.</div>
       <div class="flex gap-x-5">
-        <a href="/mike-bollig/" class="hover:text-slate-900 transition">Featured: Mike Bollig – Music</a>
+        <a href="/mike-bollig/" class="hover:text-slate-900 transition">Featured: Mike Bollig - Music</a>
         <a href="/" class="hover:text-slate-900 transition">Home</a>
         <a href="/blog/" class="hover:text-slate-900 transition">Insights</a>
         <!--email_off--><a href="mailto:hello@steveknowsweb.com" class="hover:text-slate-900 transition">Email</a><!--/email_off-->
@@ -426,7 +426,7 @@ function main() {
   buildLlmsTxt(corePages, blogPages);
   buildSitemap(posts);
 
-  console.log(`Done — ${posts.length} articles, ${CORE_PAGES.length} core pages.`);
+  console.log(`Done - ${posts.length} articles, ${CORE_PAGES.length} core pages.`);
 }
 
 main();
