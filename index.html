@@ -19,6 +19,10 @@
     }
     .btn-book { background-color: #9f1239; color: #fff; }
     .btn-book:hover, .btn-book:focus-visible { background-color: #881337; color: #fff; }
+    /* Bigger tap areas for small inline links on touch screens, without changing how they look */
+    @media (pointer: coarse), (max-width: 767px) {
+      .tap-target { display: inline-flex; align-items: center; min-height: 44px; }
+    }
   </style>
 </head>
 <body class="bg-white text-slate-900 antialiased">
@@ -30,7 +34,7 @@
 
   <!-- Hero -->
   <header class="relative flex items-start min-h-[68vh] bg-cover bg-center" 
-          style="background-image: url('assets/images/me-front.jpg');">
+          style="background-image: url('assets/images/me-front.jpg'); background-image: image-set(url('assets/images/me-front.webp') type('image/webp'), url('assets/images/me-front.jpg') type('image/jpeg'));">
     
     <!-- Dark gradient overlay for text readability -->
     <div class="absolute inset-0 bg-gradient-to-b from-black/55 via-black/45 to-black/65"></div>
@@ -47,7 +51,7 @@
         </h1>
         
         <p data-stagger-item class="mt-6 text-2xl text-white/90 max-w-lg leading-tight">
-          Strategic web design and digital experiences for museums, nonprofits, and purpose-driven organizations.
+          Websites and digital experiences for Colorado small businesses, nonprofits and museums.
         </p>
 
         <div data-stagger-item class="mt-9 flex flex-wrap items-center gap-x-4 gap-y-3">
@@ -55,14 +59,12 @@
              class="inline-flex items-center justify-center gap-x-2 px-8 h-14 rounded-2xl bg-white text-slate-900 font-semibold text-lg hover:bg-white/90 active:scale-[0.985] transition">
             Start a Conversation
           </a>
-          <a href="#story" 
+          <a href="#pricing" 
              class="inline-flex items-center justify-center gap-x-2 px-7 h-14 rounded-2xl border border-white/70 text-white font-medium hover:bg-white/10 transition">
-            My Story
+            See pricing
           </a>
-          <a href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ1T1zm7da_pGWxzOqu2Rft8mMNeYrvMpkGAhiCJMK9mowlW5daEhJYU7loS-3ubAi8b0XNyWzZA?gv=true" target="_blank" rel="noopener" data-booking-link
-             class="btn-book inline-flex items-center justify-center gap-x-2 px-7 h-14 rounded-2xl font-semibold active:scale-[0.985] transition">
-            <i class="fa-regular fa-calendar-check" aria-hidden="true"></i>
-            Book a free consult
+          <a href="#story" class="tap-target inline-flex items-center gap-x-1.5 text-sm font-medium text-white/80 hover:text-white underline underline-offset-4">
+            or read my story
           </a>
         </div>
         
@@ -81,7 +83,7 @@
         <div>The Cable Center / Syndeo Institute</div>
         <div>Colorado Museums</div>
         <div>Nonprofits &amp; Cultural Orgs</div>
-        <div>Purpose-Driven Brands</div>
+        <div>Small Businesses</div>
       </div>
     </div>
   </div>
@@ -111,12 +113,12 @@
 
           <div class="pl-5 border-l-2 border-slate-300">
             <p class="font-semibold text-slate-900">I reverse-engineered broken 2007 Flash kiosks</p>
-            <p class="mt-1">so visitors could still interact with exhibits — and I still bring that same archival content back online today using modern safe techniques.</p>
+            <p class="mt-1">so visitors could still interact with exhibits, and I still bring that same archival content back online today using modern safe techniques.</p>
           </div>
 
           <div class="pl-5 border-l-2 border-slate-300">
             <p class="font-semibold text-slate-900">I led the creation of a full VR recreation</p>
-            <p class="mt-1">of the entire building in Unity. You can still walk through it on a Meta Quest or via Steam — picking up artifacts and stepping into 360° video.</p>
+            <p class="mt-1">of the entire building in Unity. You can still walk through it on a Meta Quest or via Steam, picking up artifacts and stepping into 360° video.</p>
             <a href="https://store.steampowered.com/app/612440/The_Cable_Center__Virtual_Archive/" target="_blank" 
                class="inline-flex items-center gap-x-1.5 text-sm font-medium text-slate-900 hover:underline mt-2">
               View the VR Archive on Steam <i class="fa-solid fa-external-link-alt text-xs" aria-hidden="true"></i>
@@ -142,23 +144,19 @@
         </div>
 
         <div class="lg:col-span-7 text-lg text-slate-300 leading-relaxed">
-          I still do everything I always did — strategic thinking, beautiful design, technical problem-solving, and deep respect for your mission — except now I deliver it dramatically faster and more affordably using Grok and Claude as creative partners.
+          I still do everything I always did (strategic thinking, beautiful design, technical problem-solving and deep respect for your mission), except now I deliver it dramatically faster and more affordably using Grok and Claude as creative partners.
           <div class="mt-6 text-sm text-slate-300">Same obsessive quality. Same personal attention. Much better economics for organizations that need it.</div>
         </div>
       </div>
 
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-12">
         <div class="rounded-3xl bg-white/5 p-6">
           <div class="text-5xl font-semibold tracking-tighter stat">30+</div>
           <div class="text-slate-300 mt-1 text-sm">Years building websites that outlive trends</div>
         </div>
         <div class="rounded-3xl bg-white/5 p-6">
-          <div class="text-5xl font-semibold tracking-tighter stat">1</div>
-          <div class="text-slate-300 mt-1 text-sm">Full VR building recreation still used in 2026</div>
-        </div>
-        <div class="rounded-3xl bg-white/5 p-6">
-          <div class="text-5xl font-semibold tracking-tighter stat">∞</div>
-          <div class="text-slate-300 mt-1 text-sm">AI-accelerated iterations per project</div>
+          <div class="text-5xl font-semibold tracking-tighter stat">13</div>
+          <div class="text-slate-300 mt-1 text-sm">Years as lead web and digital person at The Cable Center</div>
         </div>
         <div class="rounded-3xl bg-white/5 p-6">
           <div class="text-5xl font-semibold tracking-tighter stat">1</div>
@@ -178,7 +176,7 @@
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
       <div class="rounded-3xl border border-slate-200 p-6 hover:border-slate-300 transition">
         <div class="font-semibold text-lg">Deep Technical Range</div>
-        <p class="mt-2 text-sm text-slate-600 leading-relaxed">From ColdFusion and Flash rescue to modern static sites, headless CMS, and AI-assisted workflows. I can work with whatever platform actually serves your organization best.</p>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">From ColdFusion and Flash rescue to modern static sites, easy-to-edit content tools, and AI-assisted workflows. I can work with whatever platform actually serves your organization best.</p>
       </div>
       <div class="rounded-3xl border border-slate-200 p-6 hover:border-slate-300 transition">
         <div class="font-semibold text-lg">Mission-First Thinking</div>
@@ -186,7 +184,7 @@
       </div>
       <div class="rounded-3xl border border-slate-200 p-6 hover:border-slate-300 transition">
         <div class="font-semibold text-lg">AI-Accelerated Delivery</div>
-        <p class="mt-2 text-sm text-slate-600 leading-relaxed">I use Grok and Claude daily as creative partners. This means faster concepts, sharper copy, better visuals — and lower costs for you without sacrificing quality or personal attention.</p>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">I use Grok and Claude daily as creative partners. This means faster concepts, sharper copy, better visuals, and lower costs for you without sacrificing quality or personal attention.</p>
       </div>
     </div>
   </section>
@@ -198,7 +196,7 @@
         <div class="uppercase tracking-[3px] text-xs font-semibold text-slate-500">SELECTED WORK</div>
         <h2 class="heading-serif text-5xl tracking-tighter">Projects that mattered.</h2>
       </div>
-      <a href="blog.html" class="hidden md:inline text-sm font-medium text-slate-600 hover:text-slate-900">See more in the Notes →</a>
+      <a href="blog.html" class="hidden md:inline text-sm font-medium text-slate-600 hover:text-slate-900">See more in Insights →</a>
     </div>
 
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -226,7 +224,7 @@
               <div class="font-semibold text-2xl tracking-tight">Adaptive Waterskiing</div>
               <div class="text-slate-500">EXPAND Beyond • Brand identity, motion + apparel</div>
             </div>
-            <div class="text-right text-xs text-slate-500">2024–2025</div>
+            <div class="text-right text-xs text-slate-500">2024 to 2025</div>
           </div>
           
           <p class="mt-3 text-[14.5px] text-slate-600 leading-relaxed">
@@ -237,10 +235,14 @@
             all-volunteer program running each summer since 1983. Also designed their yearly t-shirts and giveaways.
           </p>
 
-          <img 
-            src="assets/images/Design/Expand/Back-1-Color.jpg" 
-            alt="Back design for the EXPAND Beyond yearly t-shirt"
-            class="mt-4 max-w-[200px] mx-auto rounded-2xl border border-slate-200 shadow-sm">
+          <picture>
+            <source srcset="assets/images/Design/Expand/Back-1-Color.webp" type="image/webp">
+            <img 
+              src="assets/images/Design/Expand/Back-1-Color.jpg" 
+              alt="Back design for the EXPAND Beyond yearly t-shirt"
+              width="400" height="343" loading="lazy"
+              class="mt-4 w-full h-auto max-w-[200px] mx-auto rounded-2xl border border-slate-200 shadow-sm">
+          </picture>
 
           <div class="mt-4 flex flex-wrap gap-2 text-xs">
             <span class="px-3 py-1 bg-slate-100 rounded-full text-slate-600">Logo Design</span>
@@ -252,7 +254,7 @@
 
           <div class="mt-3 pt-3 border-t border-slate-100 text-sm work-card__interactive">
             <a href="https://expandbeyondinc.com" target="_blank" rel="noopener"
-               class="inline-flex items-center gap-x-1.5 font-medium text-slate-900 group-hover:gap-x-2 transition">
+               class="tap-target inline-flex items-center gap-x-1.5 font-medium text-slate-900 group-hover:gap-x-2 transition">
               expandbeyondinc.com <i class="fa-solid fa-external-link-alt text-xs" aria-hidden="true"></i>
             </a>
           </div>
@@ -261,10 +263,11 @@
 
       <!-- Mike Bollig Music -->
       <div data-stagger-item class="work-card group bg-white border border-slate-200 rounded-3xl p-7 flex flex-col">
-        <a href="/mike-bollig/" class="work-card__hit" aria-label="View the Mike Bollig music project"></a>
+        <a href="https://mikebollig.com" target="_blank" rel="noopener" class="work-card__hit" aria-label="Visit mikebollig.com"></a>
         <div class="flex-1">
           <div class="uppercase tracking-widest text-xs font-medium text-slate-500">MUSIC • COVER ART • VIDEO • WEB • 2026</div>
           <h3 class="heading-serif text-3xl tracking-tight mt-2 leading-none">Mike Bollig: Songs Brought Home</h3>
+          <p class="mt-3 text-sm font-medium text-slate-900">A music website for a Colorado singer-songwriter.</p>
           <p class="mt-4 text-slate-600 leading-relaxed">
             Mike Bollig wrote and recorded his original songs himself on cassette and sent them to me as MP3s.
             I reworked those recordings into finished releases, designed the cover art, made the music videos,
@@ -283,18 +286,72 @@
           </div>
           <div class="mt-4 text-sm text-slate-600 work-card__interactive">
             Listen:
-            <a href="/mike-bollig/audio/colorado-girl.mp3" class="font-medium text-slate-900 underline underline-offset-2">Colorado Girl</a>
+            <a href="/mike-bollig/audio/colorado-girl.mp3" class="tap-target font-medium text-slate-900 underline underline-offset-2">Colorado Girl</a>
             ·
-            <a href="/mike-bollig/audio/snowfall.mp3" class="font-medium text-slate-900 underline underline-offset-2">Snowfall</a>
+            <a href="/mike-bollig/audio/snowfall.mp3" class="tap-target font-medium text-slate-900 underline underline-offset-2">Snowfall</a>
           </div>
         </div>
         <div class="mt-auto pt-6 text-sm flex flex-wrap gap-x-5 gap-y-2 work-card__interactive">
           <a href="https://mikebollig.com" target="_blank" rel="noopener"
-             class="inline-flex items-center gap-x-1.5 font-medium group-hover:gap-x-2 transition">
+             class="tap-target inline-flex items-center gap-x-1.5 font-medium group-hover:gap-x-2 transition">
             mikebollig.com <i class="fa-solid fa-external-link-alt text-xs" aria-hidden="true"></i>
           </a>
-          <a href="/mike-bollig/" class="inline-flex items-center gap-x-1.5 font-medium">Project page <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
-          <a href="/blog/building-a-home-for-mike-bolligs-songs/" class="inline-flex items-center gap-x-1.5 font-medium">The story <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          <a href="/blog/building-a-home-for-mike-bolligs-songs/" class="tap-target inline-flex items-center gap-x-1.5 font-medium">The story <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <!-- Nomad Pet Dental -->
+      <div data-stagger-item class="work-card group bg-white border border-slate-200 rounded-3xl p-7 flex flex-col">
+        <a href="https://nomadpetdental.com" target="_blank" rel="noopener" class="work-card__hit" aria-label="Visit nomadpetdental.com"></a>
+        <div class="flex-1">
+          <div class="uppercase tracking-widest text-xs font-medium text-slate-500">SMALL BUSINESS • WEB + BRAND • 2026</div>
+          <h3 class="heading-serif text-3xl tracking-tight mt-2 leading-none">Nomad Pet Dental</h3>
+          <p class="mt-3 text-sm font-medium text-slate-900">Website, logo and online booking for a mobile pet dentist in Denver.</p>
+          <p class="mt-3 text-slate-600 leading-relaxed">
+            Dr. Cooper Wahl brings dental care for cats and dogs to your door in one truck. I built the logo,
+            the site and booking right on the page, plus an FAQ and a service-areas page so local searches find him.
+          </p>
+          <picture>
+            <source srcset="assets/images/work/nomad-pet-dental.webp" type="image/webp">
+            <img src="assets/images/nomad-pet-dental/home-desktop.jpg" alt="Nomad Pet Dental homepage: The moving pet dentist" width="720" height="450" loading="lazy"
+                 class="mt-4 w-full h-auto rounded-2xl shadow-sm border border-slate-200">
+          </picture>
+          <blockquote class="mt-4 pl-4 border-l-2 border-slate-300 text-[14.5px] text-slate-700 italic">
+            “It’s way cooler than I was expecting it to be.”
+            <footer class="mt-1 not-italic text-xs text-slate-500">Dr. Cooper Wahl, Nomad Pet Dental</footer>
+          </blockquote>
+        </div>
+        <div class="mt-auto pt-6 text-sm flex flex-wrap gap-x-5 gap-y-2 work-card__interactive">
+          <a href="https://nomadpetdental.com" target="_blank" rel="noopener"
+             class="tap-target inline-flex items-center gap-x-1.5 font-medium group-hover:gap-x-2 transition">
+            nomadpetdental.com <i class="fa-solid fa-external-link-alt text-xs" aria-hidden="true"></i>
+          </a>
+          <a href="/blog/the-making-of-nomad-pet-dental/" class="tap-target inline-flex items-center gap-x-1.5 font-medium">The story <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <!-- Wheeler's redesign -->
+      <div data-stagger-item class="work-card group bg-white border border-slate-200 rounded-3xl p-7 flex flex-col">
+        <a href="https://wheelers-redesign.steveknowsweb.workers.dev/" target="_blank" rel="noopener" class="work-card__hit" aria-label="View the Wheeler's redesign preview"></a>
+        <div class="flex-1">
+          <div class="uppercase tracking-widest text-xs font-medium text-slate-500">SMALL BUSINESS • REDESIGN • 2026</div>
+          <h3 class="heading-serif text-3xl tracking-tight mt-2 leading-none">Wheeler’s Plumbing, Heating &amp; Cooling</h3>
+          <p class="mt-3 text-sm font-medium text-slate-900">A redesign preview for a family HVAC company stuck on a broken WordPress site.</p>
+          <p class="mt-3 text-slate-600 leading-relaxed">
+            Rebuilt as plain, fast pages with a working contact form and free hosting, so a plugin update can’t take the business offline.
+          </p>
+          <picture>
+            <source srcset="assets/images/work/wheelers-redesign.webp" type="image/webp">
+            <img src="assets/images/wheelers-phcc-redesign/new-homepage.png" alt="Wheeler's redesign homepage: Comfort you can trust from a family that shows up" width="720" height="450" loading="lazy"
+                 class="mt-4 w-full h-auto rounded-2xl shadow-sm border border-slate-200">
+          </picture>
+        </div>
+        <div class="mt-auto pt-6 text-sm flex flex-wrap gap-x-5 gap-y-2 work-card__interactive">
+          <a href="https://wheelers-redesign.steveknowsweb.workers.dev/" target="_blank" rel="noopener"
+             class="tap-target inline-flex items-center gap-x-1.5 font-medium group-hover:gap-x-2 transition">
+            See the preview <i class="fa-solid fa-external-link-alt text-xs" aria-hidden="true"></i>
+          </a>
+          <a href="/blog/wheelers-phcc-redesign-from-broken-wordpress/" class="tap-target inline-flex items-center gap-x-1.5 font-medium">The story <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
         </div>
       </div>
 
@@ -302,21 +359,25 @@
       <div data-stagger-item class="work-card group bg-white border border-slate-200 rounded-3xl p-7 flex flex-col">
         <a href="https://store.steampowered.com/app/612440/The_Cable_Center__Virtual_Archive/" target="_blank" rel="noopener" class="work-card__hit" aria-label="Explore Virtual Archive on Steam"></a>
         <div class="flex-1">
-          <div class="uppercase tracking-widest text-xs font-medium text-slate-500">THE CABLE CENTER • 2014–PRESENT</div>
+          <div class="uppercase tracking-widest text-xs font-medium text-slate-500">THE CABLE CENTER • 2014 TO TODAY</div>
           <h3 class="heading-serif text-3xl tracking-tight mt-2 leading-none">Virtual Archive Experience</h3>
           <p class="mt-4 text-slate-600 leading-relaxed">
             Full interactive VR recreation of an entire historic building. Visitors can walk through rooms, 
             pick up artifacts, and enter 360° video oral histories. Still used today on Meta Quest and Steam.
           </p>
 
-          <img 
-            src="assets/images/Abel-Cable-TCC_2016VR.jpg" 
-            alt="Screenshot from the Cable Center Virtual Archive VR experience (2016)"
-            class="mt-4 w-full rounded-2xl shadow-sm border border-slate-200">
+          <picture>
+            <source srcset="assets/images/Abel-Cable-TCC_2016VR.webp" type="image/webp">
+            <img 
+              src="assets/images/Abel-Cable-TCC_2016VR.jpg" 
+              alt="Screenshot from the Cable Center Virtual Archive VR experience (2016)"
+              width="720" height="1046" loading="lazy"
+              class="mt-4 w-full h-auto rounded-2xl shadow-sm border border-slate-200">
+          </picture>
         </div>
         <div class="mt-auto pt-6 text-sm work-card__interactive">
           <a href="https://store.steampowered.com/app/612440/The_Cable_Center__Virtual_Archive/" target="_blank" rel="noopener"
-             class="inline-flex items-center gap-x-2 font-medium group-hover:gap-x-3 transition">
+             class="tap-target inline-flex items-center gap-x-2 font-medium group-hover:gap-x-3 transition">
             Explore on Steam <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
           </a>
         </div>
@@ -329,7 +390,7 @@
           <div class="uppercase tracking-widest text-xs font-medium text-slate-500">OPEN SOURCE • 2026</div>
           <h3 class="heading-serif text-3xl tracking-tight mt-2 leading-none">WordCut</h3>
           <p class="mt-4 text-slate-600 leading-relaxed">
-            A free Windows app — transcribe speech with Whisper, click words to remove, export a trimmed MP4.
+            A free Windows app: transcribe speech with Whisper, click words to remove, export a trimmed MP4.
             Built with Python, pywebview, and FFmpeg. MIT licensed.
           </p>
           <div class="wordcut-demo mt-5" aria-hidden="true">
@@ -356,11 +417,11 @@
           <span class="px-3 py-1 bg-slate-100 rounded-full text-slate-600">Windows</span>
         </div>
         <div class="pt-4 text-sm flex flex-wrap gap-4 work-card__interactive">
-          <a href="work/wordcut.html" class="inline-flex items-center gap-x-2 font-medium group-hover:gap-x-3 transition">
+          <a href="work/wordcut.html" class="tap-target inline-flex items-center gap-x-2 font-medium group-hover:gap-x-3 transition">
             View project <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
           </a>
           <a href="https://github.com/stevel4857/wordcut" target="_blank" rel="noopener"
-             class="inline-flex items-center gap-x-1.5 text-slate-600 hover:text-slate-900">
+             class="tap-target inline-flex items-center gap-x-1.5 text-slate-600 hover:text-slate-900">
             GitHub <i class="fa-brands fa-github text-xs" aria-hidden="true"></i>
           </a>
         </div>
@@ -370,23 +431,58 @@
       <div data-stagger-item class="work-card group bg-white border border-slate-200 rounded-3xl p-7 flex flex-col">
         <a href="work/syndeo.html" class="work-card__hit" aria-label="View Syndeo Institute case study"></a>
         <div class="flex-1">
-          <div class="uppercase tracking-widest text-xs font-medium text-slate-500">CORPORATE YET STYLISH</div>
+          <div class="uppercase tracking-widest text-xs font-medium text-slate-500">THE CABLE CENTER • 2018 TO 2022</div>
           <h3 class="heading-serif text-3xl tracking-tight mt-2 leading-none">Syndeo Institute</h3>
-          <p class="mt-4 text-slate-600 leading-relaxed">
+          <p class="mt-3 text-sm font-medium text-slate-900">The website for The Cable Center’s Syndeo Institute. Joomla with SP Page Builder, heavily customized CSS.</p>
+          <p class="mt-3 text-slate-600 leading-relaxed">
             Modernized the visual identity for The Cable Center’s new institute using video backgrounds and animated headers.
           </p>
-          <img
-            src="assets/images/work/syndeo-screenshot.jpg"
-            alt="Screenshot of the Syndeo Institute website"
-            class="mt-4 w-full rounded-2xl shadow-sm border border-slate-200">
+          <picture>
+            <source srcset="assets/images/work/syndeo-screenshot.webp" type="image/webp">
+            <img
+              src="assets/images/work/syndeo-screenshot.jpg"
+              alt="Screenshot of the Syndeo Institute website"
+              width="720" height="532" loading="lazy"
+              class="mt-4 w-full h-auto rounded-2xl shadow-sm border border-slate-200">
+          </picture>
         </div>
         <div class="mt-auto pt-6 flex items-center justify-between text-sm">
-          <span class="text-slate-500">2018–2022</span>
+          <span class="text-slate-500">Past project</span>
           <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs">Visual Identity</span>
         </div>
-        <div class="pt-4 text-sm work-card__interactive">
-          <a href="work/syndeo.html" class="inline-flex items-center gap-x-2 font-medium group-hover:gap-x-3 transition">
+        <div class="pt-4 text-sm flex flex-wrap gap-x-5 gap-y-2 work-card__interactive">
+          <a href="work/syndeo.html" class="tap-target inline-flex items-center gap-x-2 font-medium group-hover:gap-x-3 transition">
             View case study <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </a>
+          <a href="https://web.archive.org/web/20210905012343/https://cablecenter.org/" target="_blank" rel="noopener" class="tap-target inline-flex items-center gap-x-1.5 font-medium">
+            Archived site (2021) <i class="fa-solid fa-box-archive text-xs" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Cable Center events site -->
+      <div data-stagger-item class="work-card group bg-white border border-slate-200 rounded-3xl p-7 flex flex-col">
+        <a href="https://web.archive.org/web/20140219221129/http://cablecenterevents.org/" target="_blank" rel="noopener" class="work-card__hit" aria-label="See the archived Cable Center events site from 2014"></a>
+        <div class="flex-1">
+          <div class="uppercase tracking-widest text-xs font-medium text-slate-500">THE CABLE CENTER • EVENT RENTALS</div>
+          <h3 class="heading-serif text-3xl tracking-tight mt-2 leading-none">Cable Center Events</h3>
+          <p class="mt-3 text-sm font-medium text-slate-900">The site for renting The Cable Center for weddings, galas and meetings. Converted from ColdFusion to WordPress, with heavily customized CSS.</p>
+          <p class="mt-3 text-slate-600 leading-relaxed">
+            I later rebuilt it again in WordPress with Divi, starting in 2018.
+          </p>
+          <picture>
+            <source srcset="assets/images/work/cablecenterevents-2014.webp" type="image/webp">
+            <img src="assets/images/work/cablecenterevents-2014.webp" alt="The Cable Center Events website as archived in February 2014" width="720" height="450" loading="lazy"
+                 class="mt-4 w-full h-auto rounded-2xl shadow-sm border border-slate-200">
+          </picture>
+        </div>
+        <div class="mt-auto pt-6 flex items-center justify-between text-sm">
+          <span class="text-slate-500">Past project</span>
+          <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs">WordPress</span>
+        </div>
+        <div class="pt-4 text-sm work-card__interactive">
+          <a href="https://web.archive.org/web/20140219221129/http://cablecenterevents.org/" target="_blank" rel="noopener" class="tap-target inline-flex items-center gap-x-1.5 font-medium">
+            Archived site (Feb 2014) <i class="fa-solid fa-box-archive text-xs" aria-hidden="true"></i>
           </a>
         </div>
       </div>
@@ -415,10 +511,10 @@
         </div>
         <div class="mt-auto pt-6 text-xs inline-block px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 font-medium w-fit">Legacy preserved</div>
         <div class="pt-4 text-sm flex flex-wrap gap-4 work-card__interactive">
-          <a href="/blog/the-resurrection-of-flash" class="inline-flex items-center gap-x-2 font-medium group-hover:gap-x-3 transition">
+          <a href="/blog/the-resurrection-of-flash" class="tap-target inline-flex items-center gap-x-2 font-medium group-hover:gap-x-3 transition">
             Flash kiosks <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
           </a>
-          <a href="/blog/rescuing-the-video-archive-after-the-hack" class="inline-flex items-center gap-x-2 font-medium group-hover:gap-x-3 transition">
+          <a href="/blog/rescuing-the-video-archive-after-the-hack" class="tap-target inline-flex items-center gap-x-2 font-medium group-hover:gap-x-3 transition">
             Video archive <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
           </a>
         </div>
@@ -431,11 +527,153 @@
           <div class="uppercase tracking-widest text-xs font-medium text-slate-500 mb-2">STRATEGY + REPLATFORMING</div>
           <h3 class="heading-serif text-3xl tracking-tight leading-none">Museum &amp; Nonprofit Websites</h3>
           <p class="mt-4 text-slate-600">
-            Complete strategic redesigns and replatforming for cultural organizations that needed to move from fragile legacy systems to something that would actually last — while keeping their unique voice intact.
+            Complete strategic redesigns and replatforming for cultural organizations that needed to move from fragile legacy systems to something that would actually last, while keeping their unique voice intact.
           </p>
         </div>
-        <div class="mt-auto pt-6 text-sm text-slate-500">WordPress • Custom • Squarespace • Headless</div>
+        <div class="mt-auto pt-6 text-sm text-slate-500">WordPress • Custom • Squarespace • Simple static sites</div>
       </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" class="border-t border-slate-100 bg-slate-50/60">
+    <div class="max-w-6xl mx-auto px-6 py-16">
+      <div class="max-w-2xl mb-10">
+        <div class="uppercase tracking-[3px] text-xs font-semibold text-slate-500 mb-3">PRICING</div>
+        <h2 class="heading-serif text-4xl md:text-5xl tracking-tighter leading-none">Clear plans. No mystery quotes.</h2>
+        <p class="mt-5 text-lg text-slate-600 leading-relaxed">
+          Typical ranges for small local businesses, museums, nonprofits, and purpose-driven organizations. Final scope is confirmed after a short conversation, so you know what you’re getting before we start.
+        </p>
+      </div>
+
+      <!-- Project plans -->
+      <div class="mb-3 text-xs font-semibold uppercase tracking-[2px] text-slate-500">Projects</div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <!-- Starter Site -->
+        <div class="rounded-3xl border border-slate-200 bg-white p-6 flex flex-col">
+          <div class="text-sm font-semibold text-slate-500">Starter Site</div>
+          <div class="mt-2 heading-serif text-3xl lg:text-2xl xl:text-[1.7rem] whitespace-nowrap tracking-tight text-slate-900">$2,500 to $3,500</div>
+          <p class="mt-3 text-sm text-slate-600 leading-relaxed flex-1">
+            A simple, professional site for small local businesses: the essentials done well, so customers can find you, trust you, and get in touch.
+          </p>
+          <ul class="mt-5 space-y-2 text-sm text-slate-700">
+            <li class="flex gap-x-2"><span class="text-emerald-600 shrink-0" aria-hidden="true">✓</span> ~5 pages, mobile-friendly</li>
+            <li class="flex gap-x-2"><span class="text-emerald-600 shrink-0" aria-hidden="true">✓</span> Contact form &amp; help showing up in local Google searches</li>
+            <li class="flex gap-x-2"><span class="text-emerald-600 shrink-0" aria-hidden="true">✓</span> About 2 to 3 weeks</li>
+          </ul>
+          <a href="?plan=starter#contact" data-plan="Starter Site" class="mt-6 inline-flex items-center justify-center h-11 rounded-2xl border border-slate-300 text-sm font-semibold text-slate-900 hover:bg-slate-50 transition">
+            Start small
+          </a>
+        </div>
+
+        <!-- Refresh -->
+        <div class="rounded-3xl border border-slate-200 bg-white p-6 flex flex-col">
+          <div class="text-sm font-semibold text-slate-500">Refresh</div>
+          <div class="mt-2 heading-serif text-3xl lg:text-2xl xl:text-[1.7rem] whitespace-nowrap tracking-tight text-slate-900">$3,500 to $5,000</div>
+          <p class="mt-3 text-sm text-slate-600 leading-relaxed flex-1">
+            Visual and structure polish on your current platform: key pages, mobile fixes, and help showing up in Google, so the site feels current without a full rebuild.
+          </p>
+          <ul class="mt-5 space-y-2 text-sm text-slate-700">
+            <li class="flex gap-x-2"><span class="text-emerald-600 shrink-0" aria-hidden="true">✓</span> Same platform, sharper presence</li>
+            <li class="flex gap-x-2"><span class="text-emerald-600 shrink-0" aria-hidden="true">✓</span> Priority pages &amp; mobile</li>
+            <li class="flex gap-x-2"><span class="text-emerald-600 shrink-0" aria-hidden="true">✓</span> About 2 to 4 weeks</li>
+          </ul>
+          <a href="?plan=refresh#contact" data-plan="Refresh" class="mt-6 inline-flex items-center justify-center h-11 rounded-2xl border border-slate-300 text-sm font-semibold text-slate-900 hover:bg-slate-50 transition">
+            Ask about a refresh
+          </a>
+        </div>
+
+        <!-- Mission Site (featured) -->
+        <div class="rounded-3xl border-2 border-slate-900 bg-white p-6 flex flex-col shadow-sm relative">
+          <div class="absolute -top-3 left-6 inline-flex items-center px-2.5 py-0.5 rounded-full bg-slate-900 text-white text-[10px] font-semibold uppercase tracking-wider">
+            Most chosen
+          </div>
+          <div class="text-sm font-semibold text-slate-500">Mission Site</div>
+          <p class="mt-1 text-xs text-slate-500">A full custom website</p>
+          <div class="mt-2 heading-serif text-3xl lg:text-2xl xl:text-[1.7rem] whitespace-nowrap tracking-tight text-slate-900">$7,000 to $10,500</div>
+          <p class="mt-1 text-xs text-slate-500">Typical full project around $8,500</p>
+          <p class="mt-3 text-sm text-slate-600 leading-relaxed flex-1">
+            Strategy, design, and build for a site that lasts: a clear story, solid structure, forms, a site people with disabilities can use, and training so your team can keep it going.
+          </p>
+          <ul class="mt-5 space-y-2 text-sm text-slate-700">
+            <li class="flex gap-x-2"><span class="text-emerald-600 shrink-0" aria-hidden="true">✓</span> ~8 to 15 pages, end to end</li>
+            <li class="flex gap-x-2"><span class="text-emerald-600 shrink-0" aria-hidden="true">✓</span> Forms, Google basics, handoff</li>
+            <li class="flex gap-x-2"><span class="text-emerald-600 shrink-0" aria-hidden="true">✓</span> About 5 to 8 weeks</li>
+          </ul>
+          <a href="?plan=mission#contact" data-plan="Mission Site" class="mt-6 inline-flex items-center justify-center h-11 rounded-2xl bg-slate-900 text-sm font-semibold text-white hover:bg-black transition">
+            Start with this
+          </a>
+        </div>
+
+        <!-- Rescue -->
+        <div class="rounded-3xl border border-slate-200 bg-white p-6 flex flex-col">
+          <div class="text-sm font-semibold text-slate-500">Rescue / Replatform</div>
+          <p class="mt-1 text-xs text-slate-500">Moving an old or broken site to a new system</p>
+          <div class="mt-2 heading-serif text-3xl lg:text-2xl xl:text-[1.7rem] whitespace-nowrap tracking-tight text-slate-900">From $9,000</div>
+          <p class="mt-3 text-sm text-slate-600 leading-relaxed flex-1">
+            Old systems that keep breaking, a site you can’t update anymore, moves to a new platform, or “this has to last” rebuilds, scoped to your archive, risk, and content volume.
+          </p>
+          <ul class="mt-5 space-y-2 text-sm text-slate-700">
+            <li class="flex gap-x-2"><span class="text-emerald-600 shrink-0" aria-hidden="true">✓</span> Migration &amp; cleanup</li>
+            <li class="flex gap-x-2"><span class="text-emerald-600 shrink-0" aria-hidden="true">✓</span> Platform that fits the org</li>
+            <li class="flex gap-x-2"><span class="text-emerald-600 shrink-0" aria-hidden="true">✓</span> Custom quote after discovery</li>
+          </ul>
+          <a href="?plan=rescue#contact" data-plan="Rescue / Replatform" class="mt-6 inline-flex items-center justify-center h-11 rounded-2xl border border-slate-300 text-sm font-semibold text-slate-900 hover:bg-slate-50 transition">
+            Discuss a rescue
+          </a>
+        </div>
+      </div>
+
+      <!-- Budget note -->
+      <p class="mt-6 text-sm text-slate-600 max-w-3xl leading-relaxed">
+        <span class="font-semibold text-slate-900">On a tight budget? Let's talk.</span> For solo folks and small businesses, I also build simple sites in the <span class="text-slate-700 font-medium">$500 to $800</span> range. <a href="?plan=budget#contact" data-plan="a simple site in the $500 to $800 range" class="tap-target font-medium text-slate-800 underline underline-offset-2 hover:text-slate-950">Tell me what you need</a>.
+      </p>
+
+      <!-- Care plans -->
+      <div class="mt-12 mb-1 text-xs font-semibold uppercase tracking-[2px] text-slate-500">Monthly care</div>
+      <p class="mb-4 text-sm text-slate-600">After launch, I can keep your site updated and fix things for a monthly fee.</p>
+      <div class="grid md:grid-cols-3 gap-5">
+        <div class="rounded-3xl border border-slate-200 bg-white p-6 flex flex-col gap-4">
+          <div>
+            <div class="font-semibold text-lg text-slate-900">Basic</div>
+            <p class="mt-1 text-sm text-slate-600">For Starter Sites: hosting check, updates, and a quick fix when you need one.</p>
+          </div>
+          <div class="shrink-0">
+            <div class="heading-serif text-2xl tracking-tight">$99<span class="text-base font-sans font-medium text-slate-500">/mo</span></div>
+            <a href="?plan=care-basic#contact" data-plan="Basic monthly care" class="tap-target mt-2 inline-flex text-sm font-semibold text-slate-900 hover:underline">Add care →</a>
+          </div>
+        </div>
+        <div class="rounded-3xl border border-slate-200 bg-white p-6 flex flex-col gap-4">
+          <div>
+            <div class="font-semibold text-lg text-slate-900">Steady</div>
+            <p class="mt-1 text-sm text-slate-600">Updates, backups check, and one small content change per month.</p>
+          </div>
+          <div class="shrink-0">
+            <div class="heading-serif text-2xl tracking-tight">$175<span class="text-base font-sans font-medium text-slate-500">/mo</span></div>
+            <a href="?plan=care-steady#contact" data-plan="Steady monthly care" class="tap-target mt-2 inline-flex text-sm font-semibold text-slate-900 hover:underline">Add care →</a>
+          </div>
+        </div>
+        <div class="rounded-3xl border border-slate-200 bg-white p-6 flex flex-col gap-4">
+          <div>
+            <div class="font-semibold text-lg text-slate-900">Active</div>
+            <p class="mt-1 text-sm text-slate-600">A few hours of changes, seasonal pages, and small tweaks to help you show up in Google, for orgs that keep moving.</p>
+          </div>
+          <div class="shrink-0">
+            <div class="heading-serif text-2xl tracking-tight">$350<span class="text-base font-sans font-medium text-slate-500">/mo</span></div>
+            <a href="?plan=care-active#contact" data-plan="Active monthly care" class="tap-target mt-2 inline-flex text-sm font-semibold text-slate-900 hover:underline">Add care →</a>
+          </div>
+        </div>
+      </div>
+
+      <p class="mt-8 text-sm text-slate-500 max-w-3xl leading-relaxed">
+        Brand, motion, or bigger projects are quoted separately. Projects are half down to start and half on completion. Prefer a written audit first? That’s <span class="text-slate-700 font-medium">$300</span>, credited toward a project if we begin within 60 days.
+      </p>
+      <p class="mt-2 text-sm text-slate-500 max-w-3xl leading-relaxed">
+        Pay by card or bank transfer through Stripe invoices, or by <a href="https://venmo.com/u/Steven-Luiting" target="_blank" rel="noopener" class="tap-target font-medium text-slate-800 underline underline-offset-2 hover:text-slate-950">Venmo</a>.
+      </p>
+      <p class="mt-6 text-sm text-slate-600 max-w-3xl leading-relaxed">
+        Not sure which fits? <a href="#contact" class="tap-target font-medium text-slate-800 underline underline-offset-2 hover:text-slate-950">Contact me for a recommendation</a>. <a href="/getting-started" class="tap-target font-medium text-slate-800 underline underline-offset-2 hover:text-slate-950">See how it works</a>.
+      </p>
     </div>
   </section>
 
@@ -444,12 +682,12 @@
     <div class="rounded-3xl bg-slate-50 border border-slate-100 px-8 py-10 md:p-12">
       <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-y-6">
         <div>
-          <div class="uppercase tracking-[3px] text-xs font-semibold text-slate-500">FIELD NOTES</div>
+          <div class="uppercase tracking-[3px] text-xs font-semibold text-slate-500">INSIGHTS</div>
           <h2 class="heading-serif text-4xl tracking-tighter mt-2">Latest from the workbench</h2>
         </div>
         <a href="blog.html" 
            class="inline-flex items-center gap-x-2 font-semibold text-lg group">
-          Browse all insights 
+          Browse all Insights 
           <span class="group-hover:translate-x-0.5 transition">→</span>
         </a>
       </div>
@@ -463,7 +701,7 @@
             class="w-full aspect-[4/3] object-cover rounded-2xl border border-slate-200 mb-4"
             loading="lazy">
           <div class="flex justify-between text-xs mb-2">
-            <span class="px-2.5 py-0.5 bg-slate-100 text-slate-600 rounded-full">AI Video</span>
+            <span class="px-2.5 py-0.5 bg-slate-100 text-slate-600 rounded-full">AI</span>
             <span class="text-slate-500 font-mono">2026-10-26</span>
           </div>
           <div class="font-semibold text-lg leading-tight tracking-tight group-hover:text-slate-700 transition">
@@ -495,7 +733,7 @@
             class="w-full aspect-[4/3] object-cover rounded-2xl border border-slate-200 mb-4"
             loading="lazy">
           <div class="flex justify-between text-xs mb-2">
-            <span class="px-2.5 py-0.5 bg-slate-100 text-slate-600 rounded-full">AI &amp; Workflow</span>
+            <span class="px-2.5 py-0.5 bg-slate-100 text-slate-600 rounded-full">AI</span>
             <span class="text-slate-500 font-mono">2026-10-13</span>
           </div>
           <div class="font-semibold text-lg leading-tight tracking-tight group-hover:text-slate-700 transition">
@@ -534,145 +772,6 @@
     </div>
   </section>
 
-  <!-- Pricing / Investment -->
-  <section id="pricing" class="border-t border-slate-100 bg-slate-50/60">
-    <div class="max-w-6xl mx-auto px-6 py-16">
-      <div class="max-w-2xl mb-10">
-        <div class="uppercase tracking-[3px] text-xs font-semibold text-slate-500 mb-3">INVESTMENT</div>
-        <h2 class="heading-serif text-4xl md:text-5xl tracking-tighter leading-none">Clear plans. No mystery quotes.</h2>
-        <p class="mt-5 text-lg text-slate-600 leading-relaxed">
-          Typical ranges for small local businesses, museums, nonprofits, and purpose-driven organizations. Final scope is confirmed after a short conversation — so you know what you’re getting before we start.
-        </p>
-      </div>
-
-      <!-- Project plans -->
-      <div class="mb-3 text-xs font-semibold uppercase tracking-[2px] text-slate-500">Projects</div>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        <!-- Starter Site -->
-        <div class="rounded-3xl border border-slate-200 bg-white p-6 flex flex-col">
-          <div class="text-sm font-semibold text-slate-500">Starter Site</div>
-          <div class="mt-2 heading-serif text-3xl lg:text-2xl xl:text-[1.7rem] whitespace-nowrap tracking-tight text-slate-900">$2,500–$3,500</div>
-          <p class="mt-3 text-sm text-slate-600 leading-relaxed flex-1">
-            A simple, professional site for small local businesses — the essentials done well, so customers can find you, trust you, and get in touch.
-          </p>
-          <ul class="mt-5 space-y-2 text-sm text-slate-700">
-            <li class="flex gap-x-2"><span class="text-emerald-600 shrink-0" aria-hidden="true">✓</span> ~5 pages, mobile-friendly</li>
-            <li class="flex gap-x-2"><span class="text-emerald-600 shrink-0" aria-hidden="true">✓</span> Contact form &amp; basic local SEO</li>
-            <li class="flex gap-x-2"><span class="text-emerald-600 shrink-0" aria-hidden="true">✓</span> About 2–3 weeks</li>
-          </ul>
-          <a href="#contact" class="mt-6 inline-flex items-center justify-center h-11 rounded-2xl border border-slate-300 text-sm font-semibold text-slate-900 hover:bg-slate-50 transition">
-            Start small
-          </a>
-        </div>
-
-        <!-- Refresh -->
-        <div class="rounded-3xl border border-slate-200 bg-white p-6 flex flex-col">
-          <div class="text-sm font-semibold text-slate-500">Refresh</div>
-          <div class="mt-2 heading-serif text-3xl lg:text-2xl xl:text-[1.7rem] whitespace-nowrap tracking-tight text-slate-900">$3,500–$5,000</div>
-          <p class="mt-3 text-sm text-slate-600 leading-relaxed flex-1">
-            Visual and structure polish on your current platform — key pages, mobile fixes, and basic SEO so the site feels current without a full rebuild.
-          </p>
-          <ul class="mt-5 space-y-2 text-sm text-slate-700">
-            <li class="flex gap-x-2"><span class="text-emerald-600 shrink-0" aria-hidden="true">✓</span> Same platform, sharper presence</li>
-            <li class="flex gap-x-2"><span class="text-emerald-600 shrink-0" aria-hidden="true">✓</span> Priority pages &amp; mobile</li>
-            <li class="flex gap-x-2"><span class="text-emerald-600 shrink-0" aria-hidden="true">✓</span> About 2–4 weeks</li>
-          </ul>
-          <a href="#contact" class="mt-6 inline-flex items-center justify-center h-11 rounded-2xl border border-slate-300 text-sm font-semibold text-slate-900 hover:bg-slate-50 transition">
-            Ask about a refresh
-          </a>
-        </div>
-
-        <!-- Mission Site — featured -->
-        <div class="rounded-3xl border-2 border-slate-900 bg-white p-6 flex flex-col shadow-sm relative">
-          <div class="absolute -top-3 left-6 inline-flex items-center px-2.5 py-0.5 rounded-full bg-slate-900 text-white text-[10px] font-semibold uppercase tracking-wider">
-            Most chosen
-          </div>
-          <div class="text-sm font-semibold text-slate-500">Mission Site</div>
-          <div class="mt-2 heading-serif text-3xl lg:text-2xl xl:text-[1.7rem] whitespace-nowrap tracking-tight text-slate-900">$7,000–$10,500</div>
-          <p class="mt-1 text-xs text-slate-500">Typical full project around $8,500</p>
-          <p class="mt-3 text-sm text-slate-600 leading-relaxed flex-1">
-            Strategy, design, and build for a durable site — clear story, solid structure, forms, accessibility baseline, and training so your team can keep it going.
-          </p>
-          <ul class="mt-5 space-y-2 text-sm text-slate-700">
-            <li class="flex gap-x-2"><span class="text-emerald-600 shrink-0" aria-hidden="true">✓</span> ~8–15 pages, end to end</li>
-            <li class="flex gap-x-2"><span class="text-emerald-600 shrink-0" aria-hidden="true">✓</span> Forms, SEO basics, handoff</li>
-            <li class="flex gap-x-2"><span class="text-emerald-600 shrink-0" aria-hidden="true">✓</span> About 5–8 weeks</li>
-          </ul>
-          <a href="#contact" class="mt-6 inline-flex items-center justify-center h-11 rounded-2xl bg-slate-900 text-sm font-semibold text-white hover:bg-black transition">
-            Start with this
-          </a>
-        </div>
-
-        <!-- Rescue -->
-        <div class="rounded-3xl border border-slate-200 bg-white p-6 flex flex-col">
-          <div class="text-sm font-semibold text-slate-500">Rescue / Replatform</div>
-          <div class="mt-2 heading-serif text-3xl lg:text-2xl xl:text-[1.7rem] whitespace-nowrap tracking-tight text-slate-900">From $9,000</div>
-          <p class="mt-3 text-sm text-slate-600 leading-relaxed flex-1">
-            Fragile legacy systems, broken CMS, migrations, or “this has to last” rebuilds — scoped to your archive, risk, and content volume.
-          </p>
-          <ul class="mt-5 space-y-2 text-sm text-slate-700">
-            <li class="flex gap-x-2"><span class="text-emerald-600 shrink-0" aria-hidden="true">✓</span> Migration &amp; cleanup</li>
-            <li class="flex gap-x-2"><span class="text-emerald-600 shrink-0" aria-hidden="true">✓</span> Platform that fits the org</li>
-            <li class="flex gap-x-2"><span class="text-emerald-600 shrink-0" aria-hidden="true">✓</span> Custom quote after discovery</li>
-          </ul>
-          <a href="#contact" class="mt-6 inline-flex items-center justify-center h-11 rounded-2xl border border-slate-300 text-sm font-semibold text-slate-900 hover:bg-slate-50 transition">
-            Discuss a rescue
-          </a>
-        </div>
-      </div>
-
-      <!-- Budget note -->
-      <p class="mt-6 text-sm text-slate-600 max-w-3xl leading-relaxed">
-        <span class="font-semibold text-slate-900">On a tight budget? Let's talk.</span> For solo folks and small businesses, I also build simple sites in the <span class="text-slate-700 font-medium">$500 to $800</span> range. <a href="#contact" class="font-medium text-slate-800 underline underline-offset-2 hover:text-slate-950">Tell me what you need</a>.
-      </p>
-
-      <!-- Care plans -->
-      <div class="mt-12 mb-3 text-xs font-semibold uppercase tracking-[2px] text-slate-500">Monthly care</div>
-      <div class="grid md:grid-cols-3 gap-5">
-        <div class="rounded-3xl border border-slate-200 bg-white p-6 flex flex-col gap-4">
-          <div>
-            <div class="font-semibold text-lg text-slate-900">Basic</div>
-            <p class="mt-1 text-sm text-slate-600">For Starter Sites: hosting check, updates, and a quick fix when you need one.</p>
-          </div>
-          <div class="shrink-0">
-            <div class="heading-serif text-2xl tracking-tight">$99<span class="text-base font-sans font-medium text-slate-500">/mo</span></div>
-            <a href="#contact" class="mt-2 inline-flex text-sm font-semibold text-slate-900 hover:underline">Add care →</a>
-          </div>
-        </div>
-        <div class="rounded-3xl border border-slate-200 bg-white p-6 flex flex-col gap-4">
-          <div>
-            <div class="font-semibold text-lg text-slate-900">Steady</div>
-            <p class="mt-1 text-sm text-slate-600">Updates, backups check, and one small content change per month.</p>
-          </div>
-          <div class="shrink-0">
-            <div class="heading-serif text-2xl tracking-tight">$175<span class="text-base font-sans font-medium text-slate-500">/mo</span></div>
-            <a href="#contact" class="mt-2 inline-flex text-sm font-semibold text-slate-900 hover:underline">Add care →</a>
-          </div>
-        </div>
-        <div class="rounded-3xl border border-slate-200 bg-white p-6 flex flex-col gap-4">
-          <div>
-            <div class="font-semibold text-lg text-slate-900">Active</div>
-            <p class="mt-1 text-sm text-slate-600">A few hours of changes, seasonal pages, light SEO — for orgs that keep moving.</p>
-          </div>
-          <div class="shrink-0">
-            <div class="heading-serif text-2xl tracking-tight">$350<span class="text-base font-sans font-medium text-slate-500">/mo</span></div>
-            <a href="#contact" class="mt-2 inline-flex text-sm font-semibold text-slate-900 hover:underline">Add care →</a>
-          </div>
-        </div>
-      </div>
-
-      <p class="mt-8 text-sm text-slate-500 max-w-3xl leading-relaxed">
-        Brand, motion, or larger Mission Site+ work is quoted separately. Projects are half down to start and half on completion. Prefer a written audit first? That’s <span class="text-slate-700 font-medium">$300</span>, credited toward a project if we begin within 60 days.
-      </p>
-      <p class="mt-2 text-sm text-slate-500 max-w-3xl leading-relaxed">
-        Pay by card or bank transfer through Stripe invoices, or by <a href="https://venmo.com/u/Steven-Luiting" target="_blank" rel="noopener" class="font-medium text-slate-800 underline underline-offset-2 hover:text-slate-950">Venmo</a>.
-      </p>
-      <p class="mt-6 text-sm text-slate-600 max-w-3xl leading-relaxed">
-        Not sure which fits? <a href="#contact" class="font-medium text-slate-800 underline underline-offset-2 hover:text-slate-950">Contact me for a recommendation</a>. <a href="/getting-started" class="font-medium text-slate-800 underline underline-offset-2 hover:text-slate-950">See how it works</a>.
-      </p>
-    </div>
-  </section>
-
   <!-- Contact -->
   <section id="contact" class="border-t border-slate-100 bg-white">
     <div class="max-w-6xl mx-auto px-6 py-16">
@@ -684,10 +783,10 @@
           <h2 class="heading-serif text-5xl tracking-[-1.5px] leading-none">Ready when you are.</h2>
           
           <p class="mt-6 text-lg text-slate-600">
-            If you're a museum, nonprofit, or purpose-driven organization in Colorado looking for a website that tells your story beautifully and keeps working for years — I'd love to talk.
+            Whether you're a one-person shop or a museum, I'd love to hear what you need. I build websites that tell your story and keep working for years.
           </p>
           <p class="mt-3 text-sm text-slate-500">
-            Not sure which plan fits? <a href="#pricing" class="font-medium text-slate-800 underline underline-offset-2 hover:text-slate-950">See investment ranges</a> — or just tell me what you’re working on.
+            Not sure which plan fits? <a href="#pricing" class="tap-target font-medium text-slate-800 underline underline-offset-2 hover:text-slate-950">See pricing</a>, or just tell me what you’re working on.
           </p>
 
                     <div class="mt-8 space-y-3 text-sm">
@@ -734,16 +833,50 @@
                        class="w-full rounded-xl border border-slate-400 bg-white px-4 py-2.5 text-sm focus:outline-none focus:border-rose-700">
               </div>
               <div>
-                <label for="contact-organization" class="block text-xs font-medium text-slate-600 mb-1.5">Organization</label>
+                <label for="contact-organization" class="block text-xs font-medium text-slate-600 mb-1.5">Business or organization (optional)</label>
                 <input type="text" id="contact-organization" name="organization" 
                        class="w-full rounded-xl border border-slate-400 bg-white px-4 py-2.5 text-sm focus:outline-none focus:border-rose-700">
               </div>
             </div>
             
-            <div>
-              <label for="contact-email" class="block text-xs font-medium text-slate-600 mb-1.5">Email Address</label>
-              <input type="email" id="contact-email" name="email" required 
-                     class="w-full rounded-xl border border-slate-400 bg-white px-4 py-2.5 text-sm focus:outline-none focus:border-rose-700">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="contact-email" class="block text-xs font-medium text-slate-600 mb-1.5">Email Address</label>
+                <input type="email" id="contact-email" name="email" required autocomplete="email"
+                       class="w-full rounded-xl border border-slate-400 bg-white px-4 py-2.5 text-sm focus:outline-none focus:border-rose-700">
+              </div>
+              <div>
+                <label for="contact-phone" class="block text-xs font-medium text-slate-600 mb-1.5">Phone (optional)</label>
+                <input type="tel" id="contact-phone" name="phone" autocomplete="tel"
+                       class="w-full rounded-xl border border-slate-400 bg-white px-4 py-2.5 text-sm focus:outline-none focus:border-rose-700">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="contact-plan" class="block text-xs font-medium text-slate-600 mb-1.5">Which plan? (optional)</label>
+                <select id="contact-plan" name="plan"
+                        class="w-full rounded-xl border border-slate-400 bg-white px-4 py-2.5 text-sm focus:outline-none focus:border-rose-700">
+                  <option value="">Not sure yet</option>
+                  <option value="Starter Site">Starter Site</option>
+                  <option value="Refresh">Refresh</option>
+                  <option value="Mission Site">Mission Site</option>
+                  <option value="Rescue / Replatform">Rescue / Replatform</option>
+                  <option value="Simple site ($500 to $800)">Simple site ($500 to $800)</option>
+                  <option value="Monthly care">Monthly care</option>
+                </select>
+              </div>
+              <div>
+                <label for="contact-budget" class="block text-xs font-medium text-slate-600 mb-1.5">Budget (optional)</label>
+                <select id="contact-budget" name="budget"
+                        class="w-full rounded-xl border border-slate-400 bg-white px-4 py-2.5 text-sm focus:outline-none focus:border-rose-700">
+                  <option value="">Choose one</option>
+                  <option value="Under $1,000">Under $1,000</option>
+                  <option value="$1,000 to $3,500">$1,000 to $3,500</option>
+                  <option value="$3,500 and up">$3,500 and up</option>
+                  <option value="Not sure">Not sure</option>
+                </select>
+              </div>
             </div>
             
             <div>
@@ -773,9 +906,9 @@
             </div>
             <div class="p-6 text-center">
               <div class="text-emerald-600 text-2xl mb-3" aria-hidden="true">✓</div>
-              <h3 class="font-semibold text-lg text-emerald-800">Thanks — message received.</h3>
+              <h3 class="font-semibold text-lg text-emerald-800">Thanks, message received.</h3>
               <p class="text-emerald-700 mt-2 text-sm">
-                I'll get back to you within a couple of days.
+                I'll get back to you within 1 business day.
               </p>
             </div>
           </div>
@@ -804,7 +937,7 @@
       };
 
       // Attach interaction listeners to all inputs
-      form.querySelectorAll('input, textarea').forEach(el => {
+      form.querySelectorAll('input, textarea, select').forEach(el => {
         el.addEventListener('focus', recordInteraction, { once: true });
         el.addEventListener('input', recordInteraction, { once: true });
       });
@@ -868,6 +1001,55 @@
       });
     }
 
+    // Pricing buttons prefill the plan + message, then scroll to the form.
+    // Works with ?plan= in the URL (links from other pages) and with clicks (delegated, survives Motion re-renders).
+    const PLAN_LABELS = {
+      starter: 'Starter Site', refresh: 'Refresh', mission: 'Mission Site', rescue: 'Rescue / Replatform',
+      budget: 'a simple site in the $500 to $800 range',
+      'care-basic': 'Basic monthly care', 'care-steady': 'Steady monthly care', 'care-active': 'Active monthly care'
+    };
+    function prefillPlan(planLabel) {
+      if (!planLabel) return;
+      const msg = document.getElementById('contact-message');
+      const select = document.getElementById('contact-plan');
+      if (select) {
+        const opt = [...select.options].find(o => o.value === planLabel)
+          || (/monthly care/i.test(planLabel) ? [...select.options].find(o => o.value === 'Monthly care') : null)
+          || (/\$500/.test(planLabel) ? [...select.options].find(o => o.value.startsWith('Simple site')) : null);
+        if (opt) select.value = opt.value;
+      }
+      if (msg) {
+        const line = "I'm interested in the " + planLabel + ".";
+        if (!msg.value.trim() || msg.dataset.prefilled === '1') {
+          msg.value = line + ' ';
+          msg.dataset.prefilled = '1';
+        }
+      }
+    }
+    if (!document.documentElement.dataset.planPrefillBound) {
+      document.documentElement.dataset.planPrefillBound = '1';
+      document.addEventListener('click', (e) => {
+        const a = e.target instanceof Element ? e.target.closest('a[data-plan]') : null;
+        if (!a) return;
+        e.preventDefault();
+        prefillPlan(a.getAttribute('data-plan'));
+        const target = document.getElementById('contact');
+        if (target) {
+          history.replaceState(null, '', '#contact');
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+      document.addEventListener('input', (e) => {
+        if (e.target && e.target.id === 'contact-message') e.target.dataset.prefilled = '';
+      });
+    }
+    function prefillFromUrl() {
+      const key = new URLSearchParams(window.location.search).get('plan');
+      if (key) prefillPlan(PLAN_LABELS[key] || key);
+    }
+    prefillFromUrl();
+    window.addEventListener('motion:page-enter', prefillFromUrl);
+
     // Helper for fake popup close button - resets to allow re-submission demo
     function resetFormAndSuccess() {
       const form = document.getElementById('contact-form');
@@ -882,12 +1064,12 @@
 
   <footer class="border-t border-slate-100 py-9">
     <div class="max-w-6xl mx-auto px-6 text-xs text-slate-500 flex flex-col sm:flex-row gap-y-2 items-center justify-between">
-      <div>© Steve Luiting — Strategic Web Design &amp; Digital Experiences. Westminster, Colorado.</div>
+      <div>© Steve Luiting - Strategic Web Design &amp; Digital Experiences. Westminster, Colorado.</div>
       <div class="flex gap-x-5">
-        <a href="/mike-bollig/" class="hover:text-slate-700 transition">Featured: Mike Bollig – Music</a>
-        <a href="blog.html" class="hover:text-slate-700 transition">Insights</a>
-        <a href="https://github.com/stevel4857" target="_blank" rel="noopener" class="hover:text-slate-700 transition">GitHub</a>
-        <a href="https://www.linkedin.com/in/luiting" target="_blank" rel="noopener" class="hover:text-slate-700 transition">LinkedIn</a>
+        <a href="https://mikebollig.com" target="_blank" rel="noopener" class="tap-target hover:text-slate-700 transition">Featured: Mike Bollig - Music</a>
+        <a href="blog.html" class="tap-target hover:text-slate-700 transition">Insights</a>
+        <a href="https://github.com/stevel4857" target="_blank" rel="noopener" class="tap-target hover:text-slate-700 transition">GitHub</a>
+        <a href="https://www.linkedin.com/in/luiting" target="_blank" rel="noopener" class="tap-target hover:text-slate-700 transition">LinkedIn</a>
       </div>
     </div>
   </footer>
