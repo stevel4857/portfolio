@@ -176,7 +176,7 @@ class VoiceScheduler {
       this.awaitingResponse = false;
       if (this.micEnabled) {
         this.setMicActive(true);
-        this.setStatus("Listening — say when you would like to meet.");
+        this.setStatus("Listening. Say when you would like to meet.");
       }
     }
   }
@@ -490,7 +490,7 @@ class VoiceScheduler {
     this.pendingMic = false;
     await this.startMic();
     this.micEnabled = true;
-    this.setStatus("Listening — say when you would like to meet.");
+    this.setStatus("Listening. Say when you would like to meet.");
   }
 
   private async startMic() {

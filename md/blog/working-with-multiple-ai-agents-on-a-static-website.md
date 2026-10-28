@@ -1,6 +1,6 @@
 ---
 title: "Working with Multiple AI Agents on a Static Website"
-description: "I'm experimenting with treating AI agents as ongoing collaborators on my website - not just one-off tools. Here's what that actually looks like right now."
+description: "I'm experimenting with treating AI agents as ongoing collaborators on my website, not just one-off tools. Here's what that actually looks like right now."
 canonical: "https://steveknowsweb.com/blog/working-with-multiple-ai-agents-on-a-static-website"
 date: "2026-06-10"
 author: "Steve Luiting"
@@ -10,7 +10,7 @@ language: "en"
 ---
 For the last couple of months I’ve been deliberately trying something new: treating AI agents as regular collaborators on my website instead of just one-off tools.
 
-I’ve been working with Grok (and occasionally Claude) on steveknowsweb.com in a more structured way than before. Not just “write this section for me,” but actual ongoing work — refactoring parts of the site, improving the contact form, setting up better local development tooling, and building out documentation so that multiple agents (and eventually other humans) can work on the same codebase without everything turning into chaos.
+I’ve been working with Grok (and occasionally Claude) on steveknowsweb.com in a more structured way than before. Not just “write this section for me,” but actual ongoing work: refactoring parts of the site, improving the contact form, setting up better local development tooling, and building out documentation so that multiple agents (and eventually other humans) can work on the same codebase without everything turning into chaos.
 
 ### Why I’m doing this
 
@@ -22,7 +22,7 @@ If that’s the case, I need the site to be structured in a way that supports th
 
 Right now the site is still a simple static site (plain HTML, Tailwind via CDN, and vanilla JavaScript). I’m deliberately not rushing into a framework like Astro or Eleventy yet. Instead I’m focusing on three things:
 
-1.  **Clear rules for AI agents.** I created an `AGENTS.md` file that spells out how agents should work on the site — branching strategy, pull request expectations, what they’re allowed to change without asking, and what they should never touch. This has already made the process much cleaner.
+1.  **Clear rules for AI agents.** I created an `AGENTS.md` file that spells out how agents should work on the site: branching strategy, pull request expectations, what they’re allowed to change without asking, and what they should never touch. This has already made the process much cleaner.
 2.  **Better structure for parallel work.** I’ve started pulling the site apart into components (starting with the navigation) and separating content into data files. The goal is to reduce the chance of two agents (or an agent and me) stepping on each other.
 3.  **Proper collaboration tooling.** Even though I’m solo right now, I’m treating the project as if multiple people are working on it. GitHub for version control and reviews, Cloudflare Pages for automatic previews on every branch, and documented processes for how work should move from idea to production.
 
@@ -30,7 +30,7 @@ Right now the site is still a simple static site (plain HTML, Tailwind via CDN, 
 
 AI agents are surprisingly good at certain kinds of work (refactoring, writing small utilities, improving documentation) but they still need strong guardrails. Without clear instructions, they’ll happily make large, risky changes or break consistency with the rest of the site.
 
-I’ve also noticed that the more I document *how* I want the site to be worked on, the better the results I get — both from the AI and from my future self when I come back to something months later.
+I’ve also noticed that the more I document *how* I want the site to be worked on, the better the results I get, both from the AI and from my future self when I come back to something months later.
 
 ### Still keeping it simple
 

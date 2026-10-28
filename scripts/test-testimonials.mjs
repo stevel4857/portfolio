@@ -37,7 +37,7 @@ test('Jana is video-only with the Syndeo Vimeo id', () => {
   assert.equal(jana.video.id, '1096427800');
   assert.equal(jana.video.hash, '05af90934b');
   assert.equal(jana.video.start, '35m24s');
-  assert.equal(jana.role, 'Former CEO, Syndeo Institute (The Cable Center)');
+  assert.equal(jana.role, 'Former CEO, The Cable Center/Syndeo Institute');
 });
 
 test('Nic and Sue quotes and homepage excerpts match the spec', () => {
@@ -47,7 +47,7 @@ test('Nic and Sue quotes and homepage excerpts match the spec', () => {
   assert.equal(nic.quote, NIC_QUOTE);
   assert.equal(nic.homepageExcerpt, NIC_EXCERPT);
   assert.equal(nic.homepage, true);
-  assert.equal(nic.role, 'VR collaborator, The Cable Center');
+  assert.equal(nic.role, 'VR collaborator, The Cable Center/Syndeo Institute');
   assert.equal(sue.quote, SUE_QUOTE);
   assert.equal(sue.homepageExcerpt, SUE_EXCERPT);
   assert.equal(sue.homepage, true);

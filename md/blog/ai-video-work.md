@@ -8,7 +8,7 @@ category: "Experiments"
 tags: "AI, Video, Motion"
 language: "en"
 ---
-One of the most powerful shifts in 2025–2026 has been the quality of AI video and motion generation.
+One of the most powerful shifts in 2025 and 2026 has been the quality of AI video and motion generation.
 
 I'm currently using Grok's image and video capabilities extensively for client concepts, logo animations, and exploratory work. The ability to iterate visually at this speed changes the conversation with clients completely.
 
@@ -22,7 +22,7 @@ Here's a recent experiment I did with my own materials. I used Grok Animate to c
 
 Full video: [Watch on YouTube](https://youtu.be/PzEc3ZZNHwU)
 
-Tools like this are changing how we present ideas — turning static documents into living, shareable stories in minutes.
+Tools like this are changing how we present ideas, turning static documents into living, shareable stories in minutes.
 
 ### Reusable Video Style Guides
 

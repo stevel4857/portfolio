@@ -1,6 +1,6 @@
 ---
 title: "Testimonials - Steve Luiting | Westminster, CO"
-description: "What colleagues say about working with Steve Luiting - museums, public media, and The Cable Center."
+description: "What colleagues say about working with Steve Luiting: museums, public media, and The Cable Center/Syndeo Institute."
 canonical: "https://steveknowsweb.com/testimonials"
 language: "en"
 ---
@@ -8,15 +8,15 @@ Testimonials
 
 # People I’ve built with.
 
-Colleagues from museums, public media, and the work at The Cable Center. A few words, and one conversation, about what it’s like to build together.
+Colleagues from museums, public media, and the work at The Cable Center/Syndeo Institute. A few words, and one conversation, about what it’s like to build together.
 
-Jana Henthorn · Former CEO, Syndeo Institute (The Cable Center)
+Jana Henthorn · Former CEO, The Cable Center/Syndeo Institute
 
  ![Nic van Dessel](https://steveknowsweb.com/assets/images/testimonials/nic-van-dessel-circle.png)
 
 Nic van Dessel
 
-VR collaborator, The Cable Center
+VR collaborator, The Cable Center/Syndeo Institute
 
 > Steve is one of the most inspired, innovative and forward thinking individuals I've ever had the pleasure of meeting or working with. Not only was Steve an innovator, but he was an excellent manager.
 

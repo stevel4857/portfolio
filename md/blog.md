@@ -61,23 +61,23 @@ Markdown: [a-birthday-card-for-skoog.md](/md/blog/a-birthday-card-for-skoog.md)
 
 *2026-07-10 · Fun projects · 4 min*
 
-A custom Matrix-style birthday card for Erin - her likeness on the cover, 7.21.2026, and an inside that says we love you and you kick reality’s ass.
+A custom Matrix-style birthday card for Erin: her likeness on the cover, 7.21.2026, and an inside that says we love you and you kick reality’s ass.
 
 Markdown: [matrix-birthday-card-for-erin.md](/md/blog/matrix-birthday-card-for-erin.md)
 
-## [WordCut - Free Video Editor for Windows](https://steveknowsweb.com/blog/wordcut-free-video-editor-for-windows)
+## [WordCut: Free Video Editor for Windows](https://steveknowsweb.com/blog/wordcut-free-video-editor-for-windows)
 
 *2026-07-02 · AI · 4 min*
 
-WordCut is a free Windows app I built with Whisper, FFmpeg, and pywebview - click words in a transcript to cut them from your video. Open source on GitHub.
+WordCut is a free Windows app I built with Whisper, FFmpeg, and pywebview. Click words in a transcript to cut them from your video. Open source on GitHub.
 
 Markdown: [wordcut-free-video-editor-for-windows.md](/md/blog/wordcut-free-video-editor-for-windows.md)
 
-## [Vibe Coding This Site - and Adding Motion Without Losing the Plot](https://steveknowsweb.com/blog/vibe-coding-motion-and-the-tools-im-watching)
+## [Vibe Coding This Site and Adding Motion Without Losing the Plot](https://steveknowsweb.com/blog/vibe-coding-motion-and-the-tools-im-watching)
 
 *2026-07-02 · AI · 9 min*
 
-I watched a sharp video on vibe coding with Grok Build, then used the same workflow to add Lottie-style page animations to my static site - without migrating to React. Whisper, FFmpeg, and Pywebview are next on my radar.
+I watched a sharp video on vibe coding with Grok Build, then used the same workflow to add Lottie-style page animations to my static site, without migrating to React. Whisper, FFmpeg, and Pywebview are next on my radar.
 
 Markdown: [vibe-coding-motion-and-the-tools-im-watching.md](/md/blog/vibe-coding-motion-and-the-tools-im-watching.md)
 
@@ -89,11 +89,11 @@ GEO is the new game for getting into AI answers instead of Google results. Here'
 
 Markdown: [generative-engine-optimization.md](/md/blog/generative-engine-optimization.md)
 
-## [impactstudios.app Is Live - A Coming Soon Page on the Path I Already Trust](https://steveknowsweb.com/blog/impactstudios-app-is-live)
+## [impactstudios.app Is Live: A Coming Soon Page on the Path I Already Trust](https://steveknowsweb.com/blog/impactstudios-app-is-live)
 
 *2026-06-26 · AI · 3 min*
 
-The Impact Studio product is still in development, but the brand now has a home at impactstudios.app - a coming soon page deployed through the same GitHub-to-Cloudflare workflow I have been writing about. Set up June 26, 2026.
+The Impact Studio product is still in development, but the brand now has a home at impactstudios.app, a coming soon page deployed through the same GitHub-to-Cloudflare workflow I have been writing about. Set up June 26, 2026.
 
 Markdown: [impactstudios-app-is-live.md](/md/blog/impactstudios-app-is-live.md)
 
@@ -101,7 +101,7 @@ Markdown: [impactstudios-app-is-live.md](/md/blog/impactstudios-app-is-live.md)
 
 *2026-06-26 · AI · 7 min*
 
-When AI reads your website, it pays for every byte of HTML - menus, scripts, and template chrome included. Serving a Markdown twin gives agents your actual words without the markup tax.
+When AI reads your website, it pays for every byte of HTML: menus, scripts, and template chrome included. Serving a Markdown twin gives agents your actual words without the markup tax.
 
 Markdown: [markdown-for-ai-agents.md](/md/blog/markdown-for-ai-agents.md)
 
@@ -109,15 +109,15 @@ Markdown: [markdown-for-ai-agents.md](/md/blog/markdown-for-ai-agents.md)
 
 *2026-06-24 · AI · 10 min*
 
-I am building Impact Studio - an offline-first visual builder with AI that works beside you in the editor and on a schedule. Same GitHub-to-Cloudflare publishing I already trust. Early code lives in a private GitHub repo.
+I am building Impact Studio, an offline-first visual builder with AI that works beside you in the editor and on a schedule. Same GitHub-to-Cloudflare publishing I already trust. Early code lives in a private GitHub repo.
 
 Markdown: [impact-studio-a-builder-for-offline-work-and-real-publishing.md](/md/blog/impact-studio-a-builder-for-offline-work-and-real-publishing.md)
 
-## [Building the Cable Center VR Archive](https://steveknowsweb.com/blog/building-the-cable-center-vr-archive)
+## [Building the VR Archive for The Cable Center/Syndeo Institute](https://steveknowsweb.com/blog/building-the-cable-center-vr-archive)
 
 *2026-06-20 · Projects · 16 min*
 
-The Cable Center has moved a few blocks away - but the original building lives on in VR. Here's the browser walkthrough with glTF architecture, floating 360° video spheres, and the same preservation story from 2014.
+The Cable Center/Syndeo Institute has moved a few blocks away, but the original building lives on in VR. Here's the browser walkthrough with glTF architecture, floating 360° video spheres, and the same preservation story from 2014.
 
 Markdown: [building-the-cable-center-vr-archive.md](/md/blog/building-the-cable-center-vr-archive.md)
 
@@ -125,7 +125,7 @@ Markdown: [building-the-cable-center-vr-archive.md](/md/blog/building-the-cable-
 
 *2026-06-12 · AI · 8 min*
 
-I was paying $10 a month for a Squarespace site I hadn't touched in years - just to keep redirects alive. Here's how I moved everything to Cloudflare and stopped renting a platform I didn't need.
+I was paying $10 a month for a Squarespace site I hadn't touched in years, just to keep redirects alive. Here's how I moved everything to Cloudflare and stopped renting a platform I didn't need.
 
 Markdown: [i-finally-left-squarespace.md](/md/blog/i-finally-left-squarespace.md)
 
@@ -133,7 +133,7 @@ Markdown: [i-finally-left-squarespace.md](/md/blog/i-finally-left-squarespace.md
 
 *2026-06-10 · AI · 7 min*
 
-I'm experimenting with treating AI agents as ongoing collaborators on my website - not just one-off tools. Here's what that actually looks like right now.
+I'm experimenting with treating AI agents as ongoing collaborators on my website, not just one-off tools. Here's what that actually looks like right now.
 
 Markdown: [working-with-multiple-ai-agents-on-a-static-website.md](/md/blog/working-with-multiple-ai-agents-on-a-static-website.md)
 
@@ -141,7 +141,7 @@ Markdown: [working-with-multiple-ai-agents-on-a-static-website.md](/md/blog/work
 
 *2026-06-03 · Experiments · 7 min*
 
-Embed rich, interactive 3D experiences directly into normal 2D web pages using A-Frame. No apps, no installs - click to explore with WASD + mouse look.
+Embed rich, interactive 3D experiences directly into normal 2D web pages using A-Frame. No apps, no installs. Click to explore with WASD + mouse look.
 
 Markdown: [3d-aframe-2d.md](/md/blog/3d-aframe-2d.md)
 
@@ -157,7 +157,7 @@ Markdown: [core-principles-of-aeo.md](/md/blog/core-principles-of-aeo.md)
 
 *2026-04-28 · Projects · 9 min*
 
-The main server at The Cable Center was compromised. Irreplaceable oral history videos were scattered across untrusted backups. I recovered the archive - and that experience still shapes how I approach long-term digital preservation.
+The main server at The Cable Center/Syndeo Institute was compromised. Irreplaceable oral history videos were scattered across untrusted backups. I recovered the archive, and that experience still shapes how I approach long-term digital preservation.
 
 Markdown: [rescuing-the-video-archive-after-the-hack.md](/md/blog/rescuing-the-video-archive-after-the-hack.md)
 
@@ -165,7 +165,7 @@ Markdown: [rescuing-the-video-archive-after-the-hack.md](/md/blog/rescuing-the-v
 
 *2026-04-15 · AI · 6 min*
 
-"Awesome Design MD" goes viral as the "Figma for AI agents" - a look at the tools that are actually changing how we design and build in 2026.
+"Awesome Design MD" goes viral as the "Figma for AI agents": a look at the tools that are actually changing how we design and build in 2026.
 
 Markdown: [ai-and-uiux-web-design-news.md](/md/blog/ai-and-uiux-web-design-news.md)
 
@@ -205,7 +205,7 @@ Markdown: [embed-flash-in-squarespace.md](/md/blog/embed-flash-in-squarespace.md
 
 *2023-11-23 · Legacy Web · 12 min*
 
-Flash is back from the dead it seems - and for certain archival and cultural projects, that's actually good news.
+Flash is back from the dead it seems, and for certain archival and cultural projects, that's actually good news.
 
 Markdown: [the-resurrection-of-flash.md](/md/blog/the-resurrection-of-flash.md)
 

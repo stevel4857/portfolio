@@ -3,7 +3,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>The Cable Center - VR Walkthrough</title>
+  <title>The Cable Center/Syndeo Institute: VR Walkthrough</title>
   <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
   <script src="https://unpkg.com/aframe-environment-component@1.5.x/dist/aframe-environment-component.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.0/dist/aframe-physics-system.min.js"></script>
@@ -30,10 +30,10 @@
   <div class="top-bar">
     <a href="../index.html">← Back to site</a>
     <span style="opacity:0.7;">|</span>
-    <span>The Old Syndeo Institute/Cable Center - VR Walkthrough</span>
+    <span>The Cable Center/Syndeo Institute (original building): VR Walkthrough</span>
   </div>
   <div class="instructions" id="instructions">Click inside the 3D view first • WASD or arrow keys to move • Space/Shift to fly up/down • Click a floating sphere to play 360° video • ESC to exit video</div>
-  <div class="status" id="status">Loading Cable Center model…</div>
+  <div class="status" id="status">Loading The Cable Center/Syndeo Institute model…</div>
 
   <div id="ui">
     <button id="mute-btn">🔇 Mute</button>
@@ -563,7 +563,7 @@ physics="driver: ammo;"
 
       videoEl.currentTime = 0;
       videoEl.play().then(() => {
-        statusEl.textContent = 'Playing 360° video — drag to look around, ESC to exit';
+        statusEl.textContent = 'Playing 360° video. Drag to look around, ESC to exit';
         ui.style.display = 'block';
         muteBtn.textContent = videoEl.muted ? '🔊 Unmute' : '🔇 Mute';
       }).catch((err) => {
@@ -635,7 +635,7 @@ physics="driver: ammo;"
       resetVideos();
       resetPlayer();
       resetSpheres();
-      statusEl.textContent = 'Back in front of the spheres — click one to play 360° video.';
+      statusEl.textContent = 'Back in front of the spheres. Click one to play 360° video.';
     }
 
     function onBuildingLoaded() {

@@ -8,8 +8,8 @@ category: "Philosophy"
 tags: "Museums, Nonprofits, Purpose"
 language: "en"
 ---
-I've turned down plenty of corporate work over the years. Not because I can't do it — but because the mission-driven organizations are the ones whose stories actually need to last.
+I've turned down plenty of corporate work over the years. Not because I can't do it, but because the mission-driven organizations are the ones whose stories actually need to last.
 
 Museums, historical societies, and nonprofits are sitting on decades (sometimes centuries) of meaning. When their websites are fragile or outdated, that meaning becomes harder to access. My job is to change that.
 
-Yes, the budgets are often smaller. But the impact of getting it right is enormous — and permanent.
+Yes, the budgets are often smaller. But the impact of getting it right is enormous, and permanent.

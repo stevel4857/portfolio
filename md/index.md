@@ -15,7 +15,7 @@ Websites and digital experiences for Colorado small businesses, nonprofits and m
 
 Now building faster and better with AI (Grok + Claude) while keeping the same care for craft.
 
-The Cable Center / Syndeo Institute
+The Cable Center/Syndeo Institute
 
 Colorado Museums
 
@@ -26,10 +26,10 @@ Small Businesses
 THE WORK THAT SHAPED ME
 
 ## 13 years at  
-The Cable Center  
+The Cable Center/Syndeo Institute  
 changed everything.
 
-In 2009 I walked into The Cable Center in Denver and they asked if I could learn ColdFusion.
+In 2009 I walked into The Cable Center/Syndeo Institute in Denver and they asked if I could learn ColdFusion.
 
 I said yes. I built their entire main website from scratch that year and stayed for 13 years as their lead web and digital person.
 
@@ -67,7 +67,7 @@ Years building websites that outlive trends
 
 13
 
-Years as lead web and digital person at The Cable Center
+Years as lead web and digital person at The Cable Center/Syndeo Institute
 
 1
 
@@ -165,13 +165,13 @@ Rebuilt as plain, fast pages with a working contact form and free hosting, so a 
 
 [](https://store.steampowered.com/app/612440/The_Cable_Center__Virtual_Archive/)
 
-THE CABLE CENTER • 2014 TO TODAY
+THE CABLE CENTER/SYNDEO INSTITUTE • 2014 TO TODAY
 
 ### Virtual Archive Experience
 
 Full interactive VR recreation of an entire historic building. Visitors can walk through rooms, pick up artifacts, and enter 360° video oral histories. Still used today on Meta Quest and Steam.
 
- ![Screenshot from the Cable Center Virtual Archive VR experience (2016)](https://steveknowsweb.com/assets/images/Abel-Cable-TCC_2016VR.jpg)
+ ![Screenshot from The Cable Center/Syndeo Institute Virtual Archive VR experience (2016)](https://steveknowsweb.com/assets/images/Abel-Cable-TCC_2016VR.jpg)
 
 [Explore on Steam](https://store.steampowered.com/app/612440/The_Cable_Center__Virtual_Archive/)
 
@@ -195,13 +195,13 @@ Whisper FFmpeg Windows
 
 [](https://steveknowsweb.com/work/syndeo.html)
 
-THE CABLE CENTER • 2018 TO 2022
+THE CABLE CENTER/SYNDEO INSTITUTE • 2018 TO 2022
 
 ### Syndeo Institute
 
-The website for The Cable Center’s Syndeo Institute. Joomla with SP Page Builder, heavily customized CSS.
+The website for The Cable Center/Syndeo Institute. Joomla with SP Page Builder, heavily customized CSS.
 
-Modernized the visual identity for The Cable Center’s new institute using video backgrounds and animated headers.
+Modernized the visual identity for The Cable Center/Syndeo Institute using video backgrounds and animated headers.
 
  ![Screenshot of the Syndeo Institute website](https://steveknowsweb.com/assets/images/work/syndeo-screenshot.jpg)
 
@@ -211,11 +211,11 @@ Past project Visual Identity
 
 [](https://web.archive.org/web/20140219221129/http://cablecenterevents.org/)
 
-THE CABLE CENTER • EVENT RENTALS
+THE CABLE CENTER/SYNDEO INSTITUTE • EVENT RENTALS
 
 ### Cable Center Events
 
-The site for renting The Cable Center for weddings, galas and meetings. Converted from ColdFusion to WordPress, with heavily customized CSS.
+The site for renting The Cable Center/Syndeo Institute for weddings, galas and meetings. Converted from ColdFusion to WordPress, with heavily customized CSS.
 
 I later rebuilt it again in WordPress with Divi, starting in 2018.
 
@@ -387,7 +387,7 @@ What colleagues say
 
 > One of the most inspired, innovative and forward thinking individuals I've ever had the pleasure of meeting or working with.
 > 
-> Nic van Dessel · The Cable Center
+> Nic van Dessel · The Cable Center/Syndeo Institute
 
 > Steve is a talented designer. He's smart, funny, inventive and basically a joy to have around.
 > 

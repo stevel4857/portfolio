@@ -2,13 +2,13 @@
   "page": {
     "eyebrow": "Testimonials",
     "headline": "People I’ve built with.",
-    "intro": "Colleagues from museums, public media, and the work at The Cable Center. A few words, and one conversation, about what it’s like to build together."
+    "intro": "Colleagues from museums, public media, and the work at The Cable Center/Syndeo Institute. A few words, and one conversation, about what it’s like to build together."
   },
   "people": [
     {
       "id": "jana-henthorn",
       "name": "Jana Henthorn",
-      "role": "Former CEO, Syndeo Institute (The Cable Center)",
+      "role": "Former CEO, The Cable Center/Syndeo Institute",
       "kind": "video",
       "featured": true,
       "homepage": false,
@@ -25,12 +25,12 @@
     {
       "id": "nic-van-dessel",
       "name": "Nic van Dessel",
-      "role": "VR collaborator, The Cable Center",
+      "role": "VR collaborator, The Cable Center/Syndeo Institute",
       "kind": "quote",
       "featured": false,
       "homepage": true,
       "homepageExcerpt": "One of the most inspired, innovative and forward thinking individuals I've ever had the pleasure of meeting or working with.",
-      "homepageCredit": "Nic van Dessel · The Cable Center",
+      "homepageCredit": "Nic van Dessel · The Cable Center/Syndeo Institute",
       "quote": "Steve is one of the most inspired, innovative and forward thinking individuals I've ever had the pleasure of meeting or working with. Not only was Steve an innovator, but he was an excellent manager.",
       "photo": "/assets/images/testimonials/nic-van-dessel-circle.png"
     },

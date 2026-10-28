@@ -8,9 +8,9 @@ category: "Philosophy"
 tags: "Career, Museums, Ownership, Longevity"
 language: "en"
 ---
-From 2009 to 2022 I was, for all practical purposes, the entire web department at The Cable Center.
+From 2009 to 2022 I was, for all practical purposes, the entire web department at The Cable Center/Syndeo Institute.
 
-There was no marketing team handing me briefs. No design department. No dedicated developer to pass things off to. If the site needed something, it was my job to figure it out — from strategy and information architecture all the way down to the actual code and server maintenance.
+There was no marketing team handing me briefs. No design department. No dedicated developer to pass things off to. If the site needed something, it was my job to figure it out, from strategy and information architecture all the way down to the actual code and server maintenance.
 
 ![Humorous vintage travel poster illustration of a lonely guy alone in an empty office at night, staring sadly at a computer screen with a funny exaggerated expression](https://steveknowsweb.com/assets/images/lonely-web-guy-travel-poster.jpg)
 

@@ -8,7 +8,7 @@ category: "AI"
 tags: "AEO, AI, Strategy"
 language: "en"
 ---
-SEO is important but now so is **AEO** — Answer Engine Optimization.
+SEO is important but now so is **AEO** (Answer Engine Optimization).
 
 As AI assistants and answer engines become the primary way people discover information, the rules are shifting. It's no longer just about ranking in Google. It's about becoming the source that AI systems trust and cite.
 

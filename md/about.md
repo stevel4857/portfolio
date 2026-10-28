@@ -18,18 +18,18 @@ Strategic Web Designer • Westminster, Colorado
 
 For more than thirty years I've helped museums, historical organizations, and purpose-driven groups turn complex missions into clear, durable digital experiences. I don't chase trends. I build things that still feel right and work properly a decade later.
 
-2009 — 2022
+2009 to 2022
 
 ## Thirteen years at  
-The Cable Center
+The Cable Center/Syndeo Institute
 
 This is where almost everything I believe about this work was formed.
 
-In 2009 I walked into The Cable Center in Denver and they asked if I could learn ColdFusion — an enterprise platform that was already considered legacy at the time. I said yes, built their entire website from scratch that year, and stayed for thirteen years as their lead (and for most of that time, only) web and digital person.
+In 2009 I walked into The Cable Center/Syndeo Institute in Denver and they asked if I could learn ColdFusion, an enterprise platform that was already considered legacy at the time. I said yes, built their entire website from scratch that year, and stayed for thirteen years as their lead (and for most of that time, only) web and digital person.
 
 I became the entire digital department.
 
-No marketing team. No designers. No developers to hand things off to. Every decision — from information architecture to server maintenance — was mine. That kind of radical ownership changes how you think about quality and longevity.
+No marketing team. No designers. No developers to hand things off to. Every decision (from information architecture to server maintenance) was mine. That kind of radical ownership changes how you think about quality and longevity.
 
 I quietly saved their entire video archive after a server was hacked.
 
@@ -41,7 +41,7 @@ When the technology died, important interactive exhibits died with it. I found w
 
 I led the creation of a full VR recreation of the entire building.
 
-Working with a small team, we built something visitors could walk through on a Meta Quest or via Steam — picking up artifacts and stepping into real 360° oral histories. It is still available and free more than a decade later.
+Working with a small team, we built something visitors could walk through on a Meta Quest or via Steam, picking up artifacts and stepping into real 360° oral histories. It is still available and free more than a decade later.
 
 [View the VR Archive on Steam](https://store.steampowered.com/app/612440/The_Cable_Center__Virtual_Archive/)
 
@@ -56,7 +56,7 @@ TODAY
 ## Same standards.  
 New speed.
 
-I still do the same work I’ve always done — strategic web design for organizations whose stories deserve to last. The difference now is that I have powerful new partners: Grok and Claude.
+I still do the same work I’ve always done: strategic web design for organizations whose stories deserve to last. The difference now is that I have powerful new partners: Grok and Claude.
 
 I use AI every day as a creative collaborator. It lets me explore more directions, write sharper copy, generate better visual concepts, and deliver higher-quality work in less time. The result is that I can take on the kind of thoughtful, mission-driven projects I care about without the old constraints of time and cost.
 

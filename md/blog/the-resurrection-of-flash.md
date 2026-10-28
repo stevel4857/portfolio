@@ -1,6 +1,6 @@
 ---
 title: "The Resurrection of Flash"
-description: "Flash is back from the dead it seems - and for certain archival and cultural projects, that's actually good news."
+description: "Flash is back from the dead it seems, and for certain archival and cultural projects, that's actually good news."
 canonical: "https://steveknowsweb.com/blog/the-resurrection-of-flash"
 date: "2023-11-23"
 author: "Steve Luiting"
@@ -8,19 +8,19 @@ category: "Legacy Web"
 tags: "Flash, Archives, Museums"
 language: "en"
 ---
-At The Cable Center, the learning-station kiosks were built around Flash on two levels: **Flash drove the animation** visitors saw on screen, and the **kiosk UI itself was authored in Flash**. When those exhibits stopped working, the problem was not just that Flash had been discontinued — **the source files had disappeared**, and the **old working project files were corrupted**. I had no clean files left to rebuild the exhibit from, so I recovered what I could from the compiled .swf outputs and brought the interactives back. If today they wanted to use Flash once again, I could restore them via modern tools like Ruffle.
+At The Cable Center/Syndeo Institute, the learning-station kiosks were built around Flash on two levels: **Flash drove the animation** visitors saw on screen, and the **kiosk UI itself was authored in Flash**. When those exhibits stopped working, the problem was not just that Flash had been discontinued: **the source files had disappeared**, and the **old working project files were corrupted**. I had no clean files left to rebuild the exhibit from, so I recovered what I could from the compiled .swf outputs and brought the interactives back. If today they wanted to use Flash once again, I could restore them via modern tools like Ruffle.
 
-Kinect experiments on Cable Center learning stations, 2011 — Flash animation and a Flash-built kiosk interface. The original source files were later lost; what remained of the working project files was corrupted.
+Kinect experiments on the learning stations at The Cable Center/Syndeo Institute, 2011: Flash animation and a Flash-built kiosk interface. The original source files were later lost; what remained of the working project files was corrupted.
 
 For museums and cultural organizations, Flash was once the standard for rich interactive exhibits. When it was killed off, a huge amount of important digital heritage effectively died with it.
 
-Thanks to open-source projects like Ruffle, many of those experiences can live again — safely, in the browser, with no plugins required from visitors.
+Thanks to open-source projects like Ruffle, many of those experiences can live again, safely, in the browser, with no plugins required from visitors.
 
 I've been quietly resurrecting Flash-based work for clients who need their history to remain accessible. It's one of the more satisfying parts of what I do.
 
 ### Embedding Ruffle yourself
 
-Here are the exact steps and code snippets you can copy. Ruffle lets you play legacy Flash (SWF) files directly in modern browsers — no plugin required.
+Here are the exact steps and code snippets you can copy. Ruffle lets you play legacy Flash (SWF) files directly in modern browsers, no plugin required.
 
 ### Live Demo (right here on this page)
 
@@ -41,7 +41,7 @@ Add this in the `<head>` of your HTML page:
 
 #### Step 2: Add a sized container, then create the player
 
-Put the container in the page first. Give it a **real width and height** (pixels work best). Then create the player after load. Avoid relying only on `height: 100%` when the parent has no definite height — that often collapses in Firefox.
+Put the container in the page first. Give it a **real width and height** (pixels work best). Then create the player after load. Avoid relying only on `height: 100%` when the parent has no definite height, which often collapses in Firefox.
 
 ```
 <div id="container" style="width:600px;height:400px;background:#000;"></div>
@@ -122,7 +122,7 @@ Copy into an `index.html` next to your `.swf` (or adjust the path). This version
       const player = ruffle.createPlayer();
       container.appendChild(player);
 
-      // Absolute fill — works with aspect-ratio parents in Firefox and Chrome
+      // Absolute fill: works with aspect-ratio parents in Firefox and Chrome
       player.style.cssText = "position:absolute;inset:0;width:100%;height:100%;display:block;";
 
       // Same folder as this HTML: "my-movie.swf"

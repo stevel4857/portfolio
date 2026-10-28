@@ -154,7 +154,7 @@
         container.dataset.ruffleInit = 'error';
         showMessage(
           container,
-          'Could not start the Flash demo. Allow scripts from unpkg.com or jsdelivr.net, then refresh — or try Chrome/Edge.',
+          'Could not start the Flash demo. Allow scripts from unpkg.com or jsdelivr.net, then refresh, or try Chrome/Edge.',
         );
       });
   }

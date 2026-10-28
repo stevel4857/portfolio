@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Flash is back from the dead it seems - and for certain archival and cultural projects, that's actually good news.">
+  <meta name="description" content="Flash is back from the dead it seems, and for certain archival and cultural projects, that's actually good news.">
   <title>The Resurrection of Flash - Steve Luiting</title>
   <link rel="canonical" href="https://steveknowsweb.com/blog/the-resurrection-of-flash">
   <link rel="alternate" type="text/markdown" href="/md/blog/the-resurrection-of-flash.md">
@@ -38,8 +38,8 @@
     
 
     <div class="prose prose-slate max-w-none blog-content">
-      <!--email_off--><p>At The Cable Center, the learning-station kiosks were built around Flash on two levels: <strong>Flash drove the animation</strong> visitors saw on screen, and the <strong>kiosk UI itself was authored in Flash</strong>. When those exhibits stopped working, the problem was not just that Flash had been discontinued — <strong>the source files had disappeared</strong>, and the <strong>old working project files were corrupted</strong>. I had no clean files left to rebuild the exhibit from, so I recovered what I could from the compiled .swf outputs and brought the interactives back. If today they wanted to use Flash once again, I could restore them via modern tools like Ruffle.</p><div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;margin:1.5rem 0;border:1px solid #e2e8f0;border-radius:12px;"><iframe src="https://www.youtube.com/embed/6z-Phvr7IrY?modestbranding=1&amp;rel=0" title="Kinect Experiments on Cable Center Learning Stations 2011" style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px;" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><p><small>Kinect experiments on Cable Center learning stations, 2011 — Flash animation and a Flash-built kiosk interface. The original source files were later lost; what remained of the working project files was corrupted.</small></p><p>For museums and cultural organizations, Flash was once the standard for rich interactive exhibits. When it was killed off, a huge amount of important digital heritage effectively died with it.</p><p>Thanks to open-source projects like Ruffle, many of those experiences can live again — safely, in the browser, with no plugins required from visitors.</p><p>I've been quietly resurrecting Flash-based work for clients who need their history to remain accessible. It's one of the more satisfying parts of what I do.</p><h3>Embedding Ruffle yourself</h3>
-<p>Here are the exact steps and code snippets you can copy. Ruffle lets you play legacy Flash (SWF) files directly in modern browsers — no plugin required.</p>
+      <!--email_off--><p>At The Cable Center/Syndeo Institute, the learning-station kiosks were built around Flash on two levels: <strong>Flash drove the animation</strong> visitors saw on screen, and the <strong>kiosk UI itself was authored in Flash</strong>. When those exhibits stopped working, the problem was not just that Flash had been discontinued: <strong>the source files had disappeared</strong>, and the <strong>old working project files were corrupted</strong>. I had no clean files left to rebuild the exhibit from, so I recovered what I could from the compiled .swf outputs and brought the interactives back. If today they wanted to use Flash once again, I could restore them via modern tools like Ruffle.</p><div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;margin:1.5rem 0;border:1px solid #e2e8f0;border-radius:12px;"><iframe src="https://www.youtube.com/embed/6z-Phvr7IrY?modestbranding=1&amp;rel=0" title="Kinect Experiments on Cable Center Learning Stations 2011" style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px;" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><p><small>Kinect experiments on the learning stations at The Cable Center/Syndeo Institute, 2011: Flash animation and a Flash-built kiosk interface. The original source files were later lost; what remained of the working project files was corrupted.</small></p><p>For museums and cultural organizations, Flash was once the standard for rich interactive exhibits. When it was killed off, a huge amount of important digital heritage effectively died with it.</p><p>Thanks to open-source projects like Ruffle, many of those experiences can live again, safely, in the browser, with no plugins required from visitors.</p><p>I've been quietly resurrecting Flash-based work for clients who need their history to remain accessible. It's one of the more satisfying parts of what I do.</p><h3>Embedding Ruffle yourself</h3>
+<p>Here are the exact steps and code snippets you can copy. Ruffle lets you play legacy Flash (SWF) files directly in modern browsers, no plugin required.</p>
 <h3>Live Demo (right here on this page)</h3>
 <p>This page loads Ruffle and plays a real SWF at <code>/flash/techlogo.swf</code>:</p>
 <div id="ruffle-demo" class="w-full bg-black my-4 border border-slate-200 rounded" style="position:relative;width:100%;max-width:640px;aspect-ratio:4/3;max-height:60vh;min-height:240px;overflow:hidden;"></div>
@@ -50,7 +50,7 @@
 <pre><code>&lt;script src="https://unpkg.com/@ruffle-rs/ruffle"&gt;&lt;/script&gt;
 &lt;!-- If unpkg is blocked, use: https://cdn.jsdelivr.net/npm/@ruffle-rs/ruffle --&gt;</code></pre>
 <h4>Step 2: Add a sized container, then create the player</h4>
-<p>Put the container in the page first. Give it a <strong>real width and height</strong> (pixels work best). Then create the player after load. Avoid relying only on <code>height: 100%</code> when the parent has no definite height — that often collapses in Firefox.</p>
+<p>Put the container in the page first. Give it a <strong>real width and height</strong> (pixels work best). Then create the player after load. Avoid relying only on <code>height: 100%</code> when the parent has no definite height, which often collapses in Firefox.</p>
 <pre><code>&lt;div id="container" style="width:600px;height:400px;background:#000;"&gt;&lt;/div&gt;
 &lt;script&gt;
 window.RufflePlayer = window.RufflePlayer || {};
@@ -124,7 +124,7 @@ window.addEventListener("load", () =&gt; {
       const player = ruffle.createPlayer();
       container.appendChild(player);
 
-      // Absolute fill — works with aspect-ratio parents in Firefox and Chrome
+      // Absolute fill: works with aspect-ratio parents in Firefox and Chrome
       player.style.cssText = "position:absolute;inset:0;width:100%;height:100%;display:block;";
 
       // Same folder as this HTML: "my-movie.swf"

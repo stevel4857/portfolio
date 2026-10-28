@@ -1,6 +1,6 @@
 ---
 title: "I Finally Left Squarespace"
-description: "I was paying $10 a month for a Squarespace site I hadn't touched in years - just to keep redirects alive. Here's how I moved everything to Cloudflare and stopped renting a platform I didn't need."
+description: "I was paying $10 a month for a Squarespace site I hadn't touched in years, just to keep redirects alive. Here's how I moved everything to Cloudflare and stopped renting a platform I didn't need."
 canonical: "https://steveknowsweb.com/blog/i-finally-left-squarespace"
 date: "2026-06-12"
 author: "Steve Luiting"
@@ -10,7 +10,7 @@ language: "en"
 ---
 For a long time I kept paying Squarespace $10 a month for a website I wasn't really using anymore.
 
-The live site had moved. **steveknowsweb.com** was running on Cloudflare Pages. The domain, DNS, and email were already on Cloudflare. But the old Squarespace account was still sitting there — mostly acting as a redirect layer and a monthly reminder that I hadn't fully finished the migration.
+The live site had moved. **steveknowsweb.com** was running on Cloudflare Pages. The domain, DNS, and email were already on Cloudflare. But the old Squarespace account was still sitting there, mostly acting as a redirect layer and a monthly reminder that I hadn't fully finished the migration.
 
 Sound familiar? A lot of museums and nonprofits I work with are in a similar spot: an old platform subscription they keep "just in case," long after the real site has moved somewhere else.
 
@@ -18,7 +18,7 @@ I finally closed that loop. This is what the move actually looked like.
 
 ![Black-and-white Peanuts-era style ink drawing of a small figure stepping through a doorway from a heavy old host building toward a lighter new home with scribbled clouds above](https://steveknowsweb.com/assets/images/squarespace-migration-line-drawing.jpg)
 
-*Leaving the old host behind — and taking the story with you.*
+*Leaving the old host behind, and taking the story with you.*
 
 ### What I was paying for
 
@@ -30,7 +30,7 @@ That's a reasonable short-term bridge. It's a bad long-term habit.
 
 ### What replaced it
 
-The new setup is deliberately boring — in a good way:
+The new setup is deliberately boring, in a good way:
 
 -   **Static HTML** with Tailwind built locally (no runtime dependencies)
 -   **GitHub** for version control and collaboration
@@ -55,7 +55,7 @@ Cloudflare gives you a few ways to handle this. For a static site on Pages, the 
 /index.html / 301
 ```
 
-For domain-level or bulk redirect rules — especially if you're sunsetting an entire old hostname — Cloudflare's **Bulk Redirects** are worth learning. You can map old Squarespace URLs to new paths without keeping the old subscription alive.
+For domain-level or bulk redirect rules, especially if you're sunsetting an entire old hostname, Cloudflare's **Bulk Redirects** are worth learning. You can map old Squarespace URLs to new paths without keeping the old subscription alive.
 
 Before I cancelled anything, I made a list of every URL I knew had ever mattered: homepage, about page, a handful of blog permalinks, one or two project pages. I tested each redirect after the switch. Boring work. The right work.
 
@@ -80,11 +80,11 @@ The thing that *didn't* break: my ability to iterate quickly. If anything, editi
 
 ### Why this matters for mission-driven orgs
 
-Nonprofits and museums lose a surprising amount of money to "zombie subscriptions" — platforms nobody actively maintains but everyone is afraid to cancel.
+Nonprofits and museums lose a surprising amount of money to "zombie subscriptions": platforms nobody actively maintains but everyone is afraid to cancel.
 
-If your real site has already moved, keeping the old host around "just in case" is often a $10–$30/month donation to a company you no longer work with. That adds up. It's one less hour of contractor time. It's a small grant line item. It's a newsletter tool for a volunteer team.
+If your real site has already moved, keeping the old host around "just in case" is often a $10 to $30/month donation to a company you no longer work with. That adds up. It's one less hour of contractor time. It's a small grant line item. It's a newsletter tool for a volunteer team.
 
-I'm not anti-Squarespace. For teams with no technical help, it can still be the right call. But if you already have someone who can maintain a static site — or you're experimenting with AI-assisted workflows the way I am — paying twice for hosting makes very little sense.
+I'm not anti-Squarespace. For teams with no technical help, it can still be the right call. But if you already have someone who can maintain a static site, or you're experimenting with AI-assisted workflows the way I am, paying twice for hosting makes very little sense.
 
 ### The workflow I'm using now
 
@@ -96,7 +96,7 @@ This is the loop I wanted when I started rebuilding:
 4.  Cloudflare deploys automatically
 5.  Live site updates at steveknowsweb.com
 
-It's not glamorous. It's maintainable. And it costs me essentially nothing beyond the domain — which I was paying for anyway.
+It's not glamorous. It's maintainable. And it costs me essentially nothing beyond the domain, which I was paying for anyway.
 
 ### Should you do the same?
 
@@ -106,8 +106,8 @@ Maybe. Ask yourself three questions:
 2.  Do you have (or can you get) a clear redirect plan?
 3.  Will anyone on your team actually maintain the new setup?
 
-If yes, yes, and yes — leaving Squarespace is probably overdue. If the second or third answer is shaky, slow down. A cheap static site you can't update is just a different kind of trap.
+If yes, yes, and yes, leaving Squarespace is probably overdue. If the second or third answer is shaky, slow down. A cheap static site you can't update is just a different kind of trap.
 
-For me, the migration was less about technology and more about ownership. I wanted the site to live where the rest of my infrastructure already lived — and I wanted to stop paying rent on a past version of my work.
+For me, the migration was less about technology and more about ownership. I wanted the site to live where the rest of my infrastructure already lived, and I wanted to stop paying rent on a past version of my work.
 
 I'm there now. If you're staring at a similar monthly charge, I'd be happy to talk through your specific setup. The hard part is almost never the hosting. It's making sure the redirects and the story survive the move.

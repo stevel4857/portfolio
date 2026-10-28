@@ -1,6 +1,6 @@
 ---
 title: "Rescuing the Video Archive After the Hack"
-description: "The main server at The Cable Center was compromised. Irreplaceable oral history videos were scattered across untrusted backups. I recovered the archive - and that experience still shapes how I approach long-term digital preservation."
+description: "The main server at The Cable Center/Syndeo Institute was compromised. Irreplaceable oral history videos were scattered across untrusted backups. I recovered the archive, and that experience still shapes how I approach long-term digital preservation."
 canonical: "https://steveknowsweb.com/blog/rescuing-the-video-archive-after-the-hack"
 date: "2026-04-28"
 author: "Steve Luiting"
@@ -8,9 +8,9 @@ category: "Projects"
 tags: "Archives, Museums, Preservation, Crisis"
 language: "en"
 ---
-In the middle of my time at The Cable Center, their main server was compromised. It was one of those quiet crises that could have erased decades of work.
+In the middle of my time at The Cable Center/Syndeo Institute, their main server was compromised. It was one of those quiet crises that could have erased decades of work.
 
-The video archive — oral histories with cable pioneers, Hall of Fame induction ceremonies, board meetings, educational programs — was scattered across drives that were no longer trustworthy. Much of it existed in only one place.
+The video archive (oral histories with cable pioneers, Hall of Fame induction ceremonies, board meetings, educational programs) was scattered across drives that were no longer trustworthy. Much of it existed in only one place.
 
 ### What actually happened
 
