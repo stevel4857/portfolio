@@ -36,9 +36,9 @@ Web & Design Lead
 
 Builds and updates client sites, from copy and layout to launch.
 
-![Best Video Editor icon](https://steveknowsweb.com/assets/images/team/best-video-editor.png)
+![Marty icon](https://steveknowsweb.com/assets/images/team/marty.png)
 
-Best Video Editor
+Marty
 
 Video Production
 
