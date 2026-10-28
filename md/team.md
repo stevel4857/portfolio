@@ -28,11 +28,11 @@ Operations
 
 Keeps the calendar, inbox, and files in order.
 
-![Website Designer icon](https://steveknowsweb.com/assets/images/team/website-designer.png)
+![Wren icon](https://steveknowsweb.com/assets/images/team/wren.png)
 
-Website Designer
+Wren
 
-Web & Design Lead
+Website Designer & Company Operator
 
 Builds and updates client sites, from copy and layout to launch.
 
