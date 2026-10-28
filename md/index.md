@@ -337,7 +337,7 @@ Brand, motion, or larger Mission Site+ work is quoted separately. Projects are h
 
 Pay by card or bank transfer through Stripe invoices, or by [Venmo](https://venmo.com/u/Steven-Luiting).
 
-[Contact for a fit recommendation](#contact) [See how it works](https://steveknowsweb.com/getting-started)
+Not sure which fits? [Contact me for a recommendation](#contact). [See how it works](https://steveknowsweb.com/getting-started).
 
 LET'S WORK TOGETHER
 
