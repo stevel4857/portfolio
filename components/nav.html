@@ -9,17 +9,20 @@
   .nav-dropdown-item:hover, .nav-dropdown-item:focus-visible { background: #f8fafc; color: #0f172a; outline: none; }
   .nav-brand { color: #9f1239; transition: color .15s ease; }
   .nav-brand:hover, .nav-brand:focus-visible { color: #881337; }
+  @media (min-width: 768px) { .nav-brand, .nav-links a, .nav-links button, .nav-notes-btn { white-space: nowrap; } }
+  @media (min-width: 768px) and (max-width: 1279px) { .nav-links { column-gap: 1.5rem; margin-right: 1rem; } .nav-tagline { display: none; } }
+  @media (min-width: 768px) and (max-width: 1023px) { .nav-links { column-gap: 1.25rem; } .nav-notes-btn { display: none !important; } }
 </style>
 <nav class="border-b border-slate-100 bg-white/80 backdrop-blur-sm sticky top-0 z-50">
   <div class="max-w-6xl mx-auto px-6 relative">
     <div class="flex items-center justify-between h-20">
       <div class="flex items-baseline gap-x-2 md:gap-x-1 lg:gap-x-1 mr-4 md:mr-6">
         <a href="/" class="nav-brand font-semibold text-2xl tracking-tighter">Steve Luiting</a>
-        <span class="text-xs font-mono uppercase tracking-[2px] text-slate-500 -mt-0.5 md:mt-0 lg:mt-0">Westminster</span>
+        <span class="nav-tagline text-xs font-mono uppercase tracking-[2px] text-slate-500 -mt-0.5 md:mt-0 lg:mt-0">Westminster</span>
       </div>
 
       <!-- Desktop navigation -->
-      <div class="hidden md:flex items-center gap-x-9 text-sm font-medium">
+      <div class="nav-links hidden md:flex items-center gap-x-9 text-sm font-medium">
         <div class="nav-dropdown" data-nav-dropdown>
           <button type="button" class="nav-link nav-dropdown-btn text-slate-600 hover:text-slate-900 transition" aria-expanded="false" aria-haspopup="true" aria-controls="about-dropdown-menu">
             About <i class="fa-solid fa-chevron-down nav-dropdown-caret" aria-hidden="true"></i>
@@ -32,7 +35,7 @@
         </div>
         <a href="/#work" class="nav-link text-slate-600 hover:text-slate-900 transition">Work</a>
         <a href="/#pricing" class="nav-link text-slate-600 hover:text-slate-900 transition">Investment</a>
-        <a href="/getting-started" class="nav-link text-slate-600 hover:text-slate-900 transition whitespace-nowrap">Getting Started</a>
+        <a href="/getting-started" class="nav-link text-slate-600 hover:text-slate-900 transition whitespace-nowrap">How it works</a>
         <a href="/blog/" class="nav-link text-slate-600 hover:text-slate-900 transition">Insights</a>
         <a href="/#contact" class="nav-link text-slate-600 hover:text-slate-900 transition">Contact</a>
       </div>
@@ -40,7 +43,7 @@
       <!-- Right side actions + mobile hamburger -->
       <div class="flex items-center gap-x-3">
         <a href="/blog/" 
-           class="hidden sm:inline-flex items-center justify-center px-4 h-9 rounded-full border border-slate-300 text-sm font-medium text-slate-700 hover:bg-slate-50 transition">
+           class="nav-notes-btn hidden sm:inline-flex items-center justify-center px-4 h-9 rounded-full border border-slate-300 text-sm font-medium text-slate-700 hover:bg-slate-50 transition">
           Read the Notes
         </a>
         <a href="/#contact" 
@@ -78,7 +81,7 @@
         </div>
         <a href="/#work" class="py-3 text-slate-700 hover:text-slate-900 transition border-b border-slate-200 last:border-0" role="menuitem">Work</a>
         <a href="/#pricing" class="py-3 text-slate-700 hover:text-slate-900 transition border-b border-slate-200 last:border-0" role="menuitem">Investment</a>
-        <a href="/getting-started" class="py-3 text-slate-700 hover:text-slate-900 transition border-b border-slate-200 last:border-0" role="menuitem">Getting Started</a>
+        <a href="/getting-started" class="py-3 text-slate-700 hover:text-slate-900 transition border-b border-slate-200 last:border-0" role="menuitem">How it works</a>
         <a href="/blog/" class="py-3 text-slate-700 hover:text-slate-900 transition border-b border-slate-200 last:border-0" role="menuitem">Insights</a>
         <a href="/#contact" class="py-3 text-slate-700 hover:text-slate-900 transition border-b border-slate-200 last:border-0" role="menuitem">Contact</a>
 
