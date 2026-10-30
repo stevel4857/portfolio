@@ -10,6 +10,8 @@ language: "en"
 ---
 I've been writing and performing music since I was 16. For most of those years, the songs stayed with me. Now they finally have somewhere to go. I make music under the name Iron Paul, and here's how that happened.
 
+[Listen on Suno](https://suno.com/album/1fd19f0b-f471-4660-84ac-c2dfe0fb883c)[Listen on YouTube Music](https://music.youtube.com/playlist?list=PLD2s2xvlV6uw)
+
 ### Writing since 16
 
 I grew up in Janesville, Wisconsin, on High Street. This year I wrote a song about growing up in that house, and one line from it says a lot: "We had each other, and that had to be." These days I live in Westminster, Colorado.
