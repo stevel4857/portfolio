@@ -18,7 +18,7 @@ Somewhere along the way I had to choose between working as a graphic artist and 
 
 ### Songs that waited decades
 
-Some of them waited a long time. I wrote "Here Comes The Light" in 1973. It was my Neil Young song. "Wineglass Innocence" came along around 1981, and I wrote it with Klaas.
+Some of them waited a long time. I wrote "Here Comes The Light" in 1973. It was my Neil Young song. "Wineglass Innocence" came along around 1981, and I wrote it with my brother, Klaas Luiting.
 
 Both of them have finished recordings now. "Here Comes The Light" has a country version and an EDM version. The EDM version of "Wineglass Innocence" is called "Turning Out The Light."
 
