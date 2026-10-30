@@ -41,6 +41,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://steveknowsweb.com/blog/iron-paul-finally-hearing-my-songs</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://steveknowsweb.com/blog/behind-the-scenes-ruston-and-the-end-of-the-rainbow</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

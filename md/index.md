@@ -353,7 +353,15 @@ INSIGHTS
 
 [Browse all Insights →](https://steveknowsweb.com/blog.html)
 
-[![](https://steveknowsweb.com/assets/images/ruston-post/title.jpg)
+[![The ironPaul EP cover](https://steveknowsweb.com/assets/images/iron-paul-post/hero.jpg)
+
+Music 2026-10-30
+
+Iron Paul: Finally Hearing My Songs
+
+I've been writing songs since I was 16. Now I make music as Iron Paul, with Suno as my studio. Here's where the name comes from and the stories behind a few of the songs.
+
+](https://steveknowsweb.com/blog/iron-paul-finally-hearing-my-songs)[![](https://steveknowsweb.com/assets/images/ruston-post/title.jpg)
 
 AI 2026-10-26
 
@@ -369,15 +377,7 @@ Building a Home for Mike Bollig's Songs
 
 Mike Bollig is a singer-songwriter whose songs reach back to the late 1970s. He records his songs on cassette and sends them as MP3s. I reworked them into finished releases with cover art and music videos, and built mikebollig.com.
 
-](https://steveknowsweb.com/blog/building-a-home-for-mike-bolligs-songs)[![Dark navy illustration of a laptop surrounded by browser windows, a color palette, a film clapperboard and a pencil](https://steveknowsweb.com/assets/images/art-director/hero.jpg)
-
-AI 2026-10-13
-
-From Web Builder to Art Director: How AI Changed My Process
-
-Building a website used to mean hours in the weeds. Now it feels more like art directing: an AI assistant does the build, I bring the taste and judgment, and clients request updates with a simple email.
-
-](https://steveknowsweb.com/blog/from-web-builder-to-art-director)
+](https://steveknowsweb.com/blog/building-a-home-for-mike-bolligs-songs)
 
 What colleagues say
 

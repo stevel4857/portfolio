@@ -9,6 +9,14 @@ language: "en"
 
 Articles by Steve Luiting on strategic web design, digital preservation, and AI-accelerated workflows.
 
+## [Iron Paul: Finally Hearing My Songs](https://steveknowsweb.com/blog/iron-paul-finally-hearing-my-songs)
+
+*2026-10-30 · Music · 4 min*
+
+I've been writing songs since I was 16. Now I make music as Iron Paul, with Suno as my studio. Here's where the name comes from and the stories behind a few of the songs.
+
+Markdown: [iron-paul-finally-hearing-my-songs.md](/md/blog/iron-paul-finally-hearing-my-songs.md)
+
 ## [Behind the Scenes: Ruston and the End of the Rainbow](https://steveknowsweb.com/blog/behind-the-scenes-ruston-and-the-end-of-the-rainbow)
 
 *2026-10-26 · AI · 4 min*
