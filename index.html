@@ -7,6 +7,8 @@
   <title>Steve Luiting - Strategic Web Design &amp; Digital Experiences | Westminster, CO</title>
   <link rel="icon" type="image/png" sizes="32x32" href="assets/images/steveknowswebdesign-favicon.png">
   <link rel="alternate" type="text/markdown" href="/md/index.md">
+  <!-- Hero photo is a CSS background, so tell the browser about it early -->
+  <link rel="preload" as="image" href="assets/images/me-front.webp" type="image/webp" fetchpriority="high">
   
   <link rel="stylesheet" href="css/tailwind.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -34,7 +36,7 @@
 
   <!-- Hero -->
   <header class="relative flex items-start min-h-[68vh] bg-cover bg-center" 
-          style="background-image: url('assets/images/me-front.jpg'); background-image: image-set(url('assets/images/me-front.webp') type('image/webp'), url('assets/images/me-front.jpg') type('image/jpeg'));">
+          style="background-color: #1e293b; background-image: url('assets/images/me-front.jpg'); background-image: image-set(url('assets/images/me-front.webp') type('image/webp'), url('assets/images/me-front.jpg') type('image/jpeg'));">
     
     <!-- Dark gradient overlay for text readability -->
     <div class="absolute inset-0 bg-gradient-to-b from-black/55 via-black/45 to-black/65"></div>
