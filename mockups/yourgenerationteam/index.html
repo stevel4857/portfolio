@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Your Generation Team | Kristie Lasher and Kylee Nelson | Chippewa Valley Real Estate (Mockup)</title>
+<meta name="description" content="Kristie Lasher and Kylee Nelson, a mother-daughter real estate team with Chippewa Valley Real Estate, servicing the Chippewa Valley in Wisconsin.">
+<link rel="preload" as="image" href="assets/poster.webp" type="image/webp" fetchpriority="high">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- Slide-in top bar: hidden at the top of the page, appears once you scroll -->
+<header class="topbar" id="topbar" aria-label="Site">
+  <div class="wrap topbar-in">
+    <a href="#top" class="brand"><img src="assets/logo.png" alt="Generations Team with Chippewa Valley Real Estate" width="757" height="127"></a>
+    <nav class="links" aria-label="Main">
+      <a href="#search">Buy</a>
+      <a href="#sell">Sell</a>
+      <a href="#team">About</a>
+      <a href="#senior">Senior Living</a>
+      <a href="#testimonials">Testimonials</a>
+    </nav>
+    <a class="btn btn-solid btn-sm" href="#connect">Let's Connect</a>
+    <button class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="drawer"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="drawer" id="drawer" hidden>
+  <nav aria-label="Mobile">
+    <a href="#search">Buy</a>
+    <a href="#sell">Sell</a>
+    <a href="#team">About</a>
+    <a href="#senior">Senior Living</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#connect">Let's Connect</a>
+    <a href="tel:7152148191">Call Kristie 715-214-8191</a>
+  </nav>
+</div>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <picture class="hero-poster">
+    <source srcset="assets/poster.webp" type="image/webp">
+    <img src="assets/poster.jpg" alt="" width="1280" height="720" fetchpriority="high">
+  </picture>
+  <video class="hero-video" id="heroVideo" autoplay muted loop playsinline preload="metadata" poster="assets/poster.jpg" aria-hidden="true" tabindex="-1">
+    <source src="assets/walk-loop.webm" type="video/webm">
+    <source src="assets/walk-loop.mp4" type="video/mp4">
+  </video>
+  <div class="hero-shade"></div>
+
+  <div class="hero-nav wrap">
+    <a href="#top" class="brand"><img src="assets/logo-white.png" alt="Generations Team with Chippewa Valley Real Estate" width="757" height="127"></a>
+    <nav class="links" aria-label="Hero">
+      <a href="#search">Buy</a>
+      <a href="#sell">Sell</a>
+      <a href="#team">About</a>
+      <a href="#senior">Senior Living</a>
+      <a href="#connect">Let's Connect</a>
+    </nav>
+    <button class="menu-btn light" aria-label="Open menu" aria-expanded="false" aria-controls="drawer"><span></span><span></span><span></span></button>
+  </div>
+
+  <div class="hero-copy wrap">
+    <p class="eyebrow">Servicing Chippewa Valley WI</p>
+    <h1>Experience the Difference, Achieve Your Dreams.</h1>
+    <p class="lede">Kristie Lasher and Kylee Nelson. A mother-daughter team with Chippewa Valley Real Estate.</p>
+    <div class="cta-row">
+      <a class="btn btn-solid" href="#connect">Let's Connect</a>
+      <a class="btn btn-ghost" href="tel:7152148191">Call 715-214-8191</a>
+    </div>
+  </div>
+  <a href="#search" class="scroll-cue" aria-label="Scroll down"><span></span></a>
+</section>
+
+<!-- HOME SEARCH PLACEHOLDER (no fake listings) -->
+<section class="search cream" id="search">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow eb-dark">Buying a home or property?</p>
+      <h2>Home search coming soon</h2>
+      <p>Soon you'll be able to search homes for sale across the Chippewa Valley right here, then reach Kristie and Kylee directly.</p>
+    </div>
+    <div class="search-card">
+      <div class="placeholder-tag">Placeholder. Live listings show here once the home search is set up.</div>
+      <div class="fake-search" aria-hidden="true">
+        <div class="field">City, ZIP or address</div>
+        <div class="field small">Price</div>
+        <div class="field small">Beds</div>
+        <div class="field btnlike">Search</div>
+      </div>
+      <div class="search-grid" aria-hidden="true">
+        <div class="ghost-card"><div class="ghost-img"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div>
+        <div class="ghost-card"><div class="ghost-img"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div>
+        <div class="ghost-card"><div class="ghost-img"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div>
+      </div>
+    </div>
+
+    <form class="signup" onsubmit="event.preventDefault(); this.querySelector('.note').hidden=false;">
+      <div>
+        <h3>Follow New Listings and Open Houses</h3>
+        <p>Get the newest listings and open houses in your inbox.</p>
+      </div>
+      <div class="signup-fields">
+        <label class="sr" for="fn">First Name</label><input id="fn" type="text" placeholder="First Name" autocomplete="given-name">
+        <label class="sr" for="ln">Last Name</label><input id="ln" type="text" placeholder="Last Name" autocomplete="family-name">
+        <label class="sr" for="em">Email Address</label><input id="em" type="email" placeholder="Email Address" autocomplete="email">
+        <button class="btn btn-solid" type="submit">Sign Up</button>
+      </div>
+      <p class="note" hidden>Mockup only. This form isn't connected yet.</p>
+    </form>
+  </div>
+</section>
+
+<!-- TEAM INTRO -->
+<section class="team" id="team">
+  <div class="wrap two">
+    <picture class="team-photo">
+      <source srcset="assets/duo.webp" type="image/webp">
+      <img src="assets/duo.jpg" alt="Kylee Nelson and Kristie Lasher" width="1000" height="830" loading="lazy">
+    </picture>
+    <div class="team-copy">
+      <p class="eyebrow eb-dark">Why Choose Us?</p>
+      <h2>We're Kristie and Kylee.</h2>
+      <p>At Gen-T, powered by Chippewa Valley Real Estate, we offer the perfect blend of experience, innovation, and dedication to help you achieve your real estate goals.</p>
+      <p>As a mother-daughter team, we bring a unique dynamic that sets us apart, ensuring every client benefits from both seasoned expertise and modern marketing strategies all provided with a friendly smile and a caring touch.</p>
+      <p class="pull">Real estate is personal, and we are honored to be part of your story.</p>
+    </div>
+  </div>
+
+  <div class="wrap people">
+    <article class="person">
+      <picture>
+        <source srcset="assets/kristie.webp" type="image/webp">
+        <img src="assets/kristie.jpg" alt="Kristie Lasher" width="700" height="653" loading="lazy">
+      </picture>
+      <div>
+        <h3>Kristie Lasher <span class="badge">SRES&reg;</span></h3>
+        <p>For Kristie, real estate is about more than just buying or selling a home. It's about building relationships, guiding people through important milestones, and making sure every client feels heard, supported, and cared for.</p>
+        <p>Kristie is a certified Seniors Real Estate Specialist (SRES&reg;), trained to thoughtfully assist seniors and their families as they transition to new living situations, with extra care, compassion, and understanding for their unique needs.</p>
+        <p class="contact-line"><a href="tel:7152148191">715-214-8191</a> <span>&middot;</span> <a href="mailto:Kristielasher44@gmail.com">Kristielasher44@gmail.com</a></p>
+      </div>
+    </article>
+    <article class="person">
+      <picture>
+        <source srcset="assets/kylee.webp" type="image/webp">
+        <img src="assets/kylee.jpg" alt="Kylee Nelson" width="338" height="400" loading="lazy">
+      </picture>
+      <div>
+        <h3>Kylee Nelson</h3>
+        <p>From a young age, Kylee was inspired by the power of homeownership to change lives and build futures. Today, that passion drives her commitment to delivering fresh ideas, modern strategies, and an unmatched attention to detail.</p>
+        <p>Kylee specializes in digital marketing, social media, and cutting-edge real estate technology to connect with today's buyers and sellers and give each property its best opportunity to shine.</p>
+        <p class="contact-line"><a href="tel:7158648461">715-864-8461</a> <span>&middot;</span> <a href="mailto:kyleenelson025@gmail.com">kyleenelson025@gmail.com</a></p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- GUIDE CARDS -->
+<section class="guides cream" id="sell">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow eb-dark">How can we help?</p>
+      <h2>Guiding you every step of the way</h2>
+      <p>Whether you're purchasing your first home, moving into your dream home, or helping a loved one transition into a new chapter of life, we're here to listen, guide, and support you.</p>
+    </div>
+    <div class="cards">
+      <a class="card" href="#search">
+        <picture><source srcset="assets/buy.webp" type="image/webp"><img src="assets/buy.jpg" alt="" width="900" height="676" loading="lazy"></picture>
+        <div class="card-body"><h3>Buying a home or property?</h3><p>First-time homebuyers, relocation, new developments, vacant land and more.</p><span class="more">Start here</span></div>
+      </a>
+      <a class="card" href="#connect">
+        <picture><source srcset="assets/sell.webp" type="image/webp"><img src="assets/sell.jpg" alt="" width="900" height="600" loading="lazy"></picture>
+        <div class="card-body"><h3>Selling Your Property?</h3><p>Tell us about your home and we'll reach out to talk through next steps.</p><span class="more">Open Sellers Form</span></div>
+      </a>
+      <a class="card" href="#senior">
+        <picture><source srcset="assets/senior.webp" type="image/webp"><img src="assets/senior.jpg" alt="" width="700" height="1050" loading="lazy"></picture>
+        <div class="card-body"><h3>Senior Living Solutions</h3><p>Extra care, compassion, and understanding for seniors and their families.</p><span class="more">Learn more</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- DARK BAND: SPECIALTIES -->
+<section class="dark" id="specialties">
+  <div class="wrap two dark-in">
+    <div>
+      <p class="eyebrow">Our Specialties</p>
+      <h2>Trusted experience and modern innovation</h2>
+      <p>Together, we bring the best of both worlds to buyers and sellers across the Chippewa Valley area.</p>
+      <a class="btn btn-solid" href="#connect">Let's make your real estate dreams a reality</a>
+    </div>
+    <ul class="spec-list">
+      <li>Senior Living Transitions</li>
+      <li>Residential Homes</li>
+      <li>New Developments</li>
+      <li>First-Time Homebuyers</li>
+      <li>Vacant Land</li>
+      <li>Commercial Property</li>
+      <li>Relocation</li>
+      <li>Waterfront Property</li>
+      <li>Condos &amp; Twin Homes</li>
+    </ul>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow eb-dark">What people are saying</p>
+      <h2>Kind words from clients</h2>
+    </div>
+    <div class="quotes" id="quotes" tabindex="0" aria-label="Client testimonials, scroll sideways for more">
+      <figure><blockquote>Kristie Lasher was great! She provided valuable suggestions on what to do to get the house ready to sell. We were able to work well together to get the house sold quickly and smoothly.</blockquote><figcaption>Jeremy &amp; Rachel Carlsrud <span>Seller</span></figcaption></figure>
+      <figure><blockquote>Working with Kristie was an overall wonderful experience. Her knowledge of the current market and open communications from start to finish made for a smooth transaction.</blockquote><figcaption>Nolan &amp; Laura Fadness <span>Buyer</span></figcaption></figure>
+      <figure><blockquote>Kristie was professional and very personable throughout the entire process. Her knowledge of the purchase ins and outs was amazing and was able to answer any of the many questions we had regarding various scenarios and options.</blockquote><figcaption>Erik Johnson <span>Buyer</span></figcaption></figure>
+      <figure><blockquote>We knew hiring her that we were hiring somebody who was actually excited about our place and would be enthusiastic showing it.</blockquote><figcaption>Chris &amp; Mary Boosalis <span>Seller</span></figcaption></figure>
+      <figure><blockquote>This is the fourth house purchased, but the first time we used Kristie. Our previous realtors were good, but Kristie was amazing. She was responsive, honest and insightful.</blockquote><figcaption>Carrie Carlson <span>Buyer</span></figcaption></figure>
+      <figure><blockquote>I'm from out of state, didn't know anything about wells or septic tanks, and she was very good at walking us through things and how the well and septic needs inspection... She always answered her calls on the weekend. Great job, Kristie!</blockquote><figcaption>Michelle Pellatt <span>Buyer</span></figcaption></figure>
+      <figure><blockquote>Kristie went above and beyond in selling my house, and is very knowledgeable with real estate. She is quick to respond and you can tell she really wants to ensure the best experience for all involved.</blockquote><figcaption>Chelsea Rufledt <span>Seller</span></figcaption></figure>
+    </div>
+    <div class="q-ctrl">
+      <button class="round" data-dir="-1" aria-label="Previous testimonials">&#8249;</button>
+      <button class="round" data-dir="1" aria-label="Next testimonials">&#8250;</button>
+    </div>
+  </div>
+</section>
+
+<!-- SENIOR LIVING -->
+<section class="senior cream" id="senior">
+  <div class="wrap two">
+    <div>
+      <p class="eyebrow eb-dark">Senior Living Solutions</p>
+      <h2>We're here to help!</h2>
+      <p>Kristie is especially passionate about assisting families in transitioning their loved ones into senior living, offering both knowledge and heartfelt support throughout the process.</p>
+      <p>If you're looking for more information about senior living options, reach out below and we'll get back to you as soon as possible.</p>
+      <ul class="res">
+        <li><a href="https://yourgenerationteam.com/s/Nursing-Home-Marketing-Brochure.pdf" target="_blank" rel="noopener">Nursing Home Marketing Brochure (PDF)</a></li>
+        <li><a href="https://yourgenerationteam.com/s/Senior-Living-Care-Presentation.pdf" target="_blank" rel="noopener">Senior Living Care Presentation (PDF)</a></li>
+        <li><a href="https://www.cambridge.care/" target="_blank" rel="noopener">Cambridge Senior Living</a></li>
+        <li><a href="https://heritagecourt-eauclaire.com/" target="_blank" rel="noopener">Heritage Senior Living</a></li>
+      </ul>
+    </div>
+    <picture class="senior-photo">
+      <source srcset="assets/living.webp" type="image/webp">
+      <img src="assets/living.jpg" alt="" width="1400" height="933" loading="lazy">
+    </picture>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="connect" id="connect">
+  <div class="wrap two">
+    <div>
+      <p class="eyebrow eb-dark">Let's Connect</p>
+      <h2>Contact Kristie or Kylee</h2>
+      <p>Contact us today to see how Generations Team with Chippewa Valley Real Estate can work for you.</p>
+      <div class="contacts">
+        <div>
+          <h3>Kristie Lasher</h3>
+          <p><a href="tel:7152148191">715-214-8191</a><br><a href="mailto:Kristielasher44@gmail.com">Kristielasher44@gmail.com</a></p>
+        </div>
+        <div>
+          <h3>Kylee Nelson</h3>
+          <p><a href="tel:7158648461">715-864-8461</a><br><a href="mailto:kyleenelson025@gmail.com">kyleenelson025@gmail.com</a></p>
+        </div>
+      </div>
+      <p class="addr">1119 Regis Crt., Suite 250<br>Eau Claire, WI 54701</p>
+    </div>
+    <form class="form" onsubmit="event.preventDefault(); this.querySelector('.note').hidden=false;">
+      <div class="row2">
+        <label>First Name<input type="text" autocomplete="given-name"></label>
+        <label>Last Name<input type="text" autocomplete="family-name"></label>
+      </div>
+      <label>Email<input type="email" autocomplete="email"></label>
+      <label>Phone<input type="tel" autocomplete="tel"></label>
+      <label>I'm interested in
+        <select><option>Buying</option><option>Selling</option><option>Senior living</option><option>Something else</option></select>
+      </label>
+      <label>Message<textarea rows="4"></textarea></label>
+      <button class="btn btn-solid" type="submit">Send to Kristie and Kylee</button>
+      <p class="note" hidden>Mockup only. This form isn't connected yet.</p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div>
+      <img src="assets/logo-white.png" alt="Generations Team with Chippewa Valley Real Estate" width="757" height="127" loading="lazy" class="foot-logo">
+      <p class="tag">&ldquo;Experience the Difference, Achieve Your Dreams.&rdquo;</p>
+    </div>
+    <div>
+      <h4>Kristie Lasher</h4>
+      <p><a href="tel:7152148191">715-214-8191</a><br><a href="mailto:Kristielasher44@gmail.com">Kristielasher44@gmail.com</a></p>
+    </div>
+    <div>
+      <h4>Kylee Nelson</h4>
+      <p><a href="tel:7158648461">715-864-8461</a><br><a href="mailto:kyleenelson025@gmail.com">kyleenelson025@gmail.com</a></p>
+    </div>
+    <div>
+      <h4>Office</h4>
+      <p>1119 Regis Crt., Suite 250<br>Eau Claire, WI 54701</p>
+    </div>
+  </div>
+  <div class="wrap foot-note">Mockup by Steve Knows Web. Not the live site.</div>
+</footer>
+
+<script src="assets/site.js" defer></script>
+</body>
+</html>
