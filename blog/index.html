@@ -405,6 +405,18 @@
           ` : ''}
         `;
 
+        // Flip book: load the shared script on demand for posts with [data-flipbook]
+        if (contentEl.querySelector('[data-flipbook]')) {
+          if (typeof window.initFlipbooks === 'function') {
+            window.initFlipbooks(contentEl);
+          } else if (!document.getElementById('flipbook-script')) {
+            const fb = document.createElement('script');
+            fb.id = 'flipbook-script';
+            fb.src = '/js/flipbook.js';
+            document.head.appendChild(fb);
+          }
+        }
+
         // Live Flash demo (Ruffle): any post with #ruffle-demo; Firefox-safe sizing + CDN fallback in js/ruffle-demo.js
         if (document.getElementById('ruffle-demo')) {
           const startDemo = () => {

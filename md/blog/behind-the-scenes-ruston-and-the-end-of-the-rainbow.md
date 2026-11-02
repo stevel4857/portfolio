@@ -12,6 +12,8 @@ language: "en"
 
 "Ruston and the End of the Rainbow" is an animated short I'm directing and editing with AI video tools. The tools generate frames, but the film comes from the same things any edit depends on: a shot plan, a consistent visual style, continuity, and a process that keeps every decision on record.
 
+[Watch the video](https://youtu.be/DTFZrz0igEo)
+
 ### The story
 
 Captain Gray steals the color from the home world, and everything turns grayscale. Ruston and his tiny sister Reese climb a rainbow, fly a yellow biplane, and team up with a winged rainbow T-rex. In a warehouse showdown they splash Gray with rainbow paint, escape, and reach a floating rainbow gate in Rainbow Land. Still to come are a gold scale the kids decide not to sell, the ride home, and a backyard sunset. Ruston carries the dialogue. Reese has exactly one word: "Again."
@@ -19,6 +21,14 @@ Captain Gray steals the color from the home world, and everything turns grayscal
 ![A winged rainbow T-rex catches a tiny girl in mid air](https://steveknowsweb.com/assets/images/ruston-post/62-trex-catches-reese-v1.jpg)
 
 *Shot 62: the T-rex catches Reese.*
+
+### The picture book
+
+The story is a picture book now, too. Flip through it below, cover to cover.
+
+![Front cover of the picture book Ruston and the End of the Rainbow](https://steveknowsweb.com/assets/flipbooks/ruston/p00.webp)
+
+*The front cover of the picture book.*
 
 ### A style guide, applied to every frame
 
