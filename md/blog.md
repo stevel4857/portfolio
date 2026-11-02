@@ -21,7 +21,7 @@ Markdown: [iron-paul-finally-hearing-my-songs.md](/md/blog/iron-paul-finally-hea
 
 *2026-10-26 · AI · 4 min*
 
-How I'm directing and editing an animated short with AI: numbered shot plans, character sheets and a strict color rule, close-up inserts for continuity, an approve and lock process, and FFmpeg assembly.
+How I directed and edited an animated short with AI: numbered shot plans, character sheets and a strict color rule, close-up inserts for continuity, an approve and lock process, and FFmpeg assembly.
 
 Markdown: [behind-the-scenes-ruston-and-the-end-of-the-rainbow.md](/md/blog/behind-the-scenes-ruston-and-the-end-of-the-rainbow.md)
 

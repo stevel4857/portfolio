@@ -1,6 +1,6 @@
 ---
 title: "Behind the Scenes: Ruston and the End of the Rainbow"
-description: "How I'm directing and editing an animated short with AI: numbered shot plans, character sheets and a strict color rule, close-up inserts for continuity, an approve and lock process, and FFmpeg assembly."
+description: "How I directed and edited an animated short with AI: numbered shot plans, character sheets and a strict color rule, close-up inserts for continuity, an approve and lock process, and FFmpeg assembly."
 canonical: "https://steveknowsweb.com/blog/behind-the-scenes-ruston-and-the-end-of-the-rainbow"
 date: "2026-10-26"
 author: "Steve Luiting"
@@ -8,15 +8,15 @@ category: "AI"
 tags: "Video Editing, Animation, AI Video, Grok Imagine, FFmpeg, Visual Style"
 language: "en"
 ---
-*Work in progress: 68 of about 89 shots are locked, the current rough cut runs 3:31, and the score is still to come.*
+*It's finished. The final film runs 11:10, and it's up on YouTube now.*
 
-"Ruston and the End of the Rainbow" is an animated short I'm directing and editing with AI video tools. The tools generate frames, but the film comes from the same things any edit depends on: a shot plan, a consistent visual style, continuity, and a process that keeps every decision on record.
+"Ruston and the End of the Rainbow" is an animated short I directed and edited with AI video tools. The tools generate frames, but the film comes from the same things any edit depends on: a shot plan, a consistent visual style, continuity, and a process that keeps every decision on record.
 
 [Watch the video](https://youtu.be/DTFZrz0igEo)
 
 ### The story
 
-Captain Gray steals the color from the home world, and everything turns grayscale. Ruston and his tiny sister Reese climb a rainbow, fly a yellow biplane, and team up with a winged rainbow T-rex. In a warehouse showdown they splash Gray with rainbow paint, escape, and reach a floating rainbow gate in Rainbow Land. Still to come are a gold scale the kids decide not to sell, the ride home, and a backyard sunset. Ruston carries the dialogue. Reese has exactly one word: "Again."
+Captain Gray steals the color from the home world, and everything turns grayscale. Ruston and his tiny sister Reese climb a rainbow, fly a yellow biplane, and team up with a winged rainbow T-rex. In a warehouse showdown they splash Gray with rainbow paint, escape, and reach a floating rainbow gate in Rainbow Land. In the end, they bring the color back to the world. Ruston carries the dialogue. Reese has exactly one word: "Again."
 
 ![A winged rainbow T-rex catches a tiny girl in mid air](https://steveknowsweb.com/assets/images/ruston-post/62-trex-catches-reese-v1.jpg)
 
@@ -36,11 +36,11 @@ I treated the film like a brand system. Every character has a character sheet an
 
 ### Shot planning and an approve and lock process
 
--   **Plan by shot.** The film is broken into about 89 numbered shots, and each one starts from its own approved still.
+-   **Plan by shot.** The film is broken into numbered shots, and each one starts from its own approved still.
 -   **Generate.** Each still is animated as a short clip in Grok Imagine.
 -   **Review.** Every clip is checked with a frame grid and an automatic transcript, so motion, continuity and dialogue are all verified, not guessed.
--   **Approve and lock.** Once a clip passes, it is approved and locked as a numbered shot. Locked shots don't change, which keeps the cut stable while the rest of the film is built.
--   **Assemble.** The edit is cut together in FFmpeg from the locked shots, so every version of the rough cut can be rebuilt exactly.
+-   **Approve and lock.** Once a clip passes, it is approved and locked as a numbered shot. Locked shots don't change, which kept the cut stable while the rest of the film was built.
+-   **Assemble.** The edit is cut together in FFmpeg from the locked shots, so every version of the cut, from the first rough cut to the final, can be rebuilt exactly.
 
 ![Captain Gray splashed with rainbow paint in a warehouse](https://steveknowsweb.com/assets/images/ruston-post/65-gray-paint-v1.jpg)
 
@@ -59,14 +59,14 @@ I treated the film like a brand system. Every character has a character sheet an
 
 ### Built for sound
 
-Every clip is generated without music, so the picture is cut clean and the score can be built to it. The score will be made in Suno once the picture is locked, then laid in over the final edit.
+Every clip was generated without music, so the picture could be cut clean first and the sound built to it after the picture was locked.
 
 ![The rainbow T-rex racing toward a floating rainbow gate](https://steveknowsweb.com/assets/images/ruston-post/68-gate-reveal-v2.jpg)
 
-*Shot 68: racing toward the rainbow gate. The latest locked shot.*
+*Shot 68: racing toward the rainbow gate.*
 
 ### What it shows
 
-AI makes it possible for one person to produce an animated short, but it doesn't replace the craft. Planning shots, holding a visual style, fixing continuity in the edit and locking work in a clear order are what turn generated clips into a film. The remaining shots and the score are next.
+AI makes it possible for one person to produce an animated short, but it doesn't replace the craft. Planning shots, holding a visual style, fixing continuity in the edit and locking work in a clear order are what turn generated clips into a film. It's finished now, so [go give it a watch](https://youtu.be/DTFZrz0igEo).
 
 Questions about the process? Say hello at [hello@steveknowsweb.com](mailto:hello@steveknowsweb.com).
