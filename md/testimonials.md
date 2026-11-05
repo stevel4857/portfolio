@@ -13,7 +13,11 @@ Colleagues from museums, public media, and the work at The Cable Center/Syndeo I
 Jana Henthorn · Former CEO, The Cable Center/Syndeo Institute
 
 
+ ![Brian Kenny](https://steveknowsweb.com/assets/images/testimonials/brian-kenny-circle.png)
+
 Brian Kenny
+
+Director, Barco Library, The Cable Center/Syndeo Institute
 
 > I worked closely with Steve for 13 years at the Cable Center where he oversaw all of our web endeavors, and especially those associated with the Barco Library. The best way I can describe him is as a driven visionary. He was always an advocate of increased and better access to our collections, and he was the driving force behind our virtual reality project. The initial idea was to present a sampling of artifacts from our Breen Technical Archives in virtual reality (and the Cable Center building itself) so visitors could have the experience online if they couldn't visit in person in Denver. Then we could scale up to include ever more artifacts. Steve put together a team and ultimately presented 40 cable industry history artifacts as a VR exhibit via Steam in 2017.
 >
