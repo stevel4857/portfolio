@@ -197,8 +197,8 @@ section{padding:110px 0}
 .filter-btn.is-active .n{color:#cfe9bd}
 .listing-grid-all{margin-bottom:8px}
 .listing-card{text-decoration:none;color:inherit}
-.listing-card .more{margin-top:auto;padding-top:12px;font-weight:600;color:var(--green-d)}
-.listing-card .more::after{content:" \2192"}
+.listing-card .listing-cta{margin-top:auto;align-self:flex-start;pointer-events:none}
+.listing-card:hover .listing-cta{background:var(--green-d)}
 .listing-card.is-hidden{display:none}
 .listing-empty{text-align:center;color:var(--muted);padding:28px 0 8px}
 
