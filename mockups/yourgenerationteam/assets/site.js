@@ -1,8 +1,14 @@
 (function(){
   // Top bar: hidden at the top, slides in once you scroll down
   var bar=document.getElementById('topbar');
-  function onScroll(){ bar.classList.toggle('show', window.scrollY > 120); }
-  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+  if(bar){
+    if(document.body.classList.contains('property-page')){
+      bar.classList.add('show');
+    } else {
+      function onScroll(){ bar.classList.toggle('show', window.scrollY > 120); }
+      window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+    }
+  }
 
   // Hero video: skip for reduced motion (poster stays), otherwise fade in once playing
   var v=document.getElementById('heroVideo');
@@ -35,4 +41,40 @@
       q.scrollBy({left: q.clientWidth * Number(b.dataset.dir), behavior: reduce?'auto':'smooth'});
     });
   });
+
+  // Listing status filters
+  var grid=document.getElementById('listingGrid');
+  var empty=document.getElementById('listingEmpty');
+  var filters=document.querySelectorAll('.filter-btn');
+  if(grid && filters.length){
+    filters.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var f=btn.dataset.filter;
+        filters.forEach(function(b){ b.classList.toggle('is-active', b===btn); b.setAttribute('aria-selected', b===btn?'true':'false'); });
+        var shown=0;
+        grid.querySelectorAll('.listing-card').forEach(function(card){
+          var show=f==='all' || card.dataset.status===f;
+          card.classList.toggle('is-hidden', !show);
+          if(show) shown++;
+        });
+        if(empty) empty.hidden = shown>0;
+      });
+    });
+  }
+
+  // Property gallery thumbs
+  var gallery=document.getElementById('propGallery');
+  if(gallery){
+    var main=document.getElementById('galleryMain');
+    var webp=document.getElementById('galleryWebp');
+    gallery.querySelectorAll('.gallery-thumb').forEach(function(thumb){
+      thumb.addEventListener('click', function(){
+        gallery.querySelectorAll('.gallery-thumb').forEach(function(t){ t.classList.remove('is-active'); });
+        thumb.classList.add('is-active');
+        if(webp) webp.srcset=thumb.dataset.srcWebp;
+        if(main){ main.src=thumb.dataset.srcJpg; }
+      });
+    });
+  }
+
 })();
