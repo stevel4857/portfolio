@@ -83,26 +83,105 @@
   <a href="#search" class="scroll-cue" aria-label="Scroll down"><span></span></a>
 </section>
 
-<!-- HOME SEARCH PLACEHOLDER (no fake listings) -->
-<section class="search cream" id="search">
+<!-- FEATURED LISTINGS (sample of brokerage listings, not a live MLS feed) -->
+<section class="listings cream" id="search">
   <div class="wrap">
     <div class="sec-head">
-      <p class="eyebrow eb-dark">Buying a home or property?</p>
-      <h2>Home search coming soon</h2>
-      <p>Soon you'll be able to search homes for sale across the Chippewa Valley right here, then reach Kristie and Kylee directly.</p>
+      <p class="eyebrow eb-dark">Our listings</p>
+      <h2>Homes from Chippewa Valley Real Estate</h2>
+      <p>A sample of Kristie and the team's own listings. Active, pending, and recently sold, right on the site. No monthly IDX service required.</p>
     </div>
-    <div class="search-card">
-      <div class="placeholder-tag">Placeholder. Live listings show here once the home search is set up.</div>
-      <div class="fake-search" aria-hidden="true">
-        <div class="field">City, ZIP or address</div>
-        <div class="field small">Price</div>
-        <div class="field small">Beds</div>
-        <div class="field btnlike">Search</div>
+
+    <p class="listings-note">Sample layout for preview. Details pulled from public listing pages for Kristie Lasher / Chippewa Valley Real Estate. Status and pricing can change. Not a live MLS feed.</p>
+
+    <div class="listing-group" id="active">
+      <div class="listing-group-head">
+        <h3>Active</h3>
+        <span class="count">2 homes</span>
       </div>
-      <div class="search-grid" aria-hidden="true">
-        <div class="ghost-card"><div class="ghost-img"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div>
-        <div class="ghost-card"><div class="ghost-img"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div>
-        <div class="ghost-card"><div class="ghost-img"></div><div class="ghost-line"></div><div class="ghost-line short"></div></div>
+      <div class="listing-grid">
+        <article class="listing-card">
+          <div class="listing-media">
+            <span class="status-pill active">Active</span>
+            <picture>
+              <source srcset="assets/listings/bloomer-6162.webp" type="image/webp">
+              <img src="assets/listings/bloomer-6162.jpg" alt="6162 County Highway C, Bloomer, WI" width="1200" height="800" loading="lazy">
+            </picture>
+          </div>
+          <div class="listing-body">
+            <p class="listing-price">$499,999</p>
+            <h4>6162 County Highway C</h4>
+            <p class="listing-loc">Bloomer, WI 54724</p>
+            <p class="listing-meta"><span>3 beds</span><span>1 bath</span><span>1,818 sqft</span><span>5 acres</span></p>
+            <p class="listing-desc">Country living on 5 acres just outside Bloomer, with recent updates, a heated workshop garage, and an 8-stall horse barn.</p>
+          </div>
+        </article>
+        <article class="listing-card">
+          <div class="listing-media">
+            <span class="status-pill active">Active</span>
+            <picture>
+              <source srcset="assets/listings/brf-1120.webp" type="image/webp">
+              <img src="assets/listings/brf-1120.jpg" alt="1120 County Road S, Black River Falls, WI" width="1200" height="675" loading="lazy">
+            </picture>
+          </div>
+          <div class="listing-body">
+            <p class="listing-price">$295,000</p>
+            <h4>1120 County Road S</h4>
+            <p class="listing-loc">Black River Falls, WI 54615</p>
+            <p class="listing-meta"><span>2 beds</span><span>2 baths</span><span>1,500 sqft</span><span>6 acres</span></p>
+            <p class="listing-desc">Peaceful setting on over 6 private acres with recent updates, main-level living, and a full basement ready to finish.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="listing-group" id="pending">
+      <div class="listing-group-head">
+        <h3>Pending</h3>
+        <span class="count">1 home</span>
+      </div>
+      <div class="listing-grid">
+        <article class="listing-card">
+          <div class="listing-media">
+            <span class="status-pill pending">Pending</span>
+            <picture>
+              <source srcset="assets/listings/colfax-111.webp" type="image/webp">
+              <img src="assets/listings/colfax-111.jpg" alt="111 Dunn Street, Colfax, WI" width="1024" height="768" loading="lazy">
+            </picture>
+          </div>
+          <div class="listing-body">
+            <p class="listing-price">$365,000</p>
+            <h4>111 Dunn Street</h4>
+            <p class="listing-loc">Colfax, WI 54730</p>
+            <p class="listing-meta"><span>3 beds</span><span>2 baths</span><span>1,470 sqft</span><span>New build</span></p>
+            <p class="listing-desc">Brand-new single-family home in Colfax with an open layout and room to finish roughly 1,000 more sqft downstairs. Under contract.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="listing-group" id="sold">
+      <div class="listing-group-head">
+        <h3>Sold <span class="sub">Last 6 months</span></h3>
+        <span class="count">1 home</span>
+      </div>
+      <div class="listing-grid">
+        <article class="listing-card sold">
+          <div class="listing-media">
+            <span class="status-pill sold">Sold</span>
+            <picture>
+              <source srcset="assets/listings/eauclaire-2234.webp" type="image/webp">
+              <img src="assets/listings/eauclaire-2234.jpg" alt="2234 11th Street, Eau Claire, WI" width="1200" height="675" loading="lazy">
+            </picture>
+          </div>
+          <div class="listing-body">
+            <p class="listing-price">Sold $295,000</p>
+            <h4>2234 11th Street</h4>
+            <p class="listing-loc">Eau Claire, WI 54703</p>
+            <p class="listing-meta"><span>8 beds</span><span>2 baths</span><span>2,604 sqft</span><span>Investment</span></p>
+            <p class="listing-desc">West Side income property with strong rental demand and over $4,300 in monthly gross income. Listed by Kristie Lasher.</p>
+          </div>
+        </article>
       </div>
     </div>
 
