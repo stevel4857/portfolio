@@ -30,14 +30,14 @@ I build websites, print pieces and video for small businesses and cultural organ
 
 The site at [mikebollig.com](https://mikebollig.com) has grown a little since it first went live. Hey Girl is now track 19 in the player, and its music video is in the Videos section. The now-playing cover is a larger square, so the song you're listening to stands out from the rest of the list.
 
-The homepage now opens with a video that plays as you scroll. I shot the drone footage myself: it flies over Red Rocks Amphitheatre and comes down to the band on stage. As you scroll, the video plays forward. At the end, the white "mike bollig" logo fades in on a computer, along with the line "Songs from the road, the river and the heart." and a Listen now button. I used the same kind of scrolling walkthrough I built for a real estate client's site.
+The homepage now opens with a video that plays as you scroll. I made it as a glimpse of an alternate reality: the Mike who made it big, famous, rich and successful in music, playing an imagined show at Red Rocks Amphitheatre. I built that dream of the band on that stage with AI-assisted video. As you scroll, the video flies over the rocks and down to the stage. At the end, the white "mike bollig" logo fades in on a computer, along with the line "Songs from the road, the river and the heart." and a Listen now button. I used the same kind of scrolling walkthrough I built for a real estate client's site.
 
-![The mikebollig.com homepage opening on a drone shot over Red Rocks Amphitheatre](https://steveknowsweb.com/assets/images/mike-bollig-post/hero-scroll-start.webp)
+![The mikebollig.com homepage opening on an imagined drone shot over Red Rocks Amphitheatre](https://steveknowsweb.com/assets/images/mike-bollig-post/hero-scroll-start.webp)
 
-*The homepage opens on a drone shot over Red Rocks.*
+*The homepage opens on an imagined drone shot over Red Rocks.*
 
-![The end of the scroll video, with the band on stage at Red Rocks and the mike bollig logo, tagline and Listen now button](https://steveknowsweb.com/assets/images/mike-bollig-post/hero-scroll-end.webp)
+![The end of the scroll video, a dream of the band on a Red Rocks stage, with the mike bollig logo, tagline and Listen now button](https://steveknowsweb.com/assets/images/mike-bollig-post/hero-scroll-end.webp)
 
-*At the end of the scroll, the band is on stage and the logo, the songs line and Listen now fade in.*
+*At the end of the scroll, a dream of the band on stage fades in with the logo, the songs line and Listen now.*
 
 *Listen to Mike's music at [mikebollig.com](https://mikebollig.com).*
