@@ -26,4 +26,18 @@ Songs need a place to live, so I built [mikebollig.com](https://mikebollig.com) 
 
 I build websites, print pieces and video for small businesses and cultural organizations, and the common thread is helping people get their work in front of an audience. Mike's songs deserve to be heard, and this project reminded me how much a little technology and a lot of listening can do. If you've got a creative project sitting in a drawer, or on a cassette, I'd love to hear about it. Say hello at [hello@steveknowsweb.com](mailto:hello@steveknowsweb.com).
 
+### Update, November 2026
+
+The site at [mikebollig.com](https://mikebollig.com) has grown a little since it first went live. Hey Girl is now track 19 in the player, and its music video is in the Videos section. The now-playing cover is a larger square, so the song you're listening to stands out from the rest of the list.
+
+The homepage now opens with a video that plays as you scroll. I shot the drone footage myself: it flies over Red Rocks Amphitheatre and comes down to the band on stage. As you scroll, the video plays forward. At the end, the white "mike bollig" logo fades in on a computer, along with the line "Songs from the road, the river and the heart." and a Listen now button. I used the same kind of scrolling walkthrough I built for a real estate client's site.
+
+![The mikebollig.com homepage opening on a drone shot over Red Rocks Amphitheatre](https://steveknowsweb.com/assets/images/mike-bollig-post/hero-scroll-start.webp)
+
+*The homepage opens on a drone shot over Red Rocks.*
+
+![The end of the scroll video, with the band on stage at Red Rocks and the mike bollig logo, tagline and Listen now button](https://steveknowsweb.com/assets/images/mike-bollig-post/hero-scroll-end.webp)
+
+*At the end of the scroll, the band is on stage and the logo, the songs line and Listen now fade in.*
+
 *Listen to Mike's music at [mikebollig.com](https://mikebollig.com).*

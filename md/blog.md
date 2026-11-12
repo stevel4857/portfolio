@@ -27,7 +27,7 @@ Markdown: [behind-the-scenes-ruston-and-the-end-of-the-rainbow.md](/md/blog/behi
 
 ## [Building a Home for Mike Bollig's Songs](https://steveknowsweb.com/blog/building-a-home-for-mike-bolligs-songs)
 
-*2026-10-23 · Music · 2 min*
+*2026-10-23 · Music · 3 min*
 
 Mike Bollig is a singer-songwriter whose songs reach back to the late 1970s. I help him turn his cassette recordings into fuller songs with Suno, and I built mikebollig.com so people can press play and listen.
 
