@@ -40,4 +40,8 @@ The homepage now opens with a video that plays as you scroll. I made it as a gli
 
 *At the end of the scroll, a dream of the band on stage fades in with the logo, the songs line and Listen now.*
 
+### My first music video: Colorado Girl
+
+I made my first music video, for Mike's song "Colorado Girl." You can watch it below, and it's also at the top of the Videos section on [mikebollig.com](https://mikebollig.com).
+
 *Listen to Mike's music at [mikebollig.com](https://mikebollig.com).*
