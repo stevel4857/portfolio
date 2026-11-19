@@ -6,6 +6,10 @@
   <meta name="description" content="Strategic web design and digital experiences for museums, nonprofits, and purpose-driven organizations in Colorado. 30+ years of craft, now accelerated with AI.">
   <title>Steve Luiting - Strategic Web Design &amp; Digital Experiences | Westminster, CO</title>
   <link rel="icon" type="image/png" sizes="32x32" href="assets/images/steveknowswebdesign-favicon.png">
+  <link rel="preload" as="image" type="image/webp"
+        href="assets/images/steve-hero-1920.webp?v=3"
+        imagesrcset="assets/images/steve-hero-1200.webp?v=3 1200w, assets/images/steve-hero-1920.webp?v=3 1920w"
+        imagesizes="100vw">
   <link rel="alternate" type="text/markdown" href="/md/index.md">
   
   <link rel="stylesheet" href="css/tailwind.css">
@@ -23,6 +27,61 @@
     @media (pointer: coarse), (max-width: 767px) {
       .tap-target { display: inline-flex; align-items: center; min-height: 44px; }
     }
+
+    /* Homepage hero: full-bleed cover close-up, same 68vh scale as the live site.
+       object-position pins the eyes so they stay in frame on wide, short screens. */
+    .hero-portrait {
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      overflow: hidden;
+      min-height: 68vh;
+      background-color: #111;
+    }
+    .hero-portrait-photo {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .hero-portrait-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 50%;
+      filter: none;
+    }
+    /* Same dimming wash as the live hero, plus a light left fade for the type */
+    .hero-portrait-shade {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.55) 0%,
+          rgba(0, 0, 0, 0.45) 50%,
+          rgba(0, 0, 0, 0.65) 100%
+        ),
+        linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0.28) 0%,
+          rgba(0, 0, 0, 0.10) 38%,
+          rgba(0, 0, 0, 0) 58%
+        );
+    }
+    .hero-portrait-inner {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 4rem 1.5rem 2rem;
+    }
+    .hero-portrait-copy {
+      position: relative;
+      max-width: 48rem;
+    }
   </style>
 </head>
 <body class="bg-white text-slate-900 antialiased">
@@ -33,14 +92,27 @@
   <main data-motion-page>
 
   <!-- Hero -->
-  <header class="relative flex items-start min-h-[68vh] bg-cover bg-center" 
-          style="background-image: url('assets/images/me-front.jpg'); background-image: image-set(url('assets/images/me-front.webp') type('image/webp'), url('assets/images/me-front.jpg') type('image/jpeg'));">
-    
-    <!-- Dark gradient overlay for text readability -->
-    <div class="absolute inset-0 bg-gradient-to-b from-black/55 via-black/45 to-black/65"></div>
+  <header class="hero-portrait">
+    <div class="hero-portrait-photo">
+      <picture>
+        <source type="image/webp"
+                srcset="assets/images/steve-hero-1200.webp?v=3 1200w, assets/images/steve-hero-1920.webp?v=3 1920w"
+                sizes="100vw">
+        <img src="assets/images/steve-hero-1920.jpg?v=3"
+             srcset="assets/images/steve-hero-1200.jpg?v=3 1200w, assets/images/steve-hero-1920.jpg?v=3 1920w"
+             sizes="100vw"
+             width="1920"
+             height="2382"
+             alt="Steve Luiting"
+             decoding="async"
+             fetchpriority="high">
+      </picture>
+    </div>
 
-    <div class="relative max-w-6xl mx-auto px-6 z-10 pt-16 pb-8">
-      <div class="max-w-3xl">
+    <div class="hero-portrait-shade" aria-hidden="true"></div>
+
+    <div class="hero-portrait-inner">
+      <div class="hero-portrait-copy">
         <div data-stagger-item class="inline-flex items-center gap-x-2 text-xs uppercase tracking-[3px] font-semibold text-white/80 mb-6">
           <span class="w-8 h-px bg-white/60"></span> 
           COLORADO • 30+ YEARS
