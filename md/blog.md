@@ -9,6 +9,14 @@ language: "en"
 
 Articles by Steve Luiting on strategic web design, digital preservation, and AI-accelerated workflows.
 
+## [I Asked an AI to Film My Memories](https://steveknowsweb.com/blog/i-asked-an-ai-to-film-my-memories)
+
+*2026-11-19 · Music · 5 min*
+
+I wanted a music video for my song "If I Were an Angel" with no lip sync, just a memory film. Then my real memories started reshaping the story, and AI ended up filming something that actually happened to me.
+
+Markdown: [i-asked-an-ai-to-film-my-memories.md](/md/blog/i-asked-an-ai-to-film-my-memories.md)
+
 ## [Iron Paul: Finally Hearing My Songs](https://steveknowsweb.com/blog/iron-paul-finally-hearing-my-songs)
 
 *2026-10-30 · Music · 4 min*
